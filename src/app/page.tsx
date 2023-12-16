@@ -1,5 +1,8 @@
-import styles from "./page.module.css";
+import clsx from "clsx";
+import classes from "./page.module.css";
 
-export default function Home() {
-  return <main className={styles.main}>Instagram Clone | @SouravCodery</main>;
+export default function HomePage() {
+  return (
+    <div className={clsx(classes.main)}>Instagram Clone | @SouravCodery</div>
+  );
 }

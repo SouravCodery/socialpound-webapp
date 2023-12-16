@@ -1,12 +1,9 @@
 .main {
   display: flex;
-
-  flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  padding: 1rem;
-
-  min-height: 100vh;
-  min-width: 100vw;
+  background: #f1f1f1;
+  height: 100%;
+  width: 100%;
 }
