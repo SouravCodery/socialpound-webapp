@@ -3,18 +3,20 @@ import Link from "next/link";
 import clsx from "clsx";
 import classes from "./navbar.module.css";
 
-import HomeIcon from "@mui/icons-material/HomeOutlined";
-import SearchIcon from "@mui/icons-material/SearchOutlined";
-import PostIcon from "@mui/icons-material/AddBoxOutlined";
-import ReelsIcon from "@mui/icons-material/SlideshowOutlined";
-import ProfileIcon from "@mui/icons-material/AccountCircleOutlined";
+import {
+  HomeIcon,
+  ExploreIcon,
+  HomePostIcon,
+  ReelsIcon,
+  InstagramIcon,
+} from "../../icons";
 
 const routes = [
   { path: "/", name: "Home", icon: HomeIcon },
-  { path: "/search", name: "Search", icon: SearchIcon },
-  { path: "/post", name: "Post", icon: PostIcon },
+  { path: "/explore", name: "Search", icon: ExploreIcon },
+  { path: "/post", name: "Post", icon: HomePostIcon },
   { path: "/reels", name: "Reels", icon: ReelsIcon },
-  { path: "/profile", name: "Profile", icon: ProfileIcon },
+  { path: "/profile", name: "Profile", icon: InstagramIcon },
 ];
 
 export const Navbar = async () => {
