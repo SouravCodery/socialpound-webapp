@@ -9,7 +9,7 @@ import {
   HomePostIcon,
   ReelsIcon,
   InstagramIcon,
-} from "../../icons";
+} from "../../icons/icons";
 
 const routes = [
   { path: "/", name: "Home", icon: HomeIcon },
