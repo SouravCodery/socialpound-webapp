@@ -1,5 +1,7 @@
 :root {
   --background-primary: #ffffff;
+  --background-primary-inverted-rgb: 0, 0, 0;
+
   --background-secondary: #dbdbdb;
 
   --color-primary: #000000;
@@ -13,9 +15,12 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background-primary: #000000;
+    --background-primary-inverted-rgb: 255, 255, 255;
+
     --background-secondary: #262626;
 
     --color-primary: #f5f5f5;
+
     --color-secondary: #a8a8a8;
 
     --border-primary: #262626;
