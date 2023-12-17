@@ -6,6 +6,8 @@
   --color-secondary: #737373;
 
   --border-primary: #dbdbdb;
+
+  --red-primary: #ff2f40;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,6 +19,8 @@
     --color-secondary: #a8a8a8;
 
     --border-primary: #262626;
+
+    --red-primary: #ff2f40;
   }
 }
 
