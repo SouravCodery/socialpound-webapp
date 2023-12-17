@@ -8,3 +8,9 @@
   justify-content: space-between;
   align-items: center;
 }
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
