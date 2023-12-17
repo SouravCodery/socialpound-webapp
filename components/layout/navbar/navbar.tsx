@@ -10,7 +10,7 @@ import {
   ReelsIcon,
   InstagramIcon,
 } from "../../icons/icons";
-import { IconWrapper } from "../../icon-wrapper/icon-wrapper";
+import { IconWrapper } from "../../atoms/icon-wrapper/icon-wrapper";
 
 const routes = [
   { path: "/", name: "Home", icon: HomeIcon },
