@@ -27,7 +27,7 @@ const posts = [
 
 export default function Feed() {
   return (
-    <div className={clsx(classes.main)}>
+    <div className={clsx(classes.feed)}>
       {posts.map((post) => (
         <Post post={post} />
       ))}

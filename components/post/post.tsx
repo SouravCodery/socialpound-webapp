@@ -12,7 +12,7 @@ import {
 
 export const Post = ({ post }: { post: PostType }) => {
   return (
-    <div className={classes.main}>
+    <div className={classes.post}>
       <div className={classes.header}>
         <div className={classes.headerLeft}>
           <div className={classes.dpContainer}>

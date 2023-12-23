@@ -1,4 +1,4 @@
-.main {
+.post {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -18,7 +18,7 @@
   margin: 1rem;
 }
 
-.main > div {
+.post > div {
   position: relative;
   width: 100%;
 }

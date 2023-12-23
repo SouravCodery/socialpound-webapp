@@ -4,7 +4,7 @@ import Feed from "../../components/feed/feed";
 
 export default function HomePage() {
   return (
-    <div className={clsx(classes.main)}>
+    <div className={clsx(classes.homePage)}>
       <Feed />
     </div>
   );
