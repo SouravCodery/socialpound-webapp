@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import clsx from "clsx";
-import classes from "./navbar.module.css";
+import classes from "./mobile-navbar.module.css";
 
 import {
   HomeIcon,
@@ -20,7 +20,7 @@ const routes = [
   { path: "/profile", name: "Profile", icon: InstagramIcon },
 ];
 
-export const Navbar = async () => {
+export const MobileNavbar = async () => {
   return (
     <nav className={clsx(classes.navbar, "shadow")}>
       {routes.map((route) => (

@@ -6,7 +6,7 @@ import { clsx } from "clsx";
 import "./globals.css";
 import classes from "./layout.module.css";
 
-import { Navbar } from "../../components/layout/navbar/navbar";
+import { MobileNavbar } from "../../components/layout/mobile-navbar/mobile-navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +25,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={clsx(inter.className, classes.body)}>
         <main className={clsx(classes.main)}>{children}</main>
-        <Navbar />
+        <MobileNavbar />
       </body>
     </html>
   );
