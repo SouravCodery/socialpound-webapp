@@ -29,7 +29,7 @@ export default function Feed() {
   return (
     <div className={clsx(classes.feed)}>
       {posts.map((post) => (
-        <Post post={post} />
+        <Post key={post._id} post={post} />
       ))}
     </div>
   );
