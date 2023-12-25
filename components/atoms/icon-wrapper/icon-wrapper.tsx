@@ -11,7 +11,7 @@ export const IconWrapper = ({
     <div className={classes.iconWrapper}>
       <div className={classes.iconWrapperChild}>
         {children}
-        {count && <div className={classes.count}>2</div>}
+        {count && <div className={classes.count}>{count}</div>}
       </div>
     </div>
   );
