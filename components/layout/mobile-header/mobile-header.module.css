@@ -1,0 +1,42 @@
+.header {
+  position: fixed;
+
+  top: 0;
+
+  width: 100%;
+  max-width: 60rem;
+
+  padding-top: 1rem;
+
+  border-bottom: 1px solid var(--border-primary);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: var(--background-primary);
+
+  z-index: 100;
+}
+
+.instagramLogoIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0.5rem 1rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}

@@ -7,6 +7,7 @@ import "./globals.css";
 import classes from "./layout.module.css";
 
 import { MobileNavbar } from "../../components/layout/mobile-navbar/mobile-navbar";
+import { MobileHeader } from "../../components/layout/mobile-header/mobile-header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={clsx(inter.className, classes.body)}>
+        <MobileHeader />
         <main className={clsx(classes.main)}>{children}</main>
         <MobileNavbar />
       </body>
