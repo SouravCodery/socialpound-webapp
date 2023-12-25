@@ -20,7 +20,7 @@ const routes = [
   { path: "/profile", name: "Profile", icon: InstagramIcon },
 ];
 
-export const MobileNavbar = async () => {
+export const MobileNavbar = () => {
   return (
     <footer className={clsx(classes.footer)}>
       <nav className={clsx(classes.navbar)}>

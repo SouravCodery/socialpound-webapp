@@ -1,13 +1,16 @@
 .footer {
   position: fixed;
+
   bottom: 0;
-  left: 0;
 
   width: 100%;
+  max-width: 60rem;
 
   border-top: 0.1px solid var(--border-primary);
 
   background: var(--background-primary);
+
+  z-index: 100;
 }
 
 .navbar {
