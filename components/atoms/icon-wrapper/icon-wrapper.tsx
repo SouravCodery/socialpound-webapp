@@ -8,9 +8,11 @@ export const IconWrapper = ({
   count?: number | undefined;
 }) => {
   return (
-    <div className={classes.main}>
-      {children}
-      {count && <div className={classes.count}>2</div>}
+    <div className={classes.iconWrapper}>
+      <div className={classes.iconWrapperChild}>
+        {children}
+        {count && <div className={classes.count}>2</div>}
+      </div>
     </div>
   );
 };

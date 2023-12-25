@@ -1,18 +1,27 @@
-.main {
+.iconWrapper {
   display: flex;
   justify-content: center;
   align-items: center;
 
   position: relative;
 
-  padding: 0.4rem 0.8rem;
-  border-radius: 0.4rem;
+  padding: 1rem;
+  width: 100%;
 
   transition: all 500ms ease-in-out;
 }
 
-.main:hover {
-  box-shadow: rgba(var(--background-primary-inverted-rgb), 0.5) 0px 1px 2px 0px;
+.iconWrapper:hover {
+  background: var(--background-secondary);
+  box-shadow: rgba(var(--background-primary-inverted-rgb), 0.2) 0px 1px 2px 0px;
+}
+
+.iconWrapperChild {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: relative;
 }
 
 .count {
@@ -21,8 +30,8 @@
   align-items: center;
 
   position: absolute;
-  top: 0.1rem;
-  right: 0.3rem;
+  top: -0.5rem;
+  right: -0.5rem;
 
   height: 1.2rem;
   width: 1.2rem;
