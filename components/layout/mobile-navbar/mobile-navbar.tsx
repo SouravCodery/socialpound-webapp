@@ -22,14 +22,16 @@ const routes = [
 
 export const MobileNavbar = async () => {
   return (
-    <nav className={clsx(classes.navbar, "shadow")}>
-      {routes.map((route) => (
-        <Link key={route.path} href={route.path} className={classes.link}>
-          <IconWrapper count={route.count}>
-            <route.icon />
-          </IconWrapper>
-        </Link>
-      ))}
-    </nav>
+    <footer className={clsx(classes.footer)}>
+      <nav className={clsx(classes.navbar)}>
+        {routes.map((route) => (
+          <Link key={route.path} href={route.path} className={classes.link}>
+            <IconWrapper count={route.count}>
+              <route.icon />
+            </IconWrapper>
+          </Link>
+        ))}
+      </nav>
+    </footer>
   );
 };
