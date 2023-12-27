@@ -15,7 +15,9 @@ export const MobileHeader = async () => {
   return (
     <header className={classes.header}>
       <div className={classes.instagramLogoIconContainer}>
-        <InstagramLogoIcon />
+        <Link href="/" className={classes.link}>
+          <InstagramLogoIcon />
+        </Link>
       </div>
       <nav className={clsx(classes.navbar)}>
         {routes.map((route) => (
