@@ -3,8 +3,12 @@ import Link from "next/link";
 import clsx from "clsx";
 import classes from "./mobile-header.module.css";
 
-import { InstagramLogoIcon, LikeIcon, MessengerIcon } from "../../icons/icons";
-import { IconWrapper } from "../../atoms/icon-wrapper/icon-wrapper";
+import {
+  InstagramLogoIcon,
+  LikeIcon,
+  MessengerIcon,
+} from "@/components/icons/icons";
+import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 
 const routes = [
   { path: "/notifications", name: "Reels", icon: LikeIcon, count: 4 },

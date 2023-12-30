@@ -9,8 +9,8 @@ import {
   HomePostIcon,
   ReelsIcon,
   InstagramIcon,
-} from "../../icons/icons";
-import { IconWrapper } from "../../atoms/icon-wrapper/icon-wrapper";
+} from "@/components/icons/icons";
+import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 
 const routes = [
   { path: "/", name: "Home", icon: HomeIcon },

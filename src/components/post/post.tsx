@@ -1,14 +1,14 @@
 import Image from "next/image";
 
 import classes from "./post.module.css";
-import { PostType } from "../../models/types/post.types";
+import { PostType } from "@/models/types/post.types";
 import {
   MoreOptionsIcon,
   LikeIcon,
   CommentIcon,
   ShareIcon,
   SavedIcon,
-} from "../icons/icons";
+} from "@/components/icons/icons";
 
 export const Post = ({ post }: { post: PostType }) => {
   return (
