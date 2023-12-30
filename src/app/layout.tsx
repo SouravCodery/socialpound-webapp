@@ -6,8 +6,8 @@ import { clsx } from "clsx";
 import "./globals.css";
 import classes from "./layout.module.css";
 
-import { MobileNavbar } from "../components/layout/mobile-navbar/mobile-navbar";
-import { MobileHeader } from "../components/layout/mobile-header/mobile-header";
+import { MobileNavbar } from "@/components/layout/mobile-navbar/mobile-navbar";
+import { MobileHeader } from "@/components/layout/mobile-header/mobile-header";
 
 const inter = Inter({ subsets: ["latin"] });
 

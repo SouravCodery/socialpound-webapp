@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import classes from "./feed.module.css";
-import { Post } from "../post/post";
+import { Post } from "@/components/post/post";
 
 const posts = [
   {
