@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 import classes from "./post.module.css";
-import { PostType } from "../../src/models/types/post.types";
+import { PostType } from "../../models/types/post.types";
 import {
   MoreOptionsIcon,
   LikeIcon,
