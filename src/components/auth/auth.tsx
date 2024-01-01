@@ -1,6 +1,5 @@
 "use client";
 
-import { auth } from "@/root/auth";
 import { signIn, signOut } from "next-auth/react";
 
 export const Auth = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
@@ -8,7 +7,8 @@ export const Auth = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     return (
       <>
         <p>Not signed in.</p>
-        <button onClick={() => signIn("github")}>Sign in</button>
+        {/* <button onClick={() => signIn("github")}>Sign in</button> */}
+        <button onClick={() => signIn()}>Sign in</button>
       </>
     );
   }
