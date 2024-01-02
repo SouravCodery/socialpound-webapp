@@ -6,4 +6,18 @@ export const {
   auth,
 } = NextAuth({
   providers: [GitHub],
+  callbacks: {
+    authorized({ auth, request: { nextUrl } }) {
+      const isLoggedIn = !!auth?.user;
+
+      const isLoginPage = nextUrl.pathname === "/api/auth/signin";
+
+      // if (isLoggedIn && isLoginPage) {
+      //   return Response.redirect(new URL("/home"));
+      // }
+
+      if (isLoggedIn) return true;
+      return false;
+    },
+  },
 });
