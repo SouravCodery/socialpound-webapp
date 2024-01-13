@@ -9,7 +9,13 @@ export default function SignIn() {
     <div className={clsx(classes.signInContainer)}>
       <div className={clsx(classes.signIn)}>
         <div className={clsx(classes.header)}>
-          <InstagramLogoIcon />
+          <div className={classes.logoContainer}>
+            <InstagramLogoIcon />
+          </div>
+          <div className={classes.souravcodery}>
+            <div>Clone by @SouravCodery</div>
+            <div>Sourav Choudhary</div>
+          </div>
         </div>
         <div className={clsx(classes.body)}>
           <LoginButton />
