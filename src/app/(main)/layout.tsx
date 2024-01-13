@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 
 import { clsx } from "clsx";
 
-import "./globals.css";
+import "@/app/globals.css";
 import classes from "./layout.module.css";
 
 import { MobileNavbar } from "@/components/layout/mobile-navbar/mobile-navbar";
