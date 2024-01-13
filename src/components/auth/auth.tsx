@@ -1,6 +1,7 @@
 "use client";
 
 import { signIn, signOut } from "next-auth/react";
+import classes from "./auth.module.css";
 
 export const Auth = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   if (!isLoggedIn) {
@@ -24,8 +25,19 @@ export const Auth = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
 
 export const LoginButton = () => {
   return (
-    <button onClick={() => signIn("github", { callbackUrl: "/" })}>
-      Sign In
+    <button
+      className={classes.button}
+      onClick={() => signIn("github", { callbackUrl: "/" })}
+    >
+      Log in with Github
+    </button>
+  );
+};
+
+export const LogoutButton = () => {
+  return (
+    <button className={classes.button} onClick={() => signOut()}>
+      Sign Out
     </button>
   );
 };
