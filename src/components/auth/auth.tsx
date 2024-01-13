@@ -21,3 +21,11 @@ export const Auth = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
     </>
   );
 };
+
+export const LoginButton = () => {
+  return (
+    <button onClick={() => signIn("github", { callbackUrl: "/" })}>
+      Sign In
+    </button>
+  );
+};
