@@ -9,15 +9,15 @@ export const {
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
+      const isInsideApp = !nextUrl.pathname.startsWith("/api/auth");
 
-      const isLoginPage = nextUrl.pathname === "/api/auth/signin";
-
-      // if (isLoggedIn && isLoginPage) {
-      //   return Response.redirect(new URL("/home"));
-      // }
-
-      if (isLoggedIn) return true;
-      return false;
+      if (isInsideApp) {
+        if (isLoggedIn) return true;
+        return false; // Redirect unauthenticated users to login page
+      } else if (isLoggedIn) {
+        // return Response.redirect(new URL("/", nextUrl));
+      }
+      return true;
     },
   },
 });
