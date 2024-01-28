@@ -1,6 +1,6 @@
 "use server";
 
-import { signJwt } from "@/helpers/jwt.helper";
+import { signJwt } from "@/helpers/jwt.helpers";
 import { cookies } from "next/headers";
 
 export async function signInServerSide({ user }: { user: Object }) {
