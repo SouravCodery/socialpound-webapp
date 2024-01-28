@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 
-import { signInServerSide } from "@/actions/user.action";
+import { signInServerSide } from "@/actions/user.actions";
 
 export const {
   handlers: { GET, POST },
