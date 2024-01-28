@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Suspense } from "react";
 
 import clsx from "clsx";
 import classes from "./mobile-navbar.module.css";
@@ -8,28 +9,30 @@ import {
   ExploreIcon,
   HomePostIcon,
   ReelsIcon,
-  InstagramIcon,
 } from "@/components/icons/icons";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
+import { ProfileNavigatorIcon } from "@/components/profile-navigator-icon/profile-navigator-icon";
 
 const routes = [
   { path: "/", name: "Home", icon: HomeIcon },
   { path: "/explore", name: "Search", icon: ExploreIcon },
   { path: "/post", name: "Post", icon: HomePostIcon },
   { path: "/reels", name: "Reels", icon: ReelsIcon, count: 2 },
-  { path: "/profile", name: "Profile", icon: InstagramIcon },
+  { path: "/profile", name: "Profile", icon: ProfileNavigatorIcon },
 ];
 
-export const MobileNavbar = () => {
+export const MobileNavbar = async () => {
   return (
     <footer className={clsx(classes.footer)}>
       <nav className={clsx(classes.navbar)}>
         {routes.map((route) => (
-          <Link key={route.path} href={route.path} className={classes.link}>
-            <IconWrapper count={route.count}>
-              <route.icon />
-            </IconWrapper>
-          </Link>
+          <Suspense key={route.path} fallback={null}>
+            <Link href={route.path} className={classes.link}>
+              <IconWrapper count={route.count}>
+                <route.icon />
+              </IconWrapper>
+            </Link>
+          </Suspense>
         ))}
       </nav>
     </footer>
