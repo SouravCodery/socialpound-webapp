@@ -1,0 +1,74 @@
+.signInContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+  width: 100vw;
+}
+
+.signIn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 2rem;
+  margin: 1rem;
+
+  height: 100%;
+  width: 100%;
+
+  max-width: 24rem;
+  max-height: 30rem;
+
+  border: 1px solid var(--border-primary);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  margin-bottom: 2rem;
+}
+
+.logoContainer {
+  transform: scale(1.8);
+  margin-bottom: 1rem;
+}
+
+.souravcodery {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  font-weight: bold;
+
+  width: 100%;
+
+  margin: 1rem;
+}
+
+.souravcodery > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}
+
+.body {
+  margin-top: 4rem;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+}

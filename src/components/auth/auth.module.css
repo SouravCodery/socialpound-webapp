@@ -1,0 +1,10 @@
+.button {
+  width: 100%;
+
+  color: white;
+  background: var(--button-primary);
+}
+
+.button:hover {
+  background: var(--button-secondary);
+}
