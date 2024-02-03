@@ -18,7 +18,8 @@ export default function SignIn() {
           </div>
         </div>
         <div className={clsx(classes.body)}>
-          <LoginButton />
+          <LoginButton provider="github" />
+          <LoginButton provider="google" />
         </div>
       </div>
     </div>

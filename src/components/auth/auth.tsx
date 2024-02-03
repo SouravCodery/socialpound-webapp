@@ -23,13 +23,17 @@ export const Auth = ({ isLoggedIn }: { isLoggedIn: boolean }) => {
   );
 };
 
-export const LoginButton = () => {
+export const LoginButton = ({
+  provider,
+}: {
+  provider: "google" | "github";
+}) => {
   return (
     <button
       className={classes.button}
-      onClick={() => signIn("github", { callbackUrl: "/" })}
+      onClick={() => signIn(provider, { callbackUrl: "/" })}
     >
-      Log in with Github
+      Log in with <span className={classes.provider}>{provider}</span>
     </button>
   );
 };
