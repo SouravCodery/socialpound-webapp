@@ -3,8 +3,14 @@
 
   color: white;
   background: var(--button-primary);
+
+  margin: 0.5rem;
 }
 
 .button:hover {
   background: var(--button-secondary);
+}
+
+.provider {
+  text-transform: capitalize;
 }
