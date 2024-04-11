@@ -23,6 +23,12 @@
       "@/root/*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "src/IG-SDK/Http-Client.api-client.ts"
+  ],
   "exclude": ["node_modules"]
 }
