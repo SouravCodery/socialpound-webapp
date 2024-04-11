@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Roboto } from "next/font/google";
 
 import { clsx } from "clsx";
 
@@ -9,7 +9,7 @@ import classes from "./layout.module.css";
 import { MobileNavbar } from "@/components/layout/mobile-navbar/mobile-navbar";
 import { MobileHeader } from "@/components/layout/mobile-header/mobile-header";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ weight: ["100", "300", "400", "500", "700", "900"] });
 
 export const metadata: Metadata = {
   title: "Instagram Clone | SouravCodery",
@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(inter.className, classes.body)}>
+      <body className={clsx(roboto.className, classes.body)}>
         <MobileHeader />
         <main className={clsx(classes.main)}>{children}</main>
         <MobileNavbar />
