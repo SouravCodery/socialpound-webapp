@@ -9,7 +9,10 @@ import classes from "./layout.module.css";
 import { MobileNavbar } from "@/components/layout/mobile-navbar/mobile-navbar";
 import { MobileHeader } from "@/components/layout/mobile-header/mobile-header";
 
-const roboto = Roboto({ weight: ["100", "300", "400", "500", "700", "900"] });
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["cyrillic"],
+});
 
 export const metadata: Metadata = {
   title: "Instagram Clone | SouravCodery",
