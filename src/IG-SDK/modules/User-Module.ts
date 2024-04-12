@@ -1,8 +1,7 @@
 import { HttpClient } from "../Http-Client.api-client";
-import {
-  CredentialsInterface,
-  LoginResponseInterface,
-} from "../../models/interfaces/User.interface";
+import { LoginResponseInterface } from "../../models/interfaces/User.interface";
+
+import { API_ROUTES } from "../API-Routes";
 
 export class UserModule {
   private httpClient: HttpClient;
@@ -11,15 +10,20 @@ export class UserModule {
     this.httpClient = httpClient;
   }
 
-  async login(
-    credentials: CredentialsInterface
-  ): Promise<LoginResponseInterface> {
+  async login({
+    token,
+    signedUserDataJWT,
+  }: {
+    token: string;
+    signedUserDataJWT: string;
+  }): Promise<Object> {
     return this.httpClient.request<LoginResponseInterface>({
-      endpoint: "/login",
+      endpoint: API_ROUTES.user.login,
       options: {
         method: "POST",
       },
-      body: { userName: credentials.username, password: credentials.password },
+      body: { signedUserDataJWT },
+      token,
     });
   }
 }
