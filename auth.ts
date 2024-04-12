@@ -21,8 +21,8 @@ export const {
       if (isLoggedIn) return true;
       return false; // Redirect unauthenticated users to login page
     },
-    async signIn({ user, ...other }) {
-      await signInServerSide({ user, other });
+    async signIn({ user, account, profile }) {
+      await signInServerSide({ user, account, profile });
 
       return true;
     },
