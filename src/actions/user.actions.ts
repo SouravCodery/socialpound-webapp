@@ -1,20 +1,34 @@
 "use server";
 
-import { signJwt } from "@/helpers/jwt.helpers";
-import { logger } from "@/logger/index.logger";
 import { cookies } from "next/headers";
+import { Account, Profile } from "next-auth";
+
+import { signServerJWT, signUserDataJWT } from "@/helpers/jwt.helpers";
+import { logger } from "@/logger/index.logger";
+import { apiSDKInstance } from "@/IG-SDK/IG-SDK.instance";
 
 export async function signInServerSide({
   user,
-  other,
+  account,
+  profile,
 }: {
   user: Object;
-  other: Object;
+  account: Account | null;
+  profile?: Profile;
 }) {
   try {
-    const token = signJwt({ user });
+    const signedServerJWT = signServerJWT({
+      user,
+    });
 
-    cookies().set("token", JSON.stringify(token));
+    const signedUserDataJWT = signUserDataJWT({ user, account, profile });
+
+    cookies().set("server-token", signedServerJWT);
+
+    const loginResponse = await apiSDKInstance.user.login({
+      token: signedServerJWT,
+      signedUserDataJWT,
+    });
   } catch (error) {
     logger.error("Error in signInServerSide", { error });
   }
