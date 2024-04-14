@@ -25,7 +25,7 @@ export async function signInServerSide({
 
     cookies().set("server-token", signedServerJWT);
 
-    const loginResponse = await apiSDKInstance.user.login({
+    await apiSDKInstance.user.signIn({
       token: signedServerJWT,
       signedUserDataJWT,
     });

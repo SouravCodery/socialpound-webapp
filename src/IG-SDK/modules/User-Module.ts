@@ -10,7 +10,7 @@ export class UserModule {
     this.httpClient = httpClient;
   }
 
-  async login({
+  async signIn({
     token,
     signedUserDataJWT,
   }: {
@@ -18,7 +18,7 @@ export class UserModule {
     signedUserDataJWT: string;
   }): Promise<Object> {
     return this.httpClient.request<LoginResponseInterface>({
-      endpoint: API_ROUTES.user.login,
+      endpoint: API_ROUTES.user.signIn,
       options: {
         method: "POST",
       },
