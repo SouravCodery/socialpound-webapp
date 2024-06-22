@@ -9,3 +9,8 @@
 
   border: 1px solid var(--border-primary);
 }
+
+.upScale {
+  height: 4.4rem;
+  width: 4.4rem;
+}

@@ -1,0 +1,12 @@
+.content {
+  position: relative;
+
+  height: 100%;
+  width: 100%;
+
+  aspect-ratio: 1;
+}
+
+.asset {
+  object-fit: cover;
+}

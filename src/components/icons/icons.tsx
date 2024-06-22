@@ -274,10 +274,10 @@ export const PostsIcon = () => (
   <svg
     aria-label=""
     fill="currentColor"
-    height="12"
+    height="24"
     role="img"
     viewBox="0 0 24 24"
-    width="12"
+    width="24"
   >
     <title>Posts</title>
     <rect
