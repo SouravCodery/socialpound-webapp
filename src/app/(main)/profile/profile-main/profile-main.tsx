@@ -2,6 +2,7 @@ import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 import { PostsIcon, ReelsIcon, TaggedIcon } from "@/components/icons/icons";
 
 import classes from "./profile-main.module.css";
+import { ProfilePosts } from "./profile-posts/profile-posts";
 
 export const ProfileMain = () => {
   return (
@@ -17,7 +18,8 @@ export const ProfileMain = () => {
           <TaggedIcon />
         </IconWrapper>
       </div>
-      <div className={classes.profileMainBody}>Main</div>
+
+      <ProfilePosts />
     </div>
   );
 };
