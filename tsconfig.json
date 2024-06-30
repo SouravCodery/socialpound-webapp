@@ -28,7 +28,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/IG-SDK/Http-Client.api-client.ts"
+    "src/ig-sdk/http-client.api-client.ts"
   ],
   "exclude": ["node_modules"]
 }

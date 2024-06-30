@@ -1,5 +1,5 @@
-import { LoggerInterface } from "./../models/interfaces/Logger.interface";
-import { ConsoleLogger } from "./Console-Logger.logger";
+import { LoggerInterface } from "./../models/interfaces/logger.interface";
+import { ConsoleLogger } from "./console-logger.logger";
 
 const Logger = (): LoggerInterface => {
   return new ConsoleLogger();
