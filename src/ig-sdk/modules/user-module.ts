@@ -1,7 +1,7 @@
-import { HttpClient } from "../Http-Client.api-client";
-import { LoginResponseInterface } from "../../models/interfaces/User.interface";
+import { HttpClient } from "../http-client.api-client";
+import { LoginResponseInterface } from "../../models/interfaces/user.interface";
 
-import { API_ROUTES } from "../API-Routes";
+import { API_ROUTES } from "../api-routes";
 
 export class UserModule {
   private httpClient: HttpClient;

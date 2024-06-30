@@ -1,4 +1,4 @@
-import { LoggerInterface } from "../models/interfaces/Logger.interface";
+import { LoggerInterface } from "../models/interfaces/logger.interface";
 
 export const LogColors = {
   Reset: "\x1b[0m",

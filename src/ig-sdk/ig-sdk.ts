@@ -1,5 +1,5 @@
-import { HttpClient } from "./Http-Client.api-client";
-import { UserModule } from "./modules/User-Module";
+import { HttpClient } from "./http-client.api-client";
+import { UserModule } from "./modules/user-module";
 
 export class IG_SDK {
   public user: UserModule;

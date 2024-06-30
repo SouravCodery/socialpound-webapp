@@ -5,7 +5,7 @@ import { Account, Profile } from "next-auth";
 
 import { signServerJWT, signUserDataJWT } from "@/helpers/jwt.helpers";
 import { logger } from "@/logger/index.logger";
-import { apiSDKInstance } from "@/IG-SDK/IG-SDK.instance";
+import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 
 export async function signInServerSide({
   user,
