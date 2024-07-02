@@ -59,15 +59,21 @@ a {
 button {
   cursor: pointer;
 
-  padding: 0.6rem 3rem;
+  padding: 0.5rem 3rem;
 
   border: none;
-  border-radius: 0.6rem;
+  border-radius: 0.5rem;
 
   font-size: 0.8rem;
 
   background: var(--background-secondary);
   color: var(--color-primary);
+
+  transition: filter 0.3s ease-in-out;
+}
+
+button:hover {
+  filter: brightness(1.2);
 }
 
 .shadow {
