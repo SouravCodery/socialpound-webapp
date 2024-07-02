@@ -79,3 +79,7 @@ button:hover {
 .shadow {
   box-shadow: rgba(var(--background-primary-inverted-rgb), 0.2) 0px 1px 2px 0px;
 }
+
+.hidden {
+  display: none;
+}
