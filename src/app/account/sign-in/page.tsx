@@ -1,27 +1,5 @@
-import { InstagramLogoIcon } from "@/components/icons/icons";
-import { clsx } from "clsx";
+import { SignIn } from "@/screens/account/sign-in/sign-in";
 
-import classes from "./sign-in.module.css";
-import { LoginButton } from "@/components/auth/auth";
-
-export default function SignIn() {
-  return (
-    <div className={clsx(classes.signInContainer)}>
-      <div className={clsx(classes.signIn)}>
-        <div className={clsx(classes.header)}>
-          <div className={classes.logoContainer}>
-            <InstagramLogoIcon />
-          </div>
-          <div className={classes.souravcodery}>
-            <div>Clone by @SouravCodery</div>
-            <div>Sourav Choudhary</div>
-          </div>
-        </div>
-        <div className={clsx(classes.body)}>
-          <LoginButton provider="github" />
-          <LoginButton provider="google" />
-        </div>
-      </div>
-    </div>
-  );
+export default function SignInPage() {
+  return <SignIn />;
 }
