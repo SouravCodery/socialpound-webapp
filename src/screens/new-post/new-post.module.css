@@ -1,0 +1,27 @@
+.container {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 6rem;
+
+  padding: 0.5rem;
+  margin-top: 1rem;
+
+  border: none;
+  outline: none;
+  resize: none;
+
+  border-bottom: 0.01rem solid var(--border-primary);
+}
