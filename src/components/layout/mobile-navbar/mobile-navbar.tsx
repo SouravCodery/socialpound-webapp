@@ -16,7 +16,7 @@ import { ProfileNavigatorIcon } from "@/components/profile-navigator-icon/profil
 const routes = [
   { path: "/", name: "Home", icon: HomeIcon },
   { path: "/explore", name: "Search", icon: ExploreIcon },
-  { path: "/post", name: "Post", icon: HomePostIcon },
+  { path: "/new-post", name: "New Post", icon: HomePostIcon },
   { path: "/reels", name: "Reels", icon: ReelsIcon, count: 2 },
   { path: "/profile", name: "Profile", icon: ProfileNavigatorIcon },
 ];
