@@ -11,7 +11,7 @@ const cedarvilleCursive = Cedarville_Cursive({
 export const Logo = () => {
   return (
     <div className={clsx(classes.logo, cedarvilleCursive.className)}>
-      Socialgram
+      Socialpound
     </div>
   );
 };
