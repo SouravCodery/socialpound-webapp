@@ -3,12 +3,9 @@ import Link from "next/link";
 import clsx from "clsx";
 import classes from "./mobile-header.module.css";
 
-import {
-  InstagramLogoIcon,
-  LikeIcon,
-  MessengerIcon,
-} from "@/components/icons/icons";
+import { LikeIcon, MessengerIcon } from "@/components/icons/icons";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
+import { Logo } from "@/components/logo/logo";
 
 const routes = [
   { path: "/notifications", name: "Reels", icon: LikeIcon, count: 4 },
@@ -18,9 +15,9 @@ const routes = [
 export const MobileHeader = async () => {
   return (
     <header className={classes.header}>
-      <div className={classes.instagramLogoIconContainer}>
+      <div className={classes.logoContainer}>
         <Link href="/" className={classes.link}>
-          <InstagramLogoIcon />
+          <Logo />
         </Link>
       </div>
       <nav className={clsx(classes.navbar)}>
