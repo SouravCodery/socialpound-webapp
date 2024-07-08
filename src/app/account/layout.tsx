@@ -8,9 +8,9 @@ import "@/app/globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Instagram Clone | SouravCodery",
+  title: "Socialpound | SouravCodery",
   description:
-    "Instagram Clone Web App written by Sourav Choudhary | @SouravCodery",
+    "Socialpound a Social Media Platform by Sourav Choudhary | @SouravCodery",
 };
 
 export default function RootLayout({
