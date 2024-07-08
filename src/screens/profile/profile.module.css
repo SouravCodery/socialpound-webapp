@@ -1,11 +1,13 @@
 .profile {
+  flex: 1;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
 
   width: 100%;
-
   max-width: 50rem;
-  min-height: 75vh;
+
+  padding-bottom: 6rem;
 }
