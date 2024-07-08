@@ -11,6 +11,8 @@ export const Profile = () => {
       <ProfileHeader />
       <ProfileMain />
 
+      <br />
+      <br />
       <LogoutButton />
     </div>
   );
