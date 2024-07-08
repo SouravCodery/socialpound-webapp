@@ -1,9 +1,15 @@
 .container {
+  position: relative;
+
   width: 100%;
   max-width: 30rem;
+
+  padding-bottom: 4rem;
 }
 
 .form {
+  position: relative;
+
   display: flex;
   flex-direction: column;
 }
@@ -24,4 +30,32 @@
   resize: none;
 
   border-bottom: 0.01rem solid var(--border-primary);
+  border-radius: 0.25rem;
+}
+
+.shareButtonContainer {
+  position: fixed;
+  left: 50%;
+  bottom: 4rem;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 30rem;
+
+  padding: 1rem;
+  border-top: 0.01rem solid var(--border-primary);
+  background: var(--background-primary);
+}
+
+.shareButton {
+  position: relative;
+  width: 100%;
+
+  background: var(--button-primary);
+  color: white;
 }

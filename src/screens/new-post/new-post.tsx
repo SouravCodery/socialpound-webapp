@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import classes from "./new-post.module.css";
 
 import { NewPostMediaPreview } from "./new-post-media-preview/new-post-media-preview";
+import { logger } from "@/logger/index.logger";
 
 const MAX_MEDIA_SIZE = 4 * 1024 * 1024; // 4MB in bytes
 
@@ -56,18 +57,11 @@ export const NewPost = () => {
       formData.append("image", selectedMedia);
       formData.append("caption", caption);
 
-      const response = await fetch("/api/posts", {
-        method: "POST",
-        body: formData,
-      });
+      logger.info("From Form", formData, selectedMedia, caption);
 
-      if (response.ok) {
-        alert("Post created successfully!");
-      } else {
-        alert("Failed to create post.");
-      }
+      //Make API call here!
     } catch (error) {
-      console.error("Error creating post:", error);
+      logger.error("Error creating post:", error);
     }
   };
 
@@ -96,12 +90,15 @@ export const NewPost = () => {
           className="hidden"
         />
         <textarea
-          placeholder="Write a caption"
+          placeholder="Write a caption for your post"
           value={caption}
           onChange={handleCaptionChange}
           className={classes.caption}
           maxLength={2200}
         />
+        <div className={classes.shareButtonContainer}>
+          <button className={classes.shareButton}>Share</button>
+        </div>
       </form>
     </div>
   );
