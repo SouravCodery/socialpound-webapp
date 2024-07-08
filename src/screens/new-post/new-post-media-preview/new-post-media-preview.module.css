@@ -19,7 +19,7 @@
   filter: brightness(1.05);
 }
 
-.uploadMediaPrompt {
+.uploadMediaPromptButton {
   background: var(--button-primary);
   color: white;
 }
