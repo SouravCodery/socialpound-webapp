@@ -40,3 +40,7 @@ export const signUserDataJWT = ({
     throw error;
   }
 };
+
+export const convertStringDaysToSeconds = ({ key }: { key: String }) => {
+  return Number(key.replace("d", "")) * 24 * 60 * 60;
+};
