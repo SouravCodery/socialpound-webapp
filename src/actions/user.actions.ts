@@ -35,7 +35,7 @@ export async function signInServerSide({
 
     cookies().set("server-token", signedServerJWT, {
       maxAge: maxAgeInSeconds,
-      httpOnly: true,
+      httpOnly: false,
       sameSite: "lax",
     });
 
