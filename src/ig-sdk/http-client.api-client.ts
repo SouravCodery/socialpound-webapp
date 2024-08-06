@@ -29,7 +29,7 @@ export class HttpClient {
     options: RequestInit;
     token?: string;
     queryParams?: Record<string, string | number | boolean>;
-    body?: Record<string, string | number | boolean>;
+    body?: Record<string, string | number | boolean | object>;
   }): Promise<T> {
     try {
       const { method = "GET" } = options || {};
