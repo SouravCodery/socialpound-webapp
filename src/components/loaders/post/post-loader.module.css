@@ -1,0 +1,121 @@
+/* Thanks to my buddy, ChatGPT for giving me this loader based on my post component. Hail ChatGPT! */
+.loader {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  position: relative;
+
+  width: 99vw;
+  max-width: 30rem;
+
+  aspect-ratio: 3/4;
+
+  background: var(--background-primary);
+  color: var(--color-primary);
+
+  border-bottom: 1px solid var(--border-primary);
+
+  margin-bottom: 1.5rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.loader > div {
+  position: relative;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1rem 0;
+}
+
+.headerLeft {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dpContainer {
+  height: 2.2rem;
+  width: 2.2rem;
+
+  border-radius: 50%;
+  background: var(--background-secondary);
+}
+
+.usernameContainer {
+  width: 6rem;
+  height: 1rem;
+  margin-left: 0.8rem;
+  background: var(--background-secondary);
+  border-radius: 0.2rem;
+}
+
+.headerRight {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--background-secondary);
+  border-radius: 0.2rem;
+}
+
+.content {
+  width: 100%;
+  height: auto;
+  max-height: 55vh;
+
+  aspect-ratio: 3/4;
+  background: var(--background-secondary);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 0.8rem;
+}
+
+.postActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+}
+
+.postActionsLeft {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.postActionsRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.actionContainer {
+  width: 1.5rem;
+  height: 1.5rem;
+  background: var(--background-secondary);
+  margin-right: 0.5rem;
+  border-radius: 0.3rem;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: var(--background-secondary);
+  }
+  50% {
+    background-color: var(--background-primary);
+  }
+  100% {
+    background-color: var(--background-secondary);
+  }
+}
