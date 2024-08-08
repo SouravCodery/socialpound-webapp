@@ -110,12 +110,12 @@
 
 @keyframes pulse {
   0% {
-    background-color: var(--background-secondary);
+    filter: opacity(0.4);
   }
   50% {
-    background-color: var(--background-primary);
+    filter: opacity(10);
   }
   100% {
-    background-color: var(--background-secondary);
+    filter: opacity(0.4);
   }
 }
