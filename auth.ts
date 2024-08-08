@@ -10,8 +10,12 @@ export const {
 } = NextAuth({
   providers: [GitHub, Google],
   callbacks: {
-    authorized({ auth, request: { nextUrl } }) {
-      const isLoggedIn = !!auth?.user;
+    authorized({ auth, request }) {
+      const { nextUrl } = request;
+
+      const serverToken = request.cookies.get("server-token")?.value;
+
+      const isLoggedIn = !!auth?.user && serverToken;
       const isAuthRoute = nextUrl.pathname.startsWith("/account");
 
       if (isLoggedIn && isAuthRoute) {

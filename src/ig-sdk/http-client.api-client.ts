@@ -1,4 +1,5 @@
 import { logger } from "@/logger/index.logger";
+import { getClientSideCookie } from "@/helpers/client-side-cookie.helpers";
 
 export class HttpClient {
   private readonly baseURL: string;
@@ -18,6 +19,10 @@ export class HttpClient {
       .join("&");
   };
 
+  get serverToken() {
+    return getClientSideCookie({ name: "server-token" });
+  }
+
   async request<T>({
     endpoint,
     options,
@@ -27,9 +32,9 @@ export class HttpClient {
   }: {
     endpoint: string;
     options: RequestInit;
-    token?: string;
+    token?: string | null;
     queryParams?: Record<string, string | number | boolean>;
-    body?: Record<string, string | number | boolean>;
+    body?: Record<string, string | number | boolean | object>;
   }): Promise<T> {
     try {
       const { method = "GET" } = options || {};

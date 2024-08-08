@@ -5,6 +5,7 @@ import classes from "./new-post.module.css";
 
 import { NewPostMediaPreview } from "./new-post-media-preview/new-post-media-preview";
 import { logger } from "@/logger/index.logger";
+import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 
 const MAX_MEDIA_SIZE = 4 * 1024 * 1024; // 4MB in bytes
 
@@ -30,8 +31,6 @@ export const NewPost = () => {
 
       reader.onloadend = () => {
         setSelectedMedia(reader.result as string);
-        console.log(reader);
-        console.log(reader.result);
       };
 
       reader.readAsDataURL(file);
@@ -57,9 +56,20 @@ export const NewPost = () => {
       formData.append("image", selectedMedia);
       formData.append("caption", caption);
 
-      logger.info("From Form", formData, selectedMedia, caption);
+      // logger.info("From Form", formData, selectedMedia, caption);
 
       //Make API call here!
+      const response = await apiSDKInstance.post.createPost({
+        content: [
+          {
+            url: "https://images.unsplash.com/photo-1562222998-b3ad3853f657?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            type: "image",
+          },
+        ],
+        caption,
+      });
+
+      console.log(response);
     } catch (error) {
       logger.error("Error creating post:", error);
     }

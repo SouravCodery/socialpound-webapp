@@ -1,7 +1,9 @@
-import { API_ROUTES_Interface } from "@/models/interfaces/api-routes.interface";
-
-export const API_ROUTES: Readonly<API_ROUTES_Interface> = Object.freeze({
+export const API_ROUTES = {
   user: {
     signIn: "/v1/user/sign-in",
   },
-});
+  post: {
+    createPost: "/v1/post",
+    fetchPosts: "/v1/post",
+  },
+} as const;

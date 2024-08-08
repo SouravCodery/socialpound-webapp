@@ -3,9 +3,10 @@
 import { cookies } from "next/headers";
 import { Account, Profile } from "next-auth";
 
-import { signServerJWT, signUserDataJWT } from "@/helpers/jwt.helpers";
 import { logger } from "@/logger/index.logger";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+
+import * as jwtHelpers from "@/helpers/jwt.helpers";
 
 export async function signInServerSide({
   user,
@@ -17,13 +18,26 @@ export async function signInServerSide({
   profile?: Profile;
 }) {
   try {
-    const signedServerJWT = signServerJWT({
+    const signedServerJWT = jwtHelpers.signServerJWT({
       user,
     });
 
-    const signedUserDataJWT = signUserDataJWT({ user, account, profile });
+    const signedUserDataJWT = jwtHelpers.signUserDataJWT({
+      user,
+      account,
+      profile,
+    });
 
-    cookies().set("server-token", signedServerJWT);
+    const AUTH_JWT_EXPIRES_IN = process.env.AUTH_JWT_EXPIRES_IN || "365d";
+    const maxAgeInSeconds = jwtHelpers.convertStringDaysToSeconds({
+      key: AUTH_JWT_EXPIRES_IN,
+    });
+
+    cookies().set("server-token", signedServerJWT, {
+      maxAge: maxAgeInSeconds,
+      httpOnly: false,
+      sameSite: "lax",
+    });
 
     await apiSDKInstance.user.signIn({
       token: signedServerJWT,

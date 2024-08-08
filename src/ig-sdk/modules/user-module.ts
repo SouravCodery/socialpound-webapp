@@ -16,7 +16,7 @@ export class UserModule {
   }: {
     token: string;
     signedUserDataJWT: string;
-  }): Promise<Object> {
+  }) {
     return this.httpClient.request<LoginResponseInterface>({
       endpoint: API_ROUTES.user.signIn,
       options: {
