@@ -1,6 +1,8 @@
 import { logger } from "@/logger/index.logger";
 import { getClientSideCookie } from "@/helpers/client-side-cookie.helpers";
 
+import { FetchResponseInterface } from "./../models/interfaces/fetch-response.interface";
+
 export class HttpClient {
   private readonly baseURL: string;
 
@@ -35,7 +37,7 @@ export class HttpClient {
     token?: string | null;
     queryParams?: Record<string, string | number | boolean>;
     body?: Record<string, string | number | boolean | object>;
-  }): Promise<T> {
+  }): Promise<FetchResponseInterface<T>> {
     try {
       const { method = "GET" } = options || {};
 
@@ -61,12 +63,10 @@ export class HttpClient {
 
       if (!response.ok) {
         const responseLog = response?.json ? await response.json() : response;
-
-        logger.error("Error in request: Non 2XX", responseLog);
-        throw new Error("Network response was not ok");
+        throw new Error(`Network response was not ok: ${responseLog?.message}`);
       }
 
-      const responseJson = await response.json();
+      const responseJson: FetchResponseInterface<T> = await response.json();
 
       return responseJson;
     } catch (error) {
@@ -75,6 +75,7 @@ export class HttpClient {
         { endpoint, options, token, queryParams, body },
         { error }
       );
+
       throw error;
     }
   }
