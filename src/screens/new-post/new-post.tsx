@@ -10,6 +10,8 @@ import { logger } from "@/logger/index.logger";
 
 import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
 
+import { Loader } from "@/components/loaders/loader/loader";
+
 const MAX_MEDIA_SIZE = 4 * 1024 * 1024; // 4MB in bytes
 
 export const NewPost = () => {
@@ -90,6 +92,7 @@ export const NewPost = () => {
 
   return (
     <div className={classes.container}>
+      <Loader show={isMutating} mode="fixed" text="Sharing Post" />
       <NewPostMediaPreview
         media={selectedMedia}
         openFileInput={openFileInput}
