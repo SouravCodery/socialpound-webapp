@@ -9,16 +9,22 @@ import {
   ShareIcon,
   SavedIcon,
 } from "@/components/icons/icons";
+import { PostInterface } from "@/models/interfaces/post.interface";
 
-export const Post = ({ post }: { post: PostType }) => {
+export const Post = ({ post }: { post: PostInterface }) => {
   return (
     <div className={classes.post}>
       <div className={classes.header}>
         <div className={classes.headerLeft}>
           <div className={classes.dpContainer}>
-            <Image src={post.dp} alt="Profile Picture" fill sizes="60px" />
+            <Image
+              src={post.user.profilePicture}
+              alt="Profile Picture"
+              fill
+              sizes="60px"
+            />
           </div>
-          <div className={classes.usernameContainer}>{post.userName}</div>
+          <div className={classes.usernameContainer}>{post.user.username}</div>
         </div>
         <div className={classes.headerRight}>
           <MoreOptionsIcon />
@@ -26,7 +32,7 @@ export const Post = ({ post }: { post: PostType }) => {
       </div>
       <div className={classes.content}>
         <Image
-          src={post.images[0]}
+          src={post.content[0].url}
           alt="Post Image"
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
