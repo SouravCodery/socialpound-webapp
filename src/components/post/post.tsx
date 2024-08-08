@@ -24,7 +24,9 @@ export const Post = ({ post }: { post: PostInterface }) => {
               sizes="60px"
             />
           </div>
-          <div className={classes.usernameContainer}>{post.user.username}</div>
+          <div className={classes.usernameContainer}>
+            {post.user.username.split("@")[0]}
+          </div>
         </div>
         <div className={classes.headerRight}>
           <MoreOptionsIcon />
