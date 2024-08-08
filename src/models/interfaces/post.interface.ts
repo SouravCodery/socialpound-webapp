@@ -3,8 +3,14 @@ interface ContentInterface {
   url: string;
 }
 
+interface UserInterface {
+  username: string;
+  profilePicture: string;
+}
+
 export interface PostInterface {
-  user: Object;
+  _id: string;
+  user: UserInterface;
   content: ContentInterface[];
   caption: string;
   likesCount: number;

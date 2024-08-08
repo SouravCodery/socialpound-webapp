@@ -10,8 +10,8 @@ export class PostModule {
     this.httpClient = httpClient;
   }
 
-  async fetchPosts({}: {}) {
-    return this.httpClient.request<Object>({
+  async fetchPosts() {
+    const fetchPostsResponse = await this.httpClient.request<PostInterface[]>({
       endpoint: API_ROUTES.post.fetchPosts,
       options: {
         method: "GET",
@@ -19,6 +19,8 @@ export class PostModule {
       body: {},
       token: this.httpClient.serverToken,
     });
+
+    return fetchPostsResponse.data;
   }
 
   async createPost({
