@@ -1,15 +1,21 @@
 "use client";
 
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
+
 import classes from "./new-post.module.css";
 
 import { NewPostMediaPreview } from "./new-post-media-preview/new-post-media-preview";
 import { logger } from "@/logger/index.logger";
-import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+
+import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
 
 const MAX_MEDIA_SIZE = 4 * 1024 * 1024; // 4MB in bytes
 
 export const NewPost = () => {
+  const router = useRouter();
+  const { trigger, isMutating, data } = useSWRAddPost();
+
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -58,8 +64,7 @@ export const NewPost = () => {
 
       // logger.info("From Form", formData, selectedMedia, caption);
 
-      //Make API call here!
-      const response = await apiSDKInstance.post.createPost({
+      await trigger({
         content: [
           {
             url: "https://images.unsplash.com/photo-1562222998-b3ad3853f657?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -69,7 +74,9 @@ export const NewPost = () => {
         caption,
       });
 
-      console.log(response);
+      alert("Post shared!");
+
+      router.push("/");
     } catch (error) {
       logger.error("Error creating post:", error);
     }
@@ -107,7 +114,9 @@ export const NewPost = () => {
           maxLength={2200}
         />
         <div className={classes.shareButtonContainer}>
-          <button className={classes.shareButton}>Share</button>
+          <button className={classes.shareButton} disabled={isMutating}>
+            {isMutating === false ? "Share" : "Sharing"}
+          </button>
         </div>
       </form>
     </div>
