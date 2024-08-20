@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Image from "next/image";
 
 import classes from "./post.module.css";
@@ -44,18 +45,27 @@ export const Post = ({ post }: { post: PostInterface }) => {
       <div className={classes.footer}>
         <div className={classes.postActions}>
           <div className={classes.postActionsLeft}>
-            <div className={classes.temporaryIconContainer}>
+            <Link
+              href={`/likes/${post._id}`}
+              className={classes.postActionLink}
+            >
               <LikeIcon />
-            </div>
-            <div className={classes.temporaryIconContainer}>
+            </Link>
+            <Link
+              href={`/comments/${post._id}`}
+              className={classes.postActionLink}
+            >
               <CommentIcon />
-            </div>
-            <div className={classes.temporaryIconContainer}>
+            </Link>
+            <Link
+              href={`/share/${post._id}`}
+              className={classes.postActionLink}
+            >
               <ShareIcon />
-            </div>
+            </Link>
           </div>
           <div className={classes.postActionsRight}>
-            <div className={classes.temporaryIconContainer}>
+            <div className={classes.postActionLink}>
               <SavedIcon />
             </div>
           </div>
