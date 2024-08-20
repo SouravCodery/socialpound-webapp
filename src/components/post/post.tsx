@@ -71,6 +71,13 @@ export const Post = ({ post }: { post: PostInterface }) => {
           </div>
         </div>
         <div></div>
+        {post.caption && (
+          <div className={classes.captionContainer}>
+            <div>{post.user.username.split("@")[0]}</div>
+            &nbsp;
+            <div>{post.caption}</div>
+          </div>
+        )}
         <div></div>
         <div></div>
       </div>

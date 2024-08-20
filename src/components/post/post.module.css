@@ -102,3 +102,10 @@
 .postActionLink {
   padding: 0.5rem;
 }
+
+.captionContainer {
+  display: flex;
+  flex-direction: row;
+
+  margin-top: 0.5rem;
+}
