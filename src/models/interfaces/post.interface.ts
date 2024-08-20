@@ -1,11 +1,7 @@
+import { UserInterface } from "./user.interface";
 interface ContentInterface {
   type: "image" | "video";
   url: string;
-}
-
-interface UserInterface {
-  username: string;
-  profilePicture: string;
 }
 
 export interface PostInterface {
