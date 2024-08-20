@@ -19,6 +19,8 @@
 
   margin-bottom: 1.5rem;
   animation: pulse 1.5s infinite ease-in-out;
+
+  cursor: wait;
 }
 
 .loader > div {
@@ -110,12 +112,12 @@
 
 @keyframes pulse {
   0% {
-    background-color: var(--background-secondary);
+    filter: opacity(0.6);
   }
   50% {
-    background-color: var(--background-primary);
+    filter: opacity(10);
   }
   100% {
-    background-color: var(--background-secondary);
+    filter: opacity(0.6);
   }
 }
