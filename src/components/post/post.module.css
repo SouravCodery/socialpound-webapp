@@ -6,7 +6,7 @@
 
   position: relative;
 
-  width: 99vw;
+  width: 100vw;
   max-width: 30rem;
 
   aspect-ratio: 3/4;
@@ -17,6 +17,8 @@
   border-bottom: 1px solid var(--border-primary);
 
   margin-bottom: 1.5rem;
+
+  font-size: 0.8rem;
 }
 
 .post > div {
@@ -29,7 +31,7 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 1rem 0;
+  padding: 0.8rem;
 }
 
 .headerLeft {
@@ -52,8 +54,7 @@
 }
 
 .usernameContainer {
-  margin-left: 0.8rem;
-  font-weight: 600;
+  margin-left: 0.5rem;
 }
 
 .content {
@@ -71,8 +72,9 @@
 
 .footer {
   display: flex;
+  flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 
   padding: 0.8rem;
 }
@@ -100,7 +102,7 @@
 }
 
 .postActionLink {
-  padding: 0.5rem;
+  padding: 0 0.8rem;
 }
 
 .captionContainer {
