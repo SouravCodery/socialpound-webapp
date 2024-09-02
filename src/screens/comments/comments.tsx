@@ -11,10 +11,16 @@ import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-lo
 import { AddComment } from "./comment/add-comment/add-comment";
 
 export const Comments = ({ postId }: { postId: string }) => {
-  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
-    useSWRGetCommentsByPostId({
-      postId,
-    });
+  const {
+    data,
+    setSize,
+    isLoading,
+    isNextPageAvailable,
+    isNextPageLoading,
+    updateComments,
+  } = useSWRGetCommentsByPostId({
+    postId,
+  });
 
   const loadMore = useCallback(() => {
     if (isNextPageLoading) {
@@ -47,7 +53,7 @@ export const Comments = ({ postId }: { postId: string }) => {
         isNextPageAvailable={isNextPageAvailable}
       />
 
-      <AddComment postId={postId} />
+      <AddComment postId={postId} updateComments={updateComments} />
     </div>
   );
 };

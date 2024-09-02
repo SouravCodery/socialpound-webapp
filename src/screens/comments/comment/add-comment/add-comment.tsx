@@ -1,14 +1,22 @@
 "use client";
 
 import { useState } from "react";
+
 import classes from "./add-comment.module.css";
 
 import { logger } from "@/logger/index.logger";
 import { useSWRAddComment } from "@/hooks/swr-hooks/comment.swr-hooks";
 import { Spinner } from "@/components/loaders/spinner/spinner";
 
-export const AddComment = ({ postId }: { postId: string }) => {
+export const AddComment = ({
+  postId,
+  updateComments,
+}: {
+  postId: string;
+  updateComments: Function;
+}) => {
   const { trigger, isMutating } = useSWRAddComment();
+
   const [text, setText] = useState<string>("");
 
   const handleTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +41,7 @@ export const AddComment = ({ postId }: { postId: string }) => {
 
       setText("");
 
-      // todo: Add mutate to update comments
+      await updateComments();
     } catch (error) {
       logger.error("Error add comment:", error);
     }
