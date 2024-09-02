@@ -14,6 +14,7 @@ export class HttpClient {
     params: Record<string, string | number | boolean>
   ) => {
     return Object.entries(params)
+      .filter(([_, value]) => Boolean(value))
       .map(
         ([key, value]) =>
           `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
