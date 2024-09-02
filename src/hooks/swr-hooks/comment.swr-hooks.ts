@@ -32,7 +32,7 @@ export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
     }
   );
 
-  const isNextPageAvailable = data?.[size - 1]?.nextCursor;
+  const isNextPageAvailable = data?.[size - 1]?.nextCursor !== null;
 
-  return { data, error, isLoading, size, setSize, isNextPageAvailable };
+  return { data, error, isLoading, setSize, isNextPageAvailable };
 };
