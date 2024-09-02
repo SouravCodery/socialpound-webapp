@@ -5,9 +5,10 @@ import { useSWRGetCommentsByPostId } from "@/hooks/swr-hooks/comment.swr-hooks";
 import { Comment } from "./comment/comment";
 
 export const Comments = ({ postId }: { postId: string }) => {
-  const { comments, cursor, error, isLoading } = useSWRGetCommentsByPostId({
-    postId,
-  });
+  const { data, error, size, setSize, isLoading, isNextPageAvailable } =
+    useSWRGetCommentsByPostId({
+      postId,
+    });
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -15,9 +16,15 @@ export const Comments = ({ postId }: { postId: string }) => {
 
   return (
     <div className={classes.comments}>
-      {comments?.map((comment) => (
-        <Comment key={comment._id} comment={comment} />
-      ))}
+      {data?.map((pages, index) =>
+        pages.comments.map((comment) => (
+          <Comment key={comment._id} comment={comment} />
+        ))
+      )}
+
+      {isNextPageAvailable && (
+        <button onClick={() => setSize(size + 1)}>Load More</button>
+      )}
     </div>
   );
 };
