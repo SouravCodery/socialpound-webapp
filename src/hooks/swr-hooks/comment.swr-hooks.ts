@@ -1,19 +1,38 @@
-import useSWR from "swr";
+import useSWRInfinite from "swr/infinite";
 
 import { API_ROUTES } from "@/ig-sdk/api-routes";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 
 export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
-  const { data, error, isLoading } = useSWR(
-    API_ROUTES.comment.getCommentsByPostId({ postId }),
-    () => apiSDKInstance.comment.getCommentsByPostId({ postId })
+  const getKey = (pageIndex: number, previousPageData: any) => {
+    if (pageIndex === 0) {
+      return API_ROUTES.comment.getCommentsByPostId({ postId });
+    }
+
+    if (!previousPageData || !previousPageData?.nextCursor) {
+      return null;
+    }
+
+    return (
+      API_ROUTES.comment.getCommentsByPostId({
+        postId,
+      }) + `?cursor=${previousPageData.nextCursor}`
+    );
+  };
+
+  const { data, error, isLoading, size, setSize } = useSWRInfinite(
+    getKey,
+    (key) => {
+      const cursor = key.split("?cursor=")[1] || "";
+
+      return apiSDKInstance.comment.getCommentsByPostId({
+        postId,
+        cursor,
+      });
+    }
   );
 
-  return {
-    comments: data?.comments,
-    cursor: data?.cursor,
+  const isNextPageAvailable = data?.[size - 1]?.nextCursor;
 
-    error,
-    isLoading,
-  };
+  return { data, error, isLoading, size, setSize, isNextPageAvailable };
 };
