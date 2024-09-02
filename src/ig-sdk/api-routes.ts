@@ -8,7 +8,20 @@ export const API_ROUTES = {
   },
   comment: {
     addComment: "/v1/comment",
-    getCommentsByPostId: ({ postId }: { postId: string }) =>
-      `/v1/comment/post/${postId}`,
+    getCommentsByPostId: ({
+      postId,
+      cursor,
+    }: {
+      postId: string;
+      cursor?: string;
+    }) => {
+      let url = `/v1/comment/post/${postId}`;
+
+      if (cursor) {
+        url += `?cursor=${cursor}`;
+      }
+
+      return url;
+    },
   },
 } as const;
