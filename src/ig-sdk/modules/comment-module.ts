@@ -10,7 +10,13 @@ export class CommentModule {
     this.httpClient = httpClient;
   }
 
-  async getCommentsByPostId({ postId }: { postId: string }) {
+  async getCommentsByPostId({
+    postId,
+    cursor,
+  }: {
+    postId: string;
+    cursor: string;
+  }) {
     const fetchCommentsResponse =
       await this.httpClient.request<CommentResponseInterface>({
         endpoint: API_ROUTES.comment.getCommentsByPostId({ postId }),
@@ -18,6 +24,7 @@ export class CommentModule {
           method: "GET",
         },
         body: {},
+        queryParams: { cursor },
         token: this.httpClient.serverToken,
       });
 
