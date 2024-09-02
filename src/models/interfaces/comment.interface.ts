@@ -13,5 +13,5 @@ export interface CommentInterface {
 
 export interface CommentResponseInterface {
   comments: CommentInterface[];
-  cursor: string;
+  nextCursor: string;
 }
