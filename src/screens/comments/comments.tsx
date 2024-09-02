@@ -8,16 +8,21 @@ import { useSWRGetCommentsByPostId } from "@/hooks/swr-hooks/comment.swr-hooks";
 import { Comment } from "./comment/comment";
 import { CommentLoader } from "@/components/loaders/comments/comment-loader";
 import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-loader";
+import { AddComment } from "./comment/add-comment/add-comment";
 
 export const Comments = ({ postId }: { postId: string }) => {
-  const { data, setSize, isLoading, isNextPageAvailable } =
+  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
     useSWRGetCommentsByPostId({
       postId,
     });
 
   const loadMore = useCallback(() => {
+    if (isNextPageLoading) {
+      return;
+    }
+
     setSize((prevSize) => prevSize + 1);
-  }, [setSize]);
+  }, [setSize, isNextPageLoading]);
 
   if (isLoading) {
     return (
@@ -41,6 +46,8 @@ export const Comments = ({ postId }: { postId: string }) => {
         loadMore={loadMore}
         isNextPageAvailable={isNextPageAvailable}
       />
+
+      <AddComment postId={postId} />
     </div>
   );
 };
