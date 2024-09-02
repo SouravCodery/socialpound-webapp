@@ -1,7 +1,10 @@
 import useSWRInfinite from "swr/infinite";
+import useSWRMutation from "swr/mutation";
 
 import { API_ROUTES } from "@/ig-sdk/api-routes";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+
+import { CommentInterface } from "@/models/interfaces/comment.interface";
 
 export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
   const getKey = (pageIndex: number, previousPageData: any) => {
@@ -33,6 +36,43 @@ export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
   );
 
   const isNextPageAvailable = data?.[size - 1]?.nextCursor !== null;
+  const isNextPageLoading = data?.[size - 1]?.comments === undefined;
 
-  return { data, error, isLoading, setSize, isNextPageAvailable };
+  return {
+    data,
+    error,
+    isLoading,
+    setSize,
+    isNextPageAvailable,
+    isNextPageLoading,
+  };
+};
+
+export const useSWRAddComment = () => {
+  const { trigger, error, isMutating, data } = useSWRMutation(
+    API_ROUTES.post.createPost,
+    (
+      _,
+      {
+        arg,
+      }: {
+        arg: {
+          commentOn: CommentInterface["commentOn"];
+          post: CommentInterface["post"];
+          parentComment: CommentInterface["parentComment"];
+          text: CommentInterface["text"];
+        };
+      }
+    ) => {
+      const { commentOn, post, parentComment, text } = arg;
+      return apiSDKInstance.comment.addComment({
+        commentOn,
+        post,
+        parentComment,
+        text,
+      });
+    }
+  );
+
+  return { isMutating, trigger, error, data };
 };
