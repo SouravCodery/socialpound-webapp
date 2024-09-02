@@ -1,0 +1,70 @@
+.container {
+  position: fixed;
+  left: 50%;
+  bottom: 0rem;
+
+  transform: translateX(-50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 30rem;
+
+  padding: 1rem;
+  padding-bottom: 4rem;
+  background: var(--background-primary);
+
+  border-top: 0.01rem solid var(--border-primary);
+}
+
+.form {
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  padding: 0.5rem;
+
+  border: none;
+  outline: none;
+  resize: none;
+
+  background: inherit;
+}
+
+.shareButtonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 2rem;
+  height: 100%;
+}
+
+.shareButton {
+  height: 100%;
+  position: relative;
+
+  background: var(--button-primary);
+  color: white;
+
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.spinner {
+  transform: scale(0.5);
+}

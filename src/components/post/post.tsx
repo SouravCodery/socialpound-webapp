@@ -1,5 +1,7 @@
+import Link from "next/link";
 import Image from "next/image";
 
+import clsx from "clsx";
 import classes from "./post.module.css";
 
 import {
@@ -25,7 +27,7 @@ export const Post = ({ post }: { post: PostInterface }) => {
             />
           </div>
           <div className={classes.usernameContainer}>
-            {post.user.username.split("@")[0]}
+            &nbsp;{post.user.username.split("@")[0]}
           </div>
         </div>
         <div className={classes.headerRight}>
@@ -44,23 +46,32 @@ export const Post = ({ post }: { post: PostInterface }) => {
       <div className={classes.footer}>
         <div className={classes.postActions}>
           <div className={classes.postActionsLeft}>
-            <div className={classes.temporaryIconContainer}>
+            <Link href={`/likes/${post._id}`}>
               <LikeIcon />
-            </div>
-            <div className={classes.temporaryIconContainer}>
+            </Link>
+            <Link
+              href={`/comments/${post._id}`}
+              className={clsx(classes.postActionLink)}
+            >
               <CommentIcon />
-            </div>
-            <div className={classes.temporaryIconContainer}>
+            </Link>
+            <Link href={`/share/${post._id}`}>
               <ShareIcon />
-            </div>
+            </Link>
           </div>
           <div className={classes.postActionsRight}>
-            <div className={classes.temporaryIconContainer}>
+            <div>
               <SavedIcon />
             </div>
           </div>
         </div>
-        <div></div>
+        {post.caption && (
+          <div className={classes.captionContainer}>
+            <div>{post.user.username.split("@")[0]}</div>
+            &nbsp;
+            <div>{post.caption}</div>
+          </div>
+        )}
         <div></div>
         <div></div>
       </div>

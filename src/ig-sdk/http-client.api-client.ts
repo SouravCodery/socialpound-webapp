@@ -14,6 +14,7 @@ export class HttpClient {
     params: Record<string, string | number | boolean>
   ) => {
     return Object.entries(params)
+      .filter(([_, value]) => Boolean(value))
       .map(
         ([key, value]) =>
           `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
@@ -36,7 +37,7 @@ export class HttpClient {
     options: RequestInit;
     token?: string | null;
     queryParams?: Record<string, string | number | boolean>;
-    body?: Record<string, string | number | boolean | object>;
+    body?: Record<string, string | number | boolean | object | null>;
   }): Promise<FetchResponseInterface<T>> {
     try {
       const { method = "GET" } = options || {};

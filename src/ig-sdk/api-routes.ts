@@ -6,4 +6,22 @@ export const API_ROUTES = {
     createPost: "/v1/post",
     fetchPosts: "/v1/post",
   },
+  comment: {
+    addComment: "/v1/comment",
+    getCommentsByPostId: ({
+      postId,
+      cursor,
+    }: {
+      postId: string;
+      cursor?: string;
+    }) => {
+      let url = `/v1/comment/post/${postId}`;
+
+      if (cursor) {
+        url += `?cursor=${cursor}`;
+      }
+
+      return url;
+    },
+  },
 } as const;
