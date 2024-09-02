@@ -23,7 +23,7 @@ export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
     );
   };
 
-  const { data, error, isLoading, size, setSize } = useSWRInfinite(
+  const { data, error, isLoading, size, setSize, mutate } = useSWRInfinite(
     getKey,
     (key) => {
       const cursor = key.split("?cursor=")[1] || "";
@@ -45,6 +45,7 @@ export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
     setSize,
     isNextPageAvailable,
     isNextPageLoading,
+    updateComments: mutate,
   };
 };
 
