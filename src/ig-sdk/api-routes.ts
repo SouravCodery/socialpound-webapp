@@ -24,4 +24,7 @@ export const API_ROUTES = {
       return url;
     },
   },
+  awsPresignedUrl: {
+    getPresignedUrl: "/v1/aws-presigned-url",
+  },
 } as const;
