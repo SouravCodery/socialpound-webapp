@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [
-      "images.unsplash.com",
-      "avatars.githubusercontent.com",
-      "lh3.googleusercontent.com",
-    ],
+    unoptimized: true,
+    // domains: [
+    //   "images.unsplash.com",
+    //   "avatars.githubusercontent.com",
+    //   "lh3.googleusercontent.com",
+    //   "d2ygj3wp7wuvm9.cloudfront.net",
+    // ],
   },
 };
 
