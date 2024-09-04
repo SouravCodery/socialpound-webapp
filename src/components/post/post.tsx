@@ -35,12 +35,13 @@ export const Post = ({ post }: { post: PostInterface }) => {
           <MoreOptionsIcon />
         </div>
       </div>
-      <div className={classes.content}>
-        <Image
+      <div
+        className={classes.content}
+        style={{ aspectRatio: post.content[0].aspectRatio ?? 1 }}
+      >
+        <img
           src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
           alt="Post Image"
-          fill
-          sizes="(max-width: 768px) 100vw, 33vw"
           className={classes.asset}
         />
       </div>

@@ -9,8 +9,6 @@
   width: 100vw;
   max-width: 30rem;
 
-  aspect-ratio: 3/4;
-
   background: var(--background-primary);
   color: var(--color-primary);
 
@@ -59,14 +57,13 @@
 
 .content {
   width: 100%;
-  height: auto;
-  max-height: 55vh;
 
-  aspect-ratio: 3/4;
   border: 0.1px solid var(--background-secondary);
 }
 
 .asset {
+  height: 100%;
+  width: 100%;
   object-fit: cover;
 }
 
