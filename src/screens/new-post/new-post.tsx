@@ -21,6 +21,8 @@ export const NewPost = () => {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
+  const [aspectRatio, setAspectRatio] = useState<number>(1);
+
   const [isPostBeingUploaded, setIsPostBeingUploaded] =
     useState<boolean>(false);
 
@@ -62,11 +64,37 @@ export const NewPost = () => {
       return;
     }
 
-    setSelectedFile(file);
-
     const reader = new FileReader();
     reader.onloadend = () => {
-      setSelectedMedia(reader.result as string);
+      const imageUrl = reader.result as string;
+
+      const img = new Image();
+      img.src = imageUrl;
+      img.onload = () => {
+        const currentAspectRatio = parseFloat(
+          (img.naturalWidth / img.naturalHeight).toFixed(2)
+        );
+
+        if (
+          currentAspectRatio > Constants.MAX_IMAGE_ASPECT_RATIO ||
+          currentAspectRatio < Constants.MIN_IMAGE_ASPECT_RATIO
+        ) {
+          setSelectedFile(null);
+          setSelectedMedia(null);
+          alert(
+            "The selected image has an invalid aspect ratio. Please select an image with a more balanced aspect ratio."
+          );
+
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
+          return;
+        }
+
+        setAspectRatio(currentAspectRatio);
+        setSelectedFile(file);
+        setSelectedMedia(imageUrl);
+      };
     };
     reader.readAsDataURL(file);
   };
@@ -111,8 +139,9 @@ export const NewPost = () => {
       await trigger({
         content: [
           {
-            url: key,
             type: "image",
+            url: key,
+            aspectRatio,
           },
         ],
         caption,
@@ -141,6 +170,7 @@ export const NewPost = () => {
       <NewPostMediaPreview
         media={selectedMedia}
         openFileInput={openFileInput}
+        aspectRatio={aspectRatio}
       />
       <form onSubmit={newPostSubmitHandler} className={classes.form}>
         <label htmlFor="imageInput" className="hidden">
