@@ -15,7 +15,7 @@ import {
 } from "@/components/icons/icons";
 import { PostInterface } from "@/models/interfaces/post.interface";
 import { Constants } from "@/constants/constants";
-import { DP } from "../dp/dp";
+import { ProfilePicture } from "../profile-picture/profile-picture";
 
 export const Post = ({ post }: { post: PostInterface }) => {
   const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
@@ -28,7 +28,7 @@ export const Post = ({ post }: { post: PostInterface }) => {
     <div className={classes.post}>
       <div className={classes.header}>
         <div className={classes.headerLeft}>
-          <DP dpURL={post.user.profilePicture} randomizeDP={true} />
+          <ProfilePicture dpURL={post.user.profilePicture} randomizeDP={true} />
           <div className={classes.usernameContainer}>
             &nbsp;{post.user.username.split("@")[0]}
           </div>

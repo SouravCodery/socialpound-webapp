@@ -4,9 +4,9 @@ import { useState, useEffect } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 
-import classes from "./dp.module.css";
+import classes from "./profile-picture.module.css";
 
-export const DP = ({
+export const ProfilePicture = ({
   upScale = false,
   dpURL,
   randomizeDP = false,
