@@ -4,45 +4,71 @@ import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
 import classes from "./new-post.module.css";
-
-import { NewPostMediaPreview } from "./new-post-media-preview/new-post-media-preview";
 import { logger } from "@/logger/index.logger";
 
-import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
-
+import { NewPostMediaPreview } from "./new-post-media-preview/new-post-media-preview";
 import { Loader } from "@/components/loaders/loader/loader";
 
-const MAX_MEDIA_SIZE = 4 * 1024 * 1024; // 4MB in bytes
+import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
+import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+import { Constants } from "@/constants/constants";
+import { SupportedMediaTypes } from "@/models/types/media.types";
 
 export const NewPost = () => {
   const router = useRouter();
   const { trigger, isMutating, data } = useSWRAddPost();
 
-  const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
+  const [isPostBeingUploaded, setIsPostBeingUploaded] =
+    useState<boolean>(false);
 
   const [caption, setCaption] = useState<string>("");
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-
-      if (file.size > MAX_MEDIA_SIZE) {
-        alert(
-          "The selected image is too large. Please select an image smaller than 4MB."
-        );
-        //Replace with Toast
-        return;
-      }
-
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setSelectedMedia(reader.result as string);
-      };
-
-      reader.readAsDataURL(file);
+    if (!event?.target?.files?.[0]) {
+      return;
     }
+
+    const file = event.target.files[0];
+
+    if (file.size > Constants.MAX_MEDIA_SIZE) {
+      alert(
+        "The selected image is too large. Please select an image smaller than 5MB."
+      );
+      //todo: Replace with Toast
+      return;
+    }
+
+    if (file.size < Constants.MIN_MEDIA_SIZE) {
+      alert(
+        "The selected image is too small. Please select an image greater than 1KB."
+      );
+      //todo: Replace with Toast
+      return;
+    }
+
+    if (
+      !Constants.SUPPORTED_MEDIA_TYPES.includes(
+        file.type as SupportedMediaTypes
+      )
+    ) {
+      alert(
+        "The selected image is not supported. Please select a jpg, jpeg, or png image."
+      );
+
+      //todo: Replace with Toast
+      return;
+    }
+
+    setSelectedFile(file);
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setSelectedMedia(reader.result as string);
+    };
+    reader.readAsDataURL(file);
   };
 
   const handleCaptionChange = (
@@ -54,22 +80,38 @@ export const NewPost = () => {
   const newPostSubmitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!selectedMedia || !caption) {
+    setIsPostBeingUploaded(true);
+
+    if (!selectedFile || !selectedMedia || !caption) {
       alert("Please add an image and a caption.");
       return;
     }
 
     try {
-      const formData = new FormData();
-      formData.append("image", selectedMedia);
-      formData.append("caption", caption);
+      const { presignedUrl, key } =
+        await apiSDKInstance.awsPresignedUrl.getAWSPresignedUrl({
+          size: selectedFile?.size,
+          type: selectedFile?.type,
+        });
 
-      // logger.info("From Form", formData, selectedMedia, caption);
+      const headers: HeadersInit = {
+        "Content-Type": selectedFile.type,
+      };
+
+      const mediaUploadResponse = await fetch(presignedUrl, {
+        method: "PUT",
+        body: selectedFile,
+        headers,
+      });
+
+      if (!mediaUploadResponse.ok) {
+        throw new Error("Error uploading media");
+      }
 
       await trigger({
         content: [
           {
-            url: "https://images.unsplash.com/photo-1562222998-b3ad3853f657?q=80&w=2667&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+            url: key,
             type: "image",
           },
         ],
@@ -81,6 +123,9 @@ export const NewPost = () => {
       router.push("/");
     } catch (error) {
       logger.error("Error creating post:", error);
+      //todo: Add toast
+    } finally {
+      setIsPostBeingUploaded(false);
     }
   };
 
@@ -92,7 +137,7 @@ export const NewPost = () => {
 
   return (
     <div className={classes.container}>
-      <Loader show={isMutating} mode="fixed" text="Sharing Post" />
+      <Loader show={isPostBeingUploaded} mode="fixed" text="Sharing Post" />
       <NewPostMediaPreview
         media={selectedMedia}
         openFileInput={openFileInput}
@@ -104,7 +149,7 @@ export const NewPost = () => {
         <input
           type="file"
           id="imageInput"
-          accept="image/*"
+          accept="image/jpeg, image/png, image/jpg"
           onChange={handleImageChange}
           ref={fileInputRef}
           className="hidden"
@@ -117,8 +162,11 @@ export const NewPost = () => {
           maxLength={2200}
         />
         <div className={classes.shareButtonContainer}>
-          <button className={classes.shareButton} disabled={isMutating}>
-            {isMutating === false ? "Share" : "Sharing"}
+          <button
+            className={classes.shareButton}
+            disabled={isPostBeingUploaded}
+          >
+            {isPostBeingUploaded === false ? "Share" : "Sharing"}
           </button>
         </div>
       </form>
