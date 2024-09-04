@@ -1,4 +1,4 @@
-import { ProfileNavigatorIcon } from "@/components/profile-navigator-icon/profile-navigator-icon";
+import { AuthUserProfilePicture } from "@/components/auth-user-profile-picture/auth-user-profile-picture";
 import classes from "./profile-header.module.css";
 
 export const ProfileHeader = () => {
@@ -6,7 +6,7 @@ export const ProfileHeader = () => {
     <div className={classes.profileHeader}>
       <div className={classes.dpAndCounts}>
         <div className={classes.dpAndName}>
-          <ProfileNavigatorIcon upScale={true} />
+          <AuthUserProfilePicture upScale={true} />
           <div className={classes.name}>Sourav Choudhary</div>
         </div>
 

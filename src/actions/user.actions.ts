@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { Account, Profile } from "next-auth";
+import { Account, Profile, User } from "next-auth";
 
 import { logger } from "@/logger/index.logger";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
@@ -13,7 +13,7 @@ export async function signInServerSide({
   account,
   profile,
 }: {
-  user: Object;
+  user: User;
   account: Account | null;
   profile?: Profile;
 }) {
@@ -34,6 +34,14 @@ export async function signInServerSide({
     });
 
     cookies().set("server-token", signedServerJWT, {
+      maxAge: maxAgeInSeconds,
+      httpOnly: false,
+      sameSite: "lax",
+    });
+
+    const userProfilePicture = user?.image ?? "";
+
+    cookies().set("profile-picture", userProfilePicture, {
       maxAge: maxAgeInSeconds,
       httpOnly: false,
       sameSite: "lax",

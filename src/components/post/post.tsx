@@ -1,5 +1,7 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import clsx from "clsx";
 import classes from "./post.module.css";
@@ -13,20 +15,20 @@ import {
 } from "@/components/icons/icons";
 import { PostInterface } from "@/models/interfaces/post.interface";
 import { Constants } from "@/constants/constants";
+import { ProfilePicture } from "../profile-picture/profile-picture";
 
 export const Post = ({ post }: { post: PostInterface }) => {
+  const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
+
+  const handleErrorInMedia = () => {
+    setErrorInMedia(true);
+  };
+
   return (
     <div className={classes.post}>
       <div className={classes.header}>
         <div className={classes.headerLeft}>
-          <div className={classes.dpContainer}>
-            <Image
-              src={post.user.profilePicture}
-              alt="Profile Picture"
-              fill
-              sizes="60px"
-            />
-          </div>
+          <ProfilePicture dpURL={post.user.profilePicture} randomizeDP={true} />
           <div className={classes.usernameContainer}>
             &nbsp;{post.user.username.split("@")[0]}
           </div>
@@ -39,11 +41,20 @@ export const Post = ({ post }: { post: PostInterface }) => {
         className={classes.content}
         style={{ aspectRatio: post.content[0].aspectRatio ?? 1 }}
       >
-        <img
-          src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
-          alt="Post Image"
-          className={classes.asset}
-        />
+        {errorInMedia === false ? (
+          <img
+            src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
+            alt="Post Image"
+            className={classes.asset}
+            onError={handleErrorInMedia}
+          />
+        ) : (
+          <div className={classes.mediaError}>
+            <p>🚧 Oops! The picture took a detour. Maybe it’s shy? 😅 📦 📸</p>
+            <p>⚡ There might be something wrong with the CDN 🛰️</p>
+            <p>Try reloading, or imagine the coolest image ever here! 🖼️✨</p>
+          </div>
+        )}
       </div>
       <div className={classes.footer}>
         <div className={classes.postActions}>
