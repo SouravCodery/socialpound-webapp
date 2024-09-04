@@ -9,4 +9,6 @@ export const Constants = {
     "image/jpeg",
     "image/png",
   ] as SupportedMediaTypes[],
+  MAX_IMAGE_ASPECT_RATIO: 3,
+  MIN_IMAGE_ASPECT_RATIO: 1 / 3,
 } as const;
