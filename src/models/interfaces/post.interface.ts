@@ -2,6 +2,7 @@ import { UserInterface } from "./user.interface";
 interface ContentInterface {
   type: "image" | "video";
   url: string;
+  aspectRatio: number;
 }
 
 export interface PostInterface {
