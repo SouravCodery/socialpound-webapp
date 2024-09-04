@@ -1,23 +1,17 @@
-import clsx from "clsx";
-import Image from "next/image";
+"use client";
 
-import auth from "@/middleware";
+import { DP } from "../dp/dp";
+import { getClientSideCookie } from "@/helpers/client-side-cookie.helpers";
+import { CSROnlyHOC } from "../csr-only-hoc/csr-only-hoc";
 
-import classes from "./profile-navigator-icon.module.css";
+const _ProfileNavigatorIcon = ({ upScale = false }: { upScale?: Boolean }) => {
+  const profilePicture = getClientSideCookie({ name: "profile-picture" });
 
-export const ProfileNavigatorIcon = async ({
+  return <DP dpURL={profilePicture ?? ""} upScale={upScale} />;
+};
+
+export const ProfileNavigatorIcon = ({
   upScale = false,
 }: {
   upScale?: Boolean;
-}) => {
-  const session = await auth();
-  const dp = session?.user?.image;
-
-  if (!dp) return null;
-
-  return (
-    <div className={clsx(classes.dpContainer, upScale && classes.upScale)}>
-      <Image src={dp} alt="Profile Picture" fill sizes="60px" />
-    </div>
-  );
-};
+}) => <CSROnlyHOC component={<_ProfileNavigatorIcon upScale={upScale} />} />;
