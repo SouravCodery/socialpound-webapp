@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import clsx from "clsx";
 import classes from "./post.module.css";
@@ -29,7 +28,7 @@ export const Post = ({ post }: { post: PostInterface }) => {
     <div className={classes.post}>
       <div className={classes.header}>
         <div className={classes.headerLeft}>
-          <DP dpURL={post.user.profilePicture} />
+          <DP dpURL={post.user.profilePicture} randomizeDP={true} />
           <div className={classes.usernameContainer}>
             &nbsp;{post.user.username.split("@")[0]}
           </div>
