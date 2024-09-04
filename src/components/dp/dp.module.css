@@ -1,0 +1,28 @@
+.dpContainer {
+  position: relative;
+
+  height: 2.2rem;
+  width: 2.2rem;
+
+  border-radius: 50%;
+  overflow: hidden;
+
+  border: 1px solid var(--border-primary);
+}
+
+.dpError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+
+  font-size: 2em;
+}
+
+.upScale {
+  height: 4.4rem;
+  width: 4.4rem;
+  font-size: 32px;
+}
