@@ -12,6 +12,7 @@ import {
   SavedIcon,
 } from "@/components/icons/icons";
 import { PostInterface } from "@/models/interfaces/post.interface";
+import { Constants } from "@/constants/constants";
 
 export const Post = ({ post }: { post: PostInterface }) => {
   return (
@@ -36,7 +37,7 @@ export const Post = ({ post }: { post: PostInterface }) => {
       </div>
       <div className={classes.content}>
         <Image
-          src={post.content[0].url}
+          src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
           alt="Post Image"
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
