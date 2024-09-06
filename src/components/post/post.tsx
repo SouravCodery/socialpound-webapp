@@ -47,6 +47,7 @@ export const Post = ({ post }: { post: PostInterface }) => {
             alt="Post Image"
             className={classes.asset}
             onError={handleErrorInMedia}
+            loading="lazy"
           />
         ) : (
           <div className={classes.mediaError}>
