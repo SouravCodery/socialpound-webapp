@@ -16,3 +16,13 @@
   background: var(--background-primary);
   text-transform: capitalize;
 }
+
+.backButton {
+  position: absolute;
+  left: 0;
+
+  padding: 0;
+  padding-left: 1rem;
+
+  background: inherit;
+}
