@@ -1,13 +1,18 @@
-import useSWR from "swr";
 import useSWRInfinite from "swr/infinite";
 import useSWRMutation from "swr/mutation";
 
 import { API_ROUTES } from "@/ig-sdk/api-routes";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
-import { PostInterface } from "@/models/interfaces/post.interface";
+import {
+  PostInterface,
+  PostResponseInterface,
+} from "@/models/interfaces/post.interface";
 
 export const useSWRGetUserFeed = () => {
-  const getKey = (pageIndex: number, previousPageData: any) => {
+  const getKey = (
+    pageIndex: number,
+    previousPageData: PostResponseInterface
+  ) => {
     if (pageIndex === 0) {
       return API_ROUTES.post.getUserFeed;
     }

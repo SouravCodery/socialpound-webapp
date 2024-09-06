@@ -4,10 +4,16 @@ import useSWRMutation from "swr/mutation";
 import { API_ROUTES } from "@/ig-sdk/api-routes";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 
-import { CommentInterface } from "@/models/interfaces/comment.interface";
+import {
+  CommentInterface,
+  CommentResponseInterface,
+} from "@/models/interfaces/comment.interface";
 
 export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
-  const getKey = (pageIndex: number, previousPageData: any) => {
+  const getKey = (
+    pageIndex: number,
+    previousPageData: CommentResponseInterface
+  ) => {
     if (pageIndex === 0) {
       return API_ROUTES.comment.getCommentsByPostId({ postId });
     }
