@@ -5,7 +5,7 @@ import classes from "./header-secondary-routes.module.css";
 
 export const HeaderSecondaryRoutes = async () => {
   const pathName = usePathname();
-  const currentRoute = pathName.split("/")[1];
+  const currentRoute = (pathName?.split("/")?.[1] ?? "").replace("-", " ");
 
   return <header className={classes.header}>{currentRoute}</header>;
 };
