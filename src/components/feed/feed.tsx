@@ -1,5 +1,7 @@
 "use client";
+
 import { useCallback } from "react";
+import { Virtuoso } from "react-virtuoso";
 
 import clsx from "clsx";
 import classes from "./feed.module.css";
@@ -21,10 +23,12 @@ export default function Feed() {
     setSize((prevSize) => prevSize + 1);
   }, [setSize, isNextPageLoading]);
 
+  const posts = data?.flatMap((each) => each.posts) ?? [];
+
   if (isLoading) {
     return (
       <div className={clsx(classes.feed)}>
-        {[...Array(2)].map((_, index) => (
+        {[...Array(4)].map((_, index) => (
           <PostLoader key={index} />
         ))}
       </div>
@@ -32,15 +36,15 @@ export default function Feed() {
   }
 
   return (
-    <div className={classes.feed}>
-      {data?.map((pages) =>
-        pages.posts.map((post) => <Post key={post._id} post={post} />)
-      )}
-
-      <InfiniteLoader
-        loadMore={loadMore}
-        isNextPageAvailable={isNextPageAvailable}
-      />
-    </div>
+    <Virtuoso
+      className={classes.virtualFeed}
+      style={{ height: "80vh" }}
+      context={{ isNextPageAvailable, loadMore }}
+      itemContent={(index, post) => <Post key={post._id} post={post} />}
+      data={posts}
+      components={{
+        Footer: InfiniteLoader,
+      }}
+    />
   );
 }
