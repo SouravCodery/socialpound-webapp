@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import clsx from "clsx";
-import classes from "./mobile-header.module.css";
+import classes from "./mobile-header-primary-routes.module.css";
 
 import { LikeIcon, MessengerIcon } from "@/components/icons/icons";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";

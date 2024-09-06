@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 
 import clsx from "clsx";
-import classes from "./mobile-navbar.module.css";
+import classes from "./mobile-navbar-primary-routes.module.css";
 
 import {
   HomeIcon,
