@@ -36,7 +36,7 @@
 .shareButtonContainer {
   position: fixed;
   left: 50%;
-  bottom: 4rem;
+  bottom: 0;
 
   transform: translateX(-50%);
 
