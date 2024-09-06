@@ -1,15 +1,25 @@
 "use client";
+import { useCallback } from "react";
 
 import clsx from "clsx";
-
 import classes from "./feed.module.css";
 import { Post } from "@/components/post/post";
 
-import { useSWRFetchPosts } from "@/hooks/swr-hooks/post.swr-hooks";
+import { useSWRGetUserFeed } from "@/hooks/swr-hooks/post.swr-hooks";
 import { PostLoader } from "../loaders/post/post-loader";
+import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
 
 export default function Feed() {
-  const { posts, error, isLoading } = useSWRFetchPosts();
+  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
+    useSWRGetUserFeed();
+
+  const loadMore = useCallback(() => {
+    if (isNextPageLoading) {
+      return;
+    }
+
+    setSize((prevSize) => prevSize + 1);
+  }, [setSize, isNextPageLoading]);
 
   if (isLoading) {
     return (
@@ -22,10 +32,15 @@ export default function Feed() {
   }
 
   return (
-    <div className={clsx(classes.feed)}>
-      {posts?.map((post) => (
-        <Post key={post._id} post={post} />
-      ))}
+    <div className={classes.feed}>
+      {data?.map((pages) =>
+        pages.posts.map((post) => <Post key={post._id} post={post} />)
+      )}
+
+      <InfiniteLoader
+        loadMore={loadMore}
+        isNextPageAvailable={isNextPageAvailable}
+      />
     </div>
   );
 }
