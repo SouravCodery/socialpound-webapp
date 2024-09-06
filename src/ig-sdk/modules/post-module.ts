@@ -1,7 +1,10 @@
 import { HttpClient } from "../http-client.api-client";
 import { API_ROUTES } from "../api-routes";
 
-import { PostInterface } from "./../../models/interfaces/post.interface";
+import {
+  PostInterface,
+  PostResponseInterface,
+} from "./../../models/interfaces/post.interface";
 
 export class PostModule {
   private httpClient: HttpClient;
@@ -10,17 +13,19 @@ export class PostModule {
     this.httpClient = httpClient;
   }
 
-  async fetchPosts() {
-    const fetchPostsResponse = await this.httpClient.request<PostInterface[]>({
-      endpoint: API_ROUTES.post.fetchPosts,
-      options: {
-        method: "GET",
-      },
-      body: {},
-      token: this.httpClient.serverToken,
-    });
+  async getUserFeed({ cursor }: { cursor: string }) {
+    const getUserFeedResponse =
+      await this.httpClient.request<PostResponseInterface>({
+        endpoint: API_ROUTES.post.getUserFeed,
+        options: {
+          method: "GET",
+        },
+        body: {},
+        queryParams: { cursor },
+        token: this.httpClient.serverToken,
+      });
 
-    return fetchPostsResponse.data;
+    return getUserFeedResponse.data;
   }
 
   async createPost({
