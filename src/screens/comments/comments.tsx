@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { Virtuoso } from "react-virtuoso";
 import classes from "./comments.module.css";
 
 import { useSWRGetCommentsByPostId } from "@/hooks/swr-hooks/comment.swr-hooks";
@@ -22,6 +23,8 @@ export const Comments = ({ postId }: { postId: string }) => {
     postId,
   });
 
+  const comments = data?.flatMap((each) => each.comments) ?? [];
+
   const loadMore = useCallback(() => {
     if (isNextPageLoading) {
       return;
@@ -33,7 +36,7 @@ export const Comments = ({ postId }: { postId: string }) => {
   if (isLoading) {
     return (
       <div className={classes.comments}>
-        {[...Array(5)].map((_, index) => (
+        {[...Array(7)].map((_, index) => (
           <CommentLoader key={index} />
         ))}
       </div>
@@ -42,15 +45,17 @@ export const Comments = ({ postId }: { postId: string }) => {
 
   return (
     <div className={classes.comments}>
-      {data?.map((pages) =>
-        pages.comments.map((comment) => (
+      <Virtuoso
+        className={classes.virtualCommentsList}
+        style={{ height: "80vh" }}
+        context={{ isNextPageAvailable, loadMore }}
+        itemContent={(index, comment) => (
           <Comment key={comment._id} comment={comment} />
-        ))
-      )}
-
-      <InfiniteLoader
-        loadMore={loadMore}
-        isNextPageAvailable={isNextPageAvailable}
+        )}
+        data={comments}
+        components={{
+          Footer: InfiniteLoader,
+        }}
       />
 
       <AddComment postId={postId} updateComments={updateComments} />
