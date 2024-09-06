@@ -43,6 +43,18 @@ export const Comments = ({ postId }: { postId: string }) => {
     );
   }
 
+  if (comments.length === 0) {
+    return (
+      <div className={classes.comments}>
+        <div className={classes.noComments}>
+          <h2>No comments yet.</h2>
+          <div className={classes.noCommentsSub}>Start the conversation.</div>
+        </div>
+        <AddComment postId={postId} updateComments={updateComments} />
+      </div>
+    );
+  }
+
   return (
     <div className={classes.comments}>
       <Virtuoso

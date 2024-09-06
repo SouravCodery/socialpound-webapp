@@ -12,6 +12,22 @@
   height: fit-content;
 }
 
+.noComments {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 50%;
+  transition: translateY(-50%);
+}
+
+.noCommentsSub {
+  font-weight: lighter;
+  margin-top: 0.5rem;
+}
+
 .virtualCommentsList {
   position: relative;
 
