@@ -13,3 +13,8 @@ export interface PostInterface {
   likesCount: number;
   commentsCount: number;
 }
+
+export interface PostResponseInterface {
+  posts: PostInterface[];
+  nextCursor: string;
+}
