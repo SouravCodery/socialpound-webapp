@@ -5,7 +5,7 @@ import { useRouter, usePathname } from "next/navigation";
 import classes from "./header-secondary-routes.module.css";
 import { GoBackIcon } from "@/components/icons/icons";
 
-export const HeaderSecondaryRoutes = async () => {
+export const HeaderSecondaryRoutes = () => {
   const router = useRouter();
   const pathName = usePathname();
 
