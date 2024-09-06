@@ -4,12 +4,18 @@ import { useInView } from "react-intersection-observer";
 import { Spinner } from "../spinner/spinner";
 
 export const InfiniteLoader = ({
-  loadMore,
-  isNextPageAvailable,
+  context,
 }: {
-  loadMore: () => void;
-  isNextPageAvailable: boolean;
+  context?: {
+    loadMore: () => void;
+    isNextPageAvailable: boolean;
+  };
 }) => {
+  const { isNextPageAvailable, loadMore } = context ?? {
+    loadMore: () => {},
+    isNextPageAvailable: false,
+  };
+
   const { ref, inView } = useInView();
 
   useEffect(() => {
