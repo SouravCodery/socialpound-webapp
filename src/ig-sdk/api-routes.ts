@@ -4,7 +4,7 @@ export const API_ROUTES = {
   },
   post: {
     createPost: "/v1/post",
-    fetchPosts: "/v1/post",
+    getUserFeed: "/v1/post",
   },
   comment: {
     addComment: "/v1/comment",
