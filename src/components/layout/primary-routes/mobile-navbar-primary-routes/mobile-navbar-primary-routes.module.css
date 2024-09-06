@@ -1,13 +1,11 @@
 .footer {
   position: fixed;
-
   bottom: 0;
 
   width: 100%;
   max-width: 60rem;
 
   border-top: 0.1px solid var(--border-primary);
-
   background: var(--background-primary);
 
   z-index: 10000;
@@ -25,4 +23,8 @@
   align-items: center;
 
   width: 100%;
+}
+
+.active {
+  background: var(--background-secondary);
 }
