@@ -1,4 +1,32 @@
 .comments {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+}
+
+.virtualCommentsList {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+}
+
+.virtualCommentsList > div > div {
+  position: relative;
+
   display: flex;
   flex-direction: column;
 

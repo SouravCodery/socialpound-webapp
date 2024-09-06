@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
+import { Roboto } from "next/font/google";
 import { clsx } from "clsx";
 
 import "@/app/globals.css";
+import classes from "./layout.module.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["cyrillic"],
+});
 
 export const metadata: Metadata = {
   title: "Socialpound | SouravCodery",
@@ -20,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(inter.className)}>{children}</body>
+      <body className={clsx(roboto.className, classes.body)}>{children}</body>
     </html>
   );
 }

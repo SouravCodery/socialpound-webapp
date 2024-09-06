@@ -69,6 +69,4 @@
   align-items: center;
 
   position: relative;
-  top: calc(min(50%, 1.2rem));
-  transform: translateY(-50%) scale(0.75);
 }
