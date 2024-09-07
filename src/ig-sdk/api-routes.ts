@@ -5,6 +5,7 @@ export const API_ROUTES = {
   post: {
     createPost: "/v1/post",
     getUserFeed: "/v1/post",
+    getPostsByUserId: ({ userId }: { userId: string }) => `/v1/post/${userId}`,
   },
   comment: {
     addComment: "/v1/comment",
