@@ -1,5 +1,8 @@
 import { HttpClient } from "../http-client.api-client";
-import { LoginResponseInterface } from "../../models/interfaces/user.interface";
+import {
+  LoginResponseInterface,
+  UserResponseInterface,
+} from "../../models/interfaces/user.interface";
 
 import { API_ROUTES } from "../api-routes";
 import { getDecodedToken } from "@/helpers/jwt-client-side.helpers";
@@ -37,5 +40,15 @@ export class UserModule {
     } catch (error) {
       return null;
     }
+  }
+
+  async getUserByUsername({ username }: { username: string }) {
+    return this.httpClient.request<UserResponseInterface>({
+      endpoint: API_ROUTES.user.getUserByUsername({ username }),
+      options: {
+        method: "GET",
+      },
+      token: await this.httpClient.getToken(),
+    });
   }
 }
