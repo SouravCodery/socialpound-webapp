@@ -1,4 +1,4 @@
-import { UserInterface } from "./user.interface";
+import { SubDocumentUserInterface } from "./user.interface";
 interface ContentInterface {
   type: "image" | "video";
   url: string;
@@ -7,7 +7,7 @@ interface ContentInterface {
 
 export interface PostInterface {
   _id: string;
-  user: UserInterface;
+  user: SubDocumentUserInterface;
   content: ContentInterface[];
   caption: string;
   likesCount: number;
