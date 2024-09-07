@@ -8,6 +8,8 @@
   padding: 0.75rem;
 
   font-size: 0.9rem;
+
+  border-bottom: 1px solid var(--border-primary);
 }
 
 .dpAndCounts {
@@ -27,9 +29,17 @@
 }
 
 .name {
-  margin-top: 0.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 
+  margin-top: 0.4rem;
   text-wrap: nowrap;
+}
+
+.username {
+  font-weight: lighter;
 }
 
 .counters {
@@ -55,13 +65,14 @@
 }
 
 .bio {
+  width: 100%;
   margin-top: 1rem;
+
   font-size: 0.8rem;
 }
 
 .profileActions {
   width: 100%;
-
   margin: 1rem 0;
 }
 .profileActions > button {
