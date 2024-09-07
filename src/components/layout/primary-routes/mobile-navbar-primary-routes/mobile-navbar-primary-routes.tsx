@@ -13,18 +13,13 @@ import {
   // ReelsIcon,
 } from "@/components/icons/icons";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
-import { AuthUserProfilePicture } from "@/components/auth-user-profile-picture/auth-user-profile-picture";
+import { ProfileLink } from "@/components/profile-link/profile-link";
 
 const routes = [
   { path: "/", name: "Home", icon: HomeIcon, count: 4 },
   // { path: "/explore", name: "Search", icon: ExploreIcon },
   { path: "/new-post", name: "New Post", icon: HomePostIcon },
   // { path: "/reels", name: "Reels", icon: ReelsIcon, count: 2 },
-  {
-    path: "/profile",
-    name: "Profile",
-    icon: AuthUserProfilePicture,
-  },
 ];
 
 export const MobileNavbar = () => {
@@ -47,6 +42,7 @@ export const MobileNavbar = () => {
             </IconWrapper>
           </Link>
         ))}
+        <ProfileLink />
       </nav>
     </footer>
   );
