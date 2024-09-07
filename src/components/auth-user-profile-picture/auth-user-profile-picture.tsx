@@ -9,9 +9,11 @@ const _AuthUserProfilePicture = ({
 }: {
   upScale?: Boolean;
 }) => {
-  const { user } = useSWRGetDecodedUserToken();
+  const { userDecodedToken } = useSWRGetDecodedUserToken();
 
-  return <ProfilePicture dpURL={user?.image ?? ""} upScale={upScale} />;
+  return (
+    <ProfilePicture dpURL={userDecodedToken?.image ?? ""} upScale={upScale} />
+  );
 };
 
 export const AuthUserProfilePicture = ({
