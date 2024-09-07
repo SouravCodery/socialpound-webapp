@@ -1,17 +1,17 @@
 "use client";
 
 import { ProfilePicture } from "../profile-picture/profile-picture";
-import { getClientSideCookie } from "@/helpers/client-side-cookie.helpers";
 import { CSROnlyHOC } from "../csr-only-hoc/csr-only-hoc";
+import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
 
 const _AuthUserProfilePicture = ({
   upScale = false,
 }: {
   upScale?: Boolean;
 }) => {
-  const profilePicture = getClientSideCookie({ name: "profile-picture" });
+  const { user } = useSWRGetDecodedUserToken();
 
-  return <ProfilePicture dpURL={profilePicture ?? ""} upScale={upScale} />;
+  return <ProfilePicture dpURL={user?.image ?? ""} upScale={upScale} />;
 };
 
 export const AuthUserProfilePicture = ({
