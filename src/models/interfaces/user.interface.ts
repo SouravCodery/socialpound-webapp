@@ -1,3 +1,5 @@
+import { User } from "next-auth";
+
 export interface LoginResponseInterface {
   token: string;
   user: {
@@ -14,4 +16,9 @@ export interface CredentialsInterface {
 export interface UserInterface {
   username: string;
   profilePicture: string;
+}
+
+export interface UserDecodedTokenInterface extends User {
+  iat: number;
+  exp: number;
 }
