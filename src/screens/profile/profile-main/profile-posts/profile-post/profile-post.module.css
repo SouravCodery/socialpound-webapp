@@ -1,12 +1,35 @@
-.content {
-  position: relative;
+.profilePost {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  aspect-ratio: 1/1;
+
+  border: 0.1px solid var(--background-secondary);
+}
+
+.asset {
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+}
+
+.mediaError {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
 
   height: 100%;
   width: 100%;
 
-  aspect-ratio: 1;
-}
+  padding: 1rem;
 
-.asset {
-  object-fit: cover;
+  font-size: 0.5rem;
+  font-weight: lighter;
 }
