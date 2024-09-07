@@ -28,7 +28,7 @@ export class CommentModule {
         },
         body: {},
         queryParams: { cursor },
-        token: this.httpClient.serverToken,
+        token: await this.httpClient.getToken(),
       });
 
     return fetchCommentsResponse.data;
@@ -56,7 +56,7 @@ export class CommentModule {
         parentComment: parentComment ?? null,
         text,
       },
-      token: this.httpClient.serverToken,
+      token: await this.httpClient.getToken(),
     });
   }
 }

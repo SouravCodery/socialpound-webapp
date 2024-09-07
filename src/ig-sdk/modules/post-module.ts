@@ -22,7 +22,7 @@ export class PostModule {
         },
         body: {},
         queryParams: { cursor },
-        token: this.httpClient.serverToken,
+        token: await this.httpClient.getToken(),
       });
 
     return getUserFeedResponse.data;
@@ -43,7 +43,7 @@ export class PostModule {
         },
         body: {},
         queryParams: { cursor },
-        token: this.httpClient.serverToken,
+        token: await this.httpClient.getToken(),
       });
 
     return getUserFeedResponse.data;
@@ -62,7 +62,7 @@ export class PostModule {
         method: "POST",
       },
       body: { content, caption },
-      token: this.httpClient.serverToken,
+      token: await this.httpClient.getToken(),
     });
   }
 }
