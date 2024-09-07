@@ -3,9 +3,8 @@
 import clsx from "clsx";
 import classes from "./profile.module.css";
 
-import { LogoutButton } from "@/components/auth/auth";
 import { ProfileHeader } from "./profile-header/profile-header";
-import { ProfileMain } from "./profile-main/profile-main";
+import { ProfilePosts } from "./profile-posts/profile-posts";
 
 import {
   useSWRGetUserByUsername,
@@ -27,10 +26,7 @@ export const Profile = ({ username }: { username: string }) => {
         isLoading={isLoading}
         isOwnProfile={isOwnProfile}
       />
-      <ProfileMain userId={_id ?? ""} />
-      {/* <br />
-      <br />
-      <LogoutButton /> */}
+      <ProfilePosts userId={_id ?? ""} />
     </div>
   );
 };
