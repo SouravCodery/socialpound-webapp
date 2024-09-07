@@ -7,15 +7,3 @@
   justify-content: flex-start;
   align-items: center;
 }
-
-.profileMainHeader {
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  border: 1px solid var(--border-primary);
-  border-left: none;
-  border-right: none;
-}
