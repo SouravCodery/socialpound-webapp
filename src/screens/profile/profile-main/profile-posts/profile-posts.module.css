@@ -1,7 +1,11 @@
-.postsGrid {
+.feed {
+  position: relative;
   width: 100%;
+  max-width: 50rem;
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.125rem;
+
+  padding-top: 0.125rem;
 }
