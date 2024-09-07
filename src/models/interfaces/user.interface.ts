@@ -8,12 +8,7 @@ export interface LoginResponseInterface {
   };
 }
 
-export interface CredentialsInterface {
-  username: string;
-  password: string;
-}
-
-export interface UserInterface {
+export interface SubDocumentUserInterface {
   username: string;
   profilePicture: string;
 }
@@ -21,4 +16,22 @@ export interface UserInterface {
 export interface UserDecodedTokenInterface extends User {
   iat: number;
   exp: number;
+}
+
+export interface UserInterface {
+  _id: string;
+  email: string;
+  username: string;
+  fullName: string;
+
+  profilePicture: string;
+  bio: string;
+
+  postsCount: number;
+  followersCount: number;
+  followingCount: number;
+}
+
+export interface UserResponseInterface {
+  user: UserInterface;
 }
