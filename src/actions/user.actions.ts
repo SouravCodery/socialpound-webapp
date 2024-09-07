@@ -6,7 +6,7 @@ import { Account, Profile, User } from "next-auth";
 import { logger } from "@/logger/index.logger";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 
-import * as jwtHelpers from "@/helpers/jwt.helpers";
+import * as jwtHelpers from "@/helpers/jwt-server-side.helpers";
 
 export async function signInServerSide({
   user,
@@ -53,5 +53,21 @@ export async function signInServerSide({
     });
   } catch (error) {
     logger.error("Error in signInServerSide", { error });
+  }
+}
+
+export async function getServerToken() {
+  try {
+    const serverToken = cookies().get("server-token")?.value;
+
+    if (!serverToken) {
+      throw new Error("Server token not found!");
+    }
+
+    return serverToken;
+  } catch (error) {
+    logger.error("Error in getServerToken", { error });
+
+    return null;
   }
 }
