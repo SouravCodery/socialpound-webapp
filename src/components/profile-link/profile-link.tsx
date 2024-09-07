@@ -13,9 +13,9 @@ import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
 export const ProfileLink = () => {
   const pathName = usePathname();
 
-  const { user } = useSWRGetDecodedUserToken();
-  const username = user?.email?.split("@")[0] ?? "";
-  const name = user?.name ?? "";
+  const { userDecodedToken } = useSWRGetDecodedUserToken();
+  const username = userDecodedToken?.email?.split("@")[0] ?? "";
+  const name = userDecodedToken?.name ?? "";
 
   const profileRoute = getProfileRoute({ username, name });
 
