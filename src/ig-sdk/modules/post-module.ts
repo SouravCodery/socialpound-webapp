@@ -28,6 +28,27 @@ export class PostModule {
     return getUserFeedResponse.data;
   }
 
+  async getPostsByUserId({
+    userId,
+    cursor,
+  }: {
+    userId: string;
+    cursor: string;
+  }) {
+    const getUserFeedResponse =
+      await this.httpClient.request<PostResponseInterface>({
+        endpoint: API_ROUTES.post.getPostsByUserId({ userId }),
+        options: {
+          method: "GET",
+        },
+        body: {},
+        queryParams: { cursor },
+        token: this.httpClient.serverToken,
+      });
+
+    return getUserFeedResponse.data;
+  }
+
   async createPost({
     content,
     caption,
