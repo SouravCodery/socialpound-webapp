@@ -5,6 +5,7 @@
   align-items: center;
 
   width: 100%;
+  max-width: 50rem;
   padding: 0.75rem;
 
   font-size: 0.9rem;
