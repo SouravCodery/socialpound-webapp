@@ -10,14 +10,20 @@ import {
   useSWRGetUserByUsername,
   useSWRGetDecodedUserToken,
 } from "@/hooks/swr-hooks/user.swr-hooks";
+import { ProfileLoader } from "@/components/loaders/profile/profile-loader";
 
 export const Profile = ({ username }: { username: string }) => {
   const { user, isLoading } = useSWRGetUserByUsername({
     username,
   });
   const { userDecodedToken } = useSWRGetDecodedUserToken();
+
   const isOwnProfile = user?.email === userDecodedToken?.email;
-  const { _id } = user ?? {};
+  const userId = user?._id ?? "";
+
+  if (isLoading) {
+    return <ProfileLoader />;
+  }
 
   return (
     <div className={clsx(classes.profile)}>
@@ -26,7 +32,7 @@ export const Profile = ({ username }: { username: string }) => {
         isLoading={isLoading}
         isOwnProfile={isOwnProfile}
       />
-      <ProfilePosts userId={_id ?? ""} />
+      <ProfilePosts userId={userId} />
     </div>
   );
 };
