@@ -5,7 +5,7 @@ import clsx from "clsx";
 
 import classes from "./profile-posts.module.css";
 import { ProfilePost } from "./profile-post/profile-post";
-import { PostLoader } from "@/components/loaders/post/post-loader";
+import { ProfilePostLoader } from "@/components/loaders/profile-post/profile-post-loader";
 import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-loader";
 
 import { useSWRGetPostsByUserId } from "@/hooks/swr-hooks/post.swr-hooks";
@@ -27,8 +27,8 @@ export const ProfilePosts = ({ userId }: { userId: string }) => {
   if (isLoading) {
     return (
       <div className={clsx(classes.feed)}>
-        {[...Array(4)].map((_, index) => (
-          <PostLoader key={index} />
+        {[...Array(9)].map((_, index) => (
+          <ProfilePostLoader key={index} />
         ))}
       </div>
     );
