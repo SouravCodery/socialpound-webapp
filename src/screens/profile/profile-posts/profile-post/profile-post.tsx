@@ -5,16 +5,26 @@ import classes from "./profile-post.module.css";
 
 import { PostInterface } from "@/models/interfaces/post.interface";
 import { Constants } from "@/constants/constants";
+import Link from "next/link";
 
-export const ProfilePost = ({ post }: { post: PostInterface }) => {
+export const ProfilePost = ({
+  post,
+  userId,
+  index,
+}: {
+  post: PostInterface;
+  userId: string;
+  index: number;
+}) => {
   const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
+  const href = `/posts/${userId}?index=${index}`;
 
   const handleErrorInMedia = () => {
     setErrorInMedia(true);
   };
 
   return (
-    <div className={classes.profilePost}>
+    <Link href={href} className={classes.profilePost}>
       {errorInMedia === false ? (
         <img
           src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
@@ -29,6 +39,6 @@ export const ProfilePost = ({ post }: { post: PostInterface }) => {
           <p>Maybe it’s shy? 😅 📦 📸</p>
         </div>
       )}
-    </div>
+    </Link>
   );
 };
