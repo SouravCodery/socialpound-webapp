@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
 import clsx from "clsx";
+
 import classes from "./post.module.css";
+import { Constants } from "@/constants/constants";
 
 import {
   MoreOptionsIcon,
@@ -13,9 +14,8 @@ import {
   ShareIcon,
   SavedIcon,
 } from "@/components/icons/icons";
-import { PostInterface } from "@/models/interfaces/post.interface";
-import { Constants } from "@/constants/constants";
 import { ProfilePicture } from "../profile-picture/profile-picture";
+import { PostInterface } from "@/models/interfaces/post.interface";
 
 export const Post = ({ post }: { post: PostInterface }) => {
   const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
