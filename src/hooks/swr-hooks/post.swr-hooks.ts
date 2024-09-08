@@ -51,6 +51,50 @@ export const useSWRGetUserFeed = () => {
   };
 };
 
+export const useSWRGetPostsByUserId = ({ userId }: { userId: string }) => {
+  const getKey = (
+    pageIndex: number,
+    previousPageData: PostResponseInterface
+  ) => {
+    if (pageIndex === 0) {
+      return API_ROUTES.post.getPostsByUserId({ userId });
+    }
+
+    if (!previousPageData || !previousPageData?.nextCursor) {
+      return null;
+    }
+
+    return (
+      API_ROUTES.post.getPostsByUserId({ userId }) +
+      `?cursor=${previousPageData.nextCursor}`
+    );
+  };
+
+  const { data, error, isLoading, size, setSize, mutate } = useSWRInfinite(
+    getKey,
+    (key) => {
+      const cursor = key.split("?cursor=")[1] || "";
+
+      return apiSDKInstance.post.getUserFeed({
+        cursor,
+      });
+    }
+  );
+
+  const isNextPageAvailable = data?.[size - 1]?.nextCursor !== null;
+  const isNextPageLoading = data?.[size - 1]?.posts === undefined;
+
+  return {
+    data,
+    error,
+    isLoading,
+    setSize,
+    isNextPageAvailable,
+    isNextPageLoading,
+    updatePosts: mutate,
+  };
+};
+
 export const useSWRAddPost = () => {
   const { trigger, error, isMutating, data } = useSWRMutation(
     API_ROUTES.post.createPost,

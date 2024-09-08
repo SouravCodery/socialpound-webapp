@@ -22,7 +22,28 @@ export class PostModule {
         },
         body: {},
         queryParams: { cursor },
-        token: this.httpClient.serverToken,
+        token: await this.httpClient.getToken(),
+      });
+
+    return getUserFeedResponse.data;
+  }
+
+  async getPostsByUserId({
+    userId,
+    cursor,
+  }: {
+    userId: string;
+    cursor: string;
+  }) {
+    const getUserFeedResponse =
+      await this.httpClient.request<PostResponseInterface>({
+        endpoint: API_ROUTES.post.getPostsByUserId({ userId }),
+        options: {
+          method: "GET",
+        },
+        body: {},
+        queryParams: { cursor },
+        token: await this.httpClient.getToken(),
       });
 
     return getUserFeedResponse.data;
@@ -41,7 +62,7 @@ export class PostModule {
         method: "POST",
       },
       body: { content, caption },
-      token: this.httpClient.serverToken,
+      token: await this.httpClient.getToken(),
     });
   }
 }

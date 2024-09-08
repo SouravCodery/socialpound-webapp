@@ -1,41 +1,75 @@
-import { AuthUserProfilePicture } from "@/components/auth-user-profile-picture/auth-user-profile-picture";
+"use client";
+
 import classes from "./profile-header.module.css";
 
-export const ProfileHeader = () => {
+import { ProfileHeaderLoader } from "@/components/loaders/profile-header/profile-header-loader";
+import { ProfilePicture } from "@/components/profile-picture/profile-picture";
+import { LogoutButton } from "@/components/auth/auth";
+
+import { UserInterface } from "@/models/interfaces/user.interface";
+
+export const ProfileHeader = ({
+  user,
+  isLoading,
+  isOwnProfile,
+}: {
+  user?: UserInterface;
+  isLoading: boolean;
+  isOwnProfile: boolean;
+}) => {
+  const {
+    fullName,
+    profilePicture,
+    bio,
+    postsCount,
+    followersCount,
+    followingCount,
+  } = user ?? {};
+
+  const username = user?.username?.split("@")[0];
+
+  if (isLoading || !user) {
+    return <ProfileHeaderLoader />;
+  }
+
   return (
     <div className={classes.profileHeader}>
       <div className={classes.dpAndCounts}>
         <div className={classes.dpAndName}>
-          <AuthUserProfilePicture upScale={true} />
-          <div className={classes.name}>Sourav Choudhary</div>
+          <ProfilePicture dpURL={profilePicture ?? ""} upScale={true} />
+          <div className={classes.name}>
+            <div>{fullName}</div>
+            <div className={classes.username}>@{username}</div>
+          </div>
         </div>
 
         <div className={classes.counters}>
           <div className={classes.counter}>
-            <div className={classes.count}>71</div>
+            <div className={classes.count}>{postsCount}</div>
             <div className={classes.counterName}>posts</div>
           </div>
 
           <div className={classes.counter}>
-            <div className={classes.count}>194</div>
+            <div className={classes.count}>{followersCount}</div>
             <div className={classes.counterName}>followers</div>
           </div>
 
           <div className={classes.counter}>
-            <div className={classes.count}>1,096</div>
+            <div className={classes.count}>{followingCount}</div>
             <div className={classes.counterName}>following</div>
           </div>
         </div>
       </div>
 
-      <div className={classes.bio}>
-        Software Engineer | Full Stack Developer | MERN | The Combination of One
-        Up Quark and Two Down Quarks in an ⚛️!
-      </div>
+      <div className={classes.bio}>{bio}</div>
 
       <div className={classes.profileActions}>
-        <button>Edit Profile</button>
-        <button>Share Profile</button>
+        {isOwnProfile && (
+          <>
+            <button>Edit Profile</button>
+            <LogoutButton />
+          </>
+        )}
       </div>
     </div>
   );

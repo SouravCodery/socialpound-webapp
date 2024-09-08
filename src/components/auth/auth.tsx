@@ -19,9 +19,5 @@ export const LoginButton = ({
 };
 
 export const LogoutButton = () => {
-  return (
-    <button className={classes.button} onClick={() => signOut()}>
-      Sign Out
-    </button>
-  );
+  return <button onClick={() => signOut()}>Sign Out</button>;
 };

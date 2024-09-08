@@ -1,10 +1,11 @@
 import { logger } from "@/logger/index.logger";
-import { getClientSideCookie } from "@/helpers/client-side-cookie.helpers";
 
 import { FetchResponseInterface } from "./../models/interfaces/fetch-response.interface";
+import { getServerToken } from "@/actions/user.actions";
 
 export class HttpClient {
   private readonly baseURL: string;
+  private token: string | null = null;
 
   constructor(baseURL: string) {
     this.baseURL = baseURL;
@@ -22,8 +23,13 @@ export class HttpClient {
       .join("&");
   };
 
-  get serverToken() {
-    return getClientSideCookie({ name: "server-token" });
+  async getToken() {
+    if (this.token) {
+      return this.token;
+    }
+
+    this.token = (await getServerToken()) ?? "";
+    return this.token;
   }
 
   async request<T>({

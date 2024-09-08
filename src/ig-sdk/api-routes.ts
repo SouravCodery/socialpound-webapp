@@ -1,28 +1,18 @@
 export const API_ROUTES = {
   user: {
     signIn: "/v1/user/sign-in",
+    getUserByUsername: ({ username }: { username: string }) =>
+      `/v1/user/${username}`,
   },
   post: {
     createPost: "/v1/post",
     getUserFeed: "/v1/post",
+    getPostsByUserId: ({ userId }: { userId: string }) => `/v1/post/${userId}`,
   },
   comment: {
     addComment: "/v1/comment",
-    getCommentsByPostId: ({
-      postId,
-      cursor,
-    }: {
-      postId: string;
-      cursor?: string;
-    }) => {
-      let url = `/v1/comment/post/${postId}`;
-
-      if (cursor) {
-        url += `?cursor=${cursor}`;
-      }
-
-      return url;
-    },
+    getCommentsByPostId: ({ postId }: { postId: string }) =>
+      `/v1/comment/post/${postId}`,
   },
   awsPresignedUrl: {
     getPresignedUrl: "/v1/aws-presigned-url",

@@ -21,7 +21,7 @@ export class AWSPresignedUrlModule {
           size,
           type,
         },
-        token: this.httpClient.serverToken,
+        token: await this.httpClient.getToken(),
       });
 
     return result.data;

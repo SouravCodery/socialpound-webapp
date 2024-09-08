@@ -1,8 +1,7 @@
-.comments {
+.feed {
   position: relative;
 
   display: flex;
-
   flex-direction: column;
 
   justify-content: flex-start;
@@ -12,25 +11,7 @@
   height: fit-content;
 }
 
-.noComments {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  position: fixed;
-  top: 50%;
-  transition: translateY(-50%);
-}
-
-.noCommentsSub {
-  font-weight: lighter;
-  margin-top: 0.5rem;
-}
-
-.virtualCommentsList {
-  position: relative;
-
+.virtualFeed {
   display: flex;
   flex-direction: column;
 
@@ -40,7 +21,7 @@
   width: 100%;
 }
 
-.virtualCommentsList > div > div {
+.virtualFeed > div > div {
   position: relative;
 
   display: flex;
