@@ -101,6 +101,21 @@
   align-items: center;
 }
 
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-left: 0.25rem;
+  width: 0.5rem;
+}
+
 .postActionsRight {
   display: flex;
 
@@ -116,5 +131,5 @@
   display: flex;
   flex-direction: row;
 
-  margin-top: 0.5rem;
+  margin-top: 0.75rem;
 }

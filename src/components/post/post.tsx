@@ -11,8 +11,6 @@ import {
   MoreOptionsIcon,
   LikeIcon,
   CommentIcon,
-  ShareIcon,
-  SavedIcon,
 } from "@/components/icons/icons";
 import { ProfilePicture } from "../profile-picture/profile-picture";
 import { PostInterface } from "@/models/interfaces/post.interface";
@@ -60,23 +58,24 @@ export const Post = ({ post }: { post: PostInterface }) => {
       <div className={classes.footer}>
         <div className={classes.postActions}>
           <div className={classes.postActionsLeft}>
-            <Link href={`/likes/${post._id}`}>
-              <LikeIcon />
+            <Link href={`/likes/${post._id}`} className={classes.link}>
+              <LikeIcon />{" "}
+              <div className={classes.counter}>{post.likesCount || null}</div>
             </Link>
             <Link
               href={`/comments/${post._id}`}
-              className={clsx(classes.postActionLink)}
+              className={clsx(classes.postActionLink, classes.link)}
             >
-              <CommentIcon />
-            </Link>
-            <Link href={`/share/${post._id}`}>
-              <ShareIcon />
+              <CommentIcon />{" "}
+              <div className={classes.counter}>
+                {post.commentsCount || null}
+              </div>
             </Link>
           </div>
           <div className={classes.postActionsRight}>
-            <div>
+            {/* <div>
               <SavedIcon />
-            </div>
+            </div> */}
           </div>
         </div>
         {post.caption && (
