@@ -2,6 +2,7 @@ import { HttpClient } from "./http-client.api-client";
 
 import { UserModule } from "./modules/user-module";
 import { PostModule } from "./modules/post-module";
+import { LikeModule } from "./modules/like-module";
 import { CommentModule } from "./modules/comment-module";
 import { AWSPresignedUrlModule } from "./modules/aws-presigned-url-module";
 
@@ -10,6 +11,7 @@ export class IG_SDK {
 
   public user: UserModule;
   public post: PostModule;
+  public like: LikeModule;
   public comment: CommentModule;
   public awsPresignedUrl: AWSPresignedUrlModule;
 
@@ -19,6 +21,7 @@ export class IG_SDK {
 
     this.user = new UserModule(httpClient);
     this.post = new PostModule(httpClient);
+    this.like = new LikeModule(httpClient);
     this.comment = new CommentModule(httpClient);
     this.awsPresignedUrl = new AWSPresignedUrlModule(httpClient);
   }
