@@ -15,9 +15,7 @@ export const Comment = ({ comment }: { comment: CommentInterface }) => {
           </div>
           <div>{comment.text}</div>
         </div>
-        <div className={classes.likeContainer}>
-          <LikeIcon />
-        </div>
+        <div className={classes.likeContainer}>{/* <LikeIcon /> */}</div>
       </div>
       {/* <div className={classes.footer}>View all replies</div> */}
     </div>

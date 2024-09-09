@@ -12,7 +12,13 @@
   background: var(--background-primary);
   color: var(--color-primary);
 
-  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-primary);
+  border-top: none;
+  border-right: 1rem solid var(--border-primary);
+
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
 
   font-size: 0.8rem;
 }
@@ -30,6 +36,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+
+  margin-left: 1rem;
 
   flex: 1;
 }
