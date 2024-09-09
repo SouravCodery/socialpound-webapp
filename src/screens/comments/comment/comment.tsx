@@ -1,7 +1,6 @@
 import classes from "./comment.module.css";
 
 import { CommentInterface } from "@/models/interfaces/comment.interface";
-import { LikeIcon } from "@/components/icons/icons";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 
 export const Comment = ({ comment }: { comment: CommentInterface }) => {
