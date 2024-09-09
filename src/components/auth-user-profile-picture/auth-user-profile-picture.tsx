@@ -4,20 +4,14 @@ import { ProfilePicture } from "../profile-picture/profile-picture";
 import { CSROnlyHOC } from "../csr-only-hoc/csr-only-hoc";
 import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
 
-const _AuthUserProfilePicture = ({
-  upScale = false,
-}: {
-  upScale?: Boolean;
-}) => {
+const _AuthUserProfilePicture = ({ scale }: { scale?: "medium" | "large" }) => {
   const { userDecodedToken } = useSWRGetDecodedUserToken();
 
-  return (
-    <ProfilePicture dpURL={userDecodedToken?.image ?? ""} upScale={upScale} />
-  );
+  return <ProfilePicture dpURL={userDecodedToken?.image ?? ""} scale={scale} />;
 };
 
 export const AuthUserProfilePicture = ({
-  upScale = false,
+  scale,
 }: {
-  upScale?: Boolean;
-}) => <CSROnlyHOC component={<_AuthUserProfilePicture upScale={upScale} />} />;
+  scale?: "medium" | "large";
+}) => <CSROnlyHOC component={<_AuthUserProfilePicture scale={scale} />} />;

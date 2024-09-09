@@ -36,7 +36,7 @@ export const ProfileHeader = ({
     <div className={classes.profileHeader}>
       <div className={classes.dpAndCounts}>
         <div className={classes.dpAndName}>
-          <ProfilePicture dpURL={profilePicture ?? ""} upScale={true} />
+          <ProfilePicture dpURL={profilePicture ?? ""} scale={"large"} />
           <div className={classes.name}>
             <div>{fullName}</div>
             <div className={classes.username}>@{username}</div>
