@@ -1,4 +1,4 @@
-import { UserInterface } from "./user.interface";
+import { SubDocumentUserInterface } from "./user.interface";
 
 export interface CommentInterface {
   _id: string;
@@ -7,7 +7,7 @@ export interface CommentInterface {
   post: string;
   parentComment?: string;
 
-  user: UserInterface;
+  user: SubDocumentUserInterface;
   text: string;
 }
 
