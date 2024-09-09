@@ -11,16 +11,10 @@ import { LikeLoader } from "@/components/loaders/likes/like-loader";
 import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-loader";
 
 export const Likes = ({ postId }: { postId: string }) => {
-  const {
-    data,
-    setSize,
-    isLoading,
-    isNextPageAvailable,
-    isNextPageLoading,
-    updateLikes,
-  } = useSWRGetLikesByPostId({
-    postId,
-  });
+  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
+    useSWRGetLikesByPostId({
+      postId,
+    });
 
   const likes = data?.flatMap((each) => each.likes) ?? [];
 
@@ -32,7 +26,7 @@ export const Likes = ({ postId }: { postId: string }) => {
     setSize((prevSize) => prevSize + 1);
   }, [setSize, isNextPageLoading]);
 
-  if (true || isLoading) {
+  if (isLoading) {
     return (
       <div className={classes.likes}>
         {[...Array(8)].map((_, index) => (
@@ -47,6 +41,7 @@ export const Likes = ({ postId }: { postId: string }) => {
       <div className={classes.likes}>
         <div className={classes.noLikes}>
           <h2>No likes yet.</h2>
+          <div className={classes.noLikesSub}>Be the first one to like it.</div>
         </div>
       </div>
     );
