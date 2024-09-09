@@ -21,7 +21,13 @@
   font-size: 2em;
 }
 
-.upScale {
+.medium {
+  height: 3rem;
+  width: 3rem;
+  font-size: 20px;
+}
+
+.large {
   height: 4.4rem;
   width: 4.4rem;
   font-size: 32px;
