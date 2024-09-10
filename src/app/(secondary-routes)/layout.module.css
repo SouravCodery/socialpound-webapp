@@ -10,7 +10,6 @@
   min-height: 100%;
   height: auto;
 
-  padding: 4rem 0;
-
+  padding-top: 4rem;
   overflow-y: auto;
 }
