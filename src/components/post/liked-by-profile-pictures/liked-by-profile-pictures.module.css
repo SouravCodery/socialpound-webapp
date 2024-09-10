@@ -1,0 +1,36 @@
+.likedBy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-secondary);
+}
+
+.likedByGroup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-right: -0.75rem;
+
+  background: var(--background-primary);
+}
+
+.likedByText:hover {
+  text-decoration: underline;
+  filter: brightness(1.01);
+}
+
+.likedByProfilePicture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 50%;
+  border: 1px solid var(--border-primary);
+
+  width: 1.25rem;
+  height: 1.25rem;
+
+  background: var(--background-primary);
+}
