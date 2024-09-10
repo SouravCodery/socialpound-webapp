@@ -1,0 +1,17 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: inherit;
+  padding: 0;
+  margin: 0;
+}
+
+.counter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-left: 0.25rem;
+}
