@@ -16,8 +16,9 @@ export const LikedByProfilePictures = ({
     return null;
   }
 
+  const countApartFromUser = likesCount - 1;
   let likeText = isPostLiked
-    ? `Liked by ${likesCount - 1} others`
+    ? `Liked by ${countApartFromUser} other${countApartFromUser > 1 ? "s" : ""}`
     : `Liked by ${likesCount}`;
 
   if (isPostLiked && likesCount == 1) {
