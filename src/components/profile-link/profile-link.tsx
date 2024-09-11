@@ -8,14 +8,11 @@ import classes from "./profile-link.module.css";
 
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 import { AuthUserProfilePicture } from "@/components/auth-user-profile-picture/auth-user-profile-picture";
-import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
+import { useGetUserFromDecodedToken } from "@/hooks/user.hooks";
 
 export const ProfileLink = () => {
   const pathName = usePathname();
-
-  const { userDecodedToken } = useSWRGetDecodedUserToken();
-  const username = userDecodedToken?.email?.split("@")[0] ?? "";
-  const name = userDecodedToken?.name ?? "";
+  const { username, name } = useGetUserFromDecodedToken();
 
   const profileRoute = getProfileRoute({ username, name });
 
