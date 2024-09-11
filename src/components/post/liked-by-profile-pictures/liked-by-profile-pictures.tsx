@@ -6,12 +6,22 @@ import classes from "./liked-by-profile-pictures.module.css";
 export const LikedByProfilePictures = ({
   postId,
   likesCount,
+  isPostLiked,
 }: {
   postId: string;
   likesCount: number;
+  isPostLiked: boolean;
 }) => {
-  if (!likesCount) {
+  if (likesCount < 1) {
     return null;
+  }
+
+  let likeText = isPostLiked
+    ? `Liked by ${likesCount - 1} others`
+    : `Liked by ${likesCount}`;
+
+  if (isPostLiked && likesCount == 1) {
+    likeText = "Liked by you";
   }
 
   return (
@@ -37,7 +47,7 @@ export const LikedByProfilePictures = ({
           🤩
         </span>
       </div>
-      <div className={classes.likedByText}>Liked by {likesCount}</div>
+      <div className={classes.likedByText}>{likeText}</div>
     </Link>
   );
 };
