@@ -1,0 +1,37 @@
+import { logger } from "@/logger/index.logger";
+
+const setItem = ({ key, value }: { key: string; value?: any }): void => {
+  try {
+    const serializedValue = JSON.stringify(value);
+    localStorage.setItem(key, serializedValue);
+  } catch (error) {
+    logger.error(`Error setting item in local storage: ${error}`);
+  }
+};
+
+const getItem = <T>({ key }: { key: string }): T | null => {
+  try {
+    const serializedValue = localStorage.getItem(key);
+    if (serializedValue === null) {
+      return null;
+    }
+    return JSON.parse(serializedValue) as T;
+  } catch (error) {
+    logger.error(`Error getting item from local storage: ${error}`);
+    return null;
+  }
+};
+
+const removeItem = ({ key }: { key: string }): void => {
+  try {
+    localStorage.removeItem(key);
+  } catch (error) {
+    logger.error(`Error removing item from local storage: ${error}`);
+  }
+};
+
+export const localStorageHelpers = {
+  getItem,
+  setItem,
+  removeItem,
+};

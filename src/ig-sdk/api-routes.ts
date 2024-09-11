@@ -21,5 +21,6 @@ export const API_ROUTES = {
     likePost: "/v1/like",
     getLikesByPostId: ({ postId }: { postId: string }) =>
       `/v1/like/post/${postId}`,
+    getPostsLikedByUser: `/v1/like/post/user`,
   },
 } as const;

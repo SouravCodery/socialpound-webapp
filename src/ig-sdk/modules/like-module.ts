@@ -4,6 +4,7 @@ import { API_ROUTES } from "../api-routes";
 import {
   LikeInterface,
   LikeResponseInterface,
+  PostsLikedByUserResponseInterface,
 } from "@/models/interfaces/like.interface";
 
 export class LikeModule {
@@ -34,14 +35,12 @@ export class LikeModule {
     return fetchLikesResponse.data;
   }
 
-  async addLike({
+  async likePost({
     likeOn,
     post,
-    comment,
   }: {
     likeOn: LikeInterface["likeOn"];
     post: LikeInterface["post"];
-    comment: LikeInterface["comment"];
   }) {
     return this.httpClient.request<Object>({
       endpoint: API_ROUTES.like.likePost,
@@ -51,9 +50,22 @@ export class LikeModule {
       body: {
         likeOn,
         post,
-        parentLike: comment ?? null,
       },
       token: await this.httpClient.getToken(),
     });
+  }
+
+  async getPostsLikedByUser() {
+    const fetchLikesResponse =
+      await this.httpClient.request<PostsLikedByUserResponseInterface>({
+        endpoint: API_ROUTES.like.getPostsLikedByUser,
+        options: {
+          method: "GET",
+        },
+        body: {},
+        token: await this.httpClient.getToken(),
+      });
+
+    return fetchLikesResponse.data;
   }
 }
