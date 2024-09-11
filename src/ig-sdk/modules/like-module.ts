@@ -35,14 +35,12 @@ export class LikeModule {
     return fetchLikesResponse.data;
   }
 
-  async addLike({
+  async likePost({
     likeOn,
     post,
-    comment,
   }: {
     likeOn: LikeInterface["likeOn"];
     post: LikeInterface["post"];
-    comment: LikeInterface["comment"];
   }) {
     return this.httpClient.request<Object>({
       endpoint: API_ROUTES.like.likePost,
@@ -52,7 +50,6 @@ export class LikeModule {
       body: {
         likeOn,
         post,
-        parentLike: comment ?? null,
       },
       token: await this.httpClient.getToken(),
     });
