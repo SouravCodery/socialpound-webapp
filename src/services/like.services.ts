@@ -39,11 +39,19 @@ export const isPostLikedByUser = ({ postId }: { postId: string }) => {
   }
 };
 
-export const addLikeToUserLikesSet = async ({ postId }: { postId: string }) => {
+export const likeUserPost = async ({ postId }: { postId: string }) => {
   try {
+    const likeResponse = await apiSDKInstance.like.likePost({
+      likeOn: "Post",
+      post: postId,
+    });
+
     if (userLikesSet) {
       userLikesSet.add(postId);
     }
+
+    //todo: Remove it from here and Add this to window.addEventListener('beforeunload', ...)
+    updateLikesToLocalStorage();
   } catch (error) {
     logger.error("Error in addLikeToPost", error);
   }
