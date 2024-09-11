@@ -2,6 +2,9 @@
 
 import { signIn, signOut } from "next-auth/react";
 import classes from "./auth.module.css";
+import { useState } from "react";
+import { cookieFlushAfterLogout } from "@/actions/user.actions";
+import { localStorageHelpers } from "@/helpers/local-storage.helpers";
 
 export const LoginButton = ({
   provider,
@@ -18,6 +21,26 @@ export const LoginButton = ({
   );
 };
 
-export const LogoutButton = () => {
-  return <button onClick={() => signOut()}>Sign Out</button>;
+export const SignOutButton = () => {
+  const [signingOut, setSigningOut] = useState(false);
+
+  const signOutUser = async () => {
+    setSigningOut(true);
+    try {
+      localStorageHelpers.removeItem({ key: "post-likes" });
+
+      await cookieFlushAfterLogout();
+      await signOut();
+    } catch (error) {
+      console.error("Error in signOutUser", { error });
+    } finally {
+      setSigningOut(false);
+    }
+  };
+
+  return (
+    <button onClick={signOutUser} disabled={signingOut}>
+      {signingOut === false ? "Sign Out" : "Signing Out..."}
+    </button>
+  );
 };
