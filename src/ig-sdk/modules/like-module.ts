@@ -4,6 +4,7 @@ import { API_ROUTES } from "../api-routes";
 import {
   LikeInterface,
   LikeResponseInterface,
+  PostsLikedByUserResponseInterface,
 } from "@/models/interfaces/like.interface";
 
 export class LikeModule {
@@ -55,5 +56,19 @@ export class LikeModule {
       },
       token: await this.httpClient.getToken(),
     });
+  }
+
+  async getPostsLikedByUser() {
+    const fetchLikesResponse =
+      await this.httpClient.request<PostsLikedByUserResponseInterface>({
+        endpoint: API_ROUTES.like.getPostsLikedByUser,
+        options: {
+          method: "GET",
+        },
+        body: {},
+        token: await this.httpClient.getToken(),
+      });
+
+    return fetchLikesResponse.data;
   }
 }
