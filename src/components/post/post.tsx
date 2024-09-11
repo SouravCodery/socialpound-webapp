@@ -11,7 +11,7 @@ import { MoreOptionsIcon, CommentIcon } from "@/components/icons/icons";
 import { ProfilePicture } from "../profile-picture/profile-picture";
 import { PostInterface } from "@/models/interfaces/post.interface";
 import { LikeButton } from "../like-button/like-button";
-import { LikedByProfilePictures } from "./liked-by-profile-pictures/liked-by-profile-pictures";
+import { LikedByUsersProfilePicture } from "./liked-by-users-profile-picture/liked-by-users-profile-picture";
 import {
   isPostLikedByUser,
   likeUserPost,
@@ -110,10 +110,11 @@ export const Post = ({ post }: { post: PostInterface }) => {
             </div> */}
           </div>
         </div>
-        <LikedByProfilePictures
+        <LikedByUsersProfilePicture
           postId={post._id}
           likesCount={post.likesCount}
           isPostLiked={isPostLiked}
+          isLiked={isLiked}
         />
         {post.caption && (
           <div className={classes.captionContainer}>
