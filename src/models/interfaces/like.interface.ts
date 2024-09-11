@@ -14,3 +14,7 @@ export interface LikeResponseInterface {
   likes: LikeInterface[];
   nextCursor: string;
 }
+
+export interface PostsLikedByUserResponseInterface {
+  likes: string[];
+}
