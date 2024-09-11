@@ -1,0 +1,9 @@
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  grid-column: 2;
+
+  padding: 1rem;
+}

@@ -75,7 +75,8 @@ export const useSWRGetPostsByUserId = ({ userId }: { userId: string }) => {
     (key) => {
       const cursor = key.split("?cursor=")[1] || "";
 
-      return apiSDKInstance.post.getUserFeed({
+      return apiSDKInstance.post.getPostsByUserId({
+        userId,
         cursor,
       });
     }

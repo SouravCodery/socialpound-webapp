@@ -11,10 +11,37 @@ import { MoreOptionsIcon, CommentIcon } from "@/components/icons/icons";
 import { ProfilePicture } from "../profile-picture/profile-picture";
 import { PostInterface } from "@/models/interfaces/post.interface";
 import { LikeButton } from "../like-button/like-button";
-import { LikedByProfilePictures } from "./liked-by-profile-pictures/liked-by-profile-pictures";
+import { LikedByUsersProfilePicture } from "./liked-by-users-profile-picture/liked-by-users-profile-picture";
+import {
+  isPostLikedByUser,
+  likeUserPost,
+  unlikeUserPost,
+} from "@/services/like.services";
 
 export const Post = ({ post }: { post: PostInterface }) => {
+  const postId = post._id;
+
+  const isLiked = isPostLikedByUser({ postId });
+
   const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
+  const [isPostLiked, setIsPostLiked] = useState(isLiked);
+  const [isProcessing, setIsProcessing] = useState(false);
+
+  const likePost = async () => {
+    setIsProcessing(true);
+
+    if (isProcessing) return;
+
+    if (isPostLiked === false) {
+      setIsPostLiked(true);
+      await likeUserPost({ postId });
+    } else {
+      setIsPostLiked(false);
+      await unlikeUserPost({ postId });
+    }
+
+    setIsProcessing(false);
+  };
 
   const handleErrorInMedia = () => {
     setErrorInMedia(true);
@@ -36,6 +63,11 @@ export const Post = ({ post }: { post: PostInterface }) => {
       <div
         className={classes.content}
         style={{ aspectRatio: post.content[0].aspectRatio ?? 1 }}
+        onDoubleClick={() => {
+          if (isLiked === false) {
+            likePost();
+          }
+        }}
       >
         {errorInMedia === false ? (
           <img
@@ -56,7 +88,12 @@ export const Post = ({ post }: { post: PostInterface }) => {
       <div className={classes.footer}>
         <div className={classes.postActions}>
           <div className={classes.postActionsLeft}>
-            <LikeButton postId={post._id} count={post.likesCount} />
+            <LikeButton
+              postId={post._id}
+              count={post.likesCount}
+              isPostLiked={isPostLiked}
+              likePost={likePost}
+            />
             <Link
               href={`/comments/${post._id}`}
               className={clsx(classes.postActionLink, classes.link)}
@@ -73,9 +110,11 @@ export const Post = ({ post }: { post: PostInterface }) => {
             </div> */}
           </div>
         </div>
-        <LikedByProfilePictures
+        <LikedByUsersProfilePicture
           postId={post._id}
           likesCount={post.likesCount}
+          isPostLiked={isPostLiked}
+          isLiked={isLiked}
         />
         {post.caption && (
           <div className={classes.captionContainer}>

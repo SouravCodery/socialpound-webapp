@@ -35,15 +35,7 @@ export async function signInServerSide({
 
     cookies().set("server-token", signedServerJWT, {
       maxAge: maxAgeInSeconds,
-      httpOnly: false,
-      sameSite: "lax",
-    });
-
-    const userProfilePicture = user?.image ?? "";
-
-    cookies().set("profile-picture", userProfilePicture, {
-      maxAge: maxAgeInSeconds,
-      httpOnly: false,
+      httpOnly: true,
       sameSite: "lax",
     });
 
@@ -69,5 +61,19 @@ export async function getServerToken() {
     logger.error("Error in getServerToken", { error });
 
     return null;
+  }
+}
+
+export async function cookieFlushAfterLogout() {
+  try {
+    const cookiesToFlush = ["server-token"];
+    cookiesToFlush.forEach((name) => {
+      cookies().delete(name);
+    });
+
+    return true;
+  } catch (error) {
+    logger.error("Error in cookieFlushAfterLogout", { error });
+    return false;
   }
 }

@@ -68,4 +68,18 @@ export class LikeModule {
 
     return fetchLikesResponse.data;
   }
+
+  async unlikePost({ postId }: { postId: string }) {
+    const fetchLikesResponse = await this.httpClient.request<null>({
+      endpoint: API_ROUTES.like.unlikePost({ postId }),
+      options: {
+        method: "DELETE",
+      },
+      body: {},
+
+      token: await this.httpClient.getToken(),
+    });
+
+    return fetchLikesResponse.data;
+  }
 }

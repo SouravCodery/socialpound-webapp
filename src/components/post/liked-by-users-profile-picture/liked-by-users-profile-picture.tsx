@@ -1,17 +1,34 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-import classes from "./liked-by-profile-pictures.module.css";
+import classes from "./liked-by-users-profile-picture.module.css";
 
-export const LikedByProfilePictures = ({
+export const LikedByUsersProfilePicture = ({
   postId,
   likesCount,
+  isPostLiked,
+  isLiked,
 }: {
   postId: string;
   likesCount: number;
+  isPostLiked: boolean;
+  isLiked: boolean;
 }) => {
-  if (!likesCount) {
+  if (likesCount < 1) {
     return null;
+  }
+
+  if (isLiked === true && likesCount === 1 && isPostLiked === false) {
+    return null;
+  }
+
+  const countApartFromUser = likesCount - 1;
+  let likeText = isPostLiked
+    ? `Liked by ${countApartFromUser} other${countApartFromUser > 1 ? "s" : ""}`
+    : `Liked by ${likesCount}`;
+
+  if (isPostLiked && likesCount == 1) {
+    likeText = "Liked by you";
   }
 
   return (
@@ -37,7 +54,7 @@ export const LikedByProfilePictures = ({
           🤩
         </span>
       </div>
-      <div className={classes.likedByText}>Liked by {likesCount}</div>
+      <div className={classes.likedByText}>{likeText}</div>
     </Link>
   );
 };

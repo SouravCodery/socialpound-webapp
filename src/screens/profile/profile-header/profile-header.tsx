@@ -4,7 +4,7 @@ import classes from "./profile-header.module.css";
 
 import { ProfileHeaderLoader } from "@/components/loaders/profile-header/profile-header-loader";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
-import { LogoutButton } from "@/components/auth/auth";
+import { SignOutButton } from "@/components/auth/auth";
 
 import { UserInterface } from "@/models/interfaces/user.interface";
 
@@ -67,7 +67,7 @@ export const ProfileHeader = ({
         {isOwnProfile && (
           <>
             <button>Edit Profile</button>
-            <LogoutButton />
+            <SignOutButton />
           </>
         )}
       </div>
