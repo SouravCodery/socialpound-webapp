@@ -63,6 +63,11 @@ export const Post = ({ post }: { post: PostInterface }) => {
       <div
         className={classes.content}
         style={{ aspectRatio: post.content[0].aspectRatio ?? 1 }}
+        onDoubleClick={() => {
+          if (isLiked === false) {
+            likePost();
+          }
+        }}
       >
         {errorInMedia === false ? (
           <img
