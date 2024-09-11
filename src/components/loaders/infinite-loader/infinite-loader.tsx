@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
 
 import { Spinner } from "../spinner/spinner";
+import classes from "./infinite-loader.module.css";
 
 export const InfiniteLoader = ({
   context,
@@ -29,7 +30,7 @@ export const InfiniteLoader = ({
   }
 
   return (
-    <div ref={ref}>
+    <div ref={ref} className={classes.loader}>
       <Spinner />
     </div>
   );
