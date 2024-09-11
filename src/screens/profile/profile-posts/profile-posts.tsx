@@ -34,6 +34,17 @@ export const ProfilePosts = ({ userId }: { userId: string }) => {
     );
   }
 
+  if (posts.length === 0) {
+    return (
+      <div className={classes.noPosts}>
+        <h2>No posts yet! 🧐 </h2>
+        <div className={classes.noPostsSub}>
+          Guess it’s a ghost town in here… 👻
+        </div>
+      </div>
+    );
+  }
+
   //todo: Add VirtuosoGrid here
   return (
     <div className={classes.feed}>
