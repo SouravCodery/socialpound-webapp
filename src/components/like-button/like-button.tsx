@@ -3,6 +3,7 @@ import Link from "next/link";
 import classes from "./like-button.module.css";
 
 import { LikeIcon, UnlikeIcon } from "../icons/icons";
+import { isPostLikedByUser } from "@/services/like.services";
 
 export const LikeButton = ({
   // likeOn,
@@ -16,14 +17,16 @@ export const LikeButton = ({
   count: number;
 }) => {
   const url = `/likes/${postId}`;
-  const [isLikedState, setIsLikedState] = useState(true);
+
+  const isLiked = isPostLikedByUser({ postId });
+  const [isPostLiked, setIsPostLiked] = useState(isLiked);
 
   return (
     <button
       className={classes.button}
-      onClick={() => setIsLikedState((prev) => !prev)}
+      onClick={() => setIsPostLiked((prev) => !prev)}
     >
-      {isLikedState ? <LikeIcon /> : <UnlikeIcon />}
+      {isPostLiked === false ? <LikeIcon /> : <UnlikeIcon />}
 
       <Link href={url} className={classes.link}>
         <div className={classes.counter}>{count || null}</div>
