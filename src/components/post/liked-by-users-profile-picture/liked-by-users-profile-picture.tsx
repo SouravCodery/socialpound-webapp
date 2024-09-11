@@ -1,18 +1,24 @@
 import clsx from "clsx";
 import Link from "next/link";
 
-import classes from "./liked-by-profile-pictures.module.css";
+import classes from "./liked-by-users-profile-picture.module.css";
 
-export const LikedByProfilePictures = ({
+export const LikedByUsersProfilePicture = ({
   postId,
   likesCount,
   isPostLiked,
+  isLiked,
 }: {
   postId: string;
   likesCount: number;
   isPostLiked: boolean;
+  isLiked: boolean;
 }) => {
   if (likesCount < 1) {
+    return null;
+  }
+
+  if (isLiked === true && likesCount === 1 && isPostLiked === false) {
     return null;
   }
 
