@@ -10,10 +10,12 @@ import { Post } from "@/components/post/post";
 import { useSWRGetUserFeed } from "@/hooks/swr-hooks/post.swr-hooks";
 import { PostLoader } from "../loaders/post/post-loader";
 import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
+import { useLoadPostsLikedByUser } from "@/hooks/like.hooks";
 
 export default function Feed() {
   const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
     useSWRGetUserFeed();
+  const { isPostsLikedByUserLoading } = useLoadPostsLikedByUser();
 
   const loadMore = useCallback(() => {
     if (isNextPageLoading) {
@@ -25,7 +27,7 @@ export default function Feed() {
 
   const posts = data?.flatMap((each) => each.posts) ?? [];
 
-  if (isLoading) {
+  if (isLoading || isPostsLikedByUserLoading) {
     return (
       <div className={clsx(classes.feed)}>
         {[...Array(4)].map((_, index) => (
