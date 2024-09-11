@@ -1,8 +1,7 @@
-.comment {
+.like {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
 
   position: relative;
 
@@ -23,14 +22,6 @@
   font-size: 0.8rem;
 }
 
-.main {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-
-  width: 100%;
-}
-
 .content {
   display: flex;
   flex-direction: column;
@@ -38,27 +29,12 @@
   align-items: flex-start;
 
   margin-left: 1rem;
-
-  flex: 1;
 }
 
 .usernameContainer {
   font-weight: bold;
 }
 
-.footer {
-  margin: 1rem 0 0 4rem;
-
-  font-weight: bold;
-  font-size: 0.6rem;
-
+.fullName {
   color: var(--color-secondary);
-}
-
-.likeContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  position: relative;
 }

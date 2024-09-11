@@ -1,8 +1,7 @@
-.comment {
+.like {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: center;
 
   position: relative;
 
@@ -14,7 +13,7 @@
 
   border: 1px solid var(--border-primary);
   border-top: none;
-  border-right: 0.75rem solid var(--border-primary);
+  border-right: 1rem solid var(--border-primary);
   border-radius: 0.25rem;
 
   margin-bottom: 0.75rem;
@@ -22,14 +21,6 @@
 
   font-size: 0.8rem;
   animation: pulse 1.5s infinite ease-in-out;
-}
-
-.main {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  width: 100%;
 }
 
 .skeletonProfilePicture {
@@ -46,8 +37,6 @@
   align-items: flex-start;
 
   margin-left: 1rem;
-
-  flex: 1;
 }
 
 .skeletonUsername {
@@ -58,9 +47,9 @@
   margin-bottom: 0.3rem;
 }
 
-.skeletonText {
-  width: 100%;
-  height: 1rem;
+.skeletonFullName {
+  width: 7rem;
+  height: 0.8rem;
   background-color: var(--background-secondary);
   border-radius: 0.2rem;
 }

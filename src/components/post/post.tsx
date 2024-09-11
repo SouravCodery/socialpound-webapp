@@ -7,15 +7,11 @@ import clsx from "clsx";
 import classes from "./post.module.css";
 import { Constants } from "@/constants/constants";
 
-import {
-  MoreOptionsIcon,
-  LikeIcon,
-  CommentIcon,
-  ShareIcon,
-  SavedIcon,
-} from "@/components/icons/icons";
+import { MoreOptionsIcon, CommentIcon } from "@/components/icons/icons";
 import { ProfilePicture } from "../profile-picture/profile-picture";
 import { PostInterface } from "@/models/interfaces/post.interface";
+import { LikeButton } from "../like-button/like-button";
+import { LikedByProfilePictures } from "./liked-by-profile-pictures/liked-by-profile-pictures";
 
 export const Post = ({ post }: { post: PostInterface }) => {
   const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
@@ -60,25 +56,27 @@ export const Post = ({ post }: { post: PostInterface }) => {
       <div className={classes.footer}>
         <div className={classes.postActions}>
           <div className={classes.postActionsLeft}>
-            <Link href={`/likes/${post._id}`}>
-              <LikeIcon />
-            </Link>
+            <LikeButton postId={post._id} count={post.likesCount} />
             <Link
               href={`/comments/${post._id}`}
-              className={clsx(classes.postActionLink)}
+              className={clsx(classes.postActionLink, classes.link)}
             >
-              <CommentIcon />
-            </Link>
-            <Link href={`/share/${post._id}`}>
-              <ShareIcon />
+              <CommentIcon />{" "}
+              <div className={classes.counter}>
+                {post.commentsCount || null}
+              </div>
             </Link>
           </div>
           <div className={classes.postActionsRight}>
-            <div>
+            {/* <div>
               <SavedIcon />
-            </div>
+            </div> */}
           </div>
         </div>
+        <LikedByProfilePictures
+          postId={post._id}
+          likesCount={post.likesCount}
+        />
         {post.caption && (
           <div className={classes.captionContainer}>
             <div>{post.user.username.split("@")[0]}</div>
@@ -86,8 +84,6 @@ export const Post = ({ post }: { post: PostInterface }) => {
             <div>{post.caption}</div>
           </div>
         )}
-        <div></div>
-        <div></div>
       </div>
     </div>
   );

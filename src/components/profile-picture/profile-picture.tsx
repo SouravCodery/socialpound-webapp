@@ -1,17 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import clsx from "clsx";
 import Image from "next/image";
+import clsx from "clsx";
 
 import classes from "./profile-picture.module.css";
 
 export const ProfilePicture = ({
-  upScale = false,
+  scale,
   dpURL,
   randomizeDP = false,
 }: {
-  upScale?: Boolean;
+  scale?: "medium" | "large";
   dpURL: string;
   randomizeDP?: boolean;
 }) => {
@@ -29,10 +29,10 @@ export const ProfilePicture = ({
   }, []);
 
   return (
-    <div className={clsx(classes.dpContainer, upScale && classes.upScale)}>
+    <div className={clsx(classes.dpContainer, scale && classes[scale])}>
       {dpURL && errorInMedia === false ? (
         <Image
-          src={dpURL}
+          src={"abcd" + dpURL}
           alt="Profile Picture"
           fill
           sizes="60px"

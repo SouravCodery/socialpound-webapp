@@ -17,4 +17,9 @@ export const API_ROUTES = {
   awsPresignedUrl: {
     getPresignedUrl: "/v1/aws-presigned-url",
   },
+  like: {
+    likePost: "/v1/like",
+    getLikesByPostId: ({ postId }: { postId: string }) =>
+      `/v1/like/post/${postId}`,
+  },
 } as const;

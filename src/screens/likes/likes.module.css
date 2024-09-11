@@ -1,0 +1,54 @@
+.likes {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+}
+
+.noLikes {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 50%;
+  transition: translateY(-50%);
+}
+
+.noLikesSub {
+  font-weight: lighter;
+  margin-top: 0.5rem;
+}
+
+.virtualLikesList {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+}
+
+.virtualLikesList > div > div {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+}

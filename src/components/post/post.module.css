@@ -92,6 +92,7 @@
   align-items: center;
 
   width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 .postActionsLeft {
@@ -99,6 +100,21 @@
 
   justify-content: flex-start;
   align-items: center;
+}
+
+.link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.counter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  margin-left: 0.25rem;
+  width: 0.5rem;
 }
 
 .postActionsRight {
@@ -115,6 +131,4 @@
 .captionContainer {
   display: flex;
   flex-direction: row;
-
-  margin-top: 0.5rem;
 }
