@@ -1,0 +1,77 @@
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+
+  width: 100vw;
+  max-width: 30rem;
+
+  background: var(--background-primary);
+  color: var(--color-primary);
+
+  border: 1px solid var(--border-primary);
+  border-top: none;
+  border-radius: 0.25rem;
+
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+
+  font-size: 0.8rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonProfilePicture {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--background-secondary);
+  border-radius: 50%;
+}
+
+.message {
+  flex: 0.95;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+.skeletonMessage {
+  width: 100%;
+  height: 0.8rem;
+  background-color: var(--background-secondary);
+  border-radius: 0.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 3rem;
+  aspect-ratio: 1/1;
+
+  border: 0.1px solid var(--background-secondary);
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+
+.skeletonAsset {
+  width: 100%;
+  height: 100%;
+  background-color: var(--background-secondary);
+}
+
+@keyframes pulse {
+  0% {
+    filter: opacity(0.6);
+  }
+  50% {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0.6);
+  }
+}
