@@ -2,6 +2,8 @@ import { logger } from "@/logger/index.logger";
 
 const setItem = ({ key, value }: { key: string; value?: any }): void => {
   try {
+    if (typeof localStorage === "undefined") return;
+
     const serializedValue = JSON.stringify(value);
     localStorage.setItem(key, serializedValue);
   } catch (error) {
@@ -11,6 +13,8 @@ const setItem = ({ key, value }: { key: string; value?: any }): void => {
 
 const getItem = <T>({ key }: { key: string }): T | null => {
   try {
+    if (typeof localStorage === "undefined") null;
+
     const serializedValue = localStorage.getItem(key);
     if (serializedValue === null) {
       return null;
@@ -24,6 +28,8 @@ const getItem = <T>({ key }: { key: string }): T | null => {
 
 const removeItem = ({ key }: { key: string }): void => {
   try {
+    if (typeof localStorage === "undefined") return;
+
     localStorage.removeItem(key);
   } catch (error) {
     logger.error(`Error removing item from local storage: ${error}`);
