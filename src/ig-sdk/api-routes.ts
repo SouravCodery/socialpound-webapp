@@ -24,4 +24,7 @@ export const API_ROUTES = {
     getPostsLikedByUser: `/v1/like/post/user`,
     unlikePost: ({ postId }: { postId: string }) => `/v1/like/post/${postId}`,
   },
+  notification: {
+    getNotificationsByUser: "/v1/notification",
+  },
 } as const;
