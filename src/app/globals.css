@@ -12,6 +12,8 @@
   --button-secondary: #1877f2;
 
   --red-primary: #ff2f40;
+
+  --toast-background: rgba(0, 0, 0, 0.6);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +32,8 @@
     --border-primary: #262626;
 
     --red-primary: #ff2f40;
+
+    --toast-background: rgba(255, 255, 255, 0.6);
   }
 }
 
