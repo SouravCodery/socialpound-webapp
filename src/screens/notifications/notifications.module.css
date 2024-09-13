@@ -1,0 +1,54 @@
+.notifications {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+}
+
+.noNotifications {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: fixed;
+  top: 50%;
+  transition: translateY(-50%);
+}
+
+.noNotificationsSub {
+  font-weight: lighter;
+  margin-top: 0.5rem;
+}
+
+.virtualNotificationsList {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+}
+
+.virtualNotificationsList > div > div {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+}
