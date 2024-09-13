@@ -10,7 +10,7 @@ export class NotificationModule {
     this.httpClient = httpClient;
   }
 
-  async getNotificationsByPostId({ cursor }: { cursor: string }) {
+  async getNotificationsByUser({ cursor }: { cursor: string }) {
     const fetchNotificationsResponse =
       await this.httpClient.request<NotificationResponseInterface>({
         endpoint: API_ROUTES.notification.getNotificationsByUser,
