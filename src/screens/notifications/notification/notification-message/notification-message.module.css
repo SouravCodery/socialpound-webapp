@@ -1,0 +1,14 @@
+.message {
+  display: inline;
+  color: var(--color-primary);
+}
+
+.username {
+  font-weight: bold;
+}
+
+.comment {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
