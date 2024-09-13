@@ -6,6 +6,7 @@
   position: relative;
 
   padding: 1rem;
+  border-radius: 0.25rem;
   width: 100%;
 
   transition: all 500ms ease-in-out;
@@ -45,4 +46,20 @@
 
   background: var(--red-primary);
   color: white;
+}
+
+.dot {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  bottom: -0.35rem;
+
+  height: 0.25rem;
+  width: 0.25rem;
+
+  border-radius: 50%;
+
+  background: var(--red-primary);
 }

@@ -4,6 +4,7 @@ import { UserModule } from "./modules/user-module";
 import { PostModule } from "./modules/post-module";
 import { LikeModule } from "./modules/like-module";
 import { CommentModule } from "./modules/comment-module";
+import { NotificationModule } from "./modules/notification-module";
 import { AWSPresignedUrlModule } from "./modules/aws-presigned-url-module";
 
 export class IG_SDK {
@@ -13,6 +14,7 @@ export class IG_SDK {
   public post: PostModule;
   public like: LikeModule;
   public comment: CommentModule;
+  public notification: NotificationModule;
   public awsPresignedUrl: AWSPresignedUrlModule;
 
   constructor(baseURL: string) {
@@ -23,6 +25,7 @@ export class IG_SDK {
     this.post = new PostModule(httpClient);
     this.like = new LikeModule(httpClient);
     this.comment = new CommentModule(httpClient);
+    this.notification = new NotificationModule(httpClient);
     this.awsPresignedUrl = new AWSPresignedUrlModule(httpClient);
   }
 }

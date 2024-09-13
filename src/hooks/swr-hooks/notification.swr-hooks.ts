@@ -3,15 +3,15 @@ import useSWRInfinite from "swr/infinite";
 import { API_ROUTES } from "@/ig-sdk/api-routes";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 
-import { LikeResponseInterface } from "@/models/interfaces/like.interface";
+import { NotificationResponseInterface } from "@/models/interfaces/notification.interface";
 
-export const useSWRGetLikesByPostId = ({ postId }: { postId: string }) => {
+export const useSWRGetNotificationsByUser = () => {
   const getKey = (
     pageIndex: number,
-    previousPageData: LikeResponseInterface
+    previousPageData: NotificationResponseInterface
   ) => {
     if (pageIndex === 0) {
-      return API_ROUTES.like.getLikesByPostId({ postId });
+      return API_ROUTES.notification.getNotificationsByUser;
     }
 
     if (!previousPageData || !previousPageData?.nextCursor) {
@@ -19,9 +19,8 @@ export const useSWRGetLikesByPostId = ({ postId }: { postId: string }) => {
     }
 
     return (
-      API_ROUTES.like.getLikesByPostId({
-        postId,
-      }) + `?cursor=${previousPageData.nextCursor}`
+      API_ROUTES.notification.getNotificationsByUser +
+      `?cursor=${previousPageData.nextCursor}`
     );
   };
 
@@ -30,15 +29,14 @@ export const useSWRGetLikesByPostId = ({ postId }: { postId: string }) => {
     (key) => {
       const cursor = key.split("?cursor=")[1] || "";
 
-      return apiSDKInstance.like.getLikesByPostId({
-        postId,
+      return apiSDKInstance.notification.getNotificationsByUser({
         cursor,
       });
     }
   );
 
   const isNextPageAvailable = data?.[size - 1]?.nextCursor !== null;
-  const isNextPageLoading = data?.[size - 1]?.likes === undefined;
+  const isNextPageLoading = data?.[size - 1]?.notifications === undefined;
 
   return {
     data,
@@ -47,6 +45,6 @@ export const useSWRGetLikesByPostId = ({ postId }: { postId: string }) => {
     setSize,
     isNextPageAvailable,
     isNextPageLoading,
-    updateLikes: mutate,
+    updateNotifications: mutate,
   };
 };

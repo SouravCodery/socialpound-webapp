@@ -83,3 +83,7 @@ button:hover {
 .hidden {
   display: none;
 }
+
+a {
+  cursor: pointer;
+}
