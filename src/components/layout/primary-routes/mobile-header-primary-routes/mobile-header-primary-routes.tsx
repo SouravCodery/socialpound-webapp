@@ -8,8 +8,8 @@ import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 import { Logo } from "@/components/logo/logo";
 
 const routes = [
-  { path: "/notifications", name: "Reels", icon: LikeIcon, count: 4 },
-  { path: "/inbox", name: "Profile", icon: MessengerIcon, count: 7 },
+  { path: "/notifications", name: "Reels", icon: LikeIcon, dot: true },
+  { path: "/inbox", name: "Profile", icon: MessengerIcon, dot: true },
 ];
 
 export const MobileHeader = async () => {
@@ -23,7 +23,7 @@ export const MobileHeader = async () => {
       <nav className={clsx(classes.navbar)}>
         {routes.map((route) => (
           <Link key={route.path} href={route.path} className={classes.link}>
-            <IconWrapper count={route.count}>
+            <IconWrapper dot={route.dot}>
               <route.icon />
             </IconWrapper>
           </Link>
