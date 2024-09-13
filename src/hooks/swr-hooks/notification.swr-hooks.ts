@@ -5,7 +5,7 @@ import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 
 import { NotificationResponseInterface } from "@/models/interfaces/notification.interface";
 
-export const useSWRGetNotificationsByPostId = () => {
+export const useSWRGetNotificationsByUser = () => {
   const getKey = (
     pageIndex: number,
     previousPageData: NotificationResponseInterface
