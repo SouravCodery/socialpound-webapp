@@ -1,0 +1,48 @@
+.notification {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: relative;
+
+  width: 100vw;
+  max-width: 30rem;
+
+  background: var(--background-primary);
+  color: var(--color-primary);
+
+  border: 1px solid var(--border-primary);
+  border-top: none;
+  border-radius: 0.25rem;
+
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+
+  font-size: 0.8rem;
+}
+
+.message {
+  flex: 0.95;
+  color: var(--color-secondary);
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 3rem;
+  aspect-ratio: 1/1;
+
+  border: 0.1px solid var(--background-secondary);
+  border-radius: 0.25rem;
+
+  overflow: hidden;
+}
+
+.asset {
+  height: 100%;
+  width: 100%;
+
+  object-fit: cover;
+}
