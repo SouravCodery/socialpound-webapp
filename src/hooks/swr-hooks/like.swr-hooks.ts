@@ -1,13 +1,9 @@
 import useSWRInfinite from "swr/infinite";
-import useSWRMutation from "swr/mutation";
 
 import { API_ROUTES } from "@/ig-sdk/api-routes";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 
-import {
-  LikeInterface,
-  LikeResponseInterface,
-} from "@/models/interfaces/like.interface";
+import { LikeResponseInterface } from "@/models/interfaces/like.interface";
 
 export const useSWRGetLikesByPostId = ({ postId }: { postId: string }) => {
   const getKey = (
@@ -53,31 +49,4 @@ export const useSWRGetLikesByPostId = ({ postId }: { postId: string }) => {
     isNextPageLoading,
     updateLikes: mutate,
   };
-};
-
-export const useSWRAddLike = () => {
-  const { trigger, error, isMutating, data } = useSWRMutation(
-    API_ROUTES.post.createPost,
-    (
-      _,
-      {
-        arg,
-      }: {
-        arg: {
-          likeOn: LikeInterface["likeOn"];
-          post: LikeInterface["post"];
-          comment: LikeInterface["comment"];
-        };
-      }
-    ) => {
-      const { likeOn, post, comment } = arg;
-      return apiSDKInstance.like.addLike({
-        likeOn,
-        post,
-        comment,
-      });
-    }
-  );
-
-  return { isMutating, trigger, error, data };
 };
