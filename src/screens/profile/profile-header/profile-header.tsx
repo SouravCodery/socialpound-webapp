@@ -70,7 +70,6 @@ export const ProfileHeader = ({
             <button
               onClick={() => {
                 bakeToast({
-                  type: "info",
                   message: "Feature coming soon",
                 });
               }}

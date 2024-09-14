@@ -28,7 +28,7 @@ export const AddComment = ({
     event.preventDefault();
 
     if (!text) {
-      bakeToast({ message: "Please add an image and a text." });
+      bakeToast({ type: "error", message: "Please add an image and a text." });
       return;
     }
 

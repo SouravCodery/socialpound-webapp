@@ -38,6 +38,7 @@ export const NewPost = () => {
 
     if (file.size > Constants.MAX_MEDIA_SIZE) {
       bakeToast({
+        type: "error",
         message:
           "The selected image is too large. Please select an image smaller than 5MB.",
       });
@@ -47,6 +48,7 @@ export const NewPost = () => {
 
     if (file.size < Constants.MIN_MEDIA_SIZE) {
       bakeToast({
+        type: "error",
         message:
           "The selected image is too small. Please select an image greater than 1KB.",
       });
@@ -59,6 +61,7 @@ export const NewPost = () => {
       )
     ) {
       bakeToast({
+        type: "error",
         message:
           "The selected image is not supported. Please select a jpg, jpeg, or png image.",
       });
@@ -84,6 +87,7 @@ export const NewPost = () => {
           setSelectedFile(null);
           setSelectedMedia(null);
           bakeToast({
+            type: "error",
             message:
               "The selected image has an invalid aspect ratio. Please select an image with a more balanced aspect ratio.",
           });
@@ -112,7 +116,10 @@ export const NewPost = () => {
     event.preventDefault();
 
     if (!selectedFile || !selectedMedia || !caption) {
-      bakeToast({ message: "Please add an image and a caption." });
+      bakeToast({
+        type: "error",
+        message: "Please add an image and a caption.",
+      });
       return;
     }
 
@@ -155,7 +162,7 @@ export const NewPost = () => {
       router.push("/");
     } catch (error) {
       logger.error("Error creating post:", error);
-      bakeToast({ message: "Couldn't add post." });
+      bakeToast({ type: "error", message: "Couldn't add post." });
     } finally {
       setIsPostBeingUploaded(false);
     }
