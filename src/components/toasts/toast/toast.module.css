@@ -28,9 +28,9 @@
     opacity: 1;
     right: 0;
   }
-  75% {
+  60% {
     opacity: 0.95;
-    right: -5%;
+    right: -10%;
   }
   100% {
     opacity: 0;
