@@ -8,6 +8,11 @@
   cursor: pointer;
 
   transition: filter 0.3s ease-in-out;
+
+  background: radial-gradient(
+    rgb(var(--background-primary-inverted-rgb), 0.01),
+    rgb(var(--background-primary-inverted-rgb), 0.1)
+  );
 }
 
 .container:hover {
