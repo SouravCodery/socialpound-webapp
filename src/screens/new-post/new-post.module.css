@@ -30,7 +30,6 @@
   resize: none;
 
   border-bottom: 0.01rem solid var(--border-primary);
-  border-radius: 0.25rem;
 }
 
 .shareButtonContainer {
@@ -48,7 +47,7 @@
   max-width: 30rem;
 
   padding: 1rem;
-  border-top: 0.01rem solid var(--border-primary);
+
   background: var(--background-primary);
 }
 

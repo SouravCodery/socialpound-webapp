@@ -13,6 +13,7 @@ import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
 import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
 import { Constants } from "@/constants/constants";
 import { SupportedMediaTypes } from "@/models/types/media.types";
+import { bakeToast } from "@/components/toasts/toasts";
 
 export const NewPost = () => {
   const router = useRouter();
@@ -36,18 +37,19 @@ export const NewPost = () => {
     const file = event.target.files[0];
 
     if (file.size > Constants.MAX_MEDIA_SIZE) {
-      alert(
-        "The selected image is too large. Please select an image smaller than 5MB."
-      );
-      //todo: Replace with Toast
+      bakeToast({
+        message:
+          "The selected image is too large. Please select an image smaller than 5MB.",
+      });
+
       return;
     }
 
     if (file.size < Constants.MIN_MEDIA_SIZE) {
-      alert(
-        "The selected image is too small. Please select an image greater than 1KB."
-      );
-      //todo: Replace with Toast
+      bakeToast({
+        message:
+          "The selected image is too small. Please select an image greater than 1KB.",
+      });
       return;
     }
 
@@ -56,11 +58,11 @@ export const NewPost = () => {
         file.type as SupportedMediaTypes
       )
     ) {
-      alert(
-        "The selected image is not supported. Please select a jpg, jpeg, or png image."
-      );
+      bakeToast({
+        message:
+          "The selected image is not supported. Please select a jpg, jpeg, or png image.",
+      });
 
-      //todo: Replace with Toast
       return;
     }
 
@@ -81,9 +83,10 @@ export const NewPost = () => {
         ) {
           setSelectedFile(null);
           setSelectedMedia(null);
-          alert(
-            "The selected image has an invalid aspect ratio. Please select an image with a more balanced aspect ratio."
-          );
+          bakeToast({
+            message:
+              "The selected image has an invalid aspect ratio. Please select an image with a more balanced aspect ratio.",
+          });
 
           if (fileInputRef.current) {
             fileInputRef.current.value = "";
@@ -108,12 +111,12 @@ export const NewPost = () => {
   const newPostSubmitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    setIsPostBeingUploaded(true);
-
     if (!selectedFile || !selectedMedia || !caption) {
-      alert("Please add an image and a caption.");
+      bakeToast({ message: "Please add an image and a caption." });
       return;
     }
+
+    setIsPostBeingUploaded(true);
 
     try {
       const { presignedUrl, key } =
@@ -147,12 +150,12 @@ export const NewPost = () => {
         caption,
       });
 
-      alert("Post shared!");
+      bakeToast({ message: "Post shared!" });
 
       router.push("/");
     } catch (error) {
       logger.error("Error creating post:", error);
-      //todo: Add toast
+      bakeToast({ message: "Couldn't add post." });
     } finally {
       setIsPostBeingUploaded(false);
     }
