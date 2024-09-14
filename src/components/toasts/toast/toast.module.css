@@ -20,7 +20,7 @@
 }
 
 .toastExit {
-  animation: exit 3.5s ease-out;
+  animation: exit 3s ease-out;
 }
 
 @keyframes exit {
