@@ -7,6 +7,7 @@ import classes from "./add-comment.module.css";
 import { logger } from "@/logger/index.logger";
 import { useSWRAddComment } from "@/hooks/swr-hooks/comment.swr-hooks";
 import { Spinner } from "@/components/loaders/spinner/spinner";
+import { bakeToast } from "@/components/toasts/toasts";
 
 export const AddComment = ({
   postId,
@@ -27,7 +28,7 @@ export const AddComment = ({
     event.preventDefault();
 
     if (!text) {
-      alert("Please add an image and a text.");
+      bakeToast({ message: "Please add an image and a text." });
       return;
     }
 
