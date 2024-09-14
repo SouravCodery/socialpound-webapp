@@ -15,6 +15,11 @@
 
   --toast-background: rgba(0, 0, 0, 0.65);
   --shadow-color: rgba(0, 0, 0, 0.2);
+
+  --color-success: #28a746b7;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
 }
 
 @media (prefers-color-scheme: dark) {
