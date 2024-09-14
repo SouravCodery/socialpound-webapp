@@ -43,7 +43,7 @@ export const bakeToast = ({
   type = "info",
   message,
 }: {
-  type: ToastType["bakeToast"]["type"];
+  type?: ToastType["bakeToast"]["type"];
   message: string;
 }) => {
   emitter.emit("bakeToast", { type, message, key: `${message}${Date.now()}` });
