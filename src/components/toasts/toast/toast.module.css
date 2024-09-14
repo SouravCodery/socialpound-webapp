@@ -1,0 +1,39 @@
+.toast {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  flex-direction: center;
+  align-items: center;
+
+  padding: 0.75rem 1rem;
+  width: 100%;
+
+  background: var(--toast-background);
+  color: var(--background-primary);
+
+  font-size: smaller;
+  font-weight: lighter;
+
+  border: none;
+  border-radius: 0.25rem 0 0 0.25rem;
+}
+
+.toastExit {
+  animation: exit 3.5s ease-out;
+}
+
+@keyframes exit {
+  0% {
+    opacity: 1;
+    right: 0;
+  }
+  75% {
+    opacity: 0.95;
+    right: -5%;
+  }
+  100% {
+    opacity: 0;
+    right: -100%;
+  }
+}
