@@ -46,5 +46,7 @@ export const bakeToast = ({
   type?: GenericToastType["bakeToast"]["type"];
   message: string;
 }) => {
+  if (typeof window === "undefined") return;
+
   emitter.emit("bakeToast", { type, message, key: `${message}${Date.now()}` });
 };
