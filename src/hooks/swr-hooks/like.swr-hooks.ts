@@ -34,6 +34,10 @@ export const useSWRGetLikesByPostId = ({ postId }: { postId: string }) => {
         postId,
         cursor,
       });
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 

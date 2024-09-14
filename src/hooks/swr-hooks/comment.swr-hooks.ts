@@ -38,6 +38,10 @@ export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
         postId,
         cursor,
       });
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 

@@ -32,6 +32,10 @@ export const useSWRGetNotificationsByUser = () => {
       return apiSDKInstance.notification.getNotificationsByUser({
         cursor,
       });
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 

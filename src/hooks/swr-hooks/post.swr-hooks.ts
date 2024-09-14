@@ -34,6 +34,10 @@ export const useSWRGetUserFeed = () => {
       return apiSDKInstance.post.getUserFeed({
         cursor,
       });
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 
@@ -79,6 +83,10 @@ export const useSWRGetPostsByUserId = ({ userId }: { userId: string }) => {
         userId,
         cursor,
       });
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 
