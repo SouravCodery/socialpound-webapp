@@ -1,7 +1,9 @@
 export type ToastType = {
-  bakeToast: {
-    type: "info";
-    message: string;
-    key: string;
-  };
+  type: "info" | "success" | "error";
+  message: string;
+  key: string;
+};
+
+export type GenericToastType = {
+  bakeToast: ToastType;
 };
