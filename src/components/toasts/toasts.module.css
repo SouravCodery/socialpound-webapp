@@ -5,19 +5,14 @@
 
   z-index: 1000;
 
+  max-width: min(70vw, 16rem);
+
   display: flex;
   flex-direction: column;
   align-items: flex-end;
 
-  padding: 0.75rem 1rem;
-  max-width: min(70vw, 16rem);
-
-  background: var(--toast-background);
-  color: var(--background-primary);
-
   font-size: smaller;
   font-weight: lighter;
 
-  border: none;
-  border-radius: 0.25rem 0 0 0.25rem;
+  gap: 0.1rem;
 }
