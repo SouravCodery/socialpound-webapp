@@ -98,3 +98,9 @@ button:hover {
 a {
   cursor: pointer;
 }
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--border-primary);
+  font-weight: lighter;
+}
