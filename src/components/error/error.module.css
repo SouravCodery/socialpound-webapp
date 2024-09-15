@@ -1,0 +1,53 @@
+.errorContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 80vh;
+
+  text-align: center;
+  padding: 2rem;
+
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.errorTitle {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.errorMessage {
+  margin: 1rem;
+  font-size: 1.2rem;
+
+  color: var(--color-secondary);
+}
+
+.retryButton {
+  padding: 1rem 2rem;
+
+  border: none;
+  border-radius: 2rem;
+
+  font-size: 1.1rem;
+  transition: background-color 0.3s ease-in-out;
+
+  background: var(--button-primary);
+
+  margin: 1rem;
+}
+
+.errorEmoji {
+  margin-top: 4rem;
+  font-size: 3rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
