@@ -11,10 +11,16 @@ import { LikeLoader } from "@/components/loaders/likes/like-loader";
 import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-loader";
 
 export const Likes = ({ postId }: { postId: string }) => {
-  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
-    useSWRGetLikesByPostId({
-      postId,
-    });
+  const {
+    data,
+    error,
+    setSize,
+    isLoading,
+    isNextPageAvailable,
+    isNextPageLoading,
+  } = useSWRGetLikesByPostId({
+    postId,
+  });
 
   const likes = data?.flatMap((each) => each.likes) ?? [];
 
@@ -45,6 +51,10 @@ export const Likes = ({ postId }: { postId: string }) => {
         </div>
       </div>
     );
+  }
+
+  if (error && !data) {
+    throw error;
   }
 
   return (

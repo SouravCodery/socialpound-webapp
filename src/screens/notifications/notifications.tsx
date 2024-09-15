@@ -11,8 +11,14 @@ import { NotificationLoader } from "@/components/loaders/notification/notificati
 import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-loader";
 
 export const Notifications = () => {
-  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
-    useSWRGetNotificationsByUser();
+  const {
+    data,
+    error,
+    setSize,
+    isLoading,
+    isNextPageAvailable,
+    isNextPageLoading,
+  } = useSWRGetNotificationsByUser();
 
   const notifications = data?.flatMap((each) => each.notifications) ?? [];
 
@@ -45,6 +51,10 @@ export const Notifications = () => {
         </div>
       </div>
     );
+  }
+
+  if (error && !data) {
+    throw error;
   }
 
   return (

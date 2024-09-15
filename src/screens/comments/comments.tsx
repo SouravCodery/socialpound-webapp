@@ -14,6 +14,7 @@ import { AddComment } from "./comment/add-comment/add-comment";
 export const Comments = ({ postId }: { postId: string }) => {
   const {
     data,
+    error,
     setSize,
     isLoading,
     isNextPageAvailable,
@@ -53,6 +54,10 @@ export const Comments = ({ postId }: { postId: string }) => {
         <AddComment postId={postId} updateComments={updateComments} />
       </div>
     );
+  }
+
+  if (error && !data) {
+    throw error;
   }
 
   return (

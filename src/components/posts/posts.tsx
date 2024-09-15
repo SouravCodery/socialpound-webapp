@@ -14,8 +14,14 @@ import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
 import { useLoadPostsLikedByUser } from "@/hooks/like.hooks";
 
 export default function Posts({ userId }: { userId: string }) {
-  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
-    useSWRGetPostsByUserId({ userId });
+  const {
+    data,
+    error,
+    setSize,
+    isLoading,
+    isNextPageAvailable,
+    isNextPageLoading,
+  } = useSWRGetPostsByUserId({ userId });
   const { isPostsLikedByUserLoading } = useLoadPostsLikedByUser();
 
   const posts = data?.flatMap((each) => each.posts) ?? [];
@@ -51,6 +57,10 @@ export default function Posts({ userId }: { userId: string }) {
         ))}
       </div>
     );
+  }
+
+  if (error && !data) {
+    throw error;
   }
 
   return (

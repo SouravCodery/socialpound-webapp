@@ -13,8 +13,14 @@ import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
 import { useLoadPostsLikedByUser } from "@/hooks/like.hooks";
 
 export default function Feed() {
-  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
-    useSWRGetUserFeed();
+  const {
+    data,
+    error,
+    setSize,
+    isLoading,
+    isNextPageAvailable,
+    isNextPageLoading,
+  } = useSWRGetUserFeed();
   const { isPostsLikedByUserLoading } = useLoadPostsLikedByUser();
 
   const loadMore = useCallback(() => {
@@ -35,6 +41,10 @@ export default function Feed() {
         ))}
       </div>
     );
+  }
+
+  if (error && !data) {
+    throw error;
   }
 
   return (
