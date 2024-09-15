@@ -2,15 +2,17 @@
 
 import { useCallback } from "react";
 import { Virtuoso } from "react-virtuoso";
-
 import clsx from "clsx";
-import classes from "./feed.module.css";
-import { Post } from "@/components/post/post";
 
-import { useSWRGetUserFeed } from "@/hooks/swr-hooks/post.swr-hooks";
-import { PostLoader } from "../loaders/post/post-loader";
-import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
+import classes from "./feed.module.css";
+
 import { useLoadPostsLikedByUser } from "@/hooks/like.hooks";
+import { useSWRGetUserFeed } from "@/hooks/swr-hooks/post.swr-hooks";
+
+import { PostLoader } from "../loaders/post/post-loader";
+import { Post } from "@/components/post/post";
+import { NoPosts } from "../no-posts/no-posts";
+import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
 
 export default function Feed() {
   const {
@@ -41,6 +43,10 @@ export default function Feed() {
         ))}
       </div>
     );
+  }
+
+  if (posts.length === 0) {
+    return <NoPosts />;
   }
 
   if (error && !data) {
