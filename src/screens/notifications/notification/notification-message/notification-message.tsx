@@ -45,6 +45,6 @@ export const NotificationMessage = ({
         </div>
       );
     default:
-      return <div className={classes.message}> "" </div>;
+      return <div className={classes.message}> </div>;
   }
 };
