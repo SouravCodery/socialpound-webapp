@@ -7,11 +7,12 @@ import clsx from "clsx";
 
 import classes from "./posts.module.css";
 
-import { useSWRGetPostsByUserId } from "@/hooks/swr-hooks/post.swr-hooks";
-import { Post } from "@/components/post/post";
-import { PostLoader } from "../loaders/post/post-loader";
-import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
 import { useLoadPostsLikedByUser } from "@/hooks/like.hooks";
+import { useSWRGetPostsByUserId } from "@/hooks/swr-hooks/post.swr-hooks";
+import { PostLoader } from "../loaders/post/post-loader";
+import { Post } from "@/components/post/post";
+import { NoPosts } from "../no-posts/no-posts";
+import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
 
 export default function Posts({ userId }: { userId: string }) {
   const {
@@ -57,6 +58,10 @@ export default function Posts({ userId }: { userId: string }) {
         ))}
       </div>
     );
+  }
+
+  if (posts.length === 0) {
+    return <NoPosts />;
   }
 
   if (error && !data) {

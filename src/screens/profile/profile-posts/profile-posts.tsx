@@ -9,6 +9,7 @@ import { ProfilePostLoader } from "@/components/loaders/profile-post/profile-pos
 import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-loader";
 
 import { useSWRGetPostsByUserId } from "@/hooks/swr-hooks/post.swr-hooks";
+import { NoPosts } from "@/components/no-posts/no-posts";
 
 export const ProfilePosts = ({ userId }: { userId: string }) => {
   const {
@@ -41,14 +42,7 @@ export const ProfilePosts = ({ userId }: { userId: string }) => {
   }
 
   if (posts.length === 0) {
-    return (
-      <div className={classes.noPosts}>
-        <h2>No posts yet! 🧐 </h2>
-        <div className={classes.noPostsSub}>
-          Guess it’s a ghost town in here… 👻
-        </div>
-      </div>
-    );
+    return <NoPosts />;
   }
 
   if (error && !data) {

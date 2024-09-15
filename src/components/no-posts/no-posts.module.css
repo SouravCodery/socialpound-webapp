@@ -1,0 +1,14 @@
+.noPosts {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 60vh;
+  width: 100%;
+}
+
+.noPostsSub {
+  font-weight: lighter;
+  margin-top: 0.5rem;
+}

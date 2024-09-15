@@ -8,6 +8,10 @@ export const useSWRGetDecodedUserToken = () => {
     "user-decoded-from-token",
     () => {
       return apiSDKInstance.user.getDecodedUserToken();
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 
@@ -24,6 +28,10 @@ export const useSWRGetUserByUsername = ({ username }: { username: string }) => {
     API_ROUTES.user.getUserByUsername({ username }),
     () => {
       return apiSDKInstance.user.getUserByUsername({ username });
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 
