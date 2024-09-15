@@ -72,7 +72,7 @@ export class HttpClient {
       if (!response.ok) {
         const responseLog = response?.json ? await response.json() : response;
 
-        if (responseLog?.toastMessage) {
+        if (responseLog?.toastMessage && typeof window !== "undefined") {
           bakeToast({ type: "error", message: responseLog.toastMessage });
         }
 
@@ -81,7 +81,7 @@ export class HttpClient {
 
       const responseJson: FetchResponseInterface<T> = await response.json();
 
-      if (responseJson?.toastMessage) {
+      if (responseJson?.toastMessage && typeof window !== "undefined") {
         bakeToast({ message: responseJson.toastMessage });
       }
 
@@ -89,7 +89,7 @@ export class HttpClient {
     } catch (error) {
       logger.error(
         "Error in request in HttpClient",
-        { endpoint, options, token, queryParams, body },
+        // { endpoint, options, token, queryParams, body },
         { error }
       );
 
