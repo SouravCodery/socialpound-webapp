@@ -11,8 +11,14 @@ import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-lo
 import { useSWRGetPostsByUserId } from "@/hooks/swr-hooks/post.swr-hooks";
 
 export const ProfilePosts = ({ userId }: { userId: string }) => {
-  const { data, setSize, isLoading, isNextPageAvailable, isNextPageLoading } =
-    useSWRGetPostsByUserId({ userId });
+  const {
+    data,
+    error,
+    setSize,
+    isLoading,
+    isNextPageAvailable,
+    isNextPageLoading,
+  } = useSWRGetPostsByUserId({ userId });
 
   const loadMore = useCallback(() => {
     if (isNextPageLoading) {
@@ -43,6 +49,10 @@ export const ProfilePosts = ({ userId }: { userId: string }) => {
         </div>
       </div>
     );
+  }
+
+  if (error && !data) {
+    throw error;
   }
 
   //todo: Add VirtuosoGrid here

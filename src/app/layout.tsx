@@ -4,6 +4,7 @@ import { clsx } from "clsx";
 
 import "@/app/globals.css";
 import classes from "./layout.module.css";
+import { Toasts } from "@/components/toasts/toasts";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -23,7 +24,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(roboto.className, classes.body)}>{children}</body>
+      <body className={clsx(roboto.className, classes.body)}>
+        {children}
+        <Toasts />
+      </body>
     </html>
   );
 }

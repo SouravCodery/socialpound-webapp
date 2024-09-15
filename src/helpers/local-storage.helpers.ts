@@ -13,7 +13,7 @@ const setItem = ({ key, value }: { key: string; value?: any }): void => {
 
 const getItem = <T>({ key }: { key: string }): T | null => {
   try {
-    if (typeof localStorage === "undefined") null;
+    if (typeof localStorage === "undefined") return null;
 
     const serializedValue = localStorage.getItem(key);
     if (serializedValue === null) {

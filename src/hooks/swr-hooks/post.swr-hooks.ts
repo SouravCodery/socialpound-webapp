@@ -34,11 +34,15 @@ export const useSWRGetUserFeed = () => {
       return apiSDKInstance.post.getUserFeed({
         cursor,
       });
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 
-  const isNextPageAvailable = data?.[size - 1]?.nextCursor !== null;
-  const isNextPageLoading = data?.[size - 1]?.posts === undefined;
+  const isNextPageAvailable = !error && data?.[size - 1]?.nextCursor !== null;
+  const isNextPageLoading = !error && data?.[size - 1]?.posts === undefined;
 
   return {
     data,
@@ -79,11 +83,15 @@ export const useSWRGetPostsByUserId = ({ userId }: { userId: string }) => {
         userId,
         cursor,
       });
+    },
+    {
+      shouldRetryOnError: false,
+      revalidateOnFocus: false,
     }
   );
 
-  const isNextPageAvailable = data?.[size - 1]?.nextCursor !== null;
-  const isNextPageLoading = data?.[size - 1]?.posts === undefined;
+  const isNextPageAvailable = !error && data?.[size - 1]?.nextCursor !== null;
+  const isNextPageLoading = !error && data?.[size - 1]?.posts === undefined;
 
   return {
     data,

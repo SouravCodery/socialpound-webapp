@@ -12,6 +12,14 @@
   --button-secondary: #1877f2;
 
   --red-primary: #ff2f40;
+
+  --toast-background: rgba(0, 0, 0, 0.65);
+  --shadow-color: rgba(0, 0, 0, 0.2);
+
+  --color-success: #28a746b7;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -30,6 +38,9 @@
     --border-primary: #262626;
 
     --red-primary: #ff2f40;
+
+    --toast-background: rgba(255, 255, 255, 0.6);
+    --shadow-color: rgba(255, 255, 255, 0.4);
   }
 }
 
@@ -77,7 +88,7 @@ button:hover {
 }
 
 .shadow {
-  box-shadow: rgba(var(--background-primary-inverted-rgb), 0.2) 0px 1px 2px 0px;
+  box-shadow: var(--shadow-color) 0px 1px 2px 0px;
 }
 
 .hidden {
@@ -86,4 +97,10 @@ button:hover {
 
 a {
   cursor: pointer;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--border-primary);
+  font-weight: lighter;
 }

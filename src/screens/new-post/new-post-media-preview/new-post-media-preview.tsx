@@ -19,9 +19,9 @@ export const NewPostMediaPreview = ({
       {media ? (
         <img src={media} alt="Media" className={classes.media} />
       ) : (
-        <button className={classes.uploadMediaPromptButton}>
+        <div className={classes.uploadMediaPromptButton}>
           Click to upload an Image
-        </button>
+        </div>
       )}
     </div>
   );

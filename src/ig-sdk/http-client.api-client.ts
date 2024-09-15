@@ -2,6 +2,7 @@ import { logger } from "@/logger/index.logger";
 
 import { FetchResponseInterface } from "./../models/interfaces/fetch-response.interface";
 import { getServerToken } from "@/actions/user.actions";
+import { bakeToast } from "@/components/toasts/toasts";
 
 export class HttpClient {
   private readonly baseURL: string;
@@ -70,16 +71,25 @@ export class HttpClient {
 
       if (!response.ok) {
         const responseLog = response?.json ? await response.json() : response;
+
+        if (responseLog?.toastMessage && typeof window !== "undefined") {
+          bakeToast({ type: "error", message: responseLog.toastMessage });
+        }
+
         throw new Error(`Network response was not ok: ${responseLog?.message}`);
       }
 
       const responseJson: FetchResponseInterface<T> = await response.json();
 
+      if (responseJson?.toastMessage && typeof window !== "undefined") {
+        bakeToast({ message: responseJson.toastMessage });
+      }
+
       return responseJson;
     } catch (error) {
       logger.error(
         "Error in request in HttpClient",
-        { endpoint, options, token, queryParams, body },
+        // { endpoint, options, token, queryParams, body },
         { error }
       );
 

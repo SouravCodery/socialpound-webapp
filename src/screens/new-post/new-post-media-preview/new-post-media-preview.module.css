@@ -3,24 +3,24 @@
   justify-content: center;
   align-items: center;
 
-  background: var(--background-secondary);
-
   width: 100%;
-
-  border-radius: 0.25rem;
-
+  border-radius: 0.2rem;
   cursor: pointer;
 
   transition: filter 0.3s ease-in-out;
+
+  background: radial-gradient(
+    rgb(var(--background-primary-inverted-rgb), 0.01),
+    rgb(var(--background-primary-inverted-rgb), 0.1)
+  );
 }
 
 .container:hover {
-  filter: brightness(1.05);
+  filter: brightness(1.2);
 }
 
 .uploadMediaPromptButton {
-  background: var(--button-primary);
-  color: white;
+  color: var(--color-secondary);
 }
 
 .media {

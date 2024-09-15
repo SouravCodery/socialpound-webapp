@@ -47,15 +47,17 @@ export const Post = ({ post }: { post: PostInterface }) => {
     setErrorInMedia(true);
   };
 
+  const userProfile = `/profile/${post.user.username.split("@")[0]}`;
+
   return (
     <div className={classes.post}>
       <div className={classes.header}>
-        <div className={classes.headerLeft}>
+        <Link href={userProfile} className={classes.headerLeft}>
           <ProfilePicture dpURL={post.user.profilePicture} randomizeDP={true} />
           <div className={classes.usernameContainer}>
             &nbsp;{post.user.username.split("@")[0]}
           </div>
-        </div>
+        </Link>
         <div className={classes.headerRight}>
           <MoreOptionsIcon />
         </div>
