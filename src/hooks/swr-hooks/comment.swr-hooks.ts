@@ -45,8 +45,8 @@ export const useSWRGetCommentsByPostId = ({ postId }: { postId: string }) => {
     }
   );
 
-  const isNextPageAvailable = data?.[size - 1]?.nextCursor !== null;
-  const isNextPageLoading = data?.[size - 1]?.comments === undefined;
+  const isNextPageAvailable = !error && data?.[size - 1]?.nextCursor !== null;
+  const isNextPageLoading = !error && data?.[size - 1]?.comments === undefined;
 
   return {
     data,

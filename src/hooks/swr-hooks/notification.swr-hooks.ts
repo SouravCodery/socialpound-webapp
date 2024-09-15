@@ -39,8 +39,9 @@ export const useSWRGetNotificationsByUser = () => {
     }
   );
 
-  const isNextPageAvailable = data?.[size - 1]?.nextCursor !== null;
-  const isNextPageLoading = data?.[size - 1]?.notifications === undefined;
+  const isNextPageAvailable = !error && data?.[size - 1]?.nextCursor !== null;
+  const isNextPageLoading =
+    !error && data?.[size - 1]?.notifications === undefined;
 
   return {
     data,
