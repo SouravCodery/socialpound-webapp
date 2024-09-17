@@ -59,4 +59,14 @@ export class CommentModule {
       token: await this.httpClient.getToken(),
     });
   }
+
+  async deleteCommentById({ commentId }: { commentId: string }) {
+    return this.httpClient.request<Object>({
+      endpoint: API_ROUTES.comment.deleteCommentById({ commentId }),
+      options: {
+        method: "DELETE",
+      },
+      token: await this.httpClient.getToken(),
+    });
+  }
 }
