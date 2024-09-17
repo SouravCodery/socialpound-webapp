@@ -87,3 +87,18 @@ export const useSWRAddComment = () => {
 
   return { isMutating, trigger, error, data };
 };
+
+export const useSWRDeleteCommentById = ({
+  commentId,
+}: {
+  commentId: string;
+}) => {
+  const { trigger, error, isMutating, data } = useSWRMutation(
+    API_ROUTES.comment.deleteCommentById({ commentId }),
+    () => {
+      return apiSDKInstance.comment.deleteCommentById({ commentId });
+    }
+  );
+
+  return { isMutating, trigger, error, data };
+};
