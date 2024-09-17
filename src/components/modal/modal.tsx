@@ -14,6 +14,7 @@ export const Modal = ({
 
   isModalOpen,
   closeModal,
+  action,
 }: {
   title: string;
   message: string;
@@ -24,6 +25,7 @@ export const Modal = ({
 
   isModalOpen: boolean;
   closeModal: () => void;
+  action: () => void;
 }) => {
   if (!isModalOpen) return null;
 
@@ -39,7 +41,7 @@ export const Modal = ({
         <div className={classes.actions}>
           <button
             className={clsx(classes.actionButton, classes.confirm)}
-            onClick={closeModal}
+            onClick={action}
             disabled={isProcessing}
           >
             {isProcessing === false ? confirmationButtonText : processingText}
