@@ -11,6 +11,8 @@ export const Modal = ({
   processingText,
 
   isProcessing,
+
+  isModalOpen,
   closeModal,
 }: {
   title: string;
@@ -19,12 +21,16 @@ export const Modal = ({
   processingText: string;
 
   isProcessing: boolean;
+
+  isModalOpen: boolean;
   closeModal: () => void;
 }) => {
+  if (!isModalOpen) return null;
+
   return (
     <>
       <div className={classes.curtain} onClick={closeModal} />
-      <div className={classes.confirmation}>
+      <div className={clsx(classes.confirmation, "shadow")}>
         <div className={classes.header}>
           <div className={classes.title}>{title}</div>
           <div className={classes.message}>{message}</div>
