@@ -125,3 +125,14 @@ export const useSWRAddPost = () => {
 
   return { isMutating, trigger, error, data };
 };
+
+export const useSWRDeletePostById = ({ postId }: { postId: string }) => {
+  const { trigger, error, isMutating, data } = useSWRMutation(
+    API_ROUTES.post.deletePostById({ postId }),
+    () => {
+      return apiSDKInstance.post.deletePostById({ postId });
+    }
+  );
+
+  return { isMutating, trigger, error, data };
+};
