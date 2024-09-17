@@ -1,17 +1,39 @@
 import { useState } from "react";
+import clsx from "clsx";
 import classes from "./delete-post.module.css";
 
 import { BinIcon } from "@/components/icons/icons";
 import { Modal } from "@/components/modal/modal";
-import clsx from "clsx";
+import { useSWRDeletePostById } from "@/hooks/swr-hooks/post.swr-hooks";
 
-export const DeletePost = ({ isOwnPost }: { isOwnPost: boolean }) => {
+export const DeletePost = ({
+  isOwnPost,
+  postId,
+  updatePostsAfterDeletion,
+}: {
+  isOwnPost: boolean;
+  postId: string;
+  updatePostsAfterDeletion: ({ postId }: { postId: string }) => void;
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => setIsModalOpen(false);
   const openModal = () => setIsModalOpen(true);
 
-  if (!isOwnPost) return null;
+  const { trigger, isMutating } = useSWRDeletePostById({ postId });
+
+  const deletePost = async () => {
+    try {
+      if (isMutating) return;
+      await trigger();
+      updatePostsAfterDeletion({ postId });
+    } catch (error) {
+    } finally {
+      closeModal();
+    }
+  };
+
+  if (isOwnPost !== true) return null;
 
   return (
     <>
@@ -19,13 +41,14 @@ export const DeletePost = ({ isOwnPost }: { isOwnPost: boolean }) => {
         <BinIcon />
       </button>
       <Modal
-        isModalOpen={isModalOpen}
-        closeModal={closeModal}
         title="Are you sure you want to delete post?"
         message="Your post may still be visible in some feeds for upto an hour once you delete it."
         confirmationButtonText="Delete post"
         processingText="Deleting post..."
-        isProcessing={false}
+        isProcessing={isMutating}
+        isModalOpen={isModalOpen}
+        closeModal={closeModal}
+        action={deletePost}
       />
     </>
   );
