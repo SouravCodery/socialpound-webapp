@@ -74,7 +74,9 @@ export default function Posts({ userId }: { userId: string }) {
       className={classes.virtualFeed}
       style={{ height: "100vh" }}
       context={{ isNextPageAvailable, loadMore }}
-      itemContent={(index, post) => <Post key={post._id} post={post} />}
+      itemContent={(index, post) => (
+        <Post key={post._id} post={post} isOwnPost={userId === post.user._id} />
+      )}
       data={posts}
       components={{
         Footer: InfiniteLoader,
