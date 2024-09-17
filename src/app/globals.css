@@ -7,11 +7,13 @@
   --color-secondary: #737373;
 
   --border-primary: #dbdbdb;
+  --border-primary-light: #dbdbdb28;
 
   --button-primary: #0095f6;
   --button-secondary: #1877f2;
 
   --red-primary: #ff2f40;
+  --red-dark: #c22330;
 
   --toast-background: rgba(0, 0, 0, 0.65);
   --shadow-color: rgba(0, 0, 0, 0.2);
@@ -20,6 +22,8 @@
   --color-error: #dc3545;
   --color-warning: #ffc107;
   --color-info: #17a2b8;
+
+  --modal-background: rgba(0, 0, 0, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -41,6 +45,8 @@
 
     --toast-background: rgba(255, 255, 255, 0.6);
     --shadow-color: rgba(255, 255, 255, 0.4);
+
+    --modal-background: rgba(255, 255, 255, 0.2);
   }
 }
 
