@@ -23,9 +23,11 @@ import { DeletePost } from "./delete-post/delete-post";
 export const Post = ({
   post,
   isOwnPost = false,
+  updatePostsAfterDeletion,
 }: {
   post: PostInterface;
   isOwnPost?: boolean;
+  updatePostsAfterDeletion: ({ postId }: { postId: string }) => void;
 }) => {
   const postId = post._id;
 
@@ -67,7 +69,11 @@ export const Post = ({
           </div>
         </Link>
         <div className={classes.headerRight}>
-          <DeletePost isOwnPost={isOwnPost} />
+          <DeletePost
+            isOwnPost={isOwnPost}
+            postId={post._id}
+            updatePostsAfterDeletion={updatePostsAfterDeletion}
+          />
         </div>
       </div>
       <div
