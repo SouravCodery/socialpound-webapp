@@ -65,4 +65,14 @@ export class PostModule {
       token: await this.httpClient.getToken(),
     });
   }
+
+  async deletePostById({ postId }: { postId: string }) {
+    return this.httpClient.request<Object>({
+      endpoint: API_ROUTES.post.deletePostById({ postId }),
+      options: {
+        method: "DELETE",
+      },
+      token: await this.httpClient.getToken(),
+    });
+  }
 }

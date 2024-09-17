@@ -13,6 +13,7 @@ import { PostLoader } from "../loaders/post/post-loader";
 import { Post } from "@/components/post/post";
 import { NoPosts } from "../no-posts/no-posts";
 import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
+import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
 
 export default function Posts({ userId }: { userId: string }) {
   const {
@@ -22,8 +23,28 @@ export default function Posts({ userId }: { userId: string }) {
     isLoading,
     isNextPageAvailable,
     isNextPageLoading,
+    updatePosts,
   } = useSWRGetPostsByUserId({ userId });
   const { isPostsLikedByUserLoading } = useLoadPostsLikedByUser();
+
+  const { userDecodedToken } = useSWRGetDecodedUserToken();
+  const authenticatedUserEmail = userDecodedToken?.email;
+
+  const updatePostsAfterDeletion = ({ postId }: { postId: string }) => {
+    updatePosts(
+      (data) => {
+        return data?.map((each) => {
+          return {
+            ...each,
+            posts: each.posts.filter((post) => post._id !== postId),
+          };
+        });
+      },
+      {
+        revalidate: false,
+      }
+    );
+  };
 
   const posts = data?.flatMap((each) => each.posts) ?? [];
 
@@ -74,7 +95,14 @@ export default function Posts({ userId }: { userId: string }) {
       className={classes.virtualFeed}
       style={{ height: "100vh" }}
       context={{ isNextPageAvailable, loadMore }}
-      itemContent={(index, post) => <Post key={post._id} post={post} />}
+      itemContent={(index, post) => (
+        <Post
+          key={post._id}
+          post={post}
+          isOwnPost={authenticatedUserEmail === post.user.username}
+          updatePostsAfterDeletion={updatePostsAfterDeletion}
+        />
+      )}
       data={posts}
       components={{
         Footer: InfiniteLoader,

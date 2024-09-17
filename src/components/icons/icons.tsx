@@ -385,6 +385,7 @@ export const MoreOptionsIcon = () => (
     role="img"
     viewBox="0 0 24 24"
     width="24"
+    transform="rotate(270)"
   >
     <title>More options</title>
     <circle cx="12" cy="12" r="1.5"></circle>
@@ -640,5 +641,65 @@ export const DotIcon = () => (
     data-testid="FiberManualRecordIcon"
   >
     <circle cx="12" cy="12" r="8"></circle>
+  </svg>
+);
+
+export const BinIcon = () => (
+  <svg
+    aria-label="Delete"
+    fill="currentColor"
+    height="24"
+    role="img"
+    viewBox="0 0 24 24"
+    width="24"
+    transform="scale(0.6)"
+  >
+    <title>Delete</title>
+    <path
+      d="M3 6h18"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></path>
+    <path
+      d="M8 6V4c0-1.1.9-2 2-2h4c1.1 0 2 .9 2 2v2"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></path>
+    <path
+      d="M19 6l-1 14c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2L5 6"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></path>
+    <line
+      x1="10"
+      x2="10"
+      y1="11"
+      y2="17"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></line>
+    <line
+      x1="14"
+      x2="14"
+      y1="11"
+      y2="17"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></line>
   </svg>
 );

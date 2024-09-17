@@ -7,7 +7,7 @@ import clsx from "clsx";
 import classes from "./post.module.css";
 import { Constants } from "@/constants/constants";
 
-import { MoreOptionsIcon, CommentIcon } from "@/components/icons/icons";
+import { CommentIcon } from "@/components/icons/icons";
 import { ProfilePicture } from "../profile-picture/profile-picture";
 import { PostInterface } from "@/models/interfaces/post.interface";
 import { LikeButton } from "../like-button/like-button";
@@ -18,7 +18,17 @@ import {
   unlikeUserPost,
 } from "@/services/like.services";
 
-export const Post = ({ post }: { post: PostInterface }) => {
+import { DeletePost } from "./delete-post/delete-post";
+
+export const Post = ({
+  post,
+  isOwnPost = false,
+  updatePostsAfterDeletion,
+}: {
+  post: PostInterface;
+  isOwnPost?: boolean;
+  updatePostsAfterDeletion: ({ postId }: { postId: string }) => void;
+}) => {
   const postId = post._id;
 
   const isLiked = isPostLikedByUser({ postId });
@@ -50,7 +60,7 @@ export const Post = ({ post }: { post: PostInterface }) => {
   const userProfile = `/profile/${post.user.username.split("@")[0]}`;
 
   return (
-    <div className={classes.post}>
+    <div className={clsx(classes.post, "shadow")}>
       <div className={classes.header}>
         <Link href={userProfile} className={classes.headerLeft}>
           <ProfilePicture dpURL={post.user.profilePicture} randomizeDP={true} />
@@ -59,7 +69,11 @@ export const Post = ({ post }: { post: PostInterface }) => {
           </div>
         </Link>
         <div className={classes.headerRight}>
-          <MoreOptionsIcon />
+          <DeletePost
+            isOwnPost={isOwnPost}
+            postId={post._id}
+            updatePostsAfterDeletion={updatePostsAfterDeletion}
+          />
         </div>
       </div>
       <div

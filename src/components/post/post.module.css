@@ -9,14 +9,12 @@
   width: 100vw;
   max-width: 30rem;
 
+  margin-bottom: 1.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.8rem;
+
   background: var(--background-primary);
   color: var(--color-primary);
-
-  border-bottom: 1px solid var(--border-primary);
-
-  margin-bottom: 1.5rem;
-
-  font-size: 0.8rem;
 }
 
 .post > div {
