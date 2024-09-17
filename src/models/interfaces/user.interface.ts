@@ -9,6 +9,7 @@ export interface LoginResponseInterface {
 }
 
 export interface SubDocumentUserInterface {
+  _id: string;
   username: string;
   fullName: string;
   profilePicture: string;
