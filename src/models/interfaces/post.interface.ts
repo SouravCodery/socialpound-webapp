@@ -7,7 +7,7 @@ interface ContentInterface {
 
 export interface PostInterface {
   _id: string;
-  user: SubDocumentUserInterface;
+  user: SubDocumentUserInterface | null;
   content: ContentInterface[];
   caption: string;
   likesCount: number;

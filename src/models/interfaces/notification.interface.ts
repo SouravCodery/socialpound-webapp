@@ -10,7 +10,7 @@ type NotificationTypes =
 
 export interface NotificationInterface {
   _id: string;
-  sender: SubDocumentUserInterface;
+  sender: SubDocumentUserInterface | null;
   type: NotificationTypes;
   post: {
     _id: string;
