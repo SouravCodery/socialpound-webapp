@@ -33,18 +33,22 @@ export async function signInServerSide({
       key: AUTH_JWT_EXPIRES_IN,
     });
 
+    await apiSDKInstance.user.signIn({
+      token: signedServerJWT,
+      signedUserDataJWT,
+    });
+
     cookies().set("server-token", signedServerJWT, {
       maxAge: maxAgeInSeconds,
       httpOnly: true,
       sameSite: "lax",
     });
 
-    await apiSDKInstance.user.signIn({
-      token: signedServerJWT,
-      signedUserDataJWT,
-    });
+    return true;
   } catch (error) {
     logger.error("Error in signInServerSide", { error });
+
+    return false;
   }
 }
 
