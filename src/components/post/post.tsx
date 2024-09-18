@@ -34,19 +34,22 @@ export const Post = ({
   const isLiked = isPostLikedByUser({ postId });
 
   const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
-  const [isPostLiked, setIsPostLiked] = useState(isLiked);
+  const [currentPostLikeStatus, setCurrentPostLikeStatus] = useState(isLiked);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [currentLikeCount, setCurrentLikeCount] = useState(post.likesCount);
 
   const likePost = async () => {
     setIsProcessing(true);
 
     if (isProcessing) return;
 
-    if (isPostLiked === false) {
-      setIsPostLiked(true);
+    if (currentPostLikeStatus === false) {
+      setCurrentPostLikeStatus(true);
+      setCurrentLikeCount((prev) => prev + 1);
       await likeUserPost({ postId });
     } else {
-      setIsPostLiked(false);
+      setCurrentPostLikeStatus(false);
+      setCurrentLikeCount((prev) => prev - 1);
       await unlikeUserPost({ postId });
     }
 
@@ -106,8 +109,8 @@ export const Post = ({
           <div className={classes.postActionsLeft}>
             <LikeButton
               postId={post._id}
-              count={post.likesCount}
-              isPostLiked={isPostLiked}
+              count={currentLikeCount}
+              currentPostLikeStatus={currentPostLikeStatus}
               likePost={likePost}
             />
             <Link
@@ -120,16 +123,11 @@ export const Post = ({
               </div>
             </Link>
           </div>
-          <div className={classes.postActionsRight}>
-            {/* <div>
-              <SavedIcon />
-            </div> */}
-          </div>
         </div>
         <LikedByUsersProfilePicture
           postId={post._id}
-          likesCount={post.likesCount}
-          isPostLiked={isPostLiked}
+          likesCount={currentLikeCount}
+          currentPostLikeStatus={currentPostLikeStatus}
           isLiked={isLiked}
         />
         {post.caption && (
