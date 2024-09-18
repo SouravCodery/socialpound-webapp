@@ -1,9 +1,11 @@
+import clsx from "clsx";
 import Link from "next/link";
 import classes from "./post-header.module.css";
 
 import { PostInterface } from "@/models/interfaces/post.interface";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { DeletePost } from "../delete-post/delete-post";
+import { DELETED_USER } from "@/constants/deleted-user";
 
 export const PostHeader = ({
   post,
@@ -12,24 +14,35 @@ export const PostHeader = ({
 }: {
   post: PostInterface;
   isOwnPost: boolean;
-  updatePostsAfterDeletion: ({ postId }: { postId: string }) => void;
+  updatePostsAfterDeletion?: ({ postId }: { postId: string }) => void;
 }) => {
-  const userProfile = `/profile/${post.user.username.split("@")[0]}`;
+  const user = post?.user || DELETED_USER;
+
+  const userProfile = post?.user?._id
+    ? `/profile/${post?.user?.username.split("@")[0]}`
+    : `/`;
 
   return (
     <div className={classes.header}>
       <Link href={userProfile} className={classes.headerLeft}>
-        <ProfilePicture dpURL={post.user.profilePicture} randomizeDP={true} />
-        <div className={classes.usernameContainer}>
-          &nbsp;{post.user.username.split("@")[0]}
+        <ProfilePicture dpURL={user?.profilePicture} />
+        <div
+          className={clsx(
+            classes.usernameContainer,
+            !user._id && "deletedUser"
+          )}
+        >
+          &nbsp;{user?.username?.split("@")[0]}
         </div>
       </Link>
       <div className={classes.headerRight}>
-        <DeletePost
-          isOwnPost={isOwnPost}
-          postId={post._id}
-          updatePostsAfterDeletion={updatePostsAfterDeletion}
-        />
+        {updatePostsAfterDeletion && (
+          <DeletePost
+            isOwnPost={isOwnPost}
+            postId={post._id}
+            updatePostsAfterDeletion={updatePostsAfterDeletion}
+          />
+        )}
       </div>
     </div>
   );

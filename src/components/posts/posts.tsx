@@ -82,7 +82,7 @@ export default function Posts({ userId }: { userId: string }) {
         <Post
           key={post._id}
           post={post}
-          isOwnPost={authenticatedUserEmail === post.user.username}
+          isOwnPost={authenticatedUserEmail === post?.user?.username}
           updatePostsAfterDeletion={updatePostsAfterDeletion}
         />
       )}

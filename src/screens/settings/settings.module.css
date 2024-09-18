@@ -1,0 +1,62 @@
+.settingsSuperContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 110%;
+}
+
+.settingsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 20rem;
+
+  background: var(--background-primary);
+
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.settingsIconsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--color-secondary);
+  border-bottom: 1px solid var(--border-primary-light);
+  padding: 1rem;
+
+  width: 100%;
+}
+
+.settingButton {
+  width: 100%;
+  border-radius: 0;
+  padding: 1rem;
+
+  background: inherit;
+  color: var(--color-secondary);
+
+  cursor: pointer;
+
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.settingButton:hover {
+  filter: none;
+  background: var(--background-secondary);
+}
+
+.settingButton:last-of-type {
+  border-bottom: none;
+}
+
+.dangerousAction {
+  color: var(--red-dark);
+}

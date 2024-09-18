@@ -23,7 +23,7 @@ export const Post = ({
 }: {
   post: PostInterface;
   isOwnPost?: boolean;
-  updatePostsAfterDeletion: ({ postId }: { postId: string }) => void;
+  updatePostsAfterDeletion?: ({ postId }: { postId: string }) => void;
 }) => {
   const postId = post._id;
   const isLiked = isPostLikedByUser({ postId });
@@ -76,7 +76,7 @@ export const Post = ({
 
         {post.caption && (
           <div className={classes.captionContainer}>
-            <div>{post.user.username.split("@")[0]}</div>
+            <div>{post?.user?.username.split("@")[0]}</div>
             &nbsp;
             <div>{post.caption}</div>
           </div>

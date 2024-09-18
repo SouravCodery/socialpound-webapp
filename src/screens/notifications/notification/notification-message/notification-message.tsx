@@ -1,4 +1,7 @@
+import clsx from "clsx";
 import classes from "./notification-message.module.css";
+
+import { DELETED_USER } from "@/constants/deleted-user";
 import { NotificationInterface } from "@/models/interfaces/notification.interface";
 
 export const NotificationMessage = ({
@@ -6,42 +9,64 @@ export const NotificationMessage = ({
 }: {
   notification: NotificationInterface;
 }) => {
-  const username = notification.sender.username.split("@")[0];
+  const sender = notification?.sender || DELETED_USER;
+  const username = sender.username.split("@")[0];
 
   switch (notification.type) {
     case "like-on-post":
       return (
         <div className={classes.message}>
-          <span className={classes.username}>{username}</span> liked your post
+          <span
+            className={clsx(classes.username, !sender?._id && "deletedUser")}
+          >
+            {username}
+          </span>{" "}
+          liked your post
         </div>
       );
     case "like-on-comment":
       return (
         <div className={classes.message}>
-          <span className={classes.username}>{username}</span> liked your
-          comment
+          <span
+            className={clsx(classes.username, !sender?._id && "deletedUser")}
+          >
+            {username}
+          </span>{" "}
+          liked your comment
         </div>
       );
     case "comment":
       return (
         <div className={classes.message}>
-          <span className={classes.username}>{username}</span> commented on your
-          post: <br />
+          <span
+            className={clsx(classes.username, !sender?._id && "deletedUser")}
+          >
+            {username}
+          </span>{" "}
+          commented on your post: <br />
           {notification.comment?.text}
         </div>
       );
     case "reply":
       return (
         <div className={classes.message}>
-          <span className={classes.username}>{username}</span> replied to your
-          comment
+          <span
+            className={clsx(classes.username, !sender?._id && "deletedUser")}
+          >
+            {username}
+          </span>{" "}
+          replied to your comment
         </div>
       );
     case "add-friend":
       return (
         <div className={classes.message}>
-          <span className={classes.username}>{username}</span> added you as a
-          friend
+          <span
+            className={clsx(classes.username, !sender?._id && "deletedUser")}
+          >
+            {username}
+          </span>{" "}
+          added you as a friend
         </div>
       );
     default:

@@ -7,7 +7,7 @@ export interface LikeInterface {
   post: string;
   comment?: string;
 
-  liker: SubDocumentUserInterface;
+  liker: SubDocumentUserInterface | null;
 }
 
 export interface LikeResponseInterface {

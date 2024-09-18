@@ -7,7 +7,7 @@
   height: 100vh;
 
   background-color: var(--modal-background);
-  z-index: 20000;
+  z-index: 2000;
 
   cursor: pointer;
 
@@ -36,53 +36,9 @@
 
   background-color: var(--background-primary);
   border-radius: 0.75rem;
+  overflow: hidden;
 
-  z-index: 30000;
+  z-index: 2100;
 
   transition: all 0.3s ease-in-out;
-}
-
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  padding: 2rem 2rem 1rem 2rem;
-}
-
-.title {
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
-}
-
-.processing {
-  margin-bottom: 1rem;
-}
-
-.message {
-  font-weight: lighter;
-  color: var(--color-secondary);
-}
-
-.actions {
-  width: 100%;
-}
-
-.actionButton {
-  width: 100%;
-  border-radius: 0;
-  padding: 1rem;
-
-  background: inherit;
-  color: inherit;
-}
-
-.confirm {
-  color: var(--red-dark);
-  border: 1px solid var(--border-primary-light);
-}
-
-.confirm:disabled {
-  cursor: wait;
 }

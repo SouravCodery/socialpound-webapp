@@ -26,9 +26,7 @@ export const {
       return false; // Redirect unauthenticated users to login page
     },
     async signIn({ user, account, profile }) {
-      await signInServerSide({ user, account, profile });
-
-      return true;
+      return await signInServerSide({ user, account, profile });
     },
   },
   pages: {

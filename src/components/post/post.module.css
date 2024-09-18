@@ -31,17 +31,6 @@
   padding: 0.8rem;
 }
 
-.counter {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-
-  margin-left: 0.25rem;
-  width: 0.5rem;
-}
-
-
-
 .captionContainer {
   display: flex;
   flex-direction: row;

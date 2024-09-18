@@ -3,7 +3,7 @@ import clsx from "clsx";
 import classes from "./delete-comment.module.css";
 
 import { BinIcon } from "@/components/icons/icons";
-import { Modal } from "@/components/modal/modal";
+import { Confirm } from "@/components/confirm/confirm";
 import { useSWRDeleteCommentById } from "@/hooks/swr-hooks/comment.swr-hooks";
 
 export const DeleteComment = ({
@@ -40,7 +40,7 @@ export const DeleteComment = ({
       <button className={clsx(classes.deleteButton)} onClick={openModal}>
         <BinIcon />
       </button>
-      <Modal
+      <Confirm
         title="Are you sure you want to delete this comment?"
         message="Your comment may still be visible in some feeds for upto an hour once you delete it."
         confirmationButtonText="Delete comment"

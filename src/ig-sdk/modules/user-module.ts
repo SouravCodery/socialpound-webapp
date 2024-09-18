@@ -51,4 +51,14 @@ export class UserModule {
       token: await this.httpClient.getToken(),
     });
   }
+
+  async deleteUser() {
+    return this.httpClient.request<UserResponseInterface>({
+      endpoint: API_ROUTES.user.deleteUser,
+      options: {
+        method: "DELETE",
+      },
+      token: await this.httpClient.getToken(),
+    });
+  }
 }
