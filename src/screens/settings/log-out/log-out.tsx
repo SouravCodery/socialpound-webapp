@@ -9,7 +9,10 @@ export const Logout = ({ buttonClassName }: { buttonClassName: string }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoggingOut, setIsLoggingOut] = useState(false);
 
-  const closeModal = () => setIsModalOpen(false);
+  const closeModal = () => {
+    if (isLoggingOut) return;
+    setIsModalOpen(false);
+  };
   const openModal = () => setIsModalOpen(true);
 
   const logout = async () => {
