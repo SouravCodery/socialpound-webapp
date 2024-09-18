@@ -5,6 +5,7 @@ import { Virtuoso } from "react-virtuoso";
 import classes from "./comments.module.css";
 
 import { useSWRGetCommentsByPostId } from "@/hooks/swr-hooks/comment.swr-hooks";
+import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
 
 import { Comment } from "./comment/comment";
 import { CommentLoader } from "@/components/loaders/comments/comment-loader";
@@ -25,6 +26,31 @@ export const Comments = ({ postId }: { postId: string }) => {
   });
 
   const comments = data?.flatMap((each) => each.comments) ?? [];
+
+  const { userDecodedToken } = useSWRGetDecodedUserToken();
+  const authenticatedUserEmail = userDecodedToken?.email;
+
+  const updateCommentsAfterDeletion = ({
+    commentId,
+  }: {
+    commentId: string;
+  }) => {
+    updateComments(
+      (data) => {
+        return data?.map((each) => {
+          return {
+            ...each,
+            comments: each.comments.filter(
+              (comment) => comment._id !== commentId
+            ),
+          };
+        });
+      },
+      {
+        revalidate: false,
+      }
+    );
+  };
 
   const loadMore = useCallback(() => {
     if (isNextPageLoading) {
@@ -67,7 +93,13 @@ export const Comments = ({ postId }: { postId: string }) => {
         style={{ height: "80vh" }}
         context={{ isNextPageAvailable, loadMore }}
         itemContent={(index, comment) => (
-          <Comment key={comment._id} comment={comment} />
+          <Comment
+            key={comment._id}
+            comment={comment}
+            //todo: User can delete any comment if the comment is on his post
+            isOwnComment={authenticatedUserEmail === comment.user.username}
+            updateCommentsAfterDeletion={updateCommentsAfterDeletion}
+          />
         )}
         data={comments}
         components={{

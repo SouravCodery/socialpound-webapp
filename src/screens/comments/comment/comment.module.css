@@ -12,9 +12,6 @@
   background: var(--background-primary);
   color: var(--color-primary);
 
-  border: 1px solid var(--border-primary);
-  border-top: none;
-  border-right: 1rem solid var(--border-primary);
   border-radius: 0.25rem;
 
   margin-bottom: 0.75rem;
@@ -24,6 +21,8 @@
 }
 
 .main {
+  position: relative;
+
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -55,10 +54,8 @@
   color: var(--color-secondary);
 }
 
-.likeContainer {
+.actionsContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-
-  position: relative;
 }
