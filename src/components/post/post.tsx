@@ -1,24 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import clsx from "clsx";
-
 import classes from "./post.module.css";
 
-import { CommentIcon } from "@/components/icons/icons";
-import { ProfilePicture } from "../profile-picture/profile-picture";
 import { PostInterface } from "@/models/interfaces/post.interface";
-import { LikeButton } from "../like-button/like-button";
+import { Header } from "./header/header";
+import { Content } from "./content/content";
 import { LikedByUsersProfilePicture } from "./liked-by-users-profile-picture/liked-by-users-profile-picture";
+
 import {
   isPostLikedByUser,
   likeUserPost,
   unlikeUserPost,
 } from "@/services/like.services";
-
-import { DeletePost } from "./delete-post/delete-post";
-import { Content } from "./content/content";
+import { Reactions } from "./reactions/reactions";
 
 export const Post = ({
   post,
@@ -54,54 +50,23 @@ export const Post = ({
     setIsProcessing(false);
   };
 
-  const userProfile = `/profile/${post.user.username.split("@")[0]}`;
-
   return (
     <div className={clsx(classes.post, "shadow")}>
-      {/* Header */}
-      <div className={classes.header}>
-        <Link href={userProfile} className={classes.headerLeft}>
-          <ProfilePicture dpURL={post.user.profilePicture} randomizeDP={true} />
-          <div className={classes.usernameContainer}>
-            &nbsp;{post.user.username.split("@")[0]}
-          </div>
-        </Link>
-        <div className={classes.headerRight}>
-          <DeletePost
-            isOwnPost={isOwnPost}
-            postId={post._id}
-            updatePostsAfterDeletion={updatePostsAfterDeletion}
-          />
-        </div>
-      </div>
-
-      {/* Content */}
+      <Header
+        post={post}
+        isOwnPost={isOwnPost}
+        updatePostsAfterDeletion={updatePostsAfterDeletion}
+      />
       <Content post={post} isLiked={isLiked} likePost={likePost} />
 
-      {/* Footer */}
       <div className={classes.footer}>
-        {/* Reactions */}
-        <div className={classes.postActions}>
-          <div className={classes.postActionsLeft}>
-            <LikeButton
-              postId={post._id}
-              count={currentLikeCount}
-              currentPostLikeStatus={currentPostLikeStatus}
-              likePost={likePost}
-            />
-            <Link
-              href={`/comments/${post._id}`}
-              className={clsx(classes.postActionLink)}
-            >
-              <CommentIcon />{" "}
-              <div className={classes.counter}>
-                {post.commentsCount || null}
-              </div>
-            </Link>
-          </div>
-        </div>
+        <Reactions
+          post={post}
+          currentLikeCount={currentLikeCount}
+          currentPostLikeStatus={currentPostLikeStatus}
+          likePost={likePost}
+        />
 
-        {/* Liked by */}
         <LikedByUsersProfilePicture
           postId={post._id}
           likesCount={currentLikeCount}
@@ -109,7 +74,6 @@ export const Post = ({
           isLiked={isLiked}
         />
 
-        {/* Caption */}
         {post.caption && (
           <div className={classes.captionContainer}>
             <div>{post.user.username.split("@")[0]}</div>
