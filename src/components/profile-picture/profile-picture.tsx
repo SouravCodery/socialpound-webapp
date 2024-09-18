@@ -50,6 +50,17 @@ export const ProfilePicture = ({
   );
 };
 
-const awesomeEmoticons = ["😄", "😃", "😀", "😊", "😉", "😍", "😜", "😎", "🤩"];
+const awesomeEmoticons = [
+  "😄",
+  "😃",
+  "😀",
+  "😊",
+  "😉",
+  "😍",
+  "😜",
+  "😎",
+  "🤩",
+  // "👤",
+];
 const getRandomEmoticon = () =>
   awesomeEmoticons[Math.floor(Math.random() * awesomeEmoticons.length)];
