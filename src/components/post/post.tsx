@@ -5,7 +5,6 @@ import Link from "next/link";
 import clsx from "clsx";
 
 import classes from "./post.module.css";
-import { Constants } from "@/constants/constants";
 
 import { CommentIcon } from "@/components/icons/icons";
 import { ProfilePicture } from "../profile-picture/profile-picture";
@@ -19,6 +18,7 @@ import {
 } from "@/services/like.services";
 
 import { DeletePost } from "./delete-post/delete-post";
+import { Content } from "./content/content";
 
 export const Post = ({
   post,
@@ -30,12 +30,10 @@ export const Post = ({
   updatePostsAfterDeletion: ({ postId }: { postId: string }) => void;
 }) => {
   const postId = post._id;
-
   const isLiked = isPostLikedByUser({ postId });
 
-  const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
-  const [currentPostLikeStatus, setCurrentPostLikeStatus] = useState(isLiked);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [currentPostLikeStatus, setCurrentPostLikeStatus] = useState(isLiked);
   const [currentLikeCount, setCurrentLikeCount] = useState(post.likesCount);
 
   const likePost = async () => {
@@ -56,14 +54,11 @@ export const Post = ({
     setIsProcessing(false);
   };
 
-  const handleErrorInMedia = () => {
-    setErrorInMedia(true);
-  };
-
   const userProfile = `/profile/${post.user.username.split("@")[0]}`;
 
   return (
     <div className={clsx(classes.post, "shadow")}>
+      {/* Header */}
       <div className={classes.header}>
         <Link href={userProfile} className={classes.headerLeft}>
           <ProfilePicture dpURL={post.user.profilePicture} randomizeDP={true} />
@@ -79,32 +74,13 @@ export const Post = ({
           />
         </div>
       </div>
-      <div
-        className={classes.content}
-        style={{ aspectRatio: post.content[0].aspectRatio ?? 1 }}
-        onDoubleClick={() => {
-          if (isLiked === false) {
-            likePost();
-          }
-        }}
-      >
-        {errorInMedia === false ? (
-          <img
-            src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
-            alt="Post Image"
-            className={classes.asset}
-            onError={handleErrorInMedia}
-            loading="lazy"
-          />
-        ) : (
-          <div className={classes.mediaError}>
-            <p>🚧 Oops! The picture took a detour. Maybe it’s shy? 😅 📦 📸</p>
-            <p>⚡ There might be something wrong with the CDN 🛰️</p>
-            <p>Try reloading, or imagine the coolest image ever here! 🖼️✨</p>
-          </div>
-        )}
-      </div>
+
+      {/* Content */}
+      <Content post={post} isLiked={isLiked} likePost={likePost} />
+
+      {/* Footer */}
       <div className={classes.footer}>
+        {/* Reactions */}
         <div className={classes.postActions}>
           <div className={classes.postActionsLeft}>
             <LikeButton
@@ -124,12 +100,16 @@ export const Post = ({
             </Link>
           </div>
         </div>
+
+        {/* Liked by */}
         <LikedByUsersProfilePicture
           postId={post._id}
           likesCount={currentLikeCount}
           currentPostLikeStatus={currentPostLikeStatus}
           isLiked={isLiked}
         />
+
+        {/* Caption */}
         {post.caption && (
           <div className={classes.captionContainer}>
             <div>{post.user.username.split("@")[0]}</div>
