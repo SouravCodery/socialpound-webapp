@@ -4,6 +4,7 @@ import classes from "./comment.module.css";
 import { CommentInterface } from "@/models/interfaces/comment.interface";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { DeleteComment } from "./delete-comment/delete-comment";
+import { DELETED_USER } from "@/constants/deleted-user";
 
 export const Comment = ({
   comment,
@@ -14,13 +15,20 @@ export const Comment = ({
   isOwnComment?: boolean;
   updateCommentsAfterDeletion: ({ commentId }: { commentId: string }) => void;
 }) => {
+  const user = comment?.user || DELETED_USER;
+
   return (
     <div className={clsx(classes.comment, "shadow")}>
       <div className={classes.main}>
-        <ProfilePicture dpURL={comment.user.profilePicture} randomizeDP />
+        <ProfilePicture dpURL={user?.profilePicture} randomizeDP />
         <div className={classes.content}>
-          <div className={classes.usernameContainer}>
-            {comment.user.username.split("@")[0]}
+          <div
+            className={clsx(
+              classes.usernameContainer,
+              !user._id && "deletedUser"
+            )}
+          >
+            {user?.username.split("@")[0]}
           </div>
           <div>{comment.text}</div>
         </div>

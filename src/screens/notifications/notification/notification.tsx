@@ -5,6 +5,7 @@ import { NotificationInterface } from "@/models/interfaces/notification.interfac
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { Constants } from "@/constants/constants";
 import { NotificationMessage } from "./notification-message/notification-message";
+import { DELETED_USER } from "@/constants/deleted-user";
 
 export const Notification = ({
   notification,
@@ -17,10 +18,12 @@ export const Notification = ({
     ? `/likes/${notification.post._id}`
     : `/comments/${notification.post._id}`;
 
+  const sender = notification?.sender || DELETED_USER;
+
   return (
     <Link href={href} className={classes.notification}>
       <ProfilePicture
-        dpURL={notification.sender.profilePicture}
+        dpURL={sender.profilePicture}
         randomizeDP
         scale="medium"
       />
