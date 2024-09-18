@@ -21,7 +21,7 @@ export const LoginButton = ({
   );
 };
 
-export const SignOutButton = () => {
+export const SignOutButton = ({ className }: { className: string }) => {
   const [signingOut, setSigningOut] = useState(false);
 
   const signOutUser = async () => {
@@ -39,7 +39,7 @@ export const SignOutButton = () => {
   };
 
   return (
-    <button onClick={signOutUser} disabled={signingOut}>
+    <button onClick={signOutUser} disabled={signingOut} className={className}>
       {signingOut === false ? "Sign Out" : "Signing Out..."}
     </button>
   );
