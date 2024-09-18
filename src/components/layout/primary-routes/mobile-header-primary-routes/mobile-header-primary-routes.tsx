@@ -3,13 +3,13 @@ import Link from "next/link";
 import clsx from "clsx";
 import classes from "./mobile-header-primary-routes.module.css";
 
-import { LikeIcon, MessengerIcon } from "@/components/icons/icons";
+import { HamburgerIcon, LikeIcon } from "@/components/icons/icons";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 import { Logo } from "@/components/logo/logo";
 
 const routes = [
   { path: "/notifications", name: "Reels", icon: LikeIcon, dot: true },
-  { path: "/inbox", name: "Profile", icon: MessengerIcon, dot: true },
+  { path: "/settings", name: "Settings", icon: HamburgerIcon, dot: false },
 ];
 
 export const MobileHeader = async () => {
