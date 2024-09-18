@@ -4,6 +4,7 @@
   --background-secondary: #dbdbdb;
 
   --color-primary: #000000;
+  --color-primary-light: #0000002f;
   --color-secondary: #737373;
 
   --border-primary: #dbdbdb;
@@ -38,6 +39,7 @@
     --background-secondary: #262626;
 
     --color-primary: #f5f5f5;
+    --color-primary-light: #ffffff2f;
     --color-secondary: #a8a8a8;
 
     --border-primary: #262626;
@@ -97,6 +99,11 @@ button:hover {
 
 .shadow {
   box-shadow: var(--shadow-color) var(--shadow-value);
+}
+
+.deletedUser {
+  color: var(--color-primary-light);
+  font-weight: lighter;
 }
 
 .hidden {
