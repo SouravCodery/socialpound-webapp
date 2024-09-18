@@ -1,12 +1,12 @@
 import clsx from "clsx";
 import Link from "next/link";
-import classes from "./reactions.module.css";
+import classes from "./post-reactions.module.css";
 
 import { LikeButton } from "@/components/like-button/like-button";
 import { CommentIcon } from "@/components/icons/icons";
 import { PostInterface } from "@/models/interfaces/post.interface";
 
-export const Reactions = ({
+export const PostReactions = ({
   post,
   currentLikeCount,
   currentPostLikeStatus,

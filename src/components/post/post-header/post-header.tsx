@@ -1,11 +1,11 @@
 import Link from "next/link";
-import classes from "./header.module.css";
+import classes from "./post-header.module.css";
 
 import { PostInterface } from "@/models/interfaces/post.interface";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { DeletePost } from "../delete-post/delete-post";
 
-export const Header = ({
+export const PostHeader = ({
   post,
   isOwnPost,
   updatePostsAfterDeletion,

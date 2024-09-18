@@ -5,7 +5,7 @@ import clsx from "clsx";
 import classes from "./post.module.css";
 
 import { PostInterface } from "@/models/interfaces/post.interface";
-import { Header } from "./header/header";
+import { PostHeader } from "./post-header/post-header";
 import { Content } from "./content/content";
 import { LikedByUsersProfilePicture } from "./liked-by-users-profile-picture/liked-by-users-profile-picture";
 
@@ -14,7 +14,7 @@ import {
   likeUserPost,
   unlikeUserPost,
 } from "@/services/like.services";
-import { Reactions } from "./reactions/reactions";
+import { PostReactions } from "./post-reactions/post-reactions";
 
 export const Post = ({
   post,
@@ -52,7 +52,7 @@ export const Post = ({
 
   return (
     <div className={clsx(classes.post, "shadow")}>
-      <Header
+      <PostHeader
         post={post}
         isOwnPost={isOwnPost}
         updatePostsAfterDeletion={updatePostsAfterDeletion}
@@ -60,7 +60,7 @@ export const Post = ({
       <Content post={post} isLiked={isLiked} likePost={likePost} />
 
       <div className={classes.footer}>
-        <Reactions
+        <PostReactions
           post={post}
           currentLikeCount={currentLikeCount}
           currentPostLikeStatus={currentPostLikeStatus}
