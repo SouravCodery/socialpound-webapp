@@ -112,7 +112,7 @@ export const Post = ({
             />
             <Link
               href={`/comments/${post._id}`}
-              className={clsx(classes.postActionLink, classes.link)}
+              className={clsx(classes.postActionLink)}
             >
               <CommentIcon />{" "}
               <div className={classes.counter}>
