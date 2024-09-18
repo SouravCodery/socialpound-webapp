@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.8rem;
+}
+
+.headerLeft {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+}
+
+.usernameContainer {
+  margin-left: 0.5rem;
+}
