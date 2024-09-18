@@ -3,6 +3,7 @@ export const API_ROUTES = {
     signIn: "/v1/user/sign-in",
     getUserByUsername: ({ username }: { username: string }) =>
       `/v1/user/${username}`,
+    deleteUser: "/v1/user",
   },
 
   post: {
