@@ -41,7 +41,7 @@
   padding: 1rem;
 
   background: inherit;
-  color: inherit;
+  color: var(--color-secondary);
 
   cursor: pointer;
 
@@ -55,4 +55,8 @@
 
 .settingButton:last-of-type {
   border-bottom: none;
+}
+
+.dangerousAction {
+  color: var(--red-dark);
 }
