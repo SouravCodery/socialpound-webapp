@@ -5,12 +5,12 @@ import { LikeIcon, UnlikeIcon } from "../icons/icons";
 export const LikeButton = ({
   postId,
   count,
-  isPostLiked,
+  currentPostLikeStatus,
   likePost,
 }: {
   postId: string;
   count: number;
-  isPostLiked: boolean;
+  currentPostLikeStatus: boolean;
   likePost: () => Promise<void>;
 }) => {
   const url = `/likes/${postId}`;
@@ -18,7 +18,7 @@ export const LikeButton = ({
   return (
     <>
       <button className={classes.button} onClick={likePost}>
-        {isPostLiked === false ? <LikeIcon /> : <UnlikeIcon />}
+        {currentPostLikeStatus === false ? <LikeIcon /> : <UnlikeIcon />}
       </button>
       <div title="Like Count" className={classes.counter}>
         {count > 0 ? count : null}
