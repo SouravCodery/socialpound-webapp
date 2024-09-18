@@ -3,7 +3,7 @@ import clsx from "clsx";
 import classes from "./delete-post.module.css";
 
 import { BinIcon } from "@/components/icons/icons";
-import { Modal } from "@/components/modal/modal";
+import { Confirm } from "@/components/confirm/confirm";
 import { useSWRDeletePostById } from "@/hooks/swr-hooks/post.swr-hooks";
 
 export const DeletePost = ({
@@ -40,7 +40,7 @@ export const DeletePost = ({
       <button className={clsx(classes.deleteButton)} onClick={openModal}>
         <BinIcon />
       </button>
-      <Modal
+      <Confirm
         title="Are you sure you want to delete post?"
         message="Your post may still be visible in some feeds for upto an hour once you delete it."
         confirmationButtonText="Delete post"
