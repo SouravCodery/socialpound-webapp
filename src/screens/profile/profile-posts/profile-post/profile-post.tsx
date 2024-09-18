@@ -10,14 +10,12 @@ import Link from "next/link";
 export const ProfilePost = ({
   post,
   userId,
-  index,
 }: {
   post: PostInterface;
   userId: string;
-  index: number;
 }) => {
   const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
-  const href = `/posts/${userId}?index=${index}`;
+  const href = `/posts/${userId}`;
 
   const handleErrorInMedia = () => {
     setErrorInMedia(true);
