@@ -25,7 +25,6 @@ export const Logout = ({ buttonClassName }: { buttonClassName: string }) => {
       await cookieFlushAfterLogout();
       await signOut();
     } catch (error) {
-      console.log("Error in logout", { error });
     } finally {
       setIsLoggingOut(false);
       closeModal();
