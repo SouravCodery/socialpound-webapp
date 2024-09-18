@@ -22,59 +22,6 @@
   width: 100%;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 0.8rem;
-}
-
-.headerLeft {
-  display: flex;
-
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dpContainer {
-  position: relative;
-
-  height: 2.2rem;
-  width: 2.2rem;
-
-  border-radius: 50%;
-  overflow: hidden;
-
-  border: 1px solid var(--border-primary);
-}
-
-.usernameContainer {
-  margin-left: 0.5rem;
-}
-
-.content {
-  width: 100%;
-
-  border: 0.1px solid var(--background-secondary);
-}
-
-.asset {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-
-.mediaError {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  height: 100%;
-  width: 100%;
-}
-
 .footer {
   display: flex;
   flex-direction: column;
@@ -82,28 +29,6 @@
   align-items: flex-start;
 
   padding: 0.8rem;
-}
-
-.postActions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  width: 100%;
-  margin-bottom: 0.5rem;
-}
-
-.postActionsLeft {
-  display: flex;
-
-  justify-content: flex-start;
-  align-items: center;
-}
-
-.link {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .counter {
@@ -115,16 +40,7 @@
   width: 0.5rem;
 }
 
-.postActionsRight {
-  display: flex;
 
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.postActionLink {
-  padding: 0 0.8rem;
-}
 
 .captionContainer {
   display: flex;

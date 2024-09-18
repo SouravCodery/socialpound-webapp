@@ -6,29 +6,32 @@ import classes from "./liked-by-users-profile-picture.module.css";
 export const LikedByUsersProfilePicture = ({
   postId,
   likesCount,
-  isPostLiked,
+  currentPostLikeStatus,
   isLiked,
 }: {
   postId: string;
   likesCount: number;
-  isPostLiked: boolean;
+  currentPostLikeStatus: boolean;
   isLiked: boolean;
 }) => {
   if (likesCount < 1) {
     return null;
   }
 
-  if (isLiked === true && likesCount === 1 && isPostLiked === false) {
+  if (isLiked && !currentPostLikeStatus && likesCount === 1) {
     return null;
   }
 
-  const countApartFromUser = likesCount - 1;
-  let likeText = isPostLiked
-    ? `Liked by ${countApartFromUser} other${countApartFromUser > 1 ? "s" : ""}`
-    : `Liked by ${likesCount}`;
+  let likeText = `Liked by ${likesCount}`;
 
-  if (isPostLiked && likesCount == 1) {
+  if (isLiked && currentPostLikeStatus && likesCount === 1) {
     likeText = "Liked by you";
+  } else if (isLiked && currentPostLikeStatus && likesCount > 1) {
+    const othersLikeCount = likesCount - 1;
+
+    likeText = `Liked by ${othersLikeCount} other${
+      othersLikeCount > 1 ? "s" : ""
+    }`;
   }
 
   return (

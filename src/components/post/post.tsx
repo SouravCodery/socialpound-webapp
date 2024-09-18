@@ -1,24 +1,20 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import clsx from "clsx";
-
 import classes from "./post.module.css";
-import { Constants } from "@/constants/constants";
 
-import { CommentIcon } from "@/components/icons/icons";
-import { ProfilePicture } from "../profile-picture/profile-picture";
 import { PostInterface } from "@/models/interfaces/post.interface";
-import { LikeButton } from "../like-button/like-button";
+import { PostHeader } from "./post-header/post-header";
+import { Content } from "./content/content";
 import { LikedByUsersProfilePicture } from "./liked-by-users-profile-picture/liked-by-users-profile-picture";
+
 import {
   isPostLikedByUser,
   likeUserPost,
   unlikeUserPost,
 } from "@/services/like.services";
-
-import { DeletePost } from "./delete-post/delete-post";
+import { PostReactions } from "./post-reactions/post-reactions";
 
 export const Post = ({
   post,
@@ -30,108 +26,54 @@ export const Post = ({
   updatePostsAfterDeletion: ({ postId }: { postId: string }) => void;
 }) => {
   const postId = post._id;
-
   const isLiked = isPostLikedByUser({ postId });
 
-  const [errorInMedia, setErrorInMedia] = useState<boolean>(false);
-  const [isPostLiked, setIsPostLiked] = useState(isLiked);
   const [isProcessing, setIsProcessing] = useState(false);
+  const [currentPostLikeStatus, setCurrentPostLikeStatus] = useState(isLiked);
+  const [currentLikeCount, setCurrentLikeCount] = useState(post.likesCount);
 
   const likePost = async () => {
     setIsProcessing(true);
 
     if (isProcessing) return;
 
-    if (isPostLiked === false) {
-      setIsPostLiked(true);
+    if (currentPostLikeStatus === false) {
+      setCurrentPostLikeStatus(true);
+      setCurrentLikeCount((prev) => prev + 1);
       await likeUserPost({ postId });
     } else {
-      setIsPostLiked(false);
+      setCurrentPostLikeStatus(false);
+      setCurrentLikeCount((prev) => prev - 1);
       await unlikeUserPost({ postId });
     }
 
     setIsProcessing(false);
   };
 
-  const handleErrorInMedia = () => {
-    setErrorInMedia(true);
-  };
-
-  const userProfile = `/profile/${post.user.username.split("@")[0]}`;
-
   return (
     <div className={clsx(classes.post, "shadow")}>
-      <div className={classes.header}>
-        <Link href={userProfile} className={classes.headerLeft}>
-          <ProfilePicture dpURL={post.user.profilePicture} randomizeDP={true} />
-          <div className={classes.usernameContainer}>
-            &nbsp;{post.user.username.split("@")[0]}
-          </div>
-        </Link>
-        <div className={classes.headerRight}>
-          <DeletePost
-            isOwnPost={isOwnPost}
-            postId={post._id}
-            updatePostsAfterDeletion={updatePostsAfterDeletion}
-          />
-        </div>
-      </div>
-      <div
-        className={classes.content}
-        style={{ aspectRatio: post.content[0].aspectRatio ?? 1 }}
-        onDoubleClick={() => {
-          if (isLiked === false) {
-            likePost();
-          }
-        }}
-      >
-        {errorInMedia === false ? (
-          <img
-            src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
-            alt="Post Image"
-            className={classes.asset}
-            onError={handleErrorInMedia}
-            loading="lazy"
-          />
-        ) : (
-          <div className={classes.mediaError}>
-            <p>🚧 Oops! The picture took a detour. Maybe it’s shy? 😅 📦 📸</p>
-            <p>⚡ There might be something wrong with the CDN 🛰️</p>
-            <p>Try reloading, or imagine the coolest image ever here! 🖼️✨</p>
-          </div>
-        )}
-      </div>
+      <PostHeader
+        post={post}
+        isOwnPost={isOwnPost}
+        updatePostsAfterDeletion={updatePostsAfterDeletion}
+      />
+      <Content post={post} isLiked={isLiked} likePost={likePost} />
+
       <div className={classes.footer}>
-        <div className={classes.postActions}>
-          <div className={classes.postActionsLeft}>
-            <LikeButton
-              postId={post._id}
-              count={post.likesCount}
-              isPostLiked={isPostLiked}
-              likePost={likePost}
-            />
-            <Link
-              href={`/comments/${post._id}`}
-              className={clsx(classes.postActionLink, classes.link)}
-            >
-              <CommentIcon />{" "}
-              <div className={classes.counter}>
-                {post.commentsCount || null}
-              </div>
-            </Link>
-          </div>
-          <div className={classes.postActionsRight}>
-            {/* <div>
-              <SavedIcon />
-            </div> */}
-          </div>
-        </div>
+        <PostReactions
+          post={post}
+          currentLikeCount={currentLikeCount}
+          currentPostLikeStatus={currentPostLikeStatus}
+          likePost={likePost}
+        />
+
         <LikedByUsersProfilePicture
           postId={post._id}
-          likesCount={post.likesCount}
-          isPostLiked={isPostLiked}
+          likesCount={currentLikeCount}
+          currentPostLikeStatus={currentPostLikeStatus}
           isLiked={isLiked}
         />
+
         {post.caption && (
           <div className={classes.captionContainer}>
             <div>{post.user.username.split("@")[0]}</div>

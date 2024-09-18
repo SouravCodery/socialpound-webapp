@@ -1,0 +1,27 @@
+.postReactions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+.postReactionsLeft {
+  display: flex;
+
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.postReactionLink {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 0 0.8rem;
+}
+
+.postReactionLink:hover {
+  color: var(--color-secondary);
+}

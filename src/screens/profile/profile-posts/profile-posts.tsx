@@ -53,7 +53,7 @@ export const ProfilePosts = ({ userId }: { userId: string }) => {
   return (
     <div className={classes.feed}>
       {posts?.map((post, index) => (
-        <ProfilePost key={post._id} post={post} userId={userId} index={index} />
+        <ProfilePost key={post._id} post={post} userId={userId} />
       ))}
       <InfiniteLoader context={{ loadMore, isNextPageAvailable }} />
     </div>

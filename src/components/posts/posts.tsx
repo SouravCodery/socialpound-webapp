@@ -1,8 +1,7 @@
 "use client";
 
-import { useCallback, useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
-import { Virtuoso, VirtuosoHandle } from "react-virtuoso";
+import { useCallback } from "react";
+import { Virtuoso } from "react-virtuoso";
 import clsx from "clsx";
 
 import classes from "./posts.module.css";
@@ -56,21 +55,6 @@ export default function Posts({ userId }: { userId: string }) {
     setSize((prevSize) => prevSize + 1);
   }, [setSize, isNextPageLoading]);
 
-  const params = useSearchParams();
-  const index = parseInt(params.get("index") ?? "0");
-
-  const virtuosoRef = useRef<VirtuosoHandle>(null);
-
-  useEffect(() => {
-    if (virtuosoRef?.current) {
-      virtuosoRef.current.scrollToIndex({
-        index,
-        align: "center",
-        behavior: "smooth",
-      });
-    }
-  }, [virtuosoRef?.current]);
-
   if (isLoading || isPostsLikedByUserLoading) {
     return (
       <div className={clsx(classes.feed)}>
@@ -91,11 +75,10 @@ export default function Posts({ userId }: { userId: string }) {
 
   return (
     <Virtuoso
-      ref={virtuosoRef}
       className={classes.virtualFeed}
       style={{ height: "100vh" }}
       context={{ isNextPageAvailable, loadMore }}
-      itemContent={(index, post) => (
+      itemContent={(_, post) => (
         <Post
           key={post._id}
           post={post}
