@@ -6,20 +6,13 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import classes from "./mobile-navbar-primary-routes.module.css";
 
-import {
-  HomeIcon,
-  // ExploreIcon,
-  HomePostIcon,
-  // ReelsIcon,
-} from "@/components/icons/icons";
+import { HomeIcon, HomePostIcon } from "@/components/icons/icons";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 import { ProfileLink } from "@/components/profile-link/profile-link";
 
 const routes = [
   { path: "/", name: "Home", icon: HomeIcon, dot: true },
-  // { path: "/explore", name: "Search", icon: ExploreIcon },
   { path: "/new-post", name: "New Post", icon: HomePostIcon },
-  // { path: "/reels", name: "Reels", icon: ReelsIcon, count: 2 },
 ];
 
 export const MobileNavbar = () => {
