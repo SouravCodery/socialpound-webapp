@@ -92,10 +92,6 @@ button {
   transition: filter 0.3s ease-in-out;
 }
 
-button:hover {
-  filter: brightness(1.2);
-}
-
 .shadow {
   box-shadow: var(--shadow-color) var(--shadow-value);
 }
