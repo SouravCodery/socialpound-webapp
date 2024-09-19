@@ -6,7 +6,7 @@
 
   position: relative;
 
-  width: 100vw;
+  width: calc(100vw - 1rem);
   max-width: 30rem;
 
   background: var(--background-primary);
