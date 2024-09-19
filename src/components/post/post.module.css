@@ -9,7 +9,7 @@
   width: 100vw;
   max-width: 30rem;
 
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem;
 
   border-radius: 0.5rem;
   font-size: 0.8rem;
@@ -19,7 +19,7 @@
 }
 
 .post:first-of-type {
-  margin-top: 1.5rem;
+  margin-top: 0.75rem;
 }
 
 .post > div {
