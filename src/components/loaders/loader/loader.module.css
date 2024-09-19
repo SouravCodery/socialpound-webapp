@@ -4,17 +4,15 @@
   align-items: center;
   justify-content: center;
 
-  z-index: 100;
+  z-index: 10000;
 
   top: 50%;
   left: 50%;
 
-  width: 120%;
-  height: 120%;
+  width: 100vw;
+  height: 100vh;
 
   transform: translate(-50%, -50%);
-
-  max-width: 60rem;
 
   background-color: rgba(var(--background-primary-inverted-rgb), 0.7);
 
