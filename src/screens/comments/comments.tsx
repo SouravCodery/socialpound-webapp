@@ -90,7 +90,7 @@ export const Comments = ({ postId }: { postId: string }) => {
     <div className={classes.comments}>
       <Virtuoso
         className={classes.virtualCommentsList}
-        style={{ height: "80vh" }}
+        style={{ height: "90vh" }}
         context={{ isNextPageAvailable, loadMore }}
         itemContent={(index, comment) => (
           <Comment
