@@ -11,8 +11,10 @@ export default function SecondaryRoutesLayout({
 }) {
   return (
     <>
-      <HeaderSecondaryRoutes />
-      <main className={clsx(classes.main)}>{children}</main>
+      <div className={classes.container}>
+        <HeaderSecondaryRoutes />
+        <main className={clsx(classes.main)}>{children}</main>
+      </div>
     </>
   );
 }
