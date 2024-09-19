@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import clsx from "clsx";
-import classes from "./mobile-header-primary-routes.module.css";
+import classes from "./header-primary.module.css";
 
 import { HamburgerIcon, LikeIcon } from "@/components/icons/icons";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
@@ -12,7 +12,7 @@ const routes = [
   { path: "/settings", name: "Settings", icon: HamburgerIcon, dot: false },
 ];
 
-export const MobileHeader = () => {
+export const HeaderPrimary = () => {
   return (
     <header className={classes.header}>
       <div className={classes.logoContainer}>

@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import clsx from "clsx";
-import classes from "./mobile-navbar-primary-routes.module.css";
+import classes from "./navbar.module.css";
 
 import { HomeIcon, HomePostIcon } from "@/components/icons/icons";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
@@ -15,7 +14,7 @@ const routes = [
   { path: "/new-post", name: "New Post", icon: HomePostIcon },
 ];
 
-export const MobileNavbar = () => {
+export const Navbar = () => {
   const pathName = usePathname();
 
   return (
