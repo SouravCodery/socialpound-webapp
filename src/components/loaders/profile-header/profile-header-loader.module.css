@@ -6,13 +6,23 @@
 
   width: 100%;
   max-width: 50rem;
+
+  padding-top: 0;
   padding: 0.75rem;
 
   font-size: 0.9rem;
-  background-color: var(--background-primary);
-  animation: pulse 1.5s infinite ease-in-out;
 
   border-bottom: 1px solid var(--border-primary);
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.username {
+  width: 100%;
+  height: 1rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  background: var(--background-secondary);
 }
 
 .dpAndCounts {
@@ -31,19 +41,18 @@
   align-items: center;
 }
 
-.skeletonDp {
-  width: 4.5rem;
-  height: 4.5rem;
+.skeletonProfilePicture {
+  width: 8rem;
+  height: 8rem;
   background-color: var(--background-secondary);
   border-radius: 50%;
 }
 
-.name {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 0.4rem;
+@media screen and (max-width: 600px) {
+  .skeletonProfilePicture {
+    width: 6rem;
+    height: 6rem;
+  }
 }
 
 .skeletonName {
@@ -51,14 +60,7 @@
   height: 0.8rem;
   background-color: var(--background-secondary);
   border-radius: 0.2rem;
-  margin-bottom: 0.4rem;
-}
-
-.skeletonUsername {
-  width: 4rem;
-  height: 0.7rem;
-  background-color: var(--background-secondary);
-  border-radius: 0.2rem;
+  margin-top: 0.5rem;
 }
 
 .counters {
@@ -96,17 +98,21 @@
 .skeletonBio {
   width: 100%;
   height: 1rem;
-  margin-top: 1rem;
   background-color: var(--background-secondary);
+  margin-top: 1rem;
   border-radius: 0.2rem;
 }
 
-.skeletonProfileActions {
+.profileActions {
   width: 100%;
-  height: 2rem;
-  margin-top: 1rem;
+  margin: 2rem 0;
+}
+
+.skeletonProfileActionsButton {
+  width: 50%;
+  height: 2.5rem;
   background-color: var(--background-secondary);
-  border-radius: 0.2rem;
+  border-radius: 0.25rem;
 }
 
 @keyframes pulse {
