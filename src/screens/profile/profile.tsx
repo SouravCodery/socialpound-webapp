@@ -21,7 +21,7 @@ export const Profile = ({ username }: { username: string }) => {
   const isOwnProfile = user?.email === userDecodedToken?.email;
   const userId = user?._id ?? "";
 
-  if (isLoading) {
+  if (isLoading || !userId) {
     return <ProfileLoader />;
   }
 
