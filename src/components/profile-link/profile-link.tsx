@@ -10,11 +10,37 @@ import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 import { AuthUserProfilePicture } from "@/components/auth-user-profile-picture/auth-user-profile-picture";
 import { useGetUserFromDecodedToken } from "@/hooks/user.hooks";
 
-export const ProfileLink = () => {
+export const ProfileLink = ({
+  extended,
+  linkClassName,
+  routeClassName,
+  activeClassName,
+}: {
+  extended?: boolean;
+  linkClassName?: string;
+  routeClassName?: string;
+  activeClassName?: string;
+}) => {
   const pathName = usePathname();
   const { username, name } = useGetUserFromDecodedToken();
 
   const profileRoute = getProfileRoute({ username, name });
+
+  if (extended) {
+    return (
+      <Link
+        key={profileRoute.path}
+        href={profileRoute.path}
+        className={clsx(
+          linkClassName,
+          pathName === profileRoute.path && activeClassName
+        )}
+      >
+        <profileRoute.icon />
+        <div className={routeClassName}>Profile</div>
+      </Link>
+    );
+  }
 
   return (
     <Link

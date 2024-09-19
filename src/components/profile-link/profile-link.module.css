@@ -9,3 +9,7 @@
 .active {
   background: var(--background-secondary);
 }
+
+.link:hover {
+  background: var(--border-primary-light);
+}
