@@ -21,6 +21,10 @@
   font-size: 0.8rem;
 }
 
+.notification:first-of-type {
+  margin-top: 0.75rem;
+}
+
 .message {
   flex: 0.95;
   color: var(--color-secondary);

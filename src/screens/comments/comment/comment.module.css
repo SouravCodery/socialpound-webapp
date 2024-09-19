@@ -20,6 +20,10 @@
   font-size: 0.8rem;
 }
 
+.comment:first-of-type {
+  margin-top: 0.75rem;
+}
+
 .main {
   position: relative;
 
