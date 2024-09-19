@@ -9,7 +9,7 @@ import { Logo } from "@/components/logo/logo";
 
 const routes = [
   { path: "/notifications", name: "Reels", icon: LikeIcon, dot: true },
-  { path: "/settings", name: "Settings", icon: HamburgerIcon, dot: false },
+  { path: "/more", name: "More", icon: HamburgerIcon, dot: false },
 ];
 
 export const HeaderPrimary = () => {

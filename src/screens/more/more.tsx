@@ -1,14 +1,14 @@
 "use client";
 
 import clsx from "clsx";
-import classes from "./settings.module.css";
+import classes from "./more.module.css";
 
 import { Logout } from "./log-out/log-out";
 import { SettingsIcon } from "@/components/icons/icons";
 import { DeleteAccount } from "./delete-account/delete-account";
 import { ThemeToggleButton } from "./theme-toggle-button/theme-toggle-button";
 
-export const Settings = () => {
+export const More = () => {
   return (
     <div className={classes.settingsSuperContainer}>
       <div className={clsx(classes.settingsContainer, "shadow")}>

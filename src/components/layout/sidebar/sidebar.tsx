@@ -21,7 +21,7 @@ const routesTop = [
 ];
 
 const routesBottom = [
-  { path: "/settings", name: "More", icon: HamburgerIcon, dot: false },
+  { path: "/more", name: "More", icon: HamburgerIcon, dot: false },
 ];
 
 export const Sidebar = () => {
