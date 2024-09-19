@@ -12,7 +12,7 @@ const routes = [
   { path: "/settings", name: "Settings", icon: HamburgerIcon, dot: false },
 ];
 
-export const MobileHeader = async () => {
+export const MobileHeader = () => {
   return (
     <header className={classes.header}>
       <div className={classes.logoContainer}>

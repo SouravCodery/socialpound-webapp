@@ -24,7 +24,7 @@ const routesBottom = [
   { path: "/settings", name: "More", icon: HamburgerIcon, dot: false },
 ];
 
-export const Sidebar = async () => {
+export const Sidebar = () => {
   const pathName = usePathname();
 
   return (
