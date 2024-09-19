@@ -11,4 +11,5 @@ export const Constants = {
   ] as SupportedMediaTypes[],
   MAX_IMAGE_ASPECT_RATIO: 3,
   MIN_IMAGE_ASPECT_RATIO: 1 / 3,
+  SOCIAL_POUND_USER_DP: "static/images/socialpound_user.png",
 } as const;
