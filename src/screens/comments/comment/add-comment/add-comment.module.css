@@ -1,9 +1,6 @@
 .container {
   position: fixed;
-  left: 50%;
   bottom: 0rem;
-
-  transform: translateX(-50%);
 
   display: flex;
   justify-content: center;

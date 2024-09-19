@@ -5,7 +5,7 @@
 
   position: relative;
 
-  width: 100vw;
+  width: calc(100vw - 1rem);
   max-width: 30rem;
 
   background: var(--background-primary);
@@ -20,6 +20,10 @@
   padding: 0.75rem;
 
   font-size: 0.8rem;
+}
+
+.like:first-of-type {
+  margin-top: 0.75rem;
 }
 
 .content {

@@ -20,7 +20,7 @@ export const Comment = ({
   return (
     <div className={clsx(classes.comment, "shadow")}>
       <div className={classes.main}>
-        <ProfilePicture dpURL={user?.profilePicture} randomizeDP />
+        <ProfilePicture dpURL={user?.profilePicture} />
         <div className={classes.content}>
           <div
             className={clsx(

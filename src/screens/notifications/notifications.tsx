@@ -61,7 +61,7 @@ export const Notifications = () => {
     <div className={classes.notifications}>
       <Virtuoso
         className={classes.virtualNotificationsList}
-        style={{ height: "80vh" }}
+        style={{ height: "90vh" }}
         context={{ isNextPageAvailable, loadMore }}
         itemContent={(index, notification) => (
           <Notification key={notification._id} notification={notification} />

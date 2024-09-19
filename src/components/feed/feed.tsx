@@ -56,7 +56,7 @@ export default function Feed() {
   return (
     <Virtuoso
       className={classes.virtualFeed}
-      style={{ height: "80vh" }}
+      style={{ height: "100vh" }}
       context={{ isNextPageAvailable, loadMore }}
       itemContent={(index, post) => <Post key={post._id} post={post} />}
       data={posts}

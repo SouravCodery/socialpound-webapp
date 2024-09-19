@@ -1,7 +1,5 @@
 .header {
-  position: fixed;
-
-  top: 0;
+  position: relative;
 
   width: 100%;
   max-width: 60rem;
@@ -17,6 +15,12 @@
   background: var(--background-primary);
 
   z-index: 1100;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: none;
+  }
 }
 
 .logoContainer {
@@ -39,4 +43,12 @@
   align-items: center;
 
   width: 100%;
+}
+
+.route {
+  border-radius: 0.5rem;
+}
+
+.route:hover {
+  background: var(--border-primary-light);
 }

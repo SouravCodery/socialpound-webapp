@@ -10,11 +10,16 @@
   max-width: 30rem;
 
   margin-bottom: 1.5rem;
+
   border-radius: 0.5rem;
   font-size: 0.8rem;
 
   background: var(--background-primary);
   color: var(--color-primary);
+}
+
+.post:first-of-type {
+  margin-top: 1.5rem;
 }
 
 .post > div {

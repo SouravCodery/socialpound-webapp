@@ -11,4 +11,13 @@
   width: 100vw;
 
   margin: auto;
+  overflow: hidden;
+}
+
+@media (min-width: 768px) {
+  .body {
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+  }
 }

@@ -1,0 +1,74 @@
+.sidebar {
+  height: 100%;
+  width: 16rem;
+
+  padding: 1rem;
+
+  border-right: 1px solid var(--border-primary);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  background: var(--background-primary);
+
+  z-index: 1100;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 1rem;
+}
+
+.navbar {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.navbar:last-of-type {
+  margin-top: auto;
+}
+
+.link {
+  cursor: pointer;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+}
+
+.route {
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  transition: all 0.5 ease-in-out;
+}
+
+.route:hover {
+  background: var(--border-primary-light);
+}
+
+.routeName {
+  margin-left: 1rem;
+  flex: 0.8;
+}
+
+.active {
+  font-weight: bold;
+}

@@ -15,7 +15,7 @@ export const Like = ({ like }: { like: LikeInterface }) => {
 
   return (
     <Link href={userProfile} className={classes.like}>
-      <ProfilePicture dpURL={liker.profilePicture} randomizeDP scale="medium" />
+      <ProfilePicture dpURL={liker.profilePicture} scale="medium" />
       <div className={classes.content}>
         <div
           className={clsx(
