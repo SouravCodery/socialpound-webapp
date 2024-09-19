@@ -1,13 +1,13 @@
 .dpContainer {
   position: relative;
 
-  height: 2.2rem;
-  width: 2.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
 
   border-radius: 50%;
   overflow: hidden;
 
-  border: 1px solid var(--border-primary);
+  outline: 2px solid var(--border-primary);
 }
 
 .medium {
