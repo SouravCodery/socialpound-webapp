@@ -1,5 +1,7 @@
-import Link from "next/link";
+"use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import classes from "./sidebar.module.css";
 
@@ -9,7 +11,6 @@ import {
   HomePostIcon,
   LikeIcon,
 } from "@/components/icons/icons";
-import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 import { Logo } from "@/components/logo/logo";
 import { ProfileLink } from "@/components/profile-link/profile-link";
 
@@ -24,6 +25,8 @@ const routesBottom = [
 ];
 
 export const Sidebar = async () => {
+  const pathName = usePathname();
+
   return (
     <aside className={classes.sidebar}>
       <div className={classes.logoContainer}>
@@ -36,19 +39,33 @@ export const Sidebar = async () => {
           <Link
             key={route.path}
             href={route.path}
-            className={clsx(classes.link, classes.route)}
+            className={clsx(
+              classes.link,
+              classes.route,
+              pathName === route.path && classes.active
+            )}
           >
             <route.icon />
             <div className={classes.routeName}>{route.name}</div>
           </Link>
         ))}
+        <ProfileLink
+          extended={true}
+          linkClassName={clsx(classes.link, classes.route)}
+          routeClassName={classes.routeName}
+          activeClassName={classes.active}
+        />
       </nav>
       <nav className={clsx(classes.navbar)}>
         {routesBottom.map((route) => (
           <Link
             key={route.path}
             href={route.path}
-            className={clsx(classes.link, classes.route)}
+            className={clsx(
+              classes.link,
+              classes.route,
+              pathName === route.path && classes.active
+            )}
           >
             <route.icon />
             <div className={classes.routeName}>{route.name}</div>

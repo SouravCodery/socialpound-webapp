@@ -52,6 +52,7 @@
 
   width: 100%;
 }
+
 .route {
   border-radius: 0.5rem;
   padding: 1rem;
@@ -65,4 +66,9 @@
 
 .routeName {
   margin-left: 1rem;
+  flex: 0.8;
+}
+
+.active {
+  font-weight: bold;
 }
