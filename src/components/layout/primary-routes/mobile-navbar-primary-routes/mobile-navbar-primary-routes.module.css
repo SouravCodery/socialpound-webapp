@@ -10,6 +10,12 @@
   z-index: 1000;
 }
 
+@media (min-width: 768px) {
+  .footer {
+    display: none;
+  }
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;

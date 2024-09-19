@@ -17,6 +17,12 @@
   z-index: 1100;
 }
 
+@media (min-width: 768px) {
+  .header {
+    display: none;
+  }
+}
+
 .logoContainer {
   display: flex;
   justify-content: center;
