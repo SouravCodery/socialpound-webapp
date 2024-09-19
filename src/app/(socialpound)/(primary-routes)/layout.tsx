@@ -1,9 +1,8 @@
 import { clsx } from "clsx";
-
 import classes from "./layout.module.css";
 
-import { MobileHeader } from "@/components/layout/primary-routes/mobile-header-primary-routes/mobile-header-primary-routes";
-import { MobileNavbar } from "@/components/layout/primary-routes/mobile-navbar-primary-routes/mobile-navbar-primary-routes";
+import { HeaderPrimary } from "@/components/layout/header-primary/header-primary";
+import { Navbar } from "@/components/layout/navbar/navbar";
 
 export default function PrimaryRoutesLayout({
   children,
@@ -12,9 +11,9 @@ export default function PrimaryRoutesLayout({
 }) {
   return (
     <>
-      <MobileHeader />
+      <HeaderPrimary />
       <main className={clsx(classes.main)}>{children}</main>
-      <MobileNavbar />
+      <Navbar />
     </>
   );
 }

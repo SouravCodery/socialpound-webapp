@@ -1,8 +1,7 @@
 import { clsx } from "clsx";
-
 import classes from "./layout.module.css";
 
-import { HeaderSecondaryRoutes } from "@/components/layout/secondary-routes/header-secondary-routes/header-secondary-routes";
+import { HeaderSecondary } from "@/components/layout/header-secondary/header-secondary";
 
 export default function SecondaryRoutesLayout({
   children,
@@ -12,7 +11,7 @@ export default function SecondaryRoutesLayout({
   return (
     <>
       <div className={classes.container}>
-        <HeaderSecondaryRoutes />
+        <HeaderSecondary />
         <main className={clsx(classes.main)}>{children}</main>
       </div>
     </>
