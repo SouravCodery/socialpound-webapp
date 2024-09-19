@@ -22,11 +22,7 @@ export const Notification = ({
 
   return (
     <Link href={href} className={classes.notification}>
-      <ProfilePicture
-        dpURL={sender.profilePicture}
-        randomizeDP
-        scale="medium"
-      />
+      <ProfilePicture dpURL={sender.profilePicture} scale="medium" />
       <div className={classes.message}>
         <NotificationMessage notification={notification} />
       </div>
