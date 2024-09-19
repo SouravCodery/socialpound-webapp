@@ -20,6 +20,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  height: 100%;
 }
 
 .link {
@@ -28,8 +30,13 @@
   align-items: center;
 
   width: 100%;
+  height: 100%;
 }
 
 .active {
   background: var(--background-secondary);
+}
+
+.link:hover {
+  background: var(--border-primary-light);
 }
