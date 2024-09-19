@@ -22,7 +22,11 @@ export const MobileHeader = async () => {
       </div>
       <nav className={clsx(classes.navbar)}>
         {routes.map((route) => (
-          <Link key={route.path} href={route.path} className={classes.link}>
+          <Link
+            key={route.path}
+            href={route.path}
+            className={clsx(classes.link, classes.route)}
+          >
             <IconWrapper dot={route.dot}>
               <route.icon />
             </IconWrapper>

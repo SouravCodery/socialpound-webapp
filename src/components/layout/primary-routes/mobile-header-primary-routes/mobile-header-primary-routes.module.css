@@ -44,3 +44,11 @@
 
   width: 100%;
 }
+
+.route {
+  border-radius: 0.5rem;
+}
+
+.route:hover {
+  background: var(--border-primary-light);
+}
