@@ -1,4 +1,5 @@
 import { LoggerInterface } from "../models/interfaces/logger.interface";
+import { isDevEnvironment, isRunningOnClient } from "@/helpers/misc.helpers";
 
 export const LogColors = {
   Reset: "\x1b[0m",
@@ -11,6 +12,8 @@ export const LogColors = {
 
 export class ConsoleLogger implements LoggerInterface {
   info(message: string, ...meta: any[]): void {
+    if (!isDevEnvironment() && isRunningOnClient()) return;
+
     console.log(
       `${LogColors.FgWhite}${LogColors.BgBlue}%s${LogColors.Reset}`,
       message,
@@ -20,6 +23,8 @@ export class ConsoleLogger implements LoggerInterface {
   }
 
   error(message: string, ...meta: any[]): void {
+    if (!isDevEnvironment() && isRunningOnClient()) return;
+
     console.error(
       `${LogColors.FgWhite}${LogColors.BgRed}%s${LogColors.Reset}`,
       message,
@@ -29,6 +34,8 @@ export class ConsoleLogger implements LoggerInterface {
   }
 
   debug(message: string, ...meta: any[]): void {
+    if (!isDevEnvironment() && isRunningOnClient()) return;
+
     console.debug(
       `${LogColors.FgWhite}${LogColors.BgCyan}%s${LogColors.Reset}`,
       message,
@@ -38,6 +45,8 @@ export class ConsoleLogger implements LoggerInterface {
   }
 
   warn(message: string, ...meta: any[]): void {
+    if (!isDevEnvironment() && isRunningOnClient()) return;
+
     console.warn(
       `${LogColors.FgWhite}${LogColors.BgYellow}%s${LogColors.Reset}`,
       message,
