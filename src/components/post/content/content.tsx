@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import classes from "./content.module.css";
 
 import { Constants } from "@/constants/constants";
@@ -32,12 +33,14 @@ export const Content = ({
       }}
     >
       {errorInMedia === false ? (
-        <img
+        <Image
           src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
           alt="Post Image"
           className={classes.asset}
+          fill={true}
+          priority={true}
+          sizes="(max-width: 480px) 95vw, 464px"
           onError={handleErrorInMedia}
-          loading="lazy"
         />
       ) : (
         <div className={classes.mediaError}>
