@@ -22,7 +22,7 @@ export const ProfilePost = ({
   };
 
   return (
-    <Link href={href} className={classes.profilePost}>
+    <Link href={href} className={classes.profilePost} prefetch={false}>
       {errorInMedia === false ? (
         <img
           src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}

@@ -9,7 +9,13 @@ import { Logo } from "@/components/logo/logo";
 
 const routes = [
   { path: "/notifications", name: "Reels", icon: LikeIcon, dot: true },
-  { path: "/more", name: "More", icon: HamburgerIcon, dot: false },
+  {
+    path: "/settings",
+    name: "Settings and More",
+    title: "Settings and More",
+    icon: HamburgerIcon,
+    dot: false,
+  },
 ];
 
 export const HeaderPrimary = () => {
@@ -26,6 +32,7 @@ export const HeaderPrimary = () => {
             key={route.path}
             href={route.path}
             className={clsx(classes.link, classes.route)}
+            title={route?.title ?? route.name}
           >
             <IconWrapper dot={route.dot}>
               <route.icon />

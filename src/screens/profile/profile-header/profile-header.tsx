@@ -34,12 +34,12 @@ export const ProfileHeader = ({
 
   return (
     <div className={classes.profileHeader}>
+      <div className={classes.username}>@{username}</div>
       <div className={classes.dpAndCounts}>
         <div className={classes.dpAndName}>
           <ProfilePicture dpURL={profilePicture ?? ""} scale={"large"} />
           <div className={classes.name}>
             <div>{fullName}</div>
-            <div className={classes.username}>@{username}</div>
           </div>
         </div>
 
@@ -63,21 +63,20 @@ export const ProfileHeader = ({
 
       <div className={classes.bio}>{bio}</div>
 
-      <div className={classes.profileActions}>
-        {isOwnProfile && (
-          <>
-            <button
-              onClick={() => {
-                bakeToast({
-                  message: "Feature coming soon",
-                });
-              }}
-            >
-              Edit Profile
-            </button>
-          </>
-        )}
-      </div>
+      {isOwnProfile && (
+        <div className={classes.profileActions}>
+          <button
+            onClick={() => {
+              bakeToast({
+                message: "Feature coming soon",
+              });
+            }}
+            className={classes.profileActionsButton}
+          >
+            Edit Profile
+          </button>
+        </div>
+      )}
     </div>
   );
 };

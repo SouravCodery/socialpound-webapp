@@ -13,11 +13,16 @@
 .medium {
   height: 3rem;
   width: 3rem;
-  font-size: 20px;
 }
 
 .large {
-  height: 4.4rem;
-  width: 4.4rem;
-  font-size: 32px;
+  height: 8rem;
+  width: 8rem;
+}
+
+@media (max-width: 768px) {
+  .large {
+    height: 6rem;
+    width: 6rem;
+  }
 }

@@ -3,13 +3,11 @@ import classes from "./profile-header-loader.module.css";
 export const ProfileHeaderLoader = () => {
   return (
     <div className={classes.profileHeader}>
+      <div className={classes.username}></div>
       <div className={classes.dpAndCounts}>
         <div className={classes.dpAndName}>
-          <div className={classes.skeletonDp}></div>
-          <div className={classes.name}>
-            <div className={classes.skeletonName}></div>
-            <div className={classes.skeletonUsername}></div>
-          </div>
+          <div className={classes.skeletonProfilePicture}></div>
+          <div className={classes.skeletonName}></div>
         </div>
 
         <div className={classes.counters}>
@@ -32,7 +30,9 @@ export const ProfileHeaderLoader = () => {
 
       <div className={classes.skeletonBio}></div>
 
-      <div className={classes.skeletonProfileActions}></div>
+      <div className={classes.profileActions}>
+        <div className={classes.skeletonProfileActionsButton}></div>
+      </div>
     </div>
   );
 };
