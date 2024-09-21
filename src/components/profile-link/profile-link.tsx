@@ -35,6 +35,7 @@ export const ProfileLink = ({
           linkClassName,
           pathName === profileRoute.path && activeClassName
         )}
+        prefetch={false}
       >
         <profileRoute.icon />
         <div className={routeClassName}>Profile</div>
@@ -49,6 +50,7 @@ export const ProfileLink = ({
         classes.link,
         pathName === profileRoute.path && classes.active
       )}
+      prefetch={false}
     >
       <IconWrapper count={profileRoute.count}>
         <profileRoute.icon /> &nbsp;

@@ -21,7 +21,7 @@ export const Notification = ({
   const sender = notification?.sender || DELETED_USER;
 
   return (
-    <Link href={href} className={classes.notification}>
+    <Link href={href} className={classes.notification} prefetch={false}>
       <ProfilePicture dpURL={sender.profilePicture} scale="medium" />
       <div className={classes.message}>
         <NotificationMessage notification={notification} />

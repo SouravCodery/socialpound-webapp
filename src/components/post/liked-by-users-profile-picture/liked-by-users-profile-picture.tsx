@@ -35,7 +35,11 @@ export const LikedByUsersProfilePicture = ({
   }
 
   return (
-    <Link href={`/likes/${postId}`} className={classes.likedBy}>
+    <Link
+      href={`/likes/${postId}`}
+      className={classes.likedBy}
+      prefetch={false}
+    >
       <div className={classes.likedByGroup}>
         <span
           className={clsx(classes.likedByProfilePicture)}

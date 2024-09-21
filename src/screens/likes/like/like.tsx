@@ -14,7 +14,7 @@ export const Like = ({ like }: { like: LikeInterface }) => {
     : `/`;
 
   return (
-    <Link href={userProfile} className={classes.like}>
+    <Link href={userProfile} className={classes.like} prefetch={false}>
       <ProfilePicture dpURL={liker.profilePicture} scale="medium" />
       <div className={classes.content}>
         <div

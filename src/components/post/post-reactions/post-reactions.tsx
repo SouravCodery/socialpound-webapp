@@ -31,6 +31,7 @@ export const PostReactions = ({
         <Link
           href={`/comments/${post._id}`}
           className={clsx(classes.postReactionLink)}
+          prefetch={false}
         >
           <CommentIcon />{" "}
           <div className={classes.counter}>{post.commentsCount || null}</div>
