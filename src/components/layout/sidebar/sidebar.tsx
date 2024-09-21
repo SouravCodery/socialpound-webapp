@@ -15,13 +15,25 @@ import { Logo } from "@/components/logo/logo";
 import { ProfileLink } from "@/components/profile-link/profile-link";
 
 const routesTop = [
-  { path: "/", name: "Home", icon: HomeIcon, dot: true },
+  {
+    path: "/",
+    name: "Home",
+    title: "Posts from people",
+    icon: HomeIcon,
+    dot: true,
+  },
   { path: "/new-post", name: "New Post", icon: HomePostIcon },
   { path: "/notifications", name: "Notifications", icon: LikeIcon, dot: true },
 ];
 
 const routesBottom = [
-  { path: "/more", name: "More", icon: HamburgerIcon, dot: false },
+  {
+    path: "/settings",
+    name: "Settings",
+    title: "Settings and More",
+    icon: HamburgerIcon,
+    dot: false,
+  },
 ];
 
 export const Sidebar = () => {
@@ -44,6 +56,7 @@ export const Sidebar = () => {
               classes.route,
               pathName === route.path && classes.active
             )}
+            title={route?.title ?? route.name}
           >
             <route.icon />
             <div className={classes.routeName}>{route.name}</div>
@@ -66,6 +79,7 @@ export const Sidebar = () => {
               classes.route,
               pathName === route.path && classes.active
             )}
+            title={route?.title ?? route.name}
           >
             <route.icon />
             <div className={classes.routeName}>{route.name}</div>
