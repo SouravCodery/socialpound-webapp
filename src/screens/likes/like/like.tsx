@@ -1,10 +1,11 @@
+import Link from "next/link";
 import clsx from "clsx";
 import classes from "./like.module.css";
 
 import { LikeInterface } from "@/models/interfaces/like.interface";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { DELETED_USER } from "@/constants/deleted-user";
-import Link from "next/link";
+import { trimUsername } from "@/helpers/misc.helpers";
 
 export const Like = ({ like }: { like: LikeInterface }) => {
   const liker = like?.liker || DELETED_USER;
@@ -23,7 +24,7 @@ export const Like = ({ like }: { like: LikeInterface }) => {
             !liker._id && "deletedUser"
           )}
         >
-          {liker.username.split("@")[0]}
+          {trimUsername(liker.username)}
         </div>
         <div className={clsx(classes.fullName, !liker._id && "deletedUser")}>
           {liker.fullName}

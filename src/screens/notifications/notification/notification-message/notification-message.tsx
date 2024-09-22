@@ -3,6 +3,7 @@ import classes from "./notification-message.module.css";
 
 import { DELETED_USER } from "@/constants/deleted-user";
 import { NotificationInterface } from "@/models/interfaces/notification.interface";
+import { trimUsername } from "@/helpers/misc.helpers";
 
 export const NotificationMessage = ({
   notification,
@@ -10,7 +11,7 @@ export const NotificationMessage = ({
   notification: NotificationInterface;
 }) => {
   const sender = notification?.sender || DELETED_USER;
-  const username = sender.username.split("@")[0];
+  const username = trimUsername(sender.username);
 
   switch (notification.type) {
     case "like-on-post":

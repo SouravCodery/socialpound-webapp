@@ -5,6 +5,7 @@ import { CommentInterface } from "@/models/interfaces/comment.interface";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { DeleteComment } from "./delete-comment/delete-comment";
 import { DELETED_USER } from "@/constants/deleted-user";
+import { trimUsername } from "@/helpers/misc.helpers";
 
 export const Comment = ({
   comment,
@@ -28,7 +29,7 @@ export const Comment = ({
               !user._id && "deletedUser"
             )}
           >
-            {user?.username.split("@")[0]}
+            {trimUsername(user?.username)}
           </div>
           <div>{comment.text}</div>
         </div>
