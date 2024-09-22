@@ -33,7 +33,7 @@ export const DeleteComment = ({
     }
   };
 
-  if (isOwnComment !== true) return null;
+  if (isOwnComment !== true || commentId.startsWith("optimistic")) return null;
 
   return (
     <>
