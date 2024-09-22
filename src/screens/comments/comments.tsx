@@ -75,9 +75,13 @@ export const Comments = ({ postId }: { postId: string }) => {
       <div className={classes.comments}>
         <div className={classes.noComments}>
           <h2>No comments yet.</h2>
-          <div className={classes.noCommentsSub}>Start the conversation.</div>
+          {!error && (
+            <div className={classes.noCommentsSub}>Start the conversation.</div>
+          )}
         </div>
-        <AddComment postId={postId} updateComments={updateComments} />
+        {!error && (
+          <AddComment postId={postId} updateComments={updateComments} />
+        )}
       </div>
     );
   }
@@ -107,7 +111,7 @@ export const Comments = ({ postId }: { postId: string }) => {
         }}
       />
 
-      <AddComment postId={postId} updateComments={updateComments} />
+      {!error && <AddComment postId={postId} updateComments={updateComments} />}
     </div>
   );
 };

@@ -47,7 +47,11 @@ export const Likes = ({ postId }: { postId: string }) => {
       <div className={classes.likes}>
         <div className={classes.noLikes}>
           <h2>No likes yet.</h2>
-          <div className={classes.noLikesSub}>Be the first one to like it.</div>
+          {!error && (
+            <div className={classes.noLikesSub}>
+              Be the first one to like it.
+            </div>
+          )}
         </div>
       </div>
     );
