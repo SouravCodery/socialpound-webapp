@@ -10,7 +10,7 @@ export const Like = ({ like }: { like: LikeInterface }) => {
   const liker = like?.liker || DELETED_USER;
 
   const userProfile = like?.liker?._id
-    ? `/profile/${like?.liker?.username.split("@")[0]}`
+    ? `/profile/${like?.liker?.username}`
     : `/`;
 
   return (

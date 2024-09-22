@@ -19,7 +19,7 @@ export const PostHeader = ({
   const user = post?.user || DELETED_USER;
 
   const userProfile = post?.user?._id
-    ? `/profile/${post?.user?.username.split("@")[0]}`
+    ? `/profile/${post?.user?.username}`
     : `/`;
 
   return (
