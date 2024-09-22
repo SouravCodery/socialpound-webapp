@@ -11,6 +11,7 @@ import { Comment } from "./comment/comment";
 import { CommentLoader } from "@/components/loaders/comments/comment-loader";
 import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-loader";
 import { AddComment } from "./comment/add-comment/add-comment";
+import { CommentInterface } from "@/models/interfaces/comment.interface";
 
 export const Comments = ({ postId }: { postId: string }) => {
   const {
@@ -52,6 +53,30 @@ export const Comments = ({ postId }: { postId: string }) => {
     );
   };
 
+  const updateCommentsAfterNewCommentAddition = ({
+    newComment,
+  }: {
+    newComment: CommentInterface;
+  }) => {
+    updateComments(
+      (data) => {
+        return data?.map((each, index) => {
+          if (index === 0) {
+            return {
+              ...each,
+              comments: [newComment, ...each.comments],
+            };
+          }
+
+          return each;
+        });
+      },
+      {
+        revalidate: false,
+      }
+    );
+  };
+
   const loadMore = useCallback(() => {
     if (isNextPageLoading) {
       return;
@@ -80,7 +105,12 @@ export const Comments = ({ postId }: { postId: string }) => {
           )}
         </div>
         {!error && (
-          <AddComment postId={postId} updateComments={updateComments} />
+          <AddComment
+            postId={postId}
+            updateCommentsAfterNewCommentAddition={
+              updateCommentsAfterNewCommentAddition
+            }
+          />
         )}
       </div>
     );
@@ -111,7 +141,14 @@ export const Comments = ({ postId }: { postId: string }) => {
         }}
       />
 
-      {!error && <AddComment postId={postId} updateComments={updateComments} />}
+      {!error && (
+        <AddComment
+          postId={postId}
+          updateCommentsAfterNewCommentAddition={
+            updateCommentsAfterNewCommentAddition
+          }
+        />
+      )}
     </div>
   );
 };
