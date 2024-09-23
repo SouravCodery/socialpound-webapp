@@ -4,7 +4,7 @@ import { cookies } from "next/headers";
 import { Account, Profile, User } from "next-auth";
 
 import { logger } from "@/logger/index.logger";
-import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 
 import * as jwtHelpers from "@/helpers/jwt-server-side.helpers";
 

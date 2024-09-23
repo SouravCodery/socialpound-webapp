@@ -1,7 +1,7 @@
 import useSWRInfinite from "swr/infinite";
 
-import { API_ROUTES } from "@/ig-sdk/api-routes";
-import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+import { API_ROUTES } from "@/api-sdk/api-routes";
+import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 
 import { LikeResponseInterface } from "@/models/interfaces/like.interface";
 

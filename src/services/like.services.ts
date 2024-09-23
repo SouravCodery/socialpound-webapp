@@ -1,4 +1,4 @@
-import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 import { logger } from "@/logger/index.logger";
 import { localStorageHelpers } from "@/helpers/local-storage.helpers";
 
