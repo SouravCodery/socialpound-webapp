@@ -10,7 +10,7 @@ import { NewPostMediaPreview } from "./new-post-media-preview/new-post-media-pre
 import { Loader } from "@/components/loaders/loader/loader";
 
 import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
-import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 import { Constants } from "@/constants/constants";
 import { SupportedMediaTypes } from "@/models/types/media.types";
 import { bakeToast } from "@/components/toasts/toasts";

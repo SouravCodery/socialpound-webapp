@@ -1,8 +1,11 @@
-import { logger } from "@/logger/index.logger";
+import { signOut } from "next-auth/react";
 
-import { FetchResponseInterface } from "./../models/interfaces/fetch-response.interface";
-import { getServerToken } from "@/actions/user.actions";
 import { bakeToast } from "@/components/toasts/toasts";
+import { cookieFlushAfterLogout, getServerToken } from "@/actions/user.actions";
+import { isRunningOnClient } from "@/helpers/misc.helpers";
+import { localStorageHelpers } from "@/helpers/local-storage.helpers";
+import { FetchResponseInterface } from "./../models/interfaces/fetch-response.interface";
+import { logger } from "@/logger/index.logger";
 
 export class HttpClient {
   private readonly baseURL: string;
@@ -74,6 +77,14 @@ export class HttpClient {
 
         if (responseLog?.toastMessage && typeof window !== "undefined") {
           bakeToast({ type: "error", message: responseLog.toastMessage });
+        }
+
+        if (response.status === 401) {
+          if (isRunningOnClient()) {
+            localStorageHelpers.removeItem({ key: "post-likes" });
+            await cookieFlushAfterLogout();
+            await signOut();
+          }
         }
 
         throw new Error(`Network response was not ok: ${responseLog?.message}`);

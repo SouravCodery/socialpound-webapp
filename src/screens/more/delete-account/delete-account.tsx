@@ -4,7 +4,7 @@ import { Confirm } from "@/components/confirm/confirm";
 import { localStorageHelpers } from "@/helpers/local-storage.helpers";
 import { cookieFlushAfterLogout } from "@/actions/user.actions";
 import { signOut } from "next-auth/react";
-import { apiSDKInstance } from "@/ig-sdk/ig-sdk.instance";
+import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 
 export const DeleteAccount = ({
   buttonClassName,

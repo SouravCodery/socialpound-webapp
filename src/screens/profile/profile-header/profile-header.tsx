@@ -7,6 +7,7 @@ import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 
 import { UserInterface } from "@/models/interfaces/user.interface";
 import { bakeToast } from "@/components/toasts/toasts";
+import { trimUsername } from "@/helpers/misc.helpers";
 
 export const ProfileHeader = ({
   user,
@@ -26,7 +27,7 @@ export const ProfileHeader = ({
     followingCount,
   } = user ?? {};
 
-  const username = user?.username?.split("@")[0];
+  const username = trimUsername(user?.username);
 
   if (isLoading || !user) {
     return <ProfileHeaderLoader />;

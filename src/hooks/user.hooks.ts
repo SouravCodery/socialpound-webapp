@@ -4,7 +4,7 @@ export const useGetUserFromDecodedToken = () => {
   const { userDecodedToken } = useSWRGetDecodedUserToken();
 
   return {
-    username: userDecodedToken?.email?.split("@")[0] ?? "",
+    username: userDecodedToken?.email ?? "",
     name: userDecodedToken?.name ?? "",
     profilePicture: userDecodedToken?.image ?? "",
   };

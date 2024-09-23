@@ -15,6 +15,7 @@ import {
   unlikeUserPost,
 } from "@/services/like.services";
 import { PostReactions } from "./post-reactions/post-reactions";
+import { trimUsername } from "@/helpers/misc.helpers";
 
 export const Post = ({
   post,
@@ -76,7 +77,7 @@ export const Post = ({
 
         {post.caption && (
           <div className={classes.captionContainer}>
-            <div>{post?.user?.username.split("@")[0]}</div>
+            <div>{trimUsername(post?.user?.username)}</div>
             &nbsp;
             <div>{post.caption}</div>
           </div>

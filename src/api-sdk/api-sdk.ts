@@ -7,7 +7,7 @@ import { CommentModule } from "./modules/comment-module";
 import { NotificationModule } from "./modules/notification-module";
 import { AWSPresignedUrlModule } from "./modules/aws-presigned-url-module";
 
-export class IG_SDK {
+export class API_SDK {
   public baseUrl: string;
 
   public user: UserModule;

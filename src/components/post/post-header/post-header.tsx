@@ -6,6 +6,7 @@ import { PostInterface } from "@/models/interfaces/post.interface";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { DeletePost } from "../delete-post/delete-post";
 import { DELETED_USER } from "@/constants/deleted-user";
+import { trimUsername } from "@/helpers/misc.helpers";
 
 export const PostHeader = ({
   post,
@@ -19,7 +20,7 @@ export const PostHeader = ({
   const user = post?.user || DELETED_USER;
 
   const userProfile = post?.user?._id
-    ? `/profile/${post?.user?.username.split("@")[0]}`
+    ? `/profile/${post?.user?.username}`
     : `/`;
 
   return (
@@ -32,7 +33,7 @@ export const PostHeader = ({
             !user._id && "deletedUser"
           )}
         >
-          &nbsp;{user?.username?.split("@")[0]}
+          &nbsp;{trimUsername(user?.username)}
         </div>
       </Link>
       <div className={classes.headerRight}>

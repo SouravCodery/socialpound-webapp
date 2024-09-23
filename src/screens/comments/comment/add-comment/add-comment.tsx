@@ -1,22 +1,29 @@
 "use client";
 
 import { useState } from "react";
-
 import classes from "./add-comment.module.css";
 
-import { logger } from "@/logger/index.logger";
 import { useSWRAddComment } from "@/hooks/swr-hooks/comment.swr-hooks";
+import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
+
 import { Spinner } from "@/components/loaders/spinner/spinner";
 import { bakeToast } from "@/components/toasts/toasts";
+import { CommentInterface } from "@/models/interfaces/comment.interface";
+import { logger } from "@/logger/index.logger";
 
 export const AddComment = ({
   postId,
-  updateComments,
+  updateCommentsAfterNewCommentAddition,
 }: {
   postId: string;
-  updateComments: Function;
+  updateCommentsAfterNewCommentAddition: ({
+    newComment,
+  }: {
+    newComment: CommentInterface;
+  }) => void;
 }) => {
   const { trigger, isMutating } = useSWRAddComment();
+  const { userDecodedToken } = useSWRGetDecodedUserToken();
 
   const [text, setText] = useState<string>("");
 
@@ -42,7 +49,21 @@ export const AddComment = ({
 
       setText("");
 
-      await updateComments();
+      updateCommentsAfterNewCommentAddition({
+        newComment: {
+          _id: `optimistic-${Date.now()}`,
+          commentOn: "Post",
+          post: postId,
+          parentComment: undefined,
+          text,
+          user: {
+            _id: userDecodedToken?.id ?? "",
+            fullName: userDecodedToken?.name ?? "",
+            username: userDecodedToken?.email ?? "",
+            profilePicture: userDecodedToken?.image ?? "",
+          },
+        },
+      });
     } catch (error) {
       logger.error("Error add comment:", error);
     }
