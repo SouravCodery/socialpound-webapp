@@ -1,11 +1,13 @@
-import { User } from "next-auth";
+export interface UserTokenPayloadInterface {
+  _id: string;
+  email: string;
+  fullName: string;
+  profilePicture: string;
+}
 
 export interface LoginResponseInterface {
   token: string;
-  user: {
-    id: string;
-    username: string;
-  };
+  user: UserTokenPayloadInterface;
 }
 
 export interface SubDocumentUserInterface {
@@ -15,7 +17,7 @@ export interface SubDocumentUserInterface {
   profilePicture: string;
 }
 
-export interface UserDecodedTokenInterface extends User {
+export interface UserDecodedTokenInterface extends UserTokenPayloadInterface {
   iat: number;
   exp: number;
 }
