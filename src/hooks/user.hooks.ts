@@ -1,11 +1,19 @@
-import { useSWRGetDecodedUserToken } from "./swr-hooks/user.swr-hooks";
+import { DELETED_USER } from "@/constants/deleted-user";
+import { localStorageHelpers } from "@/helpers/local-storage.helpers";
+import { UserTokenPayloadInterface } from "@/models/interfaces/user.interface";
+import { useEffect, useState } from "react";
 
-export const useGetUserFromDecodedToken = () => {
-  const { userDecodedToken } = useSWRGetDecodedUserToken();
+export const useGetAuthenticatedUserFromLocalStorage = () => {
+  const [authenticatedUser, setAuthenticatedUser] =
+    useState<UserTokenPayloadInterface>({ ...DELETED_USER, _id: "" });
 
-  return {
-    username: userDecodedToken?.email ?? "",
-    name: userDecodedToken?.name ?? "",
-    profilePicture: userDecodedToken?.image ?? "",
-  };
+  useEffect(() => {
+    const user = localStorageHelpers.getItem<UserTokenPayloadInterface>({
+      key: "user",
+    });
+
+    if (user) setAuthenticatedUser(user);
+  }, []);
+
+  return authenticatedUser;
 };
