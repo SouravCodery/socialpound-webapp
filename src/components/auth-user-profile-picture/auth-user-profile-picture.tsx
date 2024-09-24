@@ -1,14 +1,16 @@
 "use client";
 
+import { useGetAuthenticatedUserFromLocalStorage } from "@/hooks/user.hooks";
 import { ProfilePicture } from "../profile-picture/profile-picture";
-import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
 
 export const AuthUserProfilePicture = ({
   scale,
 }: {
   scale?: "medium" | "large";
 }) => {
-  const { userDecodedToken } = useSWRGetDecodedUserToken();
+  const authenticatedUser = useGetAuthenticatedUserFromLocalStorage();
 
-  return <ProfilePicture dpURL={userDecodedToken?.image ?? ""} scale={scale} />;
+  return (
+    <ProfilePicture dpURL={authenticatedUser.profilePicture} scale={scale} />
+  );
 };

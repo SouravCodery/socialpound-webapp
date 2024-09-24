@@ -8,11 +8,11 @@ import classes from "./posts.module.css";
 
 import { useLoadPostsLikedByUser } from "@/hooks/like.hooks";
 import { useSWRGetPostsByUserId } from "@/hooks/swr-hooks/post.swr-hooks";
+import { useGetAuthenticatedUserFromLocalStorage } from "@/hooks/user.hooks";
 import { PostLoader } from "../loaders/post/post-loader";
 import { Post } from "@/components/post/post";
 import { NoPosts } from "../no-posts/no-posts";
 import { InfiniteLoader } from "../loaders/infinite-loader/infinite-loader";
-import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
 
 export default function Posts({ userId }: { userId: string }) {
   const {
@@ -26,8 +26,7 @@ export default function Posts({ userId }: { userId: string }) {
   } = useSWRGetPostsByUserId({ userId });
   const { isPostsLikedByUserLoading } = useLoadPostsLikedByUser();
 
-  const { userDecodedToken } = useSWRGetDecodedUserToken();
-  const authenticatedUserEmail = userDecodedToken?.email;
+  const authenticatedUser = useGetAuthenticatedUserFromLocalStorage();
 
   const updatePostsAfterDeletion = ({ postId }: { postId: string }) => {
     updatePosts(
@@ -82,7 +81,7 @@ export default function Posts({ userId }: { userId: string }) {
         <Post
           key={post._id}
           post={post}
-          isOwnPost={authenticatedUserEmail === post?.user?.username}
+          isOwnPost={authenticatedUser._id === post?.user?._id}
           updatePostsAfterDeletion={updatePostsAfterDeletion}
         />
       )}

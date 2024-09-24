@@ -5,13 +5,13 @@ import { Virtuoso } from "react-virtuoso";
 import classes from "./comments.module.css";
 
 import { useSWRGetCommentsByPostId } from "@/hooks/swr-hooks/comment.swr-hooks";
-import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
 
 import { Comment } from "./comment/comment";
 import { CommentLoader } from "@/components/loaders/comments/comment-loader";
 import { InfiniteLoader } from "@/components/loaders/infinite-loader/infinite-loader";
 import { AddComment } from "./comment/add-comment/add-comment";
 import { CommentInterface } from "@/models/interfaces/comment.interface";
+import { useGetAuthenticatedUserFromLocalStorage } from "@/hooks/user.hooks";
 
 export const Comments = ({ postId }: { postId: string }) => {
   const {
@@ -27,9 +27,7 @@ export const Comments = ({ postId }: { postId: string }) => {
   });
 
   const comments = data?.flatMap((each) => each.comments) ?? [];
-
-  const { userDecodedToken } = useSWRGetDecodedUserToken();
-  const authenticatedUserEmail = userDecodedToken?.email;
+  const authenticatedUser = useGetAuthenticatedUserFromLocalStorage();
 
   const updateCommentsAfterDeletion = ({
     commentId,
@@ -131,7 +129,7 @@ export const Comments = ({ postId }: { postId: string }) => {
             key={comment._id}
             comment={comment}
             //todo: User can delete any comment if the comment is on his post
-            isOwnComment={authenticatedUserEmail === comment?.user?.username}
+            isOwnComment={authenticatedUser._id === comment?.user?._id}
             updateCommentsAfterDeletion={updateCommentsAfterDeletion}
           />
         )}

@@ -6,9 +6,9 @@ import clsx from "clsx";
 
 import classes from "./profile-link.module.css";
 
+import { useGetAuthenticatedUserFromLocalStorage } from "@/hooks/user.hooks";
 import { IconWrapper } from "@/components/atoms/icon-wrapper/icon-wrapper";
 import { AuthUserProfilePicture } from "@/components/auth-user-profile-picture/auth-user-profile-picture";
-import { useGetUserFromDecodedToken } from "@/hooks/user.hooks";
 
 export const ProfileLink = ({
   extended,
@@ -22,9 +22,8 @@ export const ProfileLink = ({
   activeClassName?: string;
 }) => {
   const pathName = usePathname();
-  const { username, name } = useGetUserFromDecodedToken();
-
-  const profileRoute = getProfileRoute({ username, name });
+  const { email, fullName } = useGetAuthenticatedUserFromLocalStorage();
+  const profileRoute = getProfileRoute({ username: email, name: fullName });
 
   if (extended) {
     return (

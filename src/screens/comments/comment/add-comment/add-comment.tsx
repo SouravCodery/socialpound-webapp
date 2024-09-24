@@ -4,7 +4,7 @@ import { useState } from "react";
 import classes from "./add-comment.module.css";
 
 import { useSWRAddComment } from "@/hooks/swr-hooks/comment.swr-hooks";
-import { useSWRGetDecodedUserToken } from "@/hooks/swr-hooks/user.swr-hooks";
+import { useGetAuthenticatedUserFromLocalStorage } from "@/hooks/user.hooks";
 
 import { Spinner } from "@/components/loaders/spinner/spinner";
 import { bakeToast } from "@/components/toasts/toasts";
@@ -23,7 +23,7 @@ export const AddComment = ({
   }) => void;
 }) => {
   const { trigger, isMutating } = useSWRAddComment();
-  const { userDecodedToken } = useSWRGetDecodedUserToken();
+  const authenticatedUser = useGetAuthenticatedUserFromLocalStorage();
 
   const [text, setText] = useState<string>("");
 
@@ -56,12 +56,7 @@ export const AddComment = ({
           post: postId,
           parentComment: undefined,
           text,
-          user: {
-            _id: userDecodedToken?.id ?? "",
-            fullName: userDecodedToken?.name ?? "",
-            username: userDecodedToken?.email ?? "",
-            profilePicture: userDecodedToken?.image ?? "",
-          },
+          user: authenticatedUser,
         },
       });
     } catch (error) {
