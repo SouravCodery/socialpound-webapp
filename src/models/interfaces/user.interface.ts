@@ -1,5 +1,6 @@
 export interface UserTokenPayloadInterface {
   _id: string;
+  username: string;
   email: string;
   fullName: string;
   profilePicture: string;
@@ -12,6 +13,7 @@ export interface LoginResponseInterface {
 
 export interface SubDocumentUserInterface {
   _id: string;
+  email: string;
   username: string;
   fullName: string;
   profilePicture: string;
