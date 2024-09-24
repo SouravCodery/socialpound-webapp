@@ -16,6 +16,7 @@ import {
 } from "@/services/like.services";
 import { PostReactions } from "./post-reactions/post-reactions";
 import { trimUsername } from "@/helpers/misc.helpers";
+import { DELETED_USER } from "@/constants/deleted-user";
 
 export const Post = ({
   post,
@@ -27,6 +28,7 @@ export const Post = ({
   updatePostsAfterDeletion?: ({ postId }: { postId: string }) => void;
 }) => {
   const postId = post._id;
+  const user = post?.user || DELETED_USER;
   const isLiked = isPostLikedByUser({ postId });
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -77,7 +79,9 @@ export const Post = ({
 
         {post.caption && (
           <div className={classes.captionContainer}>
-            <div>{trimUsername(post?.user?.username)}</div>
+            <div className={clsx(!user._id && "deletedUser")}>
+              {trimUsername(user?.username)}
+            </div>
             &nbsp;
             <div>{post.caption}</div>
           </div>
