@@ -14,20 +14,13 @@ export class UserModule {
     this.httpClient = httpClient;
   }
 
-  async signIn({
-    token,
-    signedUserDataJWT,
-  }: {
-    token: string;
-    signedUserDataJWT: string;
-  }) {
+  async signIn({ googleToken }: { googleToken: string }) {
     return this.httpClient.request<LoginResponseInterface>({
       endpoint: API_ROUTES.user.signIn,
       options: {
         method: "POST",
       },
-      body: { signedUserDataJWT },
-      token,
+      body: { googleToken },
     });
   }
 

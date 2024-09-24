@@ -1,6 +1,26 @@
-export { auth as default } from "@/root/auth";
+import { NextRequest, NextResponse } from "next/server";
+
+export function middleware(request: NextRequest) {
+  const { nextUrl } = request;
+
+  const serverToken = request.cookies.get("server-token")?.value;
+
+  const isLoggedIn = !!serverToken;
+  const isAuthRoute = nextUrl.pathname.startsWith("/account");
+
+  if (isLoggedIn && isAuthRoute) {
+    return Response.redirect(new URL("/", request.url));
+  }
+
+  if (!isLoggedIn && !isAuthRoute) {
+    return Response.redirect(new URL("/account/sign-in", request.url));
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
-  // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
-  matcher: ["/((?!api|_next/static|_next/image|.*\\.png$).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  ],
 };

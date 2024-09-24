@@ -1,27 +1,8 @@
 import useSWR from "swr";
+import useSWRMutation from "swr/mutation";
 
 import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 import { API_ROUTES } from "@/api-sdk/api-routes";
-
-export const useSWRGetDecodedUserToken = () => {
-  const { data, error, isLoading, mutate } = useSWR(
-    "user-decoded-from-token",
-    () => {
-      return apiSDKInstance.user.getDecodedUserToken();
-    },
-    {
-      shouldRetryOnError: false,
-      revalidateOnFocus: false,
-    }
-  );
-
-  return {
-    userDecodedToken: data,
-    error,
-    isLoading,
-    mutate,
-  };
-};
 
 export const useSWRGetUserByUsername = ({ username }: { username: string }) => {
   const { data, error, isLoading, mutate } = useSWR(
@@ -41,4 +22,25 @@ export const useSWRGetUserByUsername = ({ username }: { username: string }) => {
     isLoading,
     mutate,
   };
+};
+
+export const useSWRLogin = () => {
+  const { trigger, error, isMutating, data } = useSWRMutation(
+    API_ROUTES.post.createPost,
+    (
+      _,
+      {
+        arg,
+      }: {
+        arg: {
+          googleToken: string;
+        };
+      }
+    ) => {
+      const { googleToken } = arg;
+      return apiSDKInstance.user.signIn({ googleToken });
+    }
+  );
+
+  return { trigger, data, error, isMutating };
 };

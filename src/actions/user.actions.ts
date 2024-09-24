@@ -1,44 +1,17 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { Account, Profile, User } from "next-auth";
-
+import { convertStringDaysToSeconds } from "@/helpers/misc.helpers";
 import { logger } from "@/logger/index.logger";
-import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 
-import * as jwtHelpers from "@/helpers/jwt-server-side.helpers";
-
-export async function signInServerSide({
-  user,
-  account,
-  profile,
-}: {
-  user: User;
-  account: Account | null;
-  profile?: Profile;
-}) {
+export async function setServerToken({ token }: { token: string }) {
   try {
-    const signedServerJWT = jwtHelpers.signServerJWT({
-      user,
-    });
-
-    const signedUserDataJWT = jwtHelpers.signUserDataJWT({
-      user,
-      account,
-      profile,
-    });
-
-    const AUTH_JWT_EXPIRES_IN = process.env.AUTH_JWT_EXPIRES_IN || "365d";
-    const maxAgeInSeconds = jwtHelpers.convertStringDaysToSeconds({
+    const AUTH_JWT_EXPIRES_IN = process.env.AUTH_JWT_EXPIRES_IN || "30d";
+    const maxAgeInSeconds = convertStringDaysToSeconds({
       key: AUTH_JWT_EXPIRES_IN,
     });
 
-    await apiSDKInstance.user.signIn({
-      token: signedServerJWT,
-      signedUserDataJWT,
-    });
-
-    cookies().set("server-token", signedServerJWT, {
+    cookies().set("server-token", token, {
       maxAge: maxAgeInSeconds,
       httpOnly: true,
       sameSite: "lax",
@@ -46,7 +19,7 @@ export async function signInServerSide({
 
     return true;
   } catch (error) {
-    logger.error("Error in signInServerSide", { error });
+    logger.error("Error in setServerToken", { error });
 
     return false;
   }

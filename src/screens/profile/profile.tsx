@@ -6,19 +6,17 @@ import classes from "./profile.module.css";
 import { ProfileHeader } from "./profile-header/profile-header";
 import { ProfilePosts } from "./profile-posts/profile-posts";
 
-import {
-  useSWRGetUserByUsername,
-  useSWRGetDecodedUserToken,
-} from "@/hooks/swr-hooks/user.swr-hooks";
+import { useSWRGetUserByUsername } from "@/hooks/swr-hooks/user.swr-hooks";
 import { ProfileLoader } from "@/components/loaders/profile/profile-loader";
+import { useGetAuthenticatedUserFromLocalStorage } from "@/hooks/user.hooks";
 
 export const Profile = ({ username }: { username: string }) => {
   const { user, isLoading } = useSWRGetUserByUsername({
     username,
   });
-  const { userDecodedToken } = useSWRGetDecodedUserToken();
+  const userFromLocalStorage = useGetAuthenticatedUserFromLocalStorage();
 
-  const isOwnProfile = user?.email === userDecodedToken?.email;
+  const isOwnProfile = user?._id === userFromLocalStorage?._id;
   const userId = user?._id ?? "";
 
   if (isLoading || !userId) {

@@ -29,7 +29,7 @@
 
 .spinner {
   border: 0.25rem solid var(--background-secondary);
-  border-top: 0.25rem solid var(--button-primary);
+  border-top: 0.25rem solid var(--color-primary);
 
   border-radius: 50%;
 
@@ -45,9 +45,7 @@
 
   width: 100%;
   margin-top: 1.5rem;
-
   font-size: 1rem;
-  font-weight: bold;
 
   text-align: center;
   color: var(--background-primary);
