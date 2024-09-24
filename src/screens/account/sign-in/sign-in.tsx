@@ -42,7 +42,7 @@ export const SignIn = () => {
 
       const { user, token } = data;
       localStorageHelpers.setItem({
-        key: "user",
+        key: "pound",
         value: user,
       });
 
