@@ -45,10 +45,6 @@ export const SignIn = () => {
         key: "user",
         value: user,
       });
-      localStorageHelpers.setItem({
-        key: "token",
-        value: token,
-      });
 
       await setServerToken({ token: token });
 
