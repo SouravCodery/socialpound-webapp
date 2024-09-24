@@ -72,4 +72,8 @@
   align-items: center;
 
   width: 100%;
+  border-radius: 0.5rem;
+  padding: 2rem 1rem;
+
+  background: white;
 }
