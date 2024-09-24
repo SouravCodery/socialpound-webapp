@@ -8,11 +8,18 @@ export const useGetAuthenticatedUserFromLocalStorage = () => {
     useState<UserTokenPayloadInterface>({ ...DELETED_USER, _id: "" });
 
   useEffect(() => {
-    const user = localStorageHelpers.getItem<UserTokenPayloadInterface>({
-      key: "user",
+    const userBase64 = localStorageHelpers.getItem<string>({
+      key: "pound",
     });
 
-    if (user) setAuthenticatedUser(user);
+    try {
+      if (userBase64) {
+        const user = JSON.parse(atob(atob(userBase64)));
+        setAuthenticatedUser(user);
+      }
+    } catch (error) {
+      console.error("Error in useGetAuthenticatedUserFromLocalStorage", error);
+    }
   }, []);
 
   return authenticatedUser;
