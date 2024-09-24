@@ -1,5 +1,3 @@
-import { signOut } from "next-auth/react";
-
 import { bakeToast } from "@/components/toasts/toasts";
 import { cookieFlushAfterLogout, getServerToken } from "@/actions/user.actions";
 import { isRunningOnClient } from "@/helpers/misc.helpers";
@@ -82,8 +80,8 @@ export class HttpClient {
         if (response.status === 401) {
           if (isRunningOnClient()) {
             localStorageHelpers.removeItem({ key: "post-likes" });
+            localStorageHelpers.removeItem({ key: "user" });
             await cookieFlushAfterLogout();
-            await signOut();
           }
         }
 
