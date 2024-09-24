@@ -1,9 +1,9 @@
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 import { Confirm } from "@/components/confirm/confirm";
 import { localStorageHelpers } from "@/helpers/local-storage.helpers";
 import { cookieFlushAfterLogout } from "@/actions/user.actions";
-import { signOut } from "next-auth/react";
 import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 
 export const DeleteAccount = ({
@@ -11,6 +11,7 @@ export const DeleteAccount = ({
 }: {
   buttonClassName: string;
 }) => {
+  const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isDeletingAccount, setIsDeletingAccount] = useState(false);
 
@@ -29,10 +30,12 @@ export const DeleteAccount = ({
       setIsDeletingAccount(true);
 
       localStorageHelpers.removeItem({ key: "post-likes" });
-      await apiSDKInstance.user.deleteUser();
+      localStorageHelpers.removeItem({ key: "user" });
 
+      await apiSDKInstance.user.deleteUser();
       await cookieFlushAfterLogout();
-      await signOut();
+
+      router.replace("/account/sign-in");
     } catch (error) {
     } finally {
       setIsDeletingAccount(false);
