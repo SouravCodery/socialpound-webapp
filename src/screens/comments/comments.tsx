@@ -128,7 +128,7 @@ export const Comments = ({ postId }: { postId: string }) => {
           <Comment
             key={comment._id}
             comment={comment}
-            isOwnComment={
+            isAuthorizedToDeleteComment={
               authenticatedUser._id === comment?.user?._id ||
               authenticatedUser._id === comment?.postBy
             }

@@ -9,11 +9,11 @@ import { trimUsername } from "@/helpers/misc.helpers";
 
 export const Comment = ({
   comment,
-  isOwnComment = false,
+  isAuthorizedToDeleteComment = false,
   updateCommentsAfterDeletion,
 }: {
   comment: CommentInterface;
-  isOwnComment?: boolean;
+  isAuthorizedToDeleteComment?: boolean;
   updateCommentsAfterDeletion: ({ commentId }: { commentId: string }) => void;
 }) => {
   const user = comment?.user || DELETED_USER;
@@ -36,7 +36,7 @@ export const Comment = ({
         <div className={classes.actionsContainer}>
           <DeleteComment
             commentId={comment._id}
-            isOwnComment={isOwnComment}
+            isAuthorizedToDeleteComment={isAuthorizedToDeleteComment}
             updateCommentsAfterDeletion={updateCommentsAfterDeletion}
           />
         </div>
