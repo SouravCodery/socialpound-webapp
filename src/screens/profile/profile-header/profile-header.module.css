@@ -62,6 +62,12 @@
   padding: 1rem;
 }
 
+@media (max-width: 375px) {
+  .counters {
+    font-size: 0.6rem;
+  }
+}
+
 .counter {
   display: flex;
   flex-direction: column;
