@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import classes from "./profile-post.module.css";
-
-import { PostInterface } from "@/models/interfaces/post.interface";
-import { Constants } from "@/constants/constants";
 import Link from "next/link";
+import Image from "next/image";
+import classes from "./profile-post.module.css";
+import { Constants } from "@/constants/constants";
+import { PostInterface } from "@/models/interfaces/post.interface";
 
 export const ProfilePost = ({
   post,
@@ -24,12 +24,14 @@ export const ProfilePost = ({
   return (
     <Link href={href} className={classes.profilePost} prefetch={false}>
       {errorInMedia === false ? (
-        <img
+        <Image
           src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}
           alt="Post Image"
           className={classes.asset}
           onError={handleErrorInMedia}
-          loading="lazy"
+          fill={true}
+          priority={true}
+          sizes="(max-width: 768px) 32vw, (min-width: 769px) calc(33vw - 5.3rem), (min-width: 1060px) 264px"
         />
       ) : (
         <div className={classes.mediaError}>

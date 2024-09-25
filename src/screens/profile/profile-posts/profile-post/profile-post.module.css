@@ -1,12 +1,12 @@
 .profilePost {
-  flex: 1;
+  position: relative;
 
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
 
   aspect-ratio: 1/1;
-
   border: 0.1px solid var(--background-secondary);
 }
 
