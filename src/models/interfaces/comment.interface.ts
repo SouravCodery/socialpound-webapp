@@ -8,6 +8,7 @@ export interface CommentInterface {
   parentComment?: string;
 
   user: SubDocumentUserInterface | null;
+  postBy: string;
   text: string;
 }
 

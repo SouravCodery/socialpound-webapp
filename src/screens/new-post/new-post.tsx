@@ -17,7 +17,7 @@ import { bakeToast } from "@/components/toasts/toasts";
 
 export const NewPost = () => {
   const router = useRouter();
-  const { trigger, isMutating, data } = useSWRAddPost();
+  const { trigger } = useSWRAddPost();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
