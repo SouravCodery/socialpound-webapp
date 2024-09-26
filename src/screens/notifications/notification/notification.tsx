@@ -20,10 +20,13 @@ export const Notification = ({
     : `/comments/${notification.post._id}`;
 
   const sender = notification?.sender || DELETED_USER;
+  const senderProfile = sender?._id ? `/profile/${sender?.username}` : `/`;
 
   return (
     <Link href={href} className={classes.notification} prefetch={false}>
-      <ProfilePicture dpURL={sender.profilePicture} scale="medium" />
+      <Link href={senderProfile} prefetch={false}>
+        <ProfilePicture dpURL={sender.profilePicture} scale="medium" />
+      </Link>
       <div className={classes.message}>
         <NotificationMessage notification={notification} />
       </div>
