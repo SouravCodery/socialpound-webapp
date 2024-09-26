@@ -8,11 +8,18 @@ import { Constants } from "@/constants/constants";
 
 const socialpoundUserProfilePicture = `${Constants.CDN_BASE_URL}/${Constants.SOCIAL_POUND_USER_DP}`;
 
+const scaleMap = {
+  extraSmall: "1.5rem",
+  small: "2rem",
+  medium: "2.75rem",
+  large: "8rem",
+};
+
 export const ProfilePicture = ({
-  scale,
+  scale = "extraSmall",
   dpURL,
 }: {
-  scale?: "medium" | "large";
+  scale?: "extraSmall" | "small" | "medium" | "large";
   dpURL: string;
 }) => {
   const [profilePictureUrl, setProfilePictureUrl] = useState(
@@ -31,15 +38,13 @@ export const ProfilePicture = ({
     return null;
   }
 
-  const sizes = !scale ? "3rem" : scale === "medium" ? "3rem" : "8rem";
-
   return (
     <div className={clsx(classes.dpContainer, scale && classes[scale])}>
       <Image
         src={profilePictureUrl}
         alt="Profile Picture"
         fill
-        sizes={sizes}
+        sizes={scaleMap[scale]}
         onError={handleErrorInMedia}
         unoptimized
       />
