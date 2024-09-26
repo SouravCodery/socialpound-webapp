@@ -1,9 +1,9 @@
 .notification {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-
-  position: relative;
 
   width: calc(100vw - 1rem);
   max-width: 30rem;
@@ -31,6 +31,8 @@
 }
 
 .content {
+  position: relative;
+
   display: flex;
   justify-content: center;
   align-items: center;
