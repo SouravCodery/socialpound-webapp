@@ -1,10 +1,11 @@
+import Link from "next/link";
 import clsx from "clsx";
 import classes from "./comment.module.css";
 
+import { DELETED_USER } from "@/constants/deleted-user";
 import { CommentInterface } from "@/models/interfaces/comment.interface";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { DeleteComment } from "./delete-comment/delete-comment";
-import { DELETED_USER } from "@/constants/deleted-user";
 import { trimUsername } from "@/helpers/misc.helpers";
 
 export const Comment = ({
@@ -17,11 +18,16 @@ export const Comment = ({
   updateCommentsAfterDeletion: ({ commentId }: { commentId: string }) => void;
 }) => {
   const user = comment?.user || DELETED_USER;
+  const userProfile = user?._id ? `/profile/${user?.username}` : `/`;
 
   return (
-    <div className={clsx(classes.comment, "shadow")}>
+    <Link
+      href={userProfile}
+      className={clsx(classes.comment, "shadow")}
+      prefetch={false}
+    >
       <div className={classes.main}>
-        <ProfilePicture dpURL={user?.profilePicture} />
+        <ProfilePicture dpURL={user?.profilePicture} scale="medium" />
         <div className={classes.content}>
           <div
             className={clsx(
@@ -41,6 +47,6 @@ export const Comment = ({
           />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
