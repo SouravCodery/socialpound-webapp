@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { clsx } from "clsx";
-
 import "@/app/globals.css";
 import classes from "./layout.module.css";
 import { Toasts } from "@/components/toasts/toasts";
@@ -12,9 +11,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Socialpound | SouravCodery",
+  title: "Socialpound by Sourav Choudhary (@SouravCodery)",
   description:
-    "Socialpound a Social Media Platform by Sourav Choudhary | @SouravCodery",
+    "Socialpound is a social media platform like Instagram. It has been built by Sourav Choudhary (@SouravCodery).",
 };
 
 export default function RootLayout({
