@@ -9,8 +9,8 @@
 
   background-color: #121212;
   color: #ffffff;
-  text-align: center;
 
+  text-align: center;
   padding: 1rem;
 }
 
@@ -43,16 +43,16 @@
 
 .link {
   font-size: 1.4rem;
-
   text-decoration: none;
   padding: 1rem 2rem;
 
   border: none;
   border-radius: 0.5rem;
-  transition: background-color 0.3s ease;
 
   background-color: var(--button-primary);
   color: #ffffff;
+
+  transition: background-color 0.3s ease;
 }
 
 .link:hover {
@@ -66,5 +66,53 @@
   }
   to {
     transform: translateX(-1rem);
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.2rem;
+  }
+
+  .emoji {
+    font-size: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  .link {
+    font-size: 1.2rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo > div {
+    font-size: 2.5rem;
+  }
+
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .emoji {
+    font-size: 1.8rem;
+  }
+
+  .link {
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
   }
 }
