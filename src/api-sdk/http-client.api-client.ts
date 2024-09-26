@@ -1,8 +1,8 @@
-import { bakeToast } from "@/components/toasts/toasts";
+import { FetchResponseInterface } from "./../models/interfaces/fetch-response.interface";
 import { cookieFlushAfterLogout, getServerToken } from "@/actions/user.actions";
 import { isRunningOnClient } from "@/helpers/misc.helpers";
 import { localStorageHelpers } from "@/helpers/local-storage.helpers";
-import { FetchResponseInterface } from "./../models/interfaces/fetch-response.interface";
+import { bakeToast } from "@/components/toasts/toasts";
 import { logger } from "@/logger/index.logger";
 
 export class HttpClient {
@@ -73,7 +73,7 @@ export class HttpClient {
       if (!response.ok) {
         const responseLog = response?.json ? await response.json() : response;
 
-        if (responseLog?.toastMessage && typeof window !== "undefined") {
+        if (responseLog?.toastMessage && isRunningOnClient()) {
           bakeToast({ type: "error", message: responseLog.toastMessage });
         }
 
@@ -90,7 +90,7 @@ export class HttpClient {
 
       const responseJson: FetchResponseInterface<T> = await response.json();
 
-      if (responseJson?.toastMessage && typeof window !== "undefined") {
+      if (responseJson?.toastMessage && isRunningOnClient()) {
         bakeToast({ message: responseJson.toastMessage });
       }
 
@@ -101,6 +101,26 @@ export class HttpClient {
         // { endpoint, options, token, queryParams, body },
         { error }
       );
+
+      if (
+        error instanceof Error &&
+        (error.message === "Failed to fetch" ||
+          error.message.includes("ERR_CONNECTION_REFUSED")) &&
+        isRunningOnClient()
+      ) {
+        bakeToast({
+          type: "error",
+          message: `Oops! Our Servers Took a Coffee Break ☕️`,
+        });
+        bakeToast({
+          type: "error",
+          message: `Looks like we're having a bit of downtime. Don't worry, we're on it!`,
+        });
+        bakeToast({
+          type: "error",
+          message: `Please check back in a few moments, or grab a coffee yourself in the meantime. 😉`,
+        });
+      }
 
       throw error;
     }
