@@ -2,6 +2,9 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import imageCompression, {
+  Options as ImageCompressionOptions,
+} from "browser-image-compression";
 import classes from "./new-post.module.css";
 
 import { Constants } from "@/constants/constants";
@@ -18,7 +21,7 @@ import { logger } from "@/logger/index.logger";
 export const NewPost = () => {
   const router = useRouter();
   const { trigger } = useSWRAddPost();
-  const {username} = useGetAuthenticatedUserFromLocalStorage();
+  const { username } = useGetAuthenticatedUserFromLocalStorage();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -30,22 +33,14 @@ export const NewPost = () => {
 
   const [caption, setCaption] = useState<string>("");
 
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
     if (!event?.target?.files?.[0]) {
       return;
     }
 
     const file = event.target.files[0];
-
-    if (file.size > Constants.MAX_MEDIA_SIZE) {
-      bakeToast({
-        type: "error",
-        message:
-          "The selected image is too large. Please select an image smaller than 5MB.",
-      });
-
-      return;
-    }
 
     if (file.size < Constants.MIN_MEDIA_SIZE) {
       bakeToast({
@@ -70,41 +65,61 @@ export const NewPost = () => {
       return;
     }
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const imageUrl = reader.result as string;
-
-      const img = new Image();
-      img.src = imageUrl;
-      img.onload = () => {
-        const currentAspectRatio = parseFloat(
-          (img.naturalWidth / img.naturalHeight).toFixed(2)
-        );
-
-        if (
-          currentAspectRatio > Constants.MAX_IMAGE_ASPECT_RATIO ||
-          currentAspectRatio < Constants.MIN_IMAGE_ASPECT_RATIO
-        ) {
-          setSelectedFile(null);
-          setSelectedMedia(null);
-          bakeToast({
-            type: "error",
-            message:
-              "The selected image has an invalid aspect ratio. Please select an image with a more balanced aspect ratio.",
-          });
-
-          if (fileInputRef.current) {
-            fileInputRef.current.value = "";
-          }
-          return;
-        }
-
-        setAspectRatio(currentAspectRatio);
-        setSelectedFile(file);
-        setSelectedMedia(imageUrl);
-      };
+    const imageCompressionOptions: ImageCompressionOptions = {
+      maxSizeMB: 4,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+      fileType: "image/webp",
+      initialQuality: 0.9,
     };
-    reader.readAsDataURL(file);
+
+    try {
+      const compressedFile = await imageCompression(
+        file,
+        imageCompressionOptions
+      );
+
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const imageUrl = reader.result as string;
+        const img = new Image();
+        img.src = imageUrl;
+        img.onload = () => {
+          const currentAspectRatio = parseFloat(
+            (img.naturalWidth / img.naturalHeight).toFixed(2)
+          );
+
+          if (
+            currentAspectRatio > Constants.MAX_IMAGE_ASPECT_RATIO ||
+            currentAspectRatio < Constants.MIN_IMAGE_ASPECT_RATIO
+          ) {
+            setSelectedFile(null);
+            setSelectedMedia(null);
+            bakeToast({
+              type: "error",
+              message:
+                "The selected image has an invalid aspect ratio. Please select an image with a more balanced aspect ratio. (1:3)-(3:1)",
+            });
+
+            if (fileInputRef.current) {
+              fileInputRef.current.value = "";
+            }
+
+            return;
+          }
+
+          setAspectRatio(currentAspectRatio);
+          setSelectedFile(compressedFile);
+          setSelectedMedia(imageUrl);
+        };
+      };
+      reader.readAsDataURL(compressedFile);
+    } catch (error) {
+      bakeToast({
+        type: "error",
+        message: "Failed to compress the image.",
+      });
+    }
   };
 
   const handleCaptionChange = (
