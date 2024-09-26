@@ -2,22 +2,23 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
-
 import classes from "./new-post.module.css";
-import { logger } from "@/logger/index.logger";
 
+import { Constants } from "@/constants/constants";
+import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
+import { SupportedMediaTypes } from "@/models/types/media.types";
+import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
+import { useGetAuthenticatedUserFromLocalStorage } from "@/hooks/user.hooks";
 import { NewPostMediaPreview } from "./new-post-media-preview/new-post-media-preview";
+import { bakeToast } from "@/components/toasts/toasts";
 import { Loader } from "@/components/loaders/loader/loader";
 
-import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
-import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
-import { Constants } from "@/constants/constants";
-import { SupportedMediaTypes } from "@/models/types/media.types";
-import { bakeToast } from "@/components/toasts/toasts";
+import { logger } from "@/logger/index.logger";
 
 export const NewPost = () => {
   const router = useRouter();
   const { trigger } = useSWRAddPost();
+  const {username} = useGetAuthenticatedUserFromLocalStorage();
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
@@ -159,7 +160,7 @@ export const NewPost = () => {
 
       bakeToast({ message: "Post shared!" });
 
-      router.push("/");
+      router.push(`/profile/${username}`);
     } catch (error) {
       logger.error("Error creating post:", error);
       bakeToast({ type: "error", message: "Couldn't add post." });
