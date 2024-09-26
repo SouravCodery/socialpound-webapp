@@ -24,15 +24,19 @@ export default function RootLayout({
   const themeScript = `
     (function() {
       try {
-        const theme = localStorage.getItem('theme') || 'light';
+        let theme = localStorage.getItem('theme');
+        if (!theme) {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          theme = prefersDark ? 'dark' : 'light';
+        }
         const themeColor = theme === 'dark' ? '#000000' : '#ffffff';
-        document.documentElement.classList.add(theme === 'dark' ? 'dark' : '');
+        document.documentElement.classList.add(theme === 'dark' ? 'dark' : 'light');
         const metaThemeColor = document.querySelector('meta[name="theme-color"]');
         if (metaThemeColor) {
           metaThemeColor.setAttribute('content', themeColor);
         }
       } catch (e) {
-        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
       }
     })();
   `;
