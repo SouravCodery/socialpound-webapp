@@ -47,6 +47,7 @@ export const ProfilePicture = ({
         sizes={scaleMap[scale]}
         onError={handleErrorInMedia}
         unoptimized
+        priority
       />
     </div>
   );
