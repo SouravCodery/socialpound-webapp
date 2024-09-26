@@ -25,11 +25,12 @@ export default function RootLayout({
   const themeScript = `
     (function() {
       try {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
+        const theme = localStorage.getItem('theme') || 'light';
+        const themeColor = theme === 'dark' ? '#000000' : '#ffffff';
+        document.documentElement.classList.add(theme === 'dark' ? 'dark' : '');
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', themeColor);
         }
       } catch (e) {
         document.documentElement.classList.remove('dark');
@@ -40,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="theme-color" content="#ffffff" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={clsx(roboto.className, classes.body)}>
