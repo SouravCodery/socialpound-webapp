@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
 import imageCompression, {
   Options as ImageCompressionOptions,
 } from "browser-image-compression";
@@ -214,7 +215,7 @@ export const NewPost = () => {
           placeholder="Write a caption for your post"
           value={caption}
           onChange={handleCaptionChange}
-          className={classes.caption}
+          className={clsx(classes.caption, "shadow")}
           maxLength={2200}
         />
         <div className={classes.shareButtonContainer}>
