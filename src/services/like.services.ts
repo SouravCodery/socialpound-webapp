@@ -74,7 +74,7 @@ export const unlikeUserPost = async ({ postId }: { postId: string }) => {
   }
 };
 
-export const updateLikesToLocalStorage = () => {
+const updateLikesToLocalStorage = () => {
   try {
     if (userLikesSet) {
       localStorageHelpers.setItem({
