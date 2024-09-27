@@ -6,6 +6,7 @@ import Image from "next/image";
 import classes from "./profile-post.module.css";
 import { Constants } from "@/constants/constants";
 import { PostInterface } from "@/models/interfaces/post.interface";
+import clsx from "clsx";
 
 export const ProfilePost = ({
   post,
@@ -22,7 +23,11 @@ export const ProfilePost = ({
   };
 
   return (
-    <Link href={href} className={classes.profilePost} prefetch={false}>
+    <Link
+      href={href}
+      className={clsx(classes.profilePost, "shadow")}
+      prefetch={false}
+    >
       {errorInMedia === false ? (
         <Image
           src={`${Constants.CDN_BASE_URL}/${post.content[0].url}`}

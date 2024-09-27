@@ -8,6 +8,9 @@
 
   aspect-ratio: 1/1;
   border: 0.1px solid var(--background-secondary);
+
+  border-radius: 0.15rem;
+  overflow: hidden;
 }
 
 .asset {
