@@ -1,11 +1,11 @@
 import { HttpClient } from "./http-client.api-client";
 
-import { UserModule } from "./modules/user-module";
-import { PostModule } from "./modules/post-module";
-import { LikeModule } from "./modules/like-module";
-import { CommentModule } from "./modules/comment-module";
-import { NotificationModule } from "./modules/notification-module";
-import { AWSPresignedUrlModule } from "./modules/aws-presigned-url-module";
+import { UserModule } from "./modules/user.module";
+import { PostModule } from "./modules/post.module";
+import { LikeModule } from "./modules/like.module";
+import { CommentModule } from "./modules/comment.module";
+import { NotificationModule } from "./modules/notification.module";
+import { AWSPresignedUrlModule } from "./modules/aws-presigned-url.module";
 
 export class API_SDK {
   public baseUrl: string;
