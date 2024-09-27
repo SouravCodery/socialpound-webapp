@@ -124,7 +124,7 @@ export const Comments = ({ postId }: { postId: string }) => {
         className={classes.virtualCommentsList}
         style={{ height: "90vh" }}
         context={{ isNextPageAvailable, loadMore }}
-        itemContent={(index, comment) => (
+        itemContent={(_, comment) => (
           <Comment
             key={comment._id}
             comment={comment}

@@ -23,7 +23,6 @@ export const PostReactions = ({
     <div className={classes.postReactions}>
       <div className={classes.postReactionsLeft}>
         <LikeButton
-          postId={post._id}
           count={currentLikeCount}
           currentPostLikeStatus={currentPostLikeStatus}
           likePost={likePost}

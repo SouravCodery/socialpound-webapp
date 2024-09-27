@@ -67,7 +67,7 @@ export const Likes = ({ postId }: { postId: string }) => {
         className={classes.virtualLikesList}
         style={{ height: "80vh" }}
         context={{ isNextPageAvailable, loadMore }}
-        itemContent={(index, like) => <Like key={like._id} like={like} />}
+        itemContent={(_, like) => <Like key={like._id} like={like} />}
         data={likes}
         components={{
           Footer: InfiniteLoader,

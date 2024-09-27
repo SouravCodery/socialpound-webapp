@@ -41,7 +41,7 @@ export const isPostLikedByUser = ({ postId }: { postId: string }) => {
 
 export const likeUserPost = async ({ postId }: { postId: string }) => {
   try {
-    const likeResponse = await apiSDKInstance.like.likePost({
+    await apiSDKInstance.like.likePost({
       likeOn: "Post",
       post: postId,
     });
@@ -59,7 +59,7 @@ export const likeUserPost = async ({ postId }: { postId: string }) => {
 
 export const unlikeUserPost = async ({ postId }: { postId: string }) => {
   try {
-    const unlikeResponse = await apiSDKInstance.like.unlikePost({
+    await apiSDKInstance.like.unlikePost({
       postId,
     });
 
