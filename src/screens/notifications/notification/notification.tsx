@@ -23,14 +23,14 @@ export const Notification = ({
   const senderProfile = sender?._id ? `/profile/${sender?.username}` : `/`;
 
   return (
-    <Link href={href} className={classes.notification} prefetch={false}>
+    <div className={classes.notification}>
       <Link href={senderProfile} prefetch={false}>
         <ProfilePicture dpURL={sender.profilePicture} scale="medium" />
       </Link>
       <div className={classes.message}>
         <NotificationMessage notification={notification} />
       </div>
-      <div className={classes.content}>
+      <Link className={classes.content} href={href} prefetch={false}>
         <Image
           src={`${Constants.CDN_BASE_URL}/${contentPath}`}
           alt="Post Image"
@@ -39,7 +39,7 @@ export const Notification = ({
           priority={true}
           sizes="calc(3rem - 2px)"
         />
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };
