@@ -128,8 +128,10 @@ export const Comments = ({ postId }: { postId: string }) => {
           <Comment
             key={comment._id}
             comment={comment}
-            //todo: User can delete any comment if the comment is on his post
-            isOwnComment={authenticatedUser._id === comment?.user?._id}
+            isAuthorizedToDeleteComment={
+              authenticatedUser._id === comment?.user?._id ||
+              authenticatedUser._id === comment?.postBy
+            }
             updateCommentsAfterDeletion={updateCommentsAfterDeletion}
           />
         )}

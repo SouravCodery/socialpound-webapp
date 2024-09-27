@@ -7,11 +7,11 @@ import { Confirm } from "@/components/confirm/confirm";
 import { useSWRDeleteCommentById } from "@/hooks/swr-hooks/comment.swr-hooks";
 
 export const DeleteComment = ({
-  isOwnComment,
+  isAuthorizedToDeleteComment,
   commentId,
   updateCommentsAfterDeletion,
 }: {
-  isOwnComment: boolean;
+  isAuthorizedToDeleteComment: boolean;
   commentId: string;
   updateCommentsAfterDeletion: ({ commentId }: { commentId: string }) => void;
 }) => {
@@ -33,7 +33,11 @@ export const DeleteComment = ({
     }
   };
 
-  if (isOwnComment !== true || commentId.startsWith("optimistic")) return null;
+  if (
+    isAuthorizedToDeleteComment !== true ||
+    commentId.startsWith("optimistic")
+  )
+    return null;
 
   return (
     <>

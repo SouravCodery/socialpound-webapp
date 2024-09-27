@@ -1,6 +1,6 @@
 .dpContainer {
   position: relative;
-
+  /* extra-small */
   height: 1.5rem;
   width: 1.5rem;
 
@@ -10,9 +10,14 @@
   outline: 2px solid var(--border-primary);
 }
 
+.small {
+  height: 2rem;
+  width: 2rem;
+}
+
 .medium {
-  height: 3rem;
-  width: 3rem;
+  height: 2.75rem;
+  width: 2.75rem;
 }
 
 .large {

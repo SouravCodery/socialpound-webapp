@@ -8,9 +8,7 @@ export const AuthUserProfilePicture = ({
 }: {
   scale?: "medium" | "large";
 }) => {
-  const authenticatedUser = useGetAuthenticatedUserFromLocalStorage();
+  const { profilePicture } = useGetAuthenticatedUserFromLocalStorage();
 
-  return (
-    <ProfilePicture dpURL={authenticatedUser.profilePicture} scale={scale} />
-  );
+  return <ProfilePicture dpURL={profilePicture} scale={scale} />;
 };

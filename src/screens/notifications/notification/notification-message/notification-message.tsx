@@ -1,3 +1,4 @@
+import Link from "next/link";
 import clsx from "clsx";
 import classes from "./notification-message.module.css";
 
@@ -13,37 +14,45 @@ export const NotificationMessage = ({
   const sender = notification?.sender || DELETED_USER;
   const username = trimUsername(sender.username);
 
+  const senderProfile = sender?._id ? `/profile/${sender?.username}` : `/`;
+
   switch (notification.type) {
     case "like-on-post":
       return (
         <div className={classes.message}>
-          <span
+          <Link
+            href={senderProfile}
+            prefetch={false}
             className={clsx(classes.username, !sender?._id && "deletedUser")}
           >
             {username}
-          </span>{" "}
+          </Link>{" "}
           liked your post
         </div>
       );
     case "like-on-comment":
       return (
         <div className={classes.message}>
-          <span
+          <Link
+            href={senderProfile}
+            prefetch={false}
             className={clsx(classes.username, !sender?._id && "deletedUser")}
           >
             {username}
-          </span>{" "}
+          </Link>{" "}
           liked your comment
         </div>
       );
     case "comment":
       return (
         <div className={classes.message}>
-          <span
+          <Link
+            href={senderProfile}
+            prefetch={false}
             className={clsx(classes.username, !sender?._id && "deletedUser")}
           >
             {username}
-          </span>{" "}
+          </Link>{" "}
           commented on your post: <br />
           {notification.comment?.text}
         </div>
@@ -51,22 +60,26 @@ export const NotificationMessage = ({
     case "reply":
       return (
         <div className={classes.message}>
-          <span
+          <Link
+            href={senderProfile}
+            prefetch={false}
             className={clsx(classes.username, !sender?._id && "deletedUser")}
           >
             {username}
-          </span>{" "}
+          </Link>{" "}
           replied to your comment
         </div>
       );
     case "add-friend":
       return (
         <div className={classes.message}>
-          <span
+          <Link
+            href={senderProfile}
+            prefetch={false}
             className={clsx(classes.username, !sender?._id && "deletedUser")}
           >
             {username}
-          </span>{" "}
+          </Link>{" "}
           added you as a friend
         </div>
       );

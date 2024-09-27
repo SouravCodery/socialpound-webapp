@@ -5,7 +5,14 @@
 
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 0.125rem;
+  gap: 0.15rem;
 
-  padding-top: 0.125rem;
+  padding-top: 0.15rem;
+}
+
+@media (min-width: 768px) {
+  .feed {
+    gap: 0.3rem;
+    padding-top: 0.3rem;
+  }
 }

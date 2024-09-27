@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
 import eventEmitter, { Emitter } from "mitt";
-
 import classes from "./toasts.module.css";
-import { Toast } from "./toast/toast";
+
 import { GenericToastType } from "@/models/types/toast.types";
+import { isRunningOnClient } from "@/helpers/misc.helpers";
+import { Toast } from "./toast/toast";
 
 const emitter: Emitter<GenericToastType> = eventEmitter();
 
@@ -12,7 +13,7 @@ export const Toasts = () => {
   const [toasts, setToasts] = useState<GenericToastType["bakeToast"][]>([]);
 
   const addToast = (toast: GenericToastType["bakeToast"]) => {
-    setToasts((prev) => [toast, ...prev]);
+    setToasts((prev) => [...prev, toast]);
   };
 
   useEffect(() => {
@@ -46,7 +47,7 @@ export const bakeToast = ({
   type?: GenericToastType["bakeToast"]["type"];
   message: string;
 }) => {
-  if (typeof window === "undefined") return;
+  if (!isRunningOnClient()) return;
 
   emitter.emit("bakeToast", { type, message, key: `${message}${Date.now()}` });
 };

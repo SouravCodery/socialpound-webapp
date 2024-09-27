@@ -9,14 +9,11 @@
 
   transition: filter 0.3s ease-in-out;
 
-  background: radial-gradient(
-    rgb(var(--background-primary-inverted-rgb), 0.01),
-    rgb(var(--background-primary-inverted-rgb), 0.1)
-  );
+  background: var(--border-primary);
 }
 
 .container:hover {
-  filter: brightness(1.2);
+  filter: brightness(1.1);
 }
 
 .uploadMediaPromptButton {

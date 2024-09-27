@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { clsx } from "clsx";
-
 import "@/app/globals.css";
 import classes from "./layout.module.css";
 import { Toasts } from "@/components/toasts/toasts";
@@ -12,9 +11,9 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Socialpound | SouravCodery",
+  title: "Socialpound by Sourav Choudhary (@SouravCodery)",
   description:
-    "Socialpound a Social Media Platform by Sourav Choudhary | @SouravCodery",
+    "Socialpound is a social media platform like Instagram. It has been built by Sourav Choudhary (@SouravCodery).",
 };
 
 export default function RootLayout({
@@ -25,14 +24,19 @@ export default function RootLayout({
   const themeScript = `
     (function() {
       try {
-        const theme = localStorage.getItem('theme');
-        if (theme === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
+        let theme = localStorage.getItem('theme');
+        if (!theme) {
+          const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          theme = prefersDark ? 'dark' : 'light';
+        }
+        const themeColor = theme === 'dark' ? '#000000' : '#ffffff';
+        document.documentElement.classList.add(theme === 'dark' ? 'dark' : 'light');
+        const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+        if (metaThemeColor) {
+          metaThemeColor.setAttribute('content', themeColor);
         }
       } catch (e) {
-        document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
       }
     })();
   `;
@@ -40,6 +44,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <meta name="theme-color" content="#ffffff" />
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className={clsx(roboto.className, classes.body)}>

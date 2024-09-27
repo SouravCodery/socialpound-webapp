@@ -1,23 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import clsx from "clsx";
-
 import classes from "./profile-picture.module.css";
 import { Constants } from "@/constants/constants";
 
+const socialpoundUserProfilePicture = `${Constants.CDN_BASE_URL}/${Constants.SOCIAL_POUND_USER_DP}`;
+
+const scaleMap = {
+  extraSmall: "1.5rem",
+  small: "2rem",
+  medium: "2.75rem",
+  large: "8rem",
+};
+
 export const ProfilePicture = ({
-  scale,
+  scale = "extraSmall",
   dpURL,
 }: {
-  scale?: "medium" | "large";
+  scale?: "extraSmall" | "small" | "medium" | "large";
   dpURL: string;
 }) => {
-  const socialpoundUserProfilePicture = `${Constants.CDN_BASE_URL}/${Constants.SOCIAL_POUND_USER_DP}`;
   const [profilePictureUrl, setProfilePictureUrl] = useState(
     dpURL || socialpoundUserProfilePicture
   );
+
+  useEffect(() => {
+    setProfilePictureUrl(dpURL || socialpoundUserProfilePicture);
+  }, [dpURL]);
 
   const handleErrorInMedia = () => {
     setProfilePictureUrl(socialpoundUserProfilePicture);
@@ -30,11 +41,12 @@ export const ProfilePicture = ({
   return (
     <div className={clsx(classes.dpContainer, scale && classes[scale])}>
       <Image
-        src={socialpoundUserProfilePicture || profilePictureUrl}
+        src={profilePictureUrl}
         alt="Profile Picture"
         fill
-        sizes="60px"
+        sizes={scaleMap[scale]}
         onError={handleErrorInMedia}
+        priority
       />
     </div>
   );

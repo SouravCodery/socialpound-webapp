@@ -54,6 +54,7 @@ export const AddComment = ({
           _id: `optimistic-${Date.now()}`,
           commentOn: "Post",
           post: postId,
+          postBy: "",
           parentComment: undefined,
           text,
           user: authenticatedUser,

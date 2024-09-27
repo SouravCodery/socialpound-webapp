@@ -1,7 +1,9 @@
+import { isRunningOnClient } from "./misc.helpers";
+
 const cookieCache: Record<string, string> = {};
 
 export const getClientSideCookie = ({ name }: { name: string }) => {
-  if (typeof window === "undefined") {
+  if (!isRunningOnClient()) {
     return null;
   }
 

@@ -1,11 +1,12 @@
 import Link from "next/link";
-import classes from "./notification.module.css";
+import Image from "next/image";
 
+import classes from "./notification.module.css";
+import { Constants } from "@/constants/constants";
+import { DELETED_USER } from "@/constants/deleted-user";
 import { NotificationInterface } from "@/models/interfaces/notification.interface";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
-import { Constants } from "@/constants/constants";
 import { NotificationMessage } from "./notification-message/notification-message";
-import { DELETED_USER } from "@/constants/deleted-user";
 
 export const Notification = ({
   notification,
@@ -19,21 +20,26 @@ export const Notification = ({
     : `/comments/${notification.post._id}`;
 
   const sender = notification?.sender || DELETED_USER;
+  const senderProfile = sender?._id ? `/profile/${sender?.username}` : `/`;
 
   return (
-    <Link href={href} className={classes.notification} prefetch={false}>
-      <ProfilePicture dpURL={sender.profilePicture} scale="medium" />
+    <div className={classes.notification}>
+      <Link href={senderProfile} prefetch={false}>
+        <ProfilePicture dpURL={sender.profilePicture} scale="medium" />
+      </Link>
       <div className={classes.message}>
         <NotificationMessage notification={notification} />
       </div>
-      <div className={classes.content}>
-        <img
+      <Link className={classes.content} href={href} prefetch={false}>
+        <Image
           src={`${Constants.CDN_BASE_URL}/${contentPath}`}
           alt="Post Image"
           className={classes.asset}
-          loading="lazy"
+          fill={true}
+          priority={true}
+          sizes="calc(3rem - 2px)"
         />
-      </div>
-    </Link>
+      </Link>
+    </div>
   );
 };

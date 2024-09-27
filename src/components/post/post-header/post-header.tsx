@@ -26,7 +26,7 @@ export const PostHeader = ({
   return (
     <div className={classes.header}>
       <Link href={userProfile} className={classes.headerLeft} prefetch={false}>
-        <ProfilePicture dpURL={user?.profilePicture} />
+        <ProfilePicture scale="small" dpURL={user?.profilePicture} />
         <div
           className={clsx(
             classes.usernameContainer,
