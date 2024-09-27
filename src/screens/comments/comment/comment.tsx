@@ -21,25 +21,28 @@ export const Comment = ({
   const userProfile = user?._id ? `/profile/${user?.username}` : `/`;
 
   return (
-    <Link
-      href={userProfile}
-      className={clsx(classes.comment, "shadow")}
-      prefetch={false}
-    >
+    <div className={clsx(classes.comment, "shadow")}>
       <div className={classes.main}>
-        <ProfilePicture dpURL={user?.profilePicture} scale="medium" />
+        <Link href={userProfile} prefetch={false}>
+          <ProfilePicture dpURL={user?.profilePicture} scale="medium" />
+        </Link>
         <div className={classes.content}>
-          <div
+          <Link
+            href={userProfile}
+            prefetch={false}
             className={clsx(
               classes.usernameContainer,
               !user._id && "deletedUser"
             )}
           >
             {trimUsername(user?.username)}
-          </div>
+          </Link>
           <div>{comment.text}</div>
         </div>
-        <div className={classes.actionsContainer}>
+        <div
+          className={classes.actionsContainer}
+          onClick={(e) => e.stopPropagation()}
+        >
           <DeleteComment
             commentId={comment._id}
             isAuthorizedToDeleteComment={isAuthorizedToDeleteComment}
@@ -47,6 +50,6 @@ export const Comment = ({
           />
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
