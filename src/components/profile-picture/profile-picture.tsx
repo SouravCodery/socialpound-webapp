@@ -46,7 +46,6 @@ export const ProfilePicture = ({
         fill
         sizes={scaleMap[scale]}
         onError={handleErrorInMedia}
-        unoptimized
         priority
       />
     </div>
