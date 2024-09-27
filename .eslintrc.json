@@ -1,3 +1,18 @@
 {
   "extends": "next/core-web-vitals"
+  // "rules": {
+  //   "no-unused-vars": [
+  //     "error",
+  //     { "vars": "all", "args": "after-used", "ignoreRestSiblings": true }
+  //   ],
+  //   "no-unused-expressions": "error",
+  //   "no-unused-labels": "error",
+  //   "import/no-unused-modules": [
+  //     1,
+  //     {
+  //       "unusedExports": true,
+  //       "missingExports": true
+  //     }
+  //   ]
+  // }
 }
