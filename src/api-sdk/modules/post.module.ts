@@ -4,7 +4,7 @@ import { API_ROUTES } from "../api-routes";
 import {
   PostInterface,
   PostResponseInterface,
-} from "./../../models/interfaces/post.interface";
+} from "../../models/interfaces/post.interface";
 
 export class PostModule {
   private httpClient: HttpClient;
