@@ -34,6 +34,10 @@ export class HttpClient {
     return this.token;
   }
 
+  async flushToken() {
+    this.token = null;
+  }
+
   async request<T>({
     endpoint,
     options,
