@@ -1,4 +1,3 @@
-import clsx from "clsx";
 import classes from "./icon-wrapper.module.css";
 
 export const IconWrapper = ({

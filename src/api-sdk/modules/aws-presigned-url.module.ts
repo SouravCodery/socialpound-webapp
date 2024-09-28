@@ -1,5 +1,5 @@
 import { HttpClient } from "../http-client.api-client";
-import { AWSPresignedUrlResponseInterface } from "./../../models/interfaces/aws-presigned-url.interface";
+import { AWSPresignedUrlResponseInterface } from "../../models/interfaces/aws-presigned-url.interface";
 
 import { API_ROUTES } from "../api-routes";
 

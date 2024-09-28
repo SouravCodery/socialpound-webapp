@@ -63,7 +63,7 @@ export const Notifications = () => {
         className={classes.virtualNotificationsList}
         style={{ height: "90vh" }}
         context={{ isNextPageAvailable, loadMore }}
-        itemContent={(index, notification) => (
+        itemContent={(_, notification) => (
           <Notification key={notification._id} notification={notification} />
         )}
         data={notifications}

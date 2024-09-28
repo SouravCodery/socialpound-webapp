@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 
 import { Confirm } from "@/components/confirm/confirm";
-import { localStorageHelpers } from "@/helpers/local-storage.helpers";
-import { cookieFlushAfterLogout } from "@/actions/user.actions";
+import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 
 export const Logout = ({ buttonClassName }: { buttonClassName: string }) => {
   const router = useRouter();
@@ -21,11 +20,7 @@ export const Logout = ({ buttonClassName }: { buttonClassName: string }) => {
       if (isLoggingOut) return;
       setIsLoggingOut(true);
 
-      localStorageHelpers.removeItem({ key: "post-likes" });
-      localStorageHelpers.removeItem({ key: "user" });
-
-      await cookieFlushAfterLogout();
-
+      await apiSDKInstance.user.signOut();
       router.replace("/account/sign-in");
     } catch (error) {
     } finally {

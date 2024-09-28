@@ -6,6 +6,9 @@ import {
 
 import { API_ROUTES } from "../api-routes";
 import { getDecodedToken } from "@/helpers/jwt-client-side.helpers";
+import { localStorageHelpers } from "@/helpers/local-storage.helpers";
+import { cookieFlushAfterLogout } from "@/actions/user.actions";
+import { logger } from "@/logger/index.logger";
 
 export class UserModule {
   private httpClient: HttpClient;
@@ -45,13 +48,29 @@ export class UserModule {
     });
   }
 
+  async signOut() {
+    try {
+      localStorageHelpers.removeItem({ key: "post-likes" });
+      localStorageHelpers.removeItem({ key: "user" });
+
+      this.httpClient.flushToken();
+      await cookieFlushAfterLogout();
+    } catch (error) {
+      logger.error("Error while signing out", error);
+    }
+  }
+
   async deleteUser() {
-    return this.httpClient.request<UserResponseInterface>({
+    const response = await this.httpClient.request<UserResponseInterface>({
       endpoint: API_ROUTES.user.deleteUser,
       options: {
         method: "DELETE",
       },
       token: await this.httpClient.getToken(),
     });
+
+    await this.signOut();
+
+    return response;
   }
 }

@@ -35,7 +35,7 @@ export const Likes = ({ postId }: { postId: string }) => {
   if (isLoading) {
     return (
       <div className={classes.likes}>
-        {[...Array(8)].map((_, index) => (
+        {[...Array(10)].map((_, index) => (
           <LikeLoader key={index} />
         ))}
       </div>
@@ -65,9 +65,9 @@ export const Likes = ({ postId }: { postId: string }) => {
     <div className={classes.likes}>
       <Virtuoso
         className={classes.virtualLikesList}
-        style={{ height: "80vh" }}
+        style={{ height: "90vh" }}
         context={{ isNextPageAvailable, loadMore }}
-        itemContent={(index, like) => <Like key={like._id} like={like} />}
+        itemContent={(_, like) => <Like key={like._id} like={like} />}
         data={likes}
         components={{
           Footer: InfiniteLoader,

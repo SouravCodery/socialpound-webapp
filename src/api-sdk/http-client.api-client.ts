@@ -34,6 +34,10 @@ export class HttpClient {
     return this.token;
   }
 
+  async flushToken() {
+    this.token = null;
+  }
+
   async request<T>({
     endpoint,
     options,
@@ -81,6 +85,7 @@ export class HttpClient {
           if (isRunningOnClient()) {
             localStorageHelpers.removeItem({ key: "post-likes" });
             localStorageHelpers.removeItem({ key: "user" });
+            this.flushToken();
             await cookieFlushAfterLogout();
           }
         }

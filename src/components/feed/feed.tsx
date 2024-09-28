@@ -58,7 +58,7 @@ export default function Feed() {
       className={classes.virtualFeed}
       style={{ height: "100vh" }}
       context={{ isNextPageAvailable, loadMore }}
-      itemContent={(index, post) => <Post key={post._id} post={post} />}
+      itemContent={(_, post) => <Post key={post._id} post={post} />}
       data={posts}
       components={{
         Footer: InfiniteLoader,

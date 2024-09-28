@@ -52,7 +52,7 @@ export const ProfilePosts = ({ userId }: { userId: string }) => {
   //todo: Add VirtuosoGrid here
   return (
     <div className={classes.feed}>
-      {posts?.map((post, index) => (
+      {posts?.map((post) => (
         <ProfilePost key={post._id} post={post} userId={userId} />
       ))}
       <InfiniteLoader context={{ loadMore, isNextPageAvailable }} />
