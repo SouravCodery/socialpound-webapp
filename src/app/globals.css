@@ -107,6 +107,6 @@ button {
 
 input::placeholder,
 textarea::placeholder {
-  color: var(--border-primary);
+  color: var(--color-secondary);
   font-weight: lighter;
 }

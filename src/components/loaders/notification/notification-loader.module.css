@@ -11,8 +11,6 @@
   background: var(--background-primary);
   color: var(--color-primary);
 
-  border: 1px solid var(--border-primary);
-  border-top: none;
   border-radius: 0.25rem;
 
   margin-bottom: 0.75rem;

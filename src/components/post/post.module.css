@@ -37,6 +37,9 @@
 }
 
 .captionContainer {
-  display: flex;
-  flex-direction: row;
+  display: block;
+}
+
+.captionUsername {
+  font-weight: bold;
 }
