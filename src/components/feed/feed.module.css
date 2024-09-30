@@ -19,6 +19,14 @@
   align-items: center;
 
   width: 100%;
+
+  height: calc(100vh - 10rem) !important;
+}
+
+@media (min-width: 768px) {
+  .virtualFeed {
+    height: 100vh !important;
+  }
 }
 
 .virtualFeed > div > div {
