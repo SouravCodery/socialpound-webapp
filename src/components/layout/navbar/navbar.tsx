@@ -18,24 +18,27 @@ export const Navbar = () => {
   const pathName = usePathname();
 
   return (
-    <footer className={clsx(classes.footer)}>
-      <nav className={clsx(classes.navbar)}>
-        {routes.map((route) => (
-          <Link
-            key={route.path}
-            href={route.path}
-            className={clsx(
-              classes.link,
-              pathName === route.path && classes.active
-            )}
-          >
-            <IconWrapper dot={route.dot}>
-              <route.icon />
-            </IconWrapper>
-          </Link>
-        ))}
-        <ProfileLink />
-      </nav>
-    </footer>
+    <>
+      <div className={classes.footerPseudo} />
+      <footer className={clsx(classes.footer)}>
+        <nav className={clsx(classes.navbar)}>
+          {routes.map((route) => (
+            <Link
+              key={route.path}
+              href={route.path}
+              className={clsx(
+                classes.link,
+                pathName === route.path && classes.active
+              )}
+            >
+              <IconWrapper dot={route.dot}>
+                <route.icon />
+              </IconWrapper>
+            </Link>
+          ))}
+          <ProfileLink />
+        </nav>
+      </footer>
+    </>
   );
 };
