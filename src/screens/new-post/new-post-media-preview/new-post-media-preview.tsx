@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import classes from "./new-post-media-preview.module.css";
+import { Spinner } from "@/components/loaders/spinner/spinner";
 
 export const NewPostMediaPreview = ({
   media,
@@ -22,7 +23,16 @@ export const NewPostMediaPreview = ({
         <img src={media} alt="Media" className={classes.media} />
       ) : (
         <div className={classes.uploadMediaPromptButton}>
-          {processingImage ? "Processing Image" : "Click to upload an Image"}
+          {processingImage ? (
+            <div className={classes.processingImage}>
+              <Spinner />
+              <div className={classes.processingImageText}>
+                Processing Image
+              </div>
+            </div>
+          ) : (
+            "Click to upload an Image"
+          )}
         </div>
       )}
     </div>

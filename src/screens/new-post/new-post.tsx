@@ -70,6 +70,8 @@ export const NewPost = () => {
         return;
       }
 
+      const convertedFile = await convertHEICToJPEG(file);
+
       const imageCompressionOptions: ImageCompressionOptions = {
         maxSizeMB: 4,
         maxWidthOrHeight: 1920,
@@ -78,11 +80,17 @@ export const NewPost = () => {
         initialQuality: 0.9,
       };
 
-      const convertedFile = await convertHEICToJPEG(file);
-      const compressedFile = await imageCompression(
+      let compressedFile = await imageCompression(
         convertedFile,
         imageCompressionOptions
       );
+
+      if (compressedFile.type !== "image/webp") {
+        compressedFile = await imageCompression(convertedFile, {
+          ...imageCompressionOptions,
+          fileType: "image/jpeg",
+        });
+      }
 
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -195,6 +203,11 @@ export const NewPost = () => {
   };
 
   const openFileInput = () => {
+    if (processingImage) {
+      bakeToast({ message: "Image is being processed" });
+      return;
+    }
+
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
