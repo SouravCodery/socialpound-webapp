@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import classes from "./comment-loader.module.css";
 
 export const CommentLoader = () => {
   return (
-    <div className={classes.comment}>
+    <div className={clsx(classes.comment, "shadow")}>
       <div className={classes.main}>
         <div className={classes.skeletonProfilePicture}></div>
         <div className={classes.content}>
