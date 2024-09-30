@@ -1,11 +1,10 @@
-import heic2any from "heic2any";
-
 export const convertHEICToJPEG = async (file: File) => {
   if (file.type !== "image/heic" && file.type !== "image/heif") {
     return file;
   }
 
   try {
+    const heic2any = (await import("heic2any")).default;
     const jpegBlob = await heic2any({
       blob: file,
       toType: "image/jpeg",
