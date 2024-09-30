@@ -1,6 +1,6 @@
 import heic2any from "heic2any";
 
-export const convertHeicToJpeg = async (file: File) => {
+export const convertHEICToJPEG = async (file: File) => {
   if (file.type !== "image/heic" && file.type !== "image/heif") {
     return file;
   }
