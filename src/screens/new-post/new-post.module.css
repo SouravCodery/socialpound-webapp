@@ -40,6 +40,8 @@
 
   color: var(--color-secondary);
   background: var(--background-primary);
+
+  border: 1px solid var(--border-primary-light);
 }
 
 .shareButtonContainer {

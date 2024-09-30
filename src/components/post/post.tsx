@@ -79,11 +79,16 @@ export const Post = ({
 
         {post.caption && (
           <div className={classes.captionContainer}>
-            <div className={clsx(!user._id && "deletedUser")}>
+            <span
+              className={clsx(
+                classes.captionUsername,
+                !user._id && "deletedUser"
+              )}
+            >
               {trimUsername(user?.username)}
-            </div>
+            </span>
             &nbsp;
-            <div>{post.caption}</div>
+            <span>{post.caption}</span>
           </div>
         )}
       </div>
