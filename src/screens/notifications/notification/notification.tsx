@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -23,7 +24,7 @@ export const Notification = ({
   const senderProfile = sender?._id ? `/profile/${sender?.username}` : `/`;
 
   return (
-    <div className={classes.notification}>
+    <div className={clsx(classes.notification, "shadow")}>
       <Link href={senderProfile} prefetch={false}>
         <ProfilePicture dpURL={sender.profilePicture} scale="medium" />
       </Link>
