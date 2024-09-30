@@ -10,6 +10,7 @@ import classes from "./new-post.module.css";
 
 import { Constants } from "@/constants/constants";
 import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
+import { convertHEICToJPEG } from "@/helpers/heic.helpers";
 import { SupportedMediaTypes } from "@/models/types/media.types";
 import { useSWRAddPost } from "@/hooks/swr-hooks/post.swr-hooks";
 import { useGetAuthenticatedUserFromLocalStorage } from "@/hooks/user.hooks";
@@ -37,46 +38,47 @@ export const NewPost = () => {
   const handleImageChange = async (
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    if (!event?.target?.files?.[0]) {
-      return;
-    }
-
-    const file = event.target.files[0];
-
-    if (file.size < Constants.MIN_MEDIA_SIZE) {
-      bakeToast({
-        type: "error",
-        message:
-          "The selected image is too small. Please select an image greater than 1KB.",
-      });
-      return;
-    }
-
-    if (
-      !Constants.SUPPORTED_MEDIA_TYPES.includes(
-        file.type as SupportedMediaTypes
-      )
-    ) {
-      bakeToast({
-        type: "error",
-        message:
-          "The selected image is not supported. Please select a jpg, jpeg, or png image.",
-      });
-
-      return;
-    }
-
-    const imageCompressionOptions: ImageCompressionOptions = {
-      maxSizeMB: 4,
-      maxWidthOrHeight: 1920,
-      useWebWorker: true,
-      fileType: "image/webp",
-      initialQuality: 0.9,
-    };
-
     try {
+      if (!event?.target?.files?.[0]) {
+        return;
+      }
+
+      const file = event.target.files[0];
+
+      if (file.size < Constants.MIN_MEDIA_SIZE) {
+        bakeToast({
+          type: "error",
+          message:
+            "The selected image is too small. Please select an image greater than 1KB.",
+        });
+        return;
+      }
+
+      if (
+        !Constants.SUPPORTED_MEDIA_TYPES.includes(
+          file.type as SupportedMediaTypes
+        )
+      ) {
+        bakeToast({
+          type: "error",
+          message:
+            "The selected image is not supported. Please select a jpg, jpeg, png, webp or heic image.",
+        });
+
+        return;
+      }
+
+      const imageCompressionOptions: ImageCompressionOptions = {
+        maxSizeMB: 4,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true,
+        fileType: "image/webp",
+        initialQuality: 0.9,
+      };
+
+      const convertedFile = await convertHEICToJPEG(file);
       const compressedFile = await imageCompression(
-        file,
+        convertedFile,
         imageCompressionOptions
       );
 
@@ -95,6 +97,7 @@ export const NewPost = () => {
             currentAspectRatio < Constants.MIN_IMAGE_ASPECT_RATIO
           ) {
             setSelectedFile(null);
+
             setSelectedMedia(null);
             bakeToast({
               type: "error",
@@ -114,8 +117,10 @@ export const NewPost = () => {
           setSelectedMedia(imageUrl);
         };
       };
+
       reader.readAsDataURL(compressedFile);
     } catch (error) {
+      logger.info("Error handling image:", error);
       bakeToast({
         type: "error",
         message: "Failed to compress the image.",
@@ -206,7 +211,7 @@ export const NewPost = () => {
         <input
           type="file"
           id="imageInput"
-          accept="image/jpeg, image/png, image/jpg"
+          accept="image/jpg, image/jpeg, image/png, image/webp, image/heic"
           onChange={handleImageChange}
           ref={fileInputRef}
           className="hidden"
