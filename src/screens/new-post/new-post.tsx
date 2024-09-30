@@ -29,6 +29,7 @@ export const NewPost = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null);
   const [aspectRatio, setAspectRatio] = useState<number>(1);
+  const [processingImage, setProcessingImage] = useState<boolean>(false);
 
   const [isPostBeingUploaded, setIsPostBeingUploaded] =
     useState<boolean>(false);
@@ -39,6 +40,7 @@ export const NewPost = () => {
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
     try {
+      setProcessingImage(true);
       if (!event?.target?.files?.[0]) {
         return;
       }
@@ -125,6 +127,8 @@ export const NewPost = () => {
         type: "error",
         message: "Failed to compress the image.",
       });
+    } finally {
+      setProcessingImage(false);
     }
   };
 
@@ -203,6 +207,7 @@ export const NewPost = () => {
         media={selectedMedia}
         openFileInput={openFileInput}
         aspectRatio={aspectRatio}
+        processingImage={processingImage}
       />
       <form onSubmit={newPostSubmitHandler} className={classes.form}>
         <label htmlFor="imageInput" className="hidden">
