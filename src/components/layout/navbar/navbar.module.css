@@ -11,6 +11,11 @@
   z-index: 1000;
 }
 
+.footerPseudo {
+  height: 4.5rem;
+  width: 100%;
+}
+
 @media (min-width: 768px) {
   .footer {
     display: none;
