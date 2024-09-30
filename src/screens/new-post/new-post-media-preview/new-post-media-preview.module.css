@@ -29,3 +29,14 @@
 .media:hover {
   filter: hue-rotate(100);
 }
+
+.processingImage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.processingImageText {
+  margin-top: 0.5rem;
+}
