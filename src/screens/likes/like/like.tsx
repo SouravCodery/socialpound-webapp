@@ -15,7 +15,11 @@ export const Like = ({ like }: { like: LikeInterface }) => {
     : `/`;
 
   return (
-    <Link href={userProfile} className={classes.like} prefetch={false}>
+    <Link
+      href={userProfile}
+      className={clsx(classes.like, "shadow")}
+      prefetch={false}
+    >
       <ProfilePicture dpURL={liker.profilePicture} scale="medium" />
       <div className={classes.content}>
         <div
