@@ -20,6 +20,10 @@
   .footer {
     display: none;
   }
+
+  .footerPseudo {
+    display: none;
+  }
 }
 
 .navbar {
