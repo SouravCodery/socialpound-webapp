@@ -5,11 +5,15 @@ export const convertHEICToJPEG = async (file: File) => {
 
   try {
     const heic2any = (await import("heic2any")).default;
-    const jpegBlob = await heic2any({
+    const jpegBlobOrBlobs = await heic2any({
       blob: file,
       toType: "image/jpeg",
-      quality: 1,
+      quality: 0.75,
     });
+
+    const jpegBlob = Array.isArray(jpegBlobOrBlobs)
+      ? jpegBlobOrBlobs[0]
+      : jpegBlobOrBlobs;
 
     const jpegFile = new File(
       [jpegBlob as Blob],
