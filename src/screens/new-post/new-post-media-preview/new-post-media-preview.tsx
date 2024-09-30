@@ -5,10 +5,12 @@ export const NewPostMediaPreview = ({
   media,
   openFileInput,
   aspectRatio,
+  processingImage,
 }: {
   media: string | null;
   openFileInput: () => void;
   aspectRatio: number;
+  processingImage: boolean;
 }) => {
   return (
     <div
@@ -20,7 +22,7 @@ export const NewPostMediaPreview = ({
         <img src={media} alt="Media" className={classes.media} />
       ) : (
         <div className={classes.uploadMediaPromptButton}>
-          Click to upload an Image
+          {processingImage ? "Processing Image" : "Click to upload an Image"}
         </div>
       )}
     </div>
