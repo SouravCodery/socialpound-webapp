@@ -195,6 +195,11 @@ export const NewPost = () => {
   };
 
   const openFileInput = () => {
+    if (processingImage) {
+      bakeToast({ message: "Image is being processed" });
+      return;
+    }
+
     if (fileInputRef.current) {
       fileInputRef.current.click();
     }
