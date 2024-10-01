@@ -14,11 +14,11 @@ This project is still a work in progress, and more features will be added in the
 - [Features](#features)
 - [Environment Variables](#environment-variables)
 - [Getting Started](#getting-started)
-- [Docker Setup](#docker-setup)
 - [Scripts](#scripts)
 - [Learn More](#learn-more)
 - [License](#license)
 - [Contact](#contact)
+- [Support](#support)
 
 ## Backend
 
@@ -135,3 +135,7 @@ For questions or feedback, feel free to reach out:
 - **GitHub**: [github.com/SouravCodery](https://github.com/SouravCodery)
 - **LinkedIn**: [linkedin.com/in/SouravCodery](https://www.linkedin.com/in/SouravCodery)
 - **Email**: souravscchoudhary@gmail.com
+
+## Support
+
+If you find this project helpful or interesting, please give it a ⭐ on [GitHub](https://github.com/SouravCodery/socialpound-webapp)!
