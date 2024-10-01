@@ -72,6 +72,7 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the web app in action.
 
+<!--
 ## Docker Setup
 
 To make the setup easier, this project can also be run using Docker.
@@ -92,7 +93,7 @@ To make the setup easier, this project can also be run using Docker.
 3. **Run the Docker container**:
    ```bash
    docker run -p 3000:3000 socialpound-webapp
-   ```
+   ``` -->
 
 You can then access the app at [http://localhost:3000](http://localhost:3000).
 
