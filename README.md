@@ -12,6 +12,7 @@ This project is still a work in progress, and more features will be added in the
 - [Backend](#backend)
 - [Technologies](#technologies)
 - [Features](#features)
+- [Environment Variables](#environment-variables)
 - [Getting Started](#getting-started)
 - [Docker Setup](#docker-setup)
 - [Scripts](#scripts)
@@ -47,6 +48,16 @@ The repository of Socialpound API made using Node.js, Express.js:
 - **Media Upload**: Compress and upload images using AWS presigned url
 - **Responsive Design**: Designed for both mobile and desktop views
 - **Light/Dark Mode**: Light/Dark Mode based on user's preference
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your `.env` file:
+
+```bash
+NEXT_PUBLIC_API_BASE_URL=
+NEXT_PUBLIC_CDN_BASE_URL=
+NEXT_PUBLIC_GOOGLE_CLIENT_ID=
+```
 
 ## Getting Started
 
