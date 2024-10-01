@@ -16,7 +16,7 @@
     "heic2any": "^0.0.4",
     "jwt-decode": "^4.0.0",
     "mitt": "^3.0.1",
-    "next": "14.2.8",
+    "next": "14.2.10",
     "react": "^18",
     "react-dom": "^18",
     "react-intersection-observer": "^9.13.0",
