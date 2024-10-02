@@ -6,11 +6,9 @@
   justify-content: center;
   align-items: flex-start;
 
-  width: 100%;
-  max-width: 60rem;
-
   background: var(--background-primary);
 
+  width: 100%;
   z-index: 1000;
 }
 
