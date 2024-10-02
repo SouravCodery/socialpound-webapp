@@ -1,0 +1,39 @@
+.footer {
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 60rem;
+
+  background: var(--background-primary);
+  border-top: 1px solid var(--border-primary);
+
+  z-index: 1000;
+}
+
+.link {
+  width: 100%;
+  max-width: 10rem;
+  padding: 1rem;
+
+  background: inherit;
+  color: var(--color-secondary);
+
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border-primary);
+
+  font-size: 0.75rem;
+  text-align: center;
+
+  cursor: pointer;
+}
+
+.link:hover {
+  background: inherit;
+  color: var(--color-primary);
+}
