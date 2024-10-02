@@ -18,7 +18,7 @@ export const More = () => {
         </div>
         <Link
           className={clsx(classes.link, classes.settingButton)}
-          href="/public/about"
+          href="/about-us"
         >
           About Us
         </Link>
@@ -28,7 +28,6 @@ export const More = () => {
           buttonClassName={clsx(classes.settingButton, classes.dangerousAction)}
         />
       </div>
-
       <div className={classes.footer}>
         <Link
           className={clsx(
@@ -36,7 +35,7 @@ export const More = () => {
             classes.linkFooter,
             classes.settingButton
           )}
-          href="/public/terms-of-service"
+          href="/terms-of-service"
         >
           Terms of Service
         </Link>
@@ -46,7 +45,7 @@ export const More = () => {
             classes.linkFooter,
             classes.settingButton
           )}
-          href="/public/privacy-policy"
+          href="/privacy-policy"
         >
           Privacy Policy
         </Link>
