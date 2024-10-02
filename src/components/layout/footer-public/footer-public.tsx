@@ -4,13 +4,13 @@ import classes from "./footer-public.module.css";
 
 export const FooterPublic = () => (
   <footer className={classes.footer}>
-    <Link className={clsx(classes.link)} href="/about-us">
+    <Link className={clsx(classes.link)} href="/public/about-us">
       About Us
     </Link>
-    <Link className={clsx(classes.link)} href="/terms-of-service">
+    <Link className={clsx(classes.link)} href="/public/terms-of-service">
       Terms of Service
     </Link>
-    <Link className={clsx(classes.link)} href="/privacy-policy">
+    <Link className={clsx(classes.link)} href="/public/privacy-policy">
       Privacy Policy
     </Link>
   </footer>

@@ -29,7 +29,7 @@ export const DeleteAccount = ({
 
       await apiSDKInstance.user.deleteUser();
 
-      router.replace("/account/sign-in");
+      router.replace("/public/account/sign-in");
     } catch (error) {
     } finally {
       setIsDeletingAccount(false);

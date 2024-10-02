@@ -21,7 +21,7 @@ export const Logout = ({ buttonClassName }: { buttonClassName: string }) => {
       setIsLoggingOut(true);
 
       await apiSDKInstance.user.signOut();
-      router.replace("/account/sign-in");
+      router.replace("/public/account/sign-in");
     } catch (error) {
     } finally {
       setIsLoggingOut(false);
