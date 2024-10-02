@@ -13,5 +13,13 @@ export const FooterPublic = () => (
     <Link className={clsx(classes.link)} href="/public/privacy-policy">
       Privacy Policy
     </Link>
+    <a
+      className={clsx(classes.link)}
+      href={"https://souravchoudhary.com"}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Sourav Choudhary
+    </a>
   </footer>
 );

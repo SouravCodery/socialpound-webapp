@@ -4,28 +4,31 @@
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 
   width: 100%;
   max-width: 60rem;
 
   background: var(--background-primary);
-  border-top: 1px solid var(--border-primary);
 
   z-index: 1000;
 }
 
 .link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
   max-width: 10rem;
-  padding: 1rem;
+  padding: 1rem 0;
 
   background: inherit;
   color: var(--color-secondary);
 
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid var(--border-primary);
+  border-top: 1px solid var(--border-primary);
 
   font-size: 0.75rem;
   text-align: center;
@@ -36,4 +39,11 @@
 .link:hover {
   background: inherit;
   color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .link {
+    padding: 0.75;
+    font-size: 0.6rem;
+  }
 }
