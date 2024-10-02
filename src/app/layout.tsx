@@ -16,6 +16,8 @@ export const metadata: Metadata = {
     "Socialpound is a social media platform like Instagram. It has been built by Sourav Choudhary (@SouravCodery).",
 };
 
+export const dynamic = "force-static";
+
 export default function RootLayout({
   children,
 }: {
