@@ -28,28 +28,6 @@ export const More = () => {
           buttonClassName={clsx(classes.settingButton, classes.dangerousAction)}
         />
       </div>
-      <div className={classes.footer}>
-        <Link
-          className={clsx(
-            classes.link,
-            classes.linkFooter,
-            classes.settingButton
-          )}
-          href="/terms-of-service"
-        >
-          Terms of Service
-        </Link>
-        <Link
-          className={clsx(
-            classes.link,
-            classes.linkFooter,
-            classes.settingButton
-          )}
-          href="/privacy-policy"
-        >
-          Privacy Policy
-        </Link>
-      </div>
     </div>
   );
 };
