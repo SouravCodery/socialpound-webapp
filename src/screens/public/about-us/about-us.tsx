@@ -33,7 +33,7 @@ export const AboutUs = () => {
             <Stack />
           </section>
           {sections.map(({ name, list }) => (
-            <section className={classes.sectionContainer}>
+            <section key={name} className={classes.sectionContainer}>
               <h2 className={classes.sectionTitle}>{name}</h2>
               <div className={classes.sectionMain}>
                 {list.map(({ name, description }) => (
