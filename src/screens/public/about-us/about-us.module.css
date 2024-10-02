@@ -5,8 +5,9 @@
   align-items: center;
 
   padding: 1rem;
+  padding-bottom: 4rem;
   width: 100%;
-  height: calc(100% - 4rem);
+  height: 100%;
 
   overflow-y: scroll;
 
