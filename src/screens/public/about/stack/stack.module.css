@@ -1,0 +1,43 @@
+.stack {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.stackSubset {
+  width: 100%;
+
+  background: var(--about-us-background);
+  color: var(--about-us-color);
+
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+.stackSubsetTitle {
+  margin-bottom: 1rem;
+}
+
+.stackSubsetItems {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+}
+
+.skill {
+  padding: 0.5rem 2rem;
+  border-radius: 0.25rem;
+
+  background: var(--about-us-background-secondary);
+  color: var(--about-us-color);
+  font-size: small;
+
+  cursor: pointer;
+}
