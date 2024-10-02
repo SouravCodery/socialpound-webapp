@@ -1,5 +1,5 @@
 import Link from "next/link";
-import classes from "./about.module.css";
+import classes from "./about-us.module.css";
 import { Logo } from "@/components/logo/logo";
 import { Stack } from "./stack/stack";
 import { sections, paras } from "@/data/about.data";
@@ -12,7 +12,7 @@ export const AboutUs = () => {
           <Logo />
         </Link>
         <div className={classes.main}>
-          <h1 className={classes.title}>About</h1>
+          <h1 className={classes.title}>About Us</h1>
           <p className={classes.para}>
             Welcome to Socialpound, a learning-driven social media platform
             developed for educational purposes. Socialpound is designed to mimic
