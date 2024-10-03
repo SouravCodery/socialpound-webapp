@@ -76,7 +76,7 @@ export const SignIn = () => {
               rel="noopener noreferrer"
             >
               <div>Social media platform by</div>
-              <div>Sourav Choudhary | @SouravCodery</div>
+              <div>Sourav Choudhary</div>
             </a>
           </div>
           <div className={clsx(classes.body)}>
