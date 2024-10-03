@@ -11,9 +11,81 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: "Socialpound by Sourav Choudhary (@SouravCodery)",
+  title: "Socialpound by Sourav Choudhary | Social Media Platform",
   description:
-    "Socialpound is a social media platform like Instagram. It has been built by Sourav Choudhary (@SouravCodery).",
+    "Socialpound is a social media platform like Instagram, built by Sourav Choudhary (@SouravCodery).",
+  keywords: [
+    "Socialpound",
+    "Sourav Choudhary",
+    "Social Media Platform",
+    "Instagram Clone",
+    "MERN Stack",
+    "SouravCodery",
+    "Full Stack Developer",
+    "Node.js",
+    "React.js",
+    "MongoDB",
+    "Express.js",
+    "Social Networking",
+  ],
+  authors: [{ name: "Sourav Choudhary" }],
+  openGraph: {
+    title: "Socialpound by Sourav Choudhary | Social Media Platform",
+    description:
+      "Socialpound is a social media platform like Instagram, built by Sourav Choudhary (@SouravCodery).",
+    url: "https://socialpound.souravcodery.com",
+    type: "website",
+    siteName: "Socialpound",
+    locale: "en_US",
+    images: [
+      {
+        url: "https://socialpound.souravcodery.com/socialpound-souravcodery.jpg",
+        alt: "Socialpound - Social Media Platform",
+      },
+    ],
+  },
+  twitter: {
+    title: "Socialpound by Sourav Choudhary | Social Media Platform",
+    description:
+      "Socialpound is a social media platform like Instagram, built by Sourav Choudhary (@SouravCodery).",
+    card: "summary_large_image",
+    images: [
+      {
+        url: "https://socialpound.souravcodery.com/socialpound-souravcodery.jpg",
+        alt: "Socialpound - Social Media Platform",
+      },
+    ],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://socialpound.souravcodery.com",
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Socialpound",
+  description:
+    "Socialpound is a social media platform like Instagram, built by Sourav Choudhary (@SouravCodery).",
+  url: "https://socialpound.souravcodery.com",
+  applicationCategory: "Social Networking Application",
+  operatingSystem: "All",
+  creator: {
+    "@type": "Person",
+    name: "Sourav Choudhary",
+    jobTitle: "Full Stack Developer",
+    url: "https://souravchoudhary.com",
+    sameAs: [
+      "https://twitter.com/souravcodery",
+      "https://github.com/souravcodery",
+      "https://linkedin.com/in/souravcodery",
+    ],
+  },
+  logo: "https://socialpound.souravcodery.com/socialpound-logo.png",
 };
 
 export const dynamic = "force-static";
@@ -52,6 +124,10 @@ export default function RootLayout({
       <body className={clsx(roboto.className, classes.body)}>
         {children}
         <Toasts />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );
