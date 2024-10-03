@@ -69,10 +69,15 @@ export const SignIn = () => {
             <div className={classes.logoContainer}>
               <Logo />
             </div>
-            <div className={classes.souravcodery}>
+            <a
+              className={classes.souravcodery}
+              href={"https://souravchoudhary.com"}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <div>Social media platform by</div>
-              <div>Sourav Choudhary￨@SouravCodery</div>
-            </div>
+              <div>Sourav Choudhary</div>
+            </a>
           </div>
           <div className={clsx(classes.body)}>
             <GoogleOAuthProvider clientId={clientId}>

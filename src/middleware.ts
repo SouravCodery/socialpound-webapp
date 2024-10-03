@@ -3,10 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 export function middleware(request: NextRequest) {
   const { nextUrl } = request;
 
-  const serverToken = request.cookies.get("server-token")?.value;
-
-  const isLoggedIn = !!serverToken;
+  const isPublicRoute = nextUrl.pathname.startsWith("/public");
   const isAuthRoute = nextUrl.pathname.startsWith("/account");
+
+  if (isPublicRoute) {
+    return NextResponse.next();
+  }
+
+  const serverToken = request.cookies.get("server-token")?.value;
+  const isLoggedIn = !!serverToken;
 
   if (isLoggedIn && isAuthRoute) {
     return Response.redirect(new URL("/", request.url));

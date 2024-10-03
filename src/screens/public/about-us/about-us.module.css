@@ -1,0 +1,129 @@
+.superContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  padding: 1rem;
+  padding-bottom: 4rem;
+  width: 100%;
+  height: 100%;
+
+  overflow-y: scroll;
+
+  background: var(--about-us-gradient);
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  max-width: 50rem;
+
+  background: var(--background-primary);
+  color: var(--color-primary);
+
+  border: 1px solid var(--border-primary);
+  border-radius: 0.5rem;
+
+  padding: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+
+  transform: scale(1.8);
+  margin: 2rem;
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.para {
+  font-size: 1rem;
+}
+
+.sectionContainer {
+  margin-top: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.sectionMain {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  width: 100%;
+
+  background: var(--about-us-background);
+  color: var(--about-us-color);
+
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+}
+
+.sectionSub {
+  margin-bottom: 1.5rem;
+}
+
+.sectionSub:last-child {
+  margin-bottom: 0;
+}
+
+.subTitle {
+  display: flex;
+
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+
+  width: fit-content;
+
+  background: var(--about-us-background-secondary);
+  color: var(--about-us-color);
+
+  font-size: small;
+}
+
+.paraBottom {
+  background: var(--about-us-background);
+  color: var(--about-us-color);
+
+  padding: 1rem;
+}
+
+.link {
+  text-decoration: underline;
+}
+
+.repositories {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+
+  gap: 1rem;
+}
+
+.repo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

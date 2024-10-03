@@ -26,6 +26,16 @@
   --color-info: #17a2b8;
 
   --modal-background: rgba(0, 0, 0, 0.8);
+
+  --about-us-background-white: rgb(255, 255, 255, 0.5);
+  --about-us-background: rgb(31, 41, 55);
+  --about-us-background-secondary: rgb(55, 65, 81);
+  --about-us-gradient: linear-gradient(
+    90deg,
+    var(--about-us-background),
+    var(--about-us-background-secondary)
+  );
+  --about-us-color: rgba(255, 255, 255);
 }
 
 .dark {
