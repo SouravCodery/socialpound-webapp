@@ -29,6 +29,18 @@ export const AboutUs = () => {
             uploads, all of which are backed by a robust backend API.
           </p>
           <section className={classes.sectionContainer}>
+            <h2 className={classes.sectionTitle}>Author</h2>
+            <p className={classes.sectionMain}>
+              <a
+                href="https://souravchoudhary.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Sourav Choudhary (@SouravCodery)
+              </a>
+            </p>
+          </section>
+          <section className={classes.sectionContainer}>
             <h2 className={classes.sectionTitle}>Stack Summary</h2>
             <Stack />
           </section>
