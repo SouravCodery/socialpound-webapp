@@ -1,5 +1,9 @@
 # Socialpound Webapp
 
+<div style="text-align: center;">
+   <img src="./public/socialpound-preview.gif" width="350" style="margin:auto;" alt="Socialpound Webapp Preview">
+</div>
+
 ## Description
 
 Socialpound Webapp is the frontend for Socialpound, a social media platform like Instagram. This web app is built using Next.js and focuses on features like post creation, comment interaction, likes, and more. It is designed to work with the Socialpound API.
