@@ -38,6 +38,7 @@
 
 .captionContainer {
   display: block;
+  white-space: pre-wrap;
 }
 
 .captionUsername {
