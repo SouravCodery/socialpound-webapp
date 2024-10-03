@@ -4,9 +4,9 @@ export function middleware(request: NextRequest) {
   const { nextUrl } = request;
 
   const isPublicRoute = nextUrl.pathname.startsWith("/public");
-  const isAuthRoute = nextUrl.pathname.startsWith("/public/account");
+  const isAuthRoute = nextUrl.pathname.startsWith("/account");
 
-  if (isPublicRoute && !isAuthRoute) {
+  if (isPublicRoute) {
     return NextResponse.next();
   }
 
@@ -18,7 +18,7 @@ export function middleware(request: NextRequest) {
   }
 
   if (!isLoggedIn && !isAuthRoute) {
-    return Response.redirect(new URL("/public/account/sign-in", request.url));
+    return Response.redirect(new URL("/account/sign-in", request.url));
   }
 
   return NextResponse.next();
