@@ -1,8 +1,11 @@
 import Link from "next/link";
+import clsx from "clsx";
 import classes from "./about-us.module.css";
+
+import { sections, paras } from "@/data/about.data";
+import { GitHubIcon, WebsiteIcon } from "@/components/icons/icons";
 import { Logo } from "@/components/logo/logo";
 import { Stack } from "./stack/stack";
-import { sections, paras } from "@/data/about.data";
 
 export const AboutUs = () => {
   return (
@@ -35,8 +38,33 @@ export const AboutUs = () => {
                 href="https://souravchoudhary.com"
                 target="_blank"
                 rel="noopener noreferrer"
+                className={clsx(classes.subTitle, classes.repo)}
               >
-                Sourav Choudhary (@SouravCodery)
+                <WebsiteIcon /> &nbsp; Sourav Choudhary (@SouravCodery)
+              </a>
+            </p>
+          </section>
+          <section className={classes.sectionContainer}>
+            <h2 className={classes.sectionTitle}>Repository</h2>
+            <p className={clsx(classes.sectionMain, classes.repositories)}>
+              <a
+                href="https://github.com/SouravCodery/socialpound-webapp"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={clsx(classes.subTitle, classes.repo)}
+              >
+                <GitHubIcon />
+                &nbsp; Frontend
+              </a>
+
+              <a
+                href="https://github.com/SouravCodery/socialpound-api"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={clsx(classes.subTitle, classes.repo)}
+              >
+                <GitHubIcon />
+                &nbsp; Backend
               </a>
             </p>
           </section>
@@ -62,7 +90,7 @@ export const AboutUs = () => {
               {para}
             </p>
           ))}
-          <p className={classes.sectionMain}>
+          <p className={classes.sectionMain} style={{ display: "block" }}>
             For any questions or feedback, please reach out at&nbsp;
             <a
               href="mailto:souravscchoudhary@gmail.com"
