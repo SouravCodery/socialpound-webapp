@@ -85,7 +85,7 @@ const jsonLd = {
       "https://linkedin.com/in/souravcodery",
     ],
   },
-  logo: "https://socialpound.souravcodery.com/socialpound-souravcodery.jpg",
+  logo: "https://socialpound.souravcodery.com/socialpound-logo.png",
 };
 
 export const dynamic = "force-static";
