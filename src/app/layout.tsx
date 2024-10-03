@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://socialpound.souravcodery.com/socialpound-souravcodery.jpg",
+        url: "https://socialpound.souravcodery.com/static-assets/socialpound-souravcodery.jpg",
         alt: "Socialpound - Social Media Platform",
       },
     ],
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     images: [
       {
-        url: "https://socialpound.souravcodery.com/socialpound-souravcodery.jpg",
+        url: "https://socialpound.souravcodery.com/static-assets/socialpound-souravcodery.jpg",
         alt: "Socialpound - Social Media Platform",
       },
     ],
@@ -85,7 +85,7 @@ const jsonLd = {
       "https://linkedin.com/in/souravcodery",
     ],
   },
-  logo: "https://socialpound.souravcodery.com/socialpound-logo.png",
+  logo: "https://socialpound.souravcodery.com/static-assets/socialpound-logo.png",
 };
 
 export const dynamic = "force-static";
