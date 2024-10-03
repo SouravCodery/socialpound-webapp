@@ -65,6 +65,29 @@ export const metadata: Metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  name: "Socialpound",
+  description:
+    "Socialpound is a social media platform like Instagram, built by Sourav Choudhary (@SouravCodery).",
+  url: "https://socialpound.souravcodery.com",
+  applicationCategory: "Social Networking Application",
+  operatingSystem: "All",
+  creator: {
+    "@type": "Person",
+    name: "Sourav Choudhary",
+    jobTitle: "Full Stack Developer",
+    url: "https://souravchoudhary.com",
+    sameAs: [
+      "https://twitter.com/souravcodery",
+      "https://github.com/souravcodery",
+      "https://linkedin.com/in/souravcodery",
+    ],
+  },
+  logo: "https://socialpound.souravcodery.com/socialpound-souravcodery.jpg",
+};
+
 export const dynamic = "force-static";
 
 export default function RootLayout({
@@ -101,6 +124,10 @@ export default function RootLayout({
       <body className={clsx(roboto.className, classes.body)}>
         {children}
         <Toasts />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </body>
     </html>
   );
