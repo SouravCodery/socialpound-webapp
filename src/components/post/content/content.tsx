@@ -41,6 +41,7 @@ export const Content = ({
           priority={true}
           sizes="(max-width: 480px) 95vw, 464px"
           onError={handleErrorInMedia}
+          unoptimized={true}
         />
       ) : (
         <div className={classes.mediaError}>

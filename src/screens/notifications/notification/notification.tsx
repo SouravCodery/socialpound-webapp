@@ -39,6 +39,7 @@ export const Notification = ({
           fill={true}
           priority={true}
           sizes="calc(3rem - 2px)"
+          unoptimized={true}
         />
       </Link>
     </div>
