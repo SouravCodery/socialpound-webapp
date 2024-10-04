@@ -74,10 +74,10 @@ export const NewPost = () => {
 
       const imageCompressionOptions: ImageCompressionOptions = {
         maxSizeMB: 4,
-        maxWidthOrHeight: 1920,
+        maxWidthOrHeight: 1080,
         useWebWorker: true,
         fileType: "image/webp",
-        initialQuality: 0.9,
+        initialQuality: 0.75,
       };
 
       let compressedFile = await imageCompression(
