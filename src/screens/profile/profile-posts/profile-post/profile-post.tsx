@@ -37,6 +37,7 @@ export const ProfilePost = ({
           fill={true}
           priority={true}
           sizes="(max-width: 768px) 32vw, (min-width: 769px) calc(33vw - 5.3rem), (min-width: 1060px) 264px"
+          unoptimized={true}
         />
       ) : (
         <div className={classes.mediaError}>
