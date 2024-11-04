@@ -18,14 +18,8 @@ export const ProfileHeader = ({
   isLoading: boolean;
   isOwnProfile: boolean;
 }) => {
-  const {
-    fullName,
-    profilePicture,
-    bio,
-    postsCount,
-    followersCount,
-    followingCount,
-  } = user ?? {};
+  const { fullName, profilePicture, bio, postsCount, followersCount } =
+    user ?? {};
 
   const username = trimUsername(user?.username);
 
@@ -55,10 +49,10 @@ export const ProfileHeader = ({
             <div className={classes.counterName}>followers</div>
           </div>
 
-          <div className={classes.counter}>
+          {/* <div className={classes.counter}>
             <div className={classes.count}>{followingCount}</div>
             <div className={classes.counterName}>following</div>
-          </div>
+          </div> */}
         </div>
       </div>
 
