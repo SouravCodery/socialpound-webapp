@@ -34,7 +34,7 @@ export class FriendshipModule {
     return this.httpClient.request<Object>({
       endpoint: API_ROUTES.friendship.respondToFriendRequest,
       options: {
-        method: "PUT",
+        method: "PATCH",
       },
       body: { requestId, status },
       token: await this.httpClient.getToken(),
