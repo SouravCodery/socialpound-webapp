@@ -18,7 +18,7 @@ export const ProfileHeader = ({
   isLoading: boolean;
   isOwnProfile: boolean;
 }) => {
-  const { fullName, profilePicture, bio, postsCount, followersCount } =
+  const { fullName, profilePicture, bio, postsCount, friendsCount } =
     user ?? {};
 
   const username = trimUsername(user?.username);
@@ -45,7 +45,7 @@ export const ProfileHeader = ({
           </div>
 
           <div className={classes.counter}>
-            <div className={classes.count}>{followersCount}</div>
+            <div className={classes.count}>{friendsCount}</div>
             <div className={classes.counterName}>followers</div>
           </div>
 

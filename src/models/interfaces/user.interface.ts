@@ -34,7 +34,7 @@ export interface UserInterface {
   bio: string;
 
   postsCount: number;
-  followersCount: number;
+  friendsCount: number;
 }
 
 export interface UserResponseInterface {
