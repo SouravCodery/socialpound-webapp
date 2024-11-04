@@ -45,8 +45,8 @@ export const ProfileHeader = ({
           </div>
 
           <div className={classes.counter}>
-            <div className={classes.count}>{friendsCount}</div>
-            <div className={classes.counterName}>followers</div>
+            <div className={classes.count}>{friendsCount ?? 0}</div>
+            <div className={classes.counterName}>friends</div>
           </div>
 
           {/* <div className={classes.counter}>
