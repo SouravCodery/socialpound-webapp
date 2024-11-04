@@ -6,6 +6,7 @@ import { LikeModule } from "./modules/like.module";
 import { CommentModule } from "./modules/comment.module";
 import { NotificationModule } from "./modules/notification.module";
 import { AWSPresignedUrlModule } from "./modules/aws-presigned-url.module";
+import { FriendshipModule } from "./modules/friendship.module";
 
 export class API_SDK {
   public baseUrl: string;
@@ -16,6 +17,7 @@ export class API_SDK {
   public comment: CommentModule;
   public notification: NotificationModule;
   public awsPresignedUrl: AWSPresignedUrlModule;
+  public friendship: FriendshipModule;
 
   constructor(baseURL: string) {
     this.baseUrl = baseURL;
@@ -27,5 +29,6 @@ export class API_SDK {
     this.comment = new CommentModule(httpClient);
     this.notification = new NotificationModule(httpClient);
     this.awsPresignedUrl = new AWSPresignedUrlModule(httpClient);
+    this.friendship = new FriendshipModule(httpClient);
   }
 }
