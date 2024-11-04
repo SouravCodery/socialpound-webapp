@@ -35,7 +35,6 @@ export interface UserInterface {
 
   postsCount: number;
   followersCount: number;
-  followingCount: number;
 }
 
 export interface UserResponseInterface {
