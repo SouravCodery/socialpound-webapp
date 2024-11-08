@@ -5,6 +5,7 @@ import { AddFriendButton } from "./add-friend-button/add-friend-button";
 import { CancelFriendRequestButton } from "./cancel-friend-request-button/cancel-friend-request-button";
 import { AcceptFriendRequestButton } from "./accept-friend-request-button/accept-friend-request-button";
 import { RejectFriendRequestButton } from "./reject-friend-request-button/reject-friend-request-button";
+import { UnfriendButton } from "./unfriend-button/unfriend-button";
 
 export const FriendshipButton = ({
   className,
@@ -36,8 +37,7 @@ export const FriendshipButton = ({
   };
 
   const friendshipStatus = data?.status ?? null;
-  const { requester, receiver } = data ?? {};
-
+  const { requester } = data ?? {};
 
   if (isLoading || error) {
     return null;
@@ -62,6 +62,16 @@ export const FriendshipButton = ({
 
     return (
       <CancelFriendRequestButton
+        className={className}
+        userId={userId}
+        updateCurrentFriendShipStatus={updateCurrentFriendShipStatus}
+      />
+    );
+  }
+
+  if (friendshipStatus === "accepted") {
+    return (
+      <UnfriendButton
         className={className}
         userId={userId}
         updateCurrentFriendShipStatus={updateCurrentFriendShipStatus}
