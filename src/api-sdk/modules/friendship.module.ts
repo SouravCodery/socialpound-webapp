@@ -4,6 +4,7 @@ import { API_ROUTES } from "../api-routes";
 import {
   FriendshipInterface,
   FriendshipResponseInterface,
+  FriendshipStatus,
 } from "../../models/interfaces/friendship.interface";
 
 export class FriendshipModule {
@@ -25,18 +26,18 @@ export class FriendshipModule {
   }
 
   async respondToFriendRequest({
-    requestId,
+    requesterId,
     status,
   }: {
-    requestId: string;
-    status: FriendshipInterface["status"];
+    requesterId: string;
+    status: FriendshipStatus;
   }) {
     return this.httpClient.request<Object>({
       endpoint: API_ROUTES.friendship.respondToFriendRequest,
       options: {
         method: "PATCH",
       },
-      body: { requestId, status },
+      body: { requesterId, status },
       token: await this.httpClient.getToken(),
     });
   }
