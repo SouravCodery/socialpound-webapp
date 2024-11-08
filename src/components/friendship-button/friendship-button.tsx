@@ -1,6 +1,10 @@
 import { FriendshipStatus } from "@/models/interfaces/friendship.interface";
 import { useSWRCheckFriendshipStatus } from "@/hooks/swr-hooks/friendship.swr-hooks";
+
 import { AddFriendButton } from "./add-friend-button/add-friend-button";
+import { CancelFriendRequestButton } from "./cancel-friend-request-button/cancel-friend-request-button";
+import { AcceptFriendRequestButton } from "./accept-friend-request-button/accept-friend-request-button";
+import { RejectFriendRequestButton } from "./reject-friend-request-button/reject-friend-request-button";
 
 export const FriendshipButton = ({
   className,
@@ -17,7 +21,7 @@ export const FriendshipButton = ({
   const updateCurrentFriendShipStatus = ({
     updatedStatus,
   }: {
-    updatedStatus: FriendshipStatus;
+    updatedStatus?: FriendshipStatus;
   }) => {
     updateFriendshipStatus(
       async (prev) => {
@@ -32,14 +36,32 @@ export const FriendshipButton = ({
   };
 
   const friendshipStatus = data?.status ?? null;
+  const { requester, receiver } = data ?? {};
+
 
   if (isLoading || error) {
     return null;
   }
 
-  if (friendshipStatus === null) {
+  if (friendshipStatus === "requested") {
+    if (requester === userId)
+      return (
+        <>
+          <AcceptFriendRequestButton
+            className={className}
+            userId={userId}
+            updateCurrentFriendShipStatus={updateCurrentFriendShipStatus}
+          />
+          <RejectFriendRequestButton
+            className={className}
+            userId={userId}
+            updateCurrentFriendShipStatus={updateCurrentFriendShipStatus}
+          />
+        </>
+      );
+
     return (
-      <AddFriendButton
+      <CancelFriendRequestButton
         className={className}
         userId={userId}
         updateCurrentFriendShipStatus={updateCurrentFriendShipStatus}
@@ -47,5 +69,11 @@ export const FriendshipButton = ({
     );
   }
 
-  return <button className={className}> Friends</button>;
+  return (
+    <AddFriendButton
+      className={className}
+      userId={userId}
+      updateCurrentFriendShipStatus={updateCurrentFriendShipStatus}
+    />
+  );
 };
