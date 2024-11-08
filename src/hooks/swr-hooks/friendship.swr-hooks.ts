@@ -150,7 +150,7 @@ export const useSWRCheckFriendshipStatus = ({
   const getKey = () =>
     API_ROUTES.friendship.friendshipStatus({ otherUser: otherUserId });
 
-  const { data, error, isLoading, mutate } = useSWR<FriendshipInterface>(
+  const { data, error, isLoading, mutate } = useSWR(
     getKey(),
     () => apiSDKInstance.friendship.checkFriendshipStatus({ otherUserId }),
     {
@@ -159,7 +159,7 @@ export const useSWRCheckFriendshipStatus = ({
     }
   );
 
-  return { data, error, isLoading, updateStatus: mutate };
+  return { data, error, isLoading, updateFriendshipStatus: mutate };
 };
 
 export const useSWRCancelFriendRequest = ({ userId }: { userId: string }) => {
