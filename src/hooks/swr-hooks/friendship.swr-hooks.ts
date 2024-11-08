@@ -41,8 +41,7 @@ export const useSWRGetFriendsList = () => {
   );
 
   const isNextPageAvailable = !error && data?.[size - 1]?.nextCursor !== null;
-  const isNextPageLoading =
-    !error && data?.[size - 1]?.friendships === undefined;
+  const isNextPageLoading = !error && data?.[size - 1]?.friends === undefined;
 
   return {
     data,
@@ -87,8 +86,7 @@ export const useSWRGetPendingFriendRequests = () => {
   );
 
   const isNextPageAvailable = !error && data?.[size - 1]?.nextCursor !== null;
-  const isNextPageLoading =
-    !error && data?.[size - 1]?.friendships === undefined;
+  const isNextPageLoading = !error && data?.[size - 1]?.friends === undefined;
 
   return {
     data,
