@@ -9,14 +9,7 @@ export interface FriendshipInterface {
   status?: FriendshipStatus;
 }
 
-export interface FriendshipRequestsInterface {
-  _id?: string;
-  requester?: SubDocumentUserInterface;
-  receiver?: SubDocumentUserInterface;
-  status?: FriendshipStatus;
-}
-
 export interface FriendshipResponseInterface {
-  friendships: FriendshipInterface[];
+  friends: SubDocumentUserInterface[];
   nextCursor: string;
 }
