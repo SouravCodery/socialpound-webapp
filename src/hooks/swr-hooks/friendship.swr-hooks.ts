@@ -5,7 +5,7 @@ import useSWRMutation from "swr/mutation";
 import { API_ROUTES } from "@/api-sdk/api-routes";
 import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
 import {
-  FriendshipInterface,
+  FriendshipStatus,
   FriendshipResponseInterface,
 } from "@/models/interfaces/friendship.interface";
 
@@ -129,11 +129,11 @@ export const useSWRRespondToFriendRequest = () => {
       {
         arg,
       }: {
-        arg: { requestId: string; status: FriendshipInterface["status"] };
+        arg: { requesterId: string; status: FriendshipStatus };
       }
     ) => {
       return apiSDKInstance.friendship.respondToFriendRequest({
-        requestId: arg.requestId,
+        requesterId: arg.requesterId,
         status: arg.status,
       });
     }
