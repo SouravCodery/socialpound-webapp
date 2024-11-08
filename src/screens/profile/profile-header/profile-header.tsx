@@ -8,6 +8,7 @@ import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { UserInterface } from "@/models/interfaces/user.interface";
 import { bakeToast } from "@/components/toasts/toasts";
 import { trimUsername } from "@/helpers/misc.helpers";
+import { FriendshipButton } from "@/components/friendship-button/friendship-button";
 
 export const ProfileHeader = ({
   user,
@@ -58,20 +59,27 @@ export const ProfileHeader = ({
 
       <div className={classes.bio}>{bio}</div>
 
-      {isOwnProfile && (
+      {
         <div className={classes.profileActions}>
-          <button
-            onClick={() => {
-              bakeToast({
-                message: "Feature coming soon",
-              });
-            }}
-            className={classes.profileActionsButton}
-          >
-            Edit Profile
-          </button>
+          {isOwnProfile ? (
+            <button
+              onClick={() => {
+                bakeToast({
+                  message: "Feature coming soon",
+                });
+              }}
+              className={classes.profileActionsButton}
+            >
+              Edit Profile
+            </button>
+          ) : (
+            <FriendshipButton
+              className={classes.profileActionsButton}
+              userId={user._id}
+            />
+          )}
         </div>
-      )}
+      }
     </div>
   );
 };
