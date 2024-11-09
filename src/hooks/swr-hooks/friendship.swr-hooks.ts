@@ -86,7 +86,7 @@ export const useSWRGetPendingFriendRequests = () => {
   );
 
   const isNextPageAvailable = !error && data?.[size - 1]?.nextCursor !== null;
-  const isNextPageLoading = !error && data?.[size - 1]?.friends === undefined;
+  const isNextPageLoading = !error && data?.[size - 1]?.requests === undefined;
 
   return {
     data,
