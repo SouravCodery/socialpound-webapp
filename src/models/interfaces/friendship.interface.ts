@@ -13,3 +13,14 @@ export interface FriendshipResponseInterface {
   friends: SubDocumentUserInterface[];
   nextCursor: string;
 }
+
+export interface PendingFriendshipRequest {
+  _id: string;
+  requester: SubDocumentUserInterface;
+  receiver: string;
+  status: FriendshipStatus;
+}
+export interface PendingFriendshipRequestsInterface {
+  requests: PendingFriendshipRequest[];
+  nextCursor: string;
+}
