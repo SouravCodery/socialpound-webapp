@@ -1,0 +1,42 @@
+.friend {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  position: relative;
+
+  width: calc(100vw - 1rem);
+  max-width: 30rem;
+
+  background: var(--background-primary);
+  color: var(--color-primary);
+
+  border-right: 1rem solid var(--border-primary);
+  border-radius: 0.25rem;
+
+  margin-bottom: 0.25rem;
+  padding: 0.75rem;
+
+  font-size: 0.8rem;
+}
+
+.friend:first-of-type {
+  margin-top: 0.75rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  margin-left: 1rem;
+}
+
+.usernameContainer {
+  font-weight: bold;
+}
+
+.fullName {
+  color: var(--color-secondary);
+}

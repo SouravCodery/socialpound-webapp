@@ -8,6 +8,7 @@ import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { UserInterface } from "@/models/interfaces/user.interface";
 import { bakeToast } from "@/components/toasts/toasts";
 import { trimUsername } from "@/helpers/misc.helpers";
+import { FriendshipButton } from "@/components/friendship-button/friendship-button";
 
 export const ProfileHeader = ({
   user,
@@ -18,14 +19,8 @@ export const ProfileHeader = ({
   isLoading: boolean;
   isOwnProfile: boolean;
 }) => {
-  const {
-    fullName,
-    profilePicture,
-    bio,
-    postsCount,
-    followersCount,
-    followingCount,
-  } = user ?? {};
+  const { fullName, profilePicture, bio, postsCount, friendsCount } =
+    user ?? {};
 
   const username = trimUsername(user?.username);
 
@@ -51,33 +46,40 @@ export const ProfileHeader = ({
           </div>
 
           <div className={classes.counter}>
-            <div className={classes.count}>{followersCount}</div>
-            <div className={classes.counterName}>followers</div>
+            <div className={classes.count}>{friendsCount ?? 0}</div>
+            <div className={classes.counterName}>friends</div>
           </div>
 
-          <div className={classes.counter}>
+          {/* <div className={classes.counter}>
             <div className={classes.count}>{followingCount}</div>
             <div className={classes.counterName}>following</div>
-          </div>
+          </div> */}
         </div>
       </div>
 
       <div className={classes.bio}>{bio}</div>
 
-      {isOwnProfile && (
+      {
         <div className={classes.profileActions}>
-          <button
-            onClick={() => {
-              bakeToast({
-                message: "Feature coming soon",
-              });
-            }}
-            className={classes.profileActionsButton}
-          >
-            Edit Profile
-          </button>
+          {isOwnProfile ? (
+            <button
+              onClick={() => {
+                bakeToast({
+                  message: "Feature coming soon",
+                });
+              }}
+              className={classes.profileActionsButton}
+            >
+              Edit Profile
+            </button>
+          ) : (
+            <FriendshipButton
+              className={classes.profileActionsButton}
+              userId={user._id}
+            />
+          )}
         </div>
-      )}
+      }
     </div>
   );
 };

@@ -90,14 +90,21 @@
 .profileActions {
   width: 100%;
   margin: 2rem 0;
+
+  display: flex;
 }
 
 .profileActionsButton {
+  font-size: 0.8rem;
   font-weight: lighter;
   background: var(--border-primary-light);
   color: var(--color-primary);
 
-  padding: 0.5rem 4rem;
+  width: 100%;
+  max-width: 10rem;
+
+  padding: 0.5rem;
+  margin-right: 1rem;
 }
 
 .profileActionsButton:hover {

@@ -36,4 +36,17 @@ export const API_ROUTES = {
   notification: {
     getNotificationsByUser: "/v1/notification",
   },
+
+  friendship: {
+    sendFriendRequest: "/v1/friendship/request",
+    respondToFriendRequest: "/v1/friendship/respond",
+    getFriendsList: "/v1/friendship/list",
+    getPendingFriendRequests: "/v1/friendship/requests",
+    friendshipStatus: ({ otherUser }: { otherUser: string }) =>
+      `/v1/friendship/status/${otherUser}`,
+    cancelFriendRequest: ({ userId }: { userId: string }) =>
+      `/v1/friendship/cancel-request/${userId}`,
+    unfriend: ({ userId }: { userId: string }) =>
+      `/v1/friendship/unfriend/${userId}`,
+  },
 } as const;

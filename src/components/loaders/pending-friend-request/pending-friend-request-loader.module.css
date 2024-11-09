@@ -1,0 +1,65 @@
+.friend {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  position: relative;
+
+  width: 100vw;
+  max-width: 30rem;
+
+  background: var(--background-primary);
+  color: var(--color-primary);
+
+  border-right: 1rem solid var(--border-primary);
+  border-radius: 0.25rem;
+
+  margin-bottom: 0.75rem;
+  padding: 0.75rem;
+
+  font-size: 0.8rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonProfilePicture {
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: var(--background-secondary);
+  border-radius: 50%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  margin-left: 1rem;
+}
+
+.skeletonUsername {
+  width: 5rem;
+  height: 0.8rem;
+  background-color: var(--background-secondary);
+  border-radius: 0.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.skeletonFullName {
+  width: 7rem;
+  height: 0.8rem;
+  background-color: var(--background-secondary);
+  border-radius: 0.2rem;
+}
+
+@keyframes pulse {
+  0% {
+    filter: opacity(0.6);
+  }
+  50% {
+    filter: opacity(1);
+  }
+  100% {
+    filter: opacity(0.6);
+  }
+}
