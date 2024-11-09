@@ -5,6 +5,7 @@ import {
   FriendshipInterface,
   FriendshipResponseInterface,
   FriendshipStatus,
+  PendingFriendshipRequestsInterface,
 } from "../../models/interfaces/friendship.interface";
 
 export class FriendshipModule {
@@ -58,16 +59,15 @@ export class FriendshipModule {
   }
 
   async getPendingFriendRequests({ cursor }: { cursor: string }) {
-    const response = await this.httpClient.request<FriendshipResponseInterface>(
-      {
+    const response =
+      await this.httpClient.request<PendingFriendshipRequestsInterface>({
         endpoint: API_ROUTES.friendship.getPendingFriendRequests,
         options: {
           method: "GET",
         },
         queryParams: { cursor },
         token: await this.httpClient.getToken(),
-      }
-    );
+      });
 
     return response.data;
   }
