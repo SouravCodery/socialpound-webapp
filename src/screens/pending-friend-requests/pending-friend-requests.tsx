@@ -46,7 +46,7 @@ export const PendingFriendRequests = () => {
           <h2>No pending requests.</h2>
           {!error && (
             <div className={classes.noPendingFriendRequestsSub}>
-              You keep things clean, Don't you?
+              {`You keep things clean, Don't you?`}
             </div>
           )}
         </div>
