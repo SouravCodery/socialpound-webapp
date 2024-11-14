@@ -10,6 +10,7 @@ import { FriendshipModule } from "./modules/friendship.module";
 
 export class API_SDK {
   public baseUrl: string;
+  public httpClient: HttpClient;
 
   public user: UserModule;
   public post: PostModule;
@@ -21,14 +22,14 @@ export class API_SDK {
 
   constructor(baseURL: string) {
     this.baseUrl = baseURL;
-    const httpClient = new HttpClient(baseURL);
+    this.httpClient = new HttpClient(baseURL);
 
-    this.user = new UserModule(httpClient);
-    this.post = new PostModule(httpClient);
-    this.like = new LikeModule(httpClient);
-    this.comment = new CommentModule(httpClient);
-    this.notification = new NotificationModule(httpClient);
-    this.awsPresignedUrl = new AWSPresignedUrlModule(httpClient);
-    this.friendship = new FriendshipModule(httpClient);
+    this.user = new UserModule(this.httpClient);
+    this.post = new PostModule(this.httpClient);
+    this.like = new LikeModule(this.httpClient);
+    this.comment = new CommentModule(this.httpClient);
+    this.notification = new NotificationModule(this.httpClient);
+    this.awsPresignedUrl = new AWSPresignedUrlModule(this.httpClient);
+    this.friendship = new FriendshipModule(this.httpClient);
   }
 }
