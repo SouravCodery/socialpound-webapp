@@ -18,7 +18,7 @@ export const Modal = ({
   return (
     <>
       <div className={classes.curtain} onClick={closeModal} />
-      <div className={clsx(classes.confirmation, "shadow")}>{children}</div>
+      <div className={clsx(classes.main, "shadow")}>{children}</div>
     </>
   );
 };
