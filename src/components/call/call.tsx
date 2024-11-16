@@ -31,6 +31,25 @@ export const Call = ({ user }: { user: UserInterface }) => {
 
   const closeModal = () => {
     setIsModalOpen(false);
+
+    if (peerConnectionRef.current) {
+      peerConnectionRef.current.close();
+      peerConnectionRef.current = undefined;
+    }
+
+    if (localVideoRef.current && localVideoRef.current.srcObject) {
+      (localVideoRef.current.srcObject as MediaStream)
+        .getTracks()
+        .forEach((track) => track.stop());
+      localVideoRef.current.srcObject = null;
+    }
+
+    if (remoteVideoRef.current && remoteVideoRef.current.srcObject) {
+      (remoteVideoRef.current.srcObject as MediaStream)
+        .getTracks()
+        .forEach((track) => track.stop());
+      remoteVideoRef.current.srcObject = null;
+    }
   };
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
