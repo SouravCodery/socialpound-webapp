@@ -12,7 +12,9 @@ import { useSWRCheckFriendshipStatus } from "@/hooks/swr-hooks/friendship.swr-ho
 import { EventAcknowledgementCallbackParam } from "@/models/interfaces/socket.interface";
 
 export const Call = ({ user }: { user: UserInterface }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
+  const [isIncomingCall, setIsIncomingCall] = useState(false);
+  const [incomingCallData, setIncomingCallData] = useState<any>(null);
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -42,7 +44,9 @@ export const Call = ({ user }: { user: UserInterface }) => {
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setIsCallModalOpen(false);
+    setIsIncomingCall(false);
+    setIncomingCallData(null);
 
     if (peerConnectionRef.current) {
       peerConnectionRef.current.close();
@@ -102,7 +106,6 @@ export const Call = ({ user }: { user: UserInterface }) => {
     return peerConnection;
   };
 
-  // Helper function to process pending ICE candidates
   const processPendingCandidates = async () => {
     if (pendingCandidatesRef.current.length > 0 && peerConnectionRef.current) {
       for (const candidate of pendingCandidatesRef.current) {
@@ -131,7 +134,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
         return;
       }
 
-      setIsModalOpen(true);
+      setIsCallModalOpen(true);
 
       const stream = await setupLocalMedia();
 
@@ -164,44 +167,68 @@ export const Call = ({ user }: { user: UserInterface }) => {
     }
   };
 
+  const acceptCall = async () => {
+    if (!incomingCallData || !socket) return;
+
+    setIsIncomingCall(false);
+    setIsCallModalOpen(true);
+
+    const { offer, roomId, callingUserId } = incomingCallData;
+
+    const stream = await setupLocalMedia();
+
+    peerConnectionRef.current = createPeerConnection(stream, roomId);
+
+    await peerConnectionRef.current.setRemoteDescription(
+      new RTCSessionDescription(offer)
+    );
+
+    await processPendingCandidates();
+
+    const answer = await peerConnectionRef.current.createAnswer();
+    await peerConnectionRef.current.setLocalDescription(answer);
+
+    socket.emit(
+      SocketConstants.EVENTS.CALL_ANSWER,
+      {
+        answer,
+        friendId: callingUserId,
+        roomId,
+      },
+      eventAcknowledgementCallback
+    );
+
+    roomIdRef.current = roomId;
+  };
+
+  const rejectCall = () => {
+    if (!incomingCallData || !socket) return;
+
+    const { roomId, callingUserId } = incomingCallData;
+
+    socket.emit(SocketConstants.EVENTS.CALL_REJECTED, {
+      friendId: callingUserId,
+      roomId,
+    });
+
+    setIsIncomingCall(false);
+    setIncomingCallData(null);
+  };
+
   useEffect(() => {
     if (!socket) return;
 
     socket.on(SocketConstants.EVENTS.INCOMING_CALL, async (data) => {
-      const { message, offer, roomId, callingUserId } = data;
+      const { offer, roomId, callingUserId } = data;
 
       if (!offer) {
         return;
       }
 
-      bakeToast({ type: "success", message });
+      bakeToast({ type: "info", message: `${user.username} is calling you.` });
 
-      setIsModalOpen(true);
-
-      const stream = await setupLocalMedia();
-
-      peerConnectionRef.current = createPeerConnection(stream, roomId);
-
-      await peerConnectionRef.current.setRemoteDescription(
-        new RTCSessionDescription(offer)
-      );
-
-      await processPendingCandidates();
-
-      const answer = await peerConnectionRef.current.createAnswer();
-      await peerConnectionRef.current.setLocalDescription(answer);
-
-      socket.emit(
-        SocketConstants.EVENTS.CALL_ANSWER,
-        {
-          answer,
-          friendId: callingUserId,
-          roomId,
-        },
-        eventAcknowledgementCallback
-      );
-
-      roomIdRef.current = roomId;
+      setIncomingCallData({ offer, roomId, callingUserId });
+      setIsIncomingCall(true);
     });
 
     socket.on(SocketConstants.EVENTS.INCOMING_ANSWER, async (data) => {
@@ -240,19 +267,30 @@ export const Call = ({ user }: { user: UserInterface }) => {
       }
     );
 
+    socket.on(SocketConstants.EVENTS.CALL_REJECTED, (data) => {
+      const { message } = data;
+
+      bakeToast({ type: "error", message });
+
+      closeModal();
+    });
+
     socket.on(SocketConstants.EVENTS.CALL_FAILED, (data) => {
       const { message } = data;
       bakeToast({ type: "error", message });
+      closeModal();
     });
 
     socket.on(SocketConstants.EVENTS.CONNECTION_ERROR, (err) => {
       bakeToast({ type: "error", message: err.message });
+      closeModal();
     });
 
     return () => {
       socket.off(SocketConstants.EVENTS.INCOMING_CALL);
       socket.off(SocketConstants.EVENTS.INCOMING_ANSWER);
       socket.off(SocketConstants.EVENTS.NEW_ICE_CANDIDATE_RECEIVED);
+      socket.off(SocketConstants.EVENTS.CALL_REJECTED);
       socket.off(SocketConstants.EVENTS.CALL_FAILED);
       socket.off(SocketConstants.EVENTS.CONNECTION_ERROR);
     };
@@ -269,7 +307,18 @@ export const Call = ({ user }: { user: UserInterface }) => {
   return (
     <>
       <button onClick={callFriend}>Call</button>
-      <Modal isModalOpen={isModalOpen} closeModal={closeModal}>
+
+      {/* Incoming Call Notification Modal */}
+      <Modal isModalOpen={isIncomingCall} closeModal={rejectCall}>
+        <div>
+          <p>{user.username} is calling you.</p>
+          <button onClick={acceptCall}>Accept</button>
+          <button onClick={rejectCall}>Reject</button>
+        </div>
+      </Modal>
+
+      {/* Call Modal */}
+      <Modal isModalOpen={isCallModalOpen} closeModal={closeModal}>
         <div>
           <video
             ref={localVideoRef}
