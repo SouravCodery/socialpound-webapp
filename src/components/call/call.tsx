@@ -9,6 +9,7 @@ import { Modal } from "../modal/modal";
 import { bakeToast } from "../toasts/toasts";
 import { useSocket } from "@/context/socket.context";
 import { useSWRCheckFriendshipStatus } from "@/hooks/swr-hooks/friendship.swr-hooks";
+import { EventAcknowledgementCallbackParam } from "@/models/interfaces/socket.interface";
 
 export const Call = ({ user }: { user: UserInterface }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,9 +53,13 @@ export const Call = ({ user }: { user: UserInterface }) => {
       await peerConnectionRef.current.setLocalDescription(offer);
 
       const { _id: friendId } = user;
-      socket?.emit(SocketConstants.EVENTS.CALL_FRIEND, { friendId, offer });
+
+      socket?.emit(
+        SocketConstants.EVENTS.CALL_FRIEND,
+        { friendId, offer },
+        eventAcknowledgementCallback
+      );
     } catch (error) {
-      console.error("Something went wrong in callFriend", error);
       bakeToast({
         type: "error",
         message: "Call couldn't be initiated, Refresh and Retry",
@@ -66,9 +71,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
     if (!socket) return;
 
     socket.on(SocketConstants.EVENTS.INCOMING_CALL, async (data) => {
-      const { message, offer, roomId } = data;
-
-      console.log("Incoming call", offer);
+      const { message, offer, roomId, callingUserId } = data;
 
       if (!offer) {
         return;
@@ -83,11 +86,16 @@ export const Call = ({ user }: { user: UserInterface }) => {
       const answer = await peerConnectionRef.current.createAnswer();
       await peerConnectionRef.current.setLocalDescription(answer);
 
-      socket.emit(SocketConstants.EVENTS.CALL_ANSWER, {
-        friendId: user._id,
-        answer,
-        roomId,
-      });
+      socket.emit(
+        SocketConstants.EVENTS.CALL_ANSWER,
+        {
+          answer,
+
+          friendId: callingUserId,
+          roomId,
+        },
+        eventAcknowledgementCallback
+      );
     });
 
     socket.on(SocketConstants.EVENTS.INCOMING_ANSWER, async (data) => {
@@ -98,8 +106,6 @@ export const Call = ({ user }: { user: UserInterface }) => {
       }
 
       bakeToast({ type: "success", message });
-
-      console.log("Incoming answer", answer);
 
       const remoteDesc = new RTCSessionDescription(answer);
       await peerConnectionRef.current.setRemoteDescription(remoteDesc);
@@ -112,7 +118,6 @@ export const Call = ({ user }: { user: UserInterface }) => {
 
     socket.on(SocketConstants.EVENTS.CONNECTION_ERROR, (err) => {
       bakeToast({ type: "error", message: err.message });
-      console.log({ err });
     });
 
     return () => {
