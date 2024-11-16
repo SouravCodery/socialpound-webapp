@@ -13,6 +13,22 @@ import { EventAcknowledgementCallbackParam } from "@/models/interfaces/socket.in
 
 export const Call = ({ user }: { user: UserInterface }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const eventAcknowledgementCallback = (
+    response: EventAcknowledgementCallbackParam & { roomId?: string }
+  ) => {
+    const { isSuccessful, message, roomId } = response;
+
+    if (isSuccessful && roomId) {
+      roomIdRef.current = roomId;
+    }
+
+    bakeToast({
+      type: isSuccessful ? "success" : "error",
+      message: message,
+    });
+  };
+
   const closeModal = () => {
     setIsModalOpen(false);
   };
@@ -157,15 +173,4 @@ const openMediaDevices = async (constraints: MediaStreamConstraints) => {
 
 const configuration = {
   iceServers: [{ urls: "stun:stun.l.google.com:19302" }],
-};
-
-const eventAcknowledgementCallback = (
-  response: EventAcknowledgementCallbackParam
-) => {
-  const { isSuccessful, message } = response;
-
-  bakeToast({
-    type: isSuccessful ? "success" : "error",
-    message: message,
-  });
 };
