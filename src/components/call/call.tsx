@@ -44,6 +44,13 @@ export const Call = ({ user }: { user: UserInterface }) => {
   };
 
   const closeModal = () => {
+    if (socket && roomIdRef.current) {
+      socket.emit(SocketConstants.EVENTS.CALL_ENDED, {
+        roomId: roomIdRef.current,
+      });
+    }
+    roomIdRef.current = undefined;
+
     setIsCallModalOpen(false);
     setIsIncomingCall(false);
     setIncomingCallData(null);
@@ -286,6 +293,11 @@ export const Call = ({ user }: { user: UserInterface }) => {
       closeModal();
     });
 
+    socket.on(SocketConstants.EVENTS.CALL_ENDED, () => {
+      bakeToast({ type: "error", message: "Call ended by the other user." });
+      closeModal();
+    });
+
     return () => {
       socket.off(SocketConstants.EVENTS.INCOMING_CALL);
       socket.off(SocketConstants.EVENTS.INCOMING_ANSWER);
@@ -293,6 +305,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
       socket.off(SocketConstants.EVENTS.CALL_REJECTED);
       socket.off(SocketConstants.EVENTS.CALL_FAILED);
       socket.off(SocketConstants.EVENTS.CONNECTION_ERROR);
+      socket.off(SocketConstants.EVENTS.CALL_ENDED);
     };
   }, [socket]);
 
