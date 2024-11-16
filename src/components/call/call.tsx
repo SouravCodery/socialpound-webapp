@@ -27,7 +27,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
   const socket = useSocket();
 
   const eventAcknowledgementCallback = (
-    response: EventAcknowledgementCallbackParam & { roomId?: string }
+    response: EventAcknowledgementCallbackParam
   ) => {
     const { isSuccessful, message, roomId } = response;
 
@@ -148,7 +148,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
       socket.emit(
         SocketConstants.EVENTS.CALL_FRIEND,
         { friendId, offer },
-        (response: EventAcknowledgementCallbackParam & { roomId?: string }) => {
+        (response: EventAcknowledgementCallbackParam) => {
           eventAcknowledgementCallback(response);
           if (response.isSuccessful && response.roomId) {
             roomIdRef.current = response.roomId;
