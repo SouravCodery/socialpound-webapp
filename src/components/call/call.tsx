@@ -187,7 +187,12 @@ export const Call = ({ user }: { user: UserInterface }) => {
 };
 
 const openMediaDevices = async (constraints: MediaStreamConstraints) => {
-  return await navigator.mediaDevices.getUserMedia(constraints);
+  try {
+    return await navigator.mediaDevices.getUserMedia(constraints);
+  } catch (err) {
+    console.error("Error accessing media devices.", err);
+    throw err;
+  }
 };
 
 const configuration = {
