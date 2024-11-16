@@ -15,6 +15,9 @@ export const Call = ({ user }: { user: UserInterface }) => {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
   const [isIncomingCall, setIsIncomingCall] = useState(false);
   const [incomingCallData, setIncomingCallData] = useState<any>(null);
+  const [callTimeoutId, setCallTimeoutId] = useState<NodeJS.Timeout | null>(
+    null
+  );
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -177,6 +180,11 @@ export const Call = ({ user }: { user: UserInterface }) => {
   const acceptCall = async () => {
     if (!incomingCallData || !socket) return;
 
+    if (callTimeoutId) {
+      clearTimeout(callTimeoutId);
+      setCallTimeoutId(null);
+    }
+
     setIsIncomingCall(false);
     setIsCallModalOpen(true);
 
@@ -211,6 +219,11 @@ export const Call = ({ user }: { user: UserInterface }) => {
   const rejectCall = () => {
     if (!incomingCallData || !socket) return;
 
+    if (callTimeoutId) {
+      clearTimeout(callTimeoutId);
+      setCallTimeoutId(null);
+    }
+
     const { roomId, callingUserId } = incomingCallData;
 
     socket.emit(SocketConstants.EVENTS.CALL_REJECTED, {
@@ -236,6 +249,21 @@ export const Call = ({ user }: { user: UserInterface }) => {
 
       setIncomingCallData({ offer, roomId, callingUserId });
       setIsIncomingCall(true);
+
+      const timeoutId = setTimeout(() => {
+        socket.emit(SocketConstants.EVENTS.CALL_UNANSWERED, {
+          friendId: callingUserId,
+          roomId,
+        });
+
+        setIsIncomingCall(false);
+        setIncomingCallData(null);
+        bakeToast({
+          type: "error",
+          message: `Missed call from ${user.username}.`,
+        });
+      }, 30000);
+      setCallTimeoutId(timeoutId);
     });
 
     socket.on(SocketConstants.EVENTS.INCOMING_ANSWER, async (data) => {
@@ -282,6 +310,13 @@ export const Call = ({ user }: { user: UserInterface }) => {
       closeModal();
     });
 
+    socket.on(SocketConstants.EVENTS.CALL_UNANSWERED, (data) => {
+      const { message } = data;
+      bakeToast({ type: "error", message });
+
+      closeModal();
+    });
+
     socket.on(SocketConstants.EVENTS.CALL_FAILED, (data) => {
       const { message } = data;
       bakeToast({ type: "error", message });
@@ -294,7 +329,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
     });
 
     socket.on(SocketConstants.EVENTS.CALL_ENDED, () => {
-      bakeToast({ type: "error", message: "Call ended by the other user." });
+      bakeToast({ type: "info", message: "Call ended by the other user." });
       closeModal();
     });
 
@@ -303,6 +338,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
       socket.off(SocketConstants.EVENTS.INCOMING_ANSWER);
       socket.off(SocketConstants.EVENTS.NEW_ICE_CANDIDATE_RECEIVED);
       socket.off(SocketConstants.EVENTS.CALL_REJECTED);
+      socket.off(SocketConstants.EVENTS.CALL_UNANSWERED);
       socket.off(SocketConstants.EVENTS.CALL_FAILED);
       socket.off(SocketConstants.EVENTS.CONNECTION_ERROR);
       socket.off(SocketConstants.EVENTS.CALL_ENDED);
