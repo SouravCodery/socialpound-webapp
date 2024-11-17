@@ -18,6 +18,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
   const [callTimeoutId, setCallTimeoutId] = useState<NodeJS.Timeout | null>(
     null
   );
+  const [isInCall, setIsInCall] = useState(false);
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -57,6 +58,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
     setIsCallModalOpen(false);
     setIsIncomingCall(false);
     setIncomingCallData(null);
+    setIsInCall(false);
 
     if (peerConnectionRef.current) {
       peerConnectionRef.current.close();
@@ -165,6 +167,8 @@ export const Call = ({ user }: { user: UserInterface }) => {
           eventAcknowledgementCallback(response);
           if (response.isSuccessful && response.roomId) {
             roomIdRef.current = response.roomId;
+          } else {
+            closeModal();
           }
         }
       );
@@ -174,6 +178,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
         type: "error",
         message: "Call couldn't be initiated, Refresh and Retry",
       });
+      closeModal();
     }
   };
 
@@ -187,6 +192,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
 
     setIsIncomingCall(false);
     setIsCallModalOpen(true);
+    setIsInCall(true);
 
     const { offer, roomId, callingUserId } = incomingCallData;
 
@@ -245,6 +251,15 @@ export const Call = ({ user }: { user: UserInterface }) => {
         return;
       }
 
+      if (isInCall) {
+        socket.emit(SocketConstants.EVENTS.CALL_BUSY, {
+          friendId: callingUserId,
+          roomId,
+        });
+
+        return;
+      }
+
       bakeToast({ type: "info", message: `${user.username} is calling you.` });
 
       setIncomingCallData({ offer, roomId, callingUserId });
@@ -281,6 +296,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
       await processPendingCandidates();
 
       roomIdRef.current = roomId;
+      setIsInCall(true);
     });
 
     socket.on(
@@ -306,14 +322,13 @@ export const Call = ({ user }: { user: UserInterface }) => {
       const { message } = data;
 
       bakeToast({ type: "error", message });
-
       closeModal();
     });
 
     socket.on(SocketConstants.EVENTS.CALL_UNANSWERED, (data) => {
       const { message } = data;
-      bakeToast({ type: "error", message });
 
+      bakeToast({ type: "error", message });
       closeModal();
     });
 
@@ -333,6 +348,13 @@ export const Call = ({ user }: { user: UserInterface }) => {
       closeModal();
     });
 
+    socket.on(SocketConstants.EVENTS.CALL_BUSY, (data) => {
+      const { message } = data;
+
+      bakeToast({ type: "error", message });
+      closeModal();
+    });
+
     return () => {
       socket.off(SocketConstants.EVENTS.INCOMING_CALL);
       socket.off(SocketConstants.EVENTS.INCOMING_ANSWER);
@@ -342,8 +364,9 @@ export const Call = ({ user }: { user: UserInterface }) => {
       socket.off(SocketConstants.EVENTS.CALL_FAILED);
       socket.off(SocketConstants.EVENTS.CONNECTION_ERROR);
       socket.off(SocketConstants.EVENTS.CALL_ENDED);
+      socket.off(SocketConstants.EVENTS.CALL_BUSY);
     };
-  }, [socket]);
+  }, [socket, isInCall]);
 
   useEffect(() => {
     return () => {
