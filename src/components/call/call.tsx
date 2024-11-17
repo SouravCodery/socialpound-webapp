@@ -23,6 +23,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
   const [isAudioMuted, setIsAudioMuted] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [callDuration, setCallDuration] = useState(0);
+  const [isCallConnecting, setIsCallConnecting] = useState(false);
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -157,6 +158,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
       }
 
       setIsCallModalOpen(true);
+      setIsCallConnecting(true);
 
       const stream = await setupLocalMedia();
 
@@ -329,6 +331,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
 
       roomIdRef.current = roomId;
       setIsInCall(true);
+      setIsCallConnecting(false);
 
       callTimerRef.current = setInterval(() => {
         setCallDuration((prev) => prev + 1);
@@ -450,6 +453,11 @@ export const Call = ({ user }: { user: UserInterface }) => {
       {/* Call Modal */}
       <Modal isModalOpen={isCallModalOpen} closeModal={closeModal}>
         <div className={classes.callContainer}>
+          {isCallConnecting && (
+            <div className={classes.callConnecting}>
+              <p>Connecting...</p>
+            </div>
+          )}
           <div className={classes.remoteVideoContainer}>
             <video
               ref={remoteVideoRef}
@@ -489,7 +497,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
             </button>
           </div>
           <div className={classes.callDuration}>
-            Call Duration: {formatCallDuration(callDuration)}
+            {formatCallDuration(callDuration)}
           </div>
         </div>
       </Modal>
