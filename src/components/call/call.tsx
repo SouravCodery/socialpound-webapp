@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import classes from "./call.module.css";
 
 import { UserInterface } from "@/models/interfaces/user.interface";
 import { SocketConstants } from "@/constants/socket.constants";
@@ -19,12 +20,16 @@ export const Call = ({ user }: { user: UserInterface }) => {
     null
   );
   const [isInCall, setIsInCall] = useState(false);
+  const [isAudioMuted, setIsAudioMuted] = useState(false);
+  const [isVideoMuted, setIsVideoMuted] = useState(false);
+  const [callDuration, setCallDuration] = useState(0);
 
   const localVideoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
   const peerConnectionRef = useRef<RTCPeerConnection>();
   const roomIdRef = useRef<string>();
   const pendingCandidatesRef = useRef<RTCIceCandidateInit[]>([]);
+  const callTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const { data } = useSWRCheckFriendshipStatus({
     otherUserId: user._id,
@@ -59,6 +64,11 @@ export const Call = ({ user }: { user: UserInterface }) => {
     setIsIncomingCall(false);
     setIncomingCallData(null);
     setIsInCall(false);
+    setCallDuration(0);
+    if (callTimerRef.current) {
+      clearInterval(callTimerRef.current);
+      callTimerRef.current = null;
+    }
 
     if (peerConnectionRef.current) {
       peerConnectionRef.current.close();
@@ -220,6 +230,10 @@ export const Call = ({ user }: { user: UserInterface }) => {
     );
 
     roomIdRef.current = roomId;
+
+    callTimerRef.current = setInterval(() => {
+      setCallDuration((prev) => prev + 1);
+    }, 1000);
   };
 
   const rejectCall = () => {
@@ -239,6 +253,24 @@ export const Call = ({ user }: { user: UserInterface }) => {
 
     setIsIncomingCall(false);
     setIncomingCallData(null);
+  };
+
+  const toggleAudio = () => {
+    if (localVideoRef.current && localVideoRef.current.srcObject) {
+      (localVideoRef.current.srcObject as MediaStream)
+        .getAudioTracks()
+        .forEach((track) => (track.enabled = !track.enabled));
+      setIsAudioMuted(!isAudioMuted);
+    }
+  };
+
+  const toggleVideo = () => {
+    if (localVideoRef.current && localVideoRef.current.srcObject) {
+      (localVideoRef.current.srcObject as MediaStream)
+        .getVideoTracks()
+        .forEach((track) => (track.enabled = !track.enabled));
+      setIsVideoMuted(!isVideoMuted);
+    }
   };
 
   useEffect(() => {
@@ -297,6 +329,10 @@ export const Call = ({ user }: { user: UserInterface }) => {
 
       roomIdRef.current = roomId;
       setIsInCall(true);
+
+      callTimerRef.current = setInterval(() => {
+        setCallDuration((prev) => prev + 1);
+      }, 1000);
     });
 
     socket.on(
@@ -373,40 +409,89 @@ export const Call = ({ user }: { user: UserInterface }) => {
       if (peerConnectionRef.current) {
         peerConnectionRef.current.close();
       }
+      if (callTimerRef.current) {
+        clearInterval(callTimerRef.current);
+      }
     };
   }, []);
 
+  const formatCallDuration = (duration: number) => {
+    const hours = Math.floor(duration / 3600)
+      .toString()
+      .padStart(2, "0");
+    const minutes = Math.floor((duration % 3600) / 60)
+      .toString()
+      .padStart(2, "0");
+    const seconds = (duration % 60).toString().padStart(2, "0");
+    return `${hours}:${minutes}:${seconds}`;
+  };
+
   return (
     <>
-      <button onClick={callFriend}>Call</button>
+      <button className={classes.callButton} onClick={callFriend}>
+        <i className="fas fa-video"></i> Call
+      </button>
 
       {/* Incoming Call Notification Modal */}
       <Modal isModalOpen={isIncomingCall} closeModal={rejectCall}>
-        <div>
-          <p>{user.username} is calling you.</p>
-          <button onClick={acceptCall}>Accept</button>
-          <button onClick={rejectCall}>Reject</button>
+        <div className={classes.incomingCallModal}>
+          <p className={classes.callingText}>{user.username} is calling you.</p>
+          <div className={classes.callActions}>
+            <button className={classes.acceptButton} onClick={acceptCall}>
+              <i className="fas fa-phone"></i>
+            </button>
+            <button className={classes.rejectButton} onClick={rejectCall}>
+              <i className="fas fa-phone-slash"></i>
+            </button>
+          </div>
         </div>
       </Modal>
 
       {/* Call Modal */}
       <Modal isModalOpen={isCallModalOpen} closeModal={closeModal}>
-        <div>
-          <video
-            ref={localVideoRef}
-            autoPlay
-            playsInline
-            muted
-            style={{ width: "300px" }}
-          />
-          <video
-            ref={remoteVideoRef}
-            autoPlay
-            playsInline
-            style={{ width: "300px" }}
-          />
+        <div className={classes.callContainer}>
+          <div className={classes.remoteVideoContainer}>
+            <video
+              ref={remoteVideoRef}
+              autoPlay
+              playsInline
+              className={classes.remoteVideo}
+            />
+            <div className={classes.remoteUsername}>{user.username}</div>
+          </div>
+          <div className={classes.localVideoContainer}>
+            <video
+              ref={localVideoRef}
+              autoPlay
+              playsInline
+              muted
+              className={classes.localVideo}
+            />
+            <div className={classes.localUsername}>You</div>
+          </div>
+          <div className={classes.callControls}>
+            <button onClick={toggleAudio} className={classes.controlButton}>
+              {isAudioMuted ? (
+                <i className="fas fa-microphone-slash"></i>
+              ) : (
+                <i className="fas fa-microphone"></i>
+              )}
+            </button>
+            <button onClick={toggleVideo} className={classes.controlButton}>
+              {isVideoMuted ? (
+                <i className="fas fa-video-slash"></i>
+              ) : (
+                <i className="fas fa-video"></i>
+              )}
+            </button>
+            <button onClick={closeModal} className={classes.endCallButton}>
+              <i className="fas fa-phone-slash"></i>
+            </button>
+          </div>
+          <div className={classes.callDuration}>
+            Call Duration: {formatCallDuration(callDuration)}
+          </div>
         </div>
-        <button onClick={closeModal}>Hang Up</button>
       </Modal>
     </>
   );
