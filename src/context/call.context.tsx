@@ -1,6 +1,13 @@
 "use client";
 
-import { useEffect, useRef, useState, createContext, useContext } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+  createContext,
+  useContext,
+  useCallback,
+} from "react";
 
 import { useSocket } from "./socket.context";
 import { bakeToast } from "@/components/toasts/toasts";
@@ -83,7 +90,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
     });
   };
 
-  const endCall = () => {
+  const endCall = useCallback(() => {
     if (socket && roomIdRef.current) {
       socket.emit(SocketConstants.EVENTS.CALL_ENDED, {
         roomId: roomIdRef.current,
@@ -121,7 +128,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
         .forEach((track) => track.stop());
       remoteVideoRef.current.srcObject = null;
     }
-  };
+  }, [socket]);
 
   const setupLocalMedia = async (): Promise<MediaStream> => {
     const stream = await openMediaDevices({ video: true, audio: true });
@@ -428,7 +435,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       socket.off(SocketConstants.EVENTS.CALL_ENDED);
       socket.off(SocketConstants.EVENTS.CALL_BUSY);
     };
-  }, [socket]);
+  }, [socket, isInCall, endCall]);
 
   useEffect(() => {
     return () => {
