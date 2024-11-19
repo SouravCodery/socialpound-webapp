@@ -1,4 +1,7 @@
+import { CallCentral } from "@/components/call-central/call-central";
 import { Sidebar } from "@/components/layout/sidebar/sidebar";
+
+import { CallProvider } from "@/context/call.context";
 import { SocketProvider } from "@/context/socket.context";
 
 export default function SocialpoundLayout({
@@ -8,8 +11,11 @@ export default function SocialpoundLayout({
 }) {
   return (
     <SocketProvider>
-      <Sidebar />
-      {children}
+      <CallProvider>
+        <Sidebar />
+        {children}
+        <CallCentral />
+      </CallProvider>
     </SocketProvider>
   );
 }
