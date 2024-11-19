@@ -21,7 +21,6 @@ export const CallCentral = () => {
     remoteVideoRef,
     localVideoRef,
 
-    callDuration,
     otherUser,
   } = useCall();
 
@@ -90,23 +89,8 @@ export const CallCentral = () => {
               <i className="fas fa-phone-slash"></i>
             </button>
           </div>
-          <div className={classes.callDuration}>
-            {formatCallDuration(callDuration)}
-          </div>
         </div>
       </Modal>
     </>
   );
-};
-
-const formatCallDuration = (duration: number) => {
-  const hours = Math.floor(duration / 3600)
-    .toString()
-    .padStart(2, "0");
-
-  const minutes = Math.floor((duration % 3600) / 60)
-    .toString()
-    .padStart(2, "0");
-  const seconds = (duration % 60).toString().padStart(2, "0");
-  return `${hours}:${minutes}:${seconds}`;
 };
