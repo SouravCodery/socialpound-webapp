@@ -1,6 +1,6 @@
 .modalExtraClasses {
-  max-width: 100vw;
-  width: fit-content;
+  max-width: 100vw !important;
+  width: fit-content !important;
 }
 
 .incomingCall {
@@ -11,6 +11,9 @@
   align-items: center;
 
   flex-direction: column;
+
+  width: 80vw;
+  max-width: 20rem;
 }
 
 .incomingCallTitle {
@@ -38,9 +41,13 @@
   margin-top: 1rem;
 }
 
-.username {
+.name {
+  position: absolute;
+  bottom: 0.1rem;
+
+  color: var(--background-primary);
+
   font-weight: lighter;
-  background: var(--border-primary-light);
 }
 
 .callActionsContainer {
@@ -68,12 +75,19 @@
   border-radius: 0;
 }
 
-/* Call Modal */
+/* Call Container */
 .callContainer {
   position: relative;
-  width: 100%;
-  height: 100%;
-  background-color: black;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: var(--background-primary);
+
+  height: 90vh;
+  width: 90vw;
 }
 
 .callConnecting {
@@ -81,113 +95,53 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
-  font-size: 1.5rem;
-  z-index: 2;
+
+  width: 100%;
+  padding: 1rem;
+  font-weight: lighter;
+
+  background: var(--background-secondary);
 }
 
-.remoteVideoContainer {
-  width: 100%;
-  height: 100%;
+.videoContainer {
   position: relative;
-}
 
-.remoteVideo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
   width: 100%;
   height: 100%;
-  object-fit: cover;
+
+  background: rgba(0, 0, 0, 0.821);
 }
 
-.remoteUsername {
-  position: absolute;
-  bottom: 0.625rem;
-  left: 0.625rem;
-  color: white;
-  font-size: 1rem;
-}
-
-.localVideoContainer {
-  position: absolute;
-  bottom: 5rem;
-  right: 1.25rem;
-  width: 9.375rem;
-  height: 6.25rem;
-  border: 0.125rem solid white;
-  border-radius: 0.3125rem;
-  overflow: hidden;
-  background-color: black;
-}
-
-.localVideo {
+.video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-}
 
-.localUsername {
-  position: absolute;
-  bottom: 0.3125rem;
-  left: 0.3125rem;
-  color: white;
-  font-size: 0.875rem;
+  object-fit: cover;
+  background: var(--background-primary);
 }
 
 .callControls {
-  position: absolute;
-  bottom: 1.25rem;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
-  gap: 1.5rem;
-}
-
-.controlButton,
-.endCallButton {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  border: none;
-  padding: 1rem;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 1.5rem;
-  display: flex;
+  justify-content: space-evenly;
   align-items: center;
-  justify-content: center;
-}
 
-.controlButton:hover,
-.endCallButton:hover {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
-.endCallButton {
-  background-color: #f44336;
-}
-
-.callDuration {
   position: absolute;
-  top: 0.625rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: white;
-  font-size: 1rem;
+  bottom: 0;
+  left: 0;
+
+  width: 100%;
 }
 
-@media (max-width: 768px) {
-  .localVideoContainer {
-    width: 7.5rem;
-    height: 5rem;
-    bottom: 4rem;
-  }
+.controlButton {
+  background: var(--border-primary-light);
 
-  .callControls {
-    bottom: 1rem;
-    gap: 1rem;
-  }
+  padding: 1rem;
+  width: 100%;
 
-  .controlButton,
-  .endCallButton {
-    padding: 0.75rem;
-    font-size: 1.25rem;
-  }
+  margin: 0.2rem;
 }

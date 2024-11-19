@@ -60,29 +60,27 @@ export const CallCentral = () => {
         mainExtraClasses={classes.modalExtraClasses}
       >
         <div className={classes.callContainer}>
-          {isCallConnecting && (
-            <div className={classes.callConnecting}>
-              <p>Connecting...</p>
-            </div>
-          )}
-          <div className={classes.remoteVideoContainer}>
+          <div className={classes.videoContainer}>
             <video
               ref={remoteVideoRef}
               autoPlay
               playsInline
-              className={classes.remoteVideo}
+              className={classes.video}
             />
-            <div className={classes.remoteUsername}>{otherUser.username}</div>
+            <div className={classes.name}>{otherUser.fullName}</div>
+            {isCallConnecting && (
+              <div className={classes.callConnecting}>Calling...</div>
+            )}
           </div>
-          <div className={classes.localVideoContainer}>
+          <div className={classes.videoContainer}>
             <video
               ref={localVideoRef}
               autoPlay
               playsInline
               muted
-              className={classes.localVideo}
+              className={classes.video}
             />
-            <div className={classes.localUsername}>You</div>
+            <div className={classes.name}>You</div>
           </div>
           <div className={classes.callControls}>
             <button onClick={toggleAudio} className={classes.controlButton}>
@@ -91,6 +89,7 @@ export const CallCentral = () => {
               ) : (
                 <i className="fas fa-microphone"></i>
               )}
+              🎙️
             </button>
             <button onClick={toggleVideo} className={classes.controlButton}>
               {isVideoMuted ? (
@@ -98,9 +97,10 @@ export const CallCentral = () => {
               ) : (
                 <i className="fas fa-video"></i>
               )}
+              🎥
             </button>
-            <button onClick={endCall} className={classes.endCallButton}>
-              <i className="fas fa-phone-slash"></i>
+            <button onClick={endCall} className={classes.controlButton}>
+              <i className="fas fa-phone-slash"></i>❌
             </button>
           </div>
         </div>
