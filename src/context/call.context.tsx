@@ -28,7 +28,6 @@ interface CallContextInterface {
   remoteVideoRef: React.RefObject<HTMLVideoElement>;
   localVideoRef: React.RefObject<HTMLVideoElement>;
 
-  callDuration: number;
   otherUser: SubDocumentUserInterface | null;
 }
 
@@ -51,7 +50,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
   const [isAudioMuted, setIsAudioMuted] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
   const [isCallConnecting, setIsCallConnecting] = useState(false);
-  const [callDuration, setCallDuration] = useState(0);
+
   const [incomingCallData, setIncomingCallData] = useState<any>(null);
   const [otherUser, setOtherUser] = useState<SubDocumentUserInterface | null>(
     null
@@ -96,7 +95,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
     setIsIncomingCall(false);
     setIncomingCallData(null);
     setIsInCall(false);
-    setCallDuration(0);
+
     setOtherUser(null);
 
     if (callTimerRef.current) {
@@ -261,10 +260,6 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
     );
 
     roomIdRef.current = roomId;
-
-    callTimerRef.current = setInterval(() => {
-      setCallDuration((prev) => prev + 1);
-    }, 1000);
   };
 
   const rejectCall = () => {
@@ -364,10 +359,6 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       roomIdRef.current = roomId;
       setIsInCall(true);
       setIsCallConnecting(false);
-
-      callTimerRef.current = setInterval(() => {
-        setCallDuration((prev) => prev + 1);
-      }, 1000);
     });
 
     socket.on(
@@ -471,7 +462,6 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
         remoteVideoRef,
         localVideoRef,
 
-        callDuration,
         otherUser,
       }}
     >
