@@ -6,11 +6,11 @@ import classes from "./profile-header.module.css";
 import { ProfileHeaderLoader } from "@/components/loaders/profile-header/profile-header-loader";
 import { ProfilePicture } from "@/components/profile-picture/profile-picture";
 import { FriendshipButton } from "@/components/friendship-button/friendship-button";
-import { Call } from "@/components/call/call";
 
 import { UserInterface } from "@/models/interfaces/user.interface";
 import { bakeToast } from "@/components/toasts/toasts";
 import { trimUsername } from "@/helpers/misc.helpers";
+import { CallButton } from "@/components/call-button/call-button";
 
 export const ProfileHeader = ({
   user,
@@ -33,7 +33,7 @@ export const ProfileHeader = ({
   return (
     <div className={classes.profileHeader}>
       <div className={clsx(classes.username, isOwnProfile && classes.center)}>
-        @{username} {!isOwnProfile && <Call user={user} />}
+        @{username} {!isOwnProfile && <CallButton user={user} />}
       </div>
       <div className={classes.dpAndCounts}>
         <div className={classes.dpAndName}>
