@@ -132,6 +132,18 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
 
   const setupLocalMedia = async (): Promise<MediaStream> => {
     const stream = await openMediaDevices({ video: true, audio: true });
+
+    stream.getAudioTracks().forEach((track) => {
+      track.enabled = false;
+    });
+
+    stream.getVideoTracks().forEach((track) => {
+      track.enabled = false;
+    });
+
+    setIsAudioMuted(true);
+    setIsVideoMuted(true);
+
     if (localVideoRef.current) {
       localVideoRef.current.srcObject = stream;
     }
