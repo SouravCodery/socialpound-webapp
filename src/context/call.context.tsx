@@ -54,9 +54,12 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
   const [isIncomingCall, setIsIncomingCall] = useState(false);
   const [isInCall, setIsInCall] = useState(false);
+  const [isCallConnecting, setIsCallConnecting] = useState(false);
+
   const [isAudioMuted, setIsAudioMuted] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
-  const [isCallConnecting, setIsCallConnecting] = useState(false);
+  const [isRemoteAudioMuted, setIsRemoteAudioMuted] = useState(false);
+  const [isRemoteVideoMuted, setIsRemoteVideoMuted] = useState(false);
 
   const [incomingCallData, setIncomingCallData] = useState<any>(null);
   const [otherUser, setOtherUser] = useState<SubDocumentUserInterface | null>(
@@ -303,19 +306,41 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
 
   const toggleAudio = () => {
     if (localVideoRef.current && localVideoRef.current.srcObject) {
-      (localVideoRef.current.srcObject as MediaStream)
-        .getAudioTracks()
-        .forEach((track) => (track.enabled = !track.enabled));
-      setIsAudioMuted(!isAudioMuted);
+      const audioTracks = (
+        localVideoRef.current.srcObject as MediaStream
+      ).getAudioTracks();
+
+      audioTracks.forEach((track) => (track.enabled = !track.enabled));
+
+      const isMuted = !audioTracks[0].enabled;
+      setIsAudioMuted(isMuted);
+
+      if (socket && roomIdRef.current) {
+        socket.emit(SocketConstants.EVENTS.REMOTE_AUDIO_TOGGLED, {
+          roomId: roomIdRef.current,
+          isMuted,
+        });
+      }
     }
   };
 
   const toggleVideo = () => {
     if (localVideoRef.current && localVideoRef.current.srcObject) {
-      (localVideoRef.current.srcObject as MediaStream)
-        .getVideoTracks()
-        .forEach((track) => (track.enabled = !track.enabled));
-      setIsVideoMuted(!isVideoMuted);
+      const videoTracks = (
+        localVideoRef.current.srcObject as MediaStream
+      ).getVideoTracks();
+
+      videoTracks.forEach((track) => (track.enabled = !track.enabled));
+
+      const isMuted = !videoTracks[0].enabled;
+      setIsVideoMuted(isMuted);
+
+      if (socket && roomIdRef.current) {
+        socket.emit(SocketConstants.EVENTS.REMOTE_VIDEO_TOGGLED, {
+          roomId: roomIdRef.current,
+          isMuted,
+        });
+      }
     }
   };
 
@@ -436,6 +461,16 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       endCall();
     });
 
+    socket.on(SocketConstants.EVENTS.REMOTE_AUDIO_TOGGLED, (data) => {
+      const { isMuted } = data;
+      setIsRemoteAudioMuted(isMuted);
+    });
+
+    socket.on(SocketConstants.EVENTS.REMOTE_VIDEO_TOGGLED, (data) => {
+      const { isMuted } = data;
+      setIsRemoteVideoMuted(isMuted);
+    });
+
     return () => {
       socket.off(SocketConstants.EVENTS.INCOMING_CALL);
       socket.off(SocketConstants.EVENTS.INCOMING_ANSWER);
@@ -446,6 +481,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       socket.off(SocketConstants.EVENTS.CONNECTION_ERROR);
       socket.off(SocketConstants.EVENTS.CALL_ENDED);
       socket.off(SocketConstants.EVENTS.CALL_BUSY);
+      socket.off(SocketConstants.EVENTS.REMOTE_AUDIO_TOGGLED);
+      socket.off(SocketConstants.EVENTS.REMOTE_VIDEO_TOGGLED);
     };
   }, [socket, isInCall, endCall]);
 
