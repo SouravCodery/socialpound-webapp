@@ -23,8 +23,11 @@ export const CallCentral = () => {
     isIncomingCall,
     isCallModalOpen,
     isCallConnecting,
+
     isAudioMuted,
     isVideoMuted,
+    isRemoteAudioMuted,
+    isRemoteVideoMuted,
 
     remoteVideoRef,
     localVideoRef,
@@ -74,7 +77,11 @@ export const CallCentral = () => {
               playsInline
               className={classes.video}
             />
-            <div className={classes.name}>{otherUser.fullName}</div>
+            <div className={classes.name}>
+              <div>{otherUser.fullName}</div>
+              {isRemoteAudioMuted ? <AudioUnmuteIcon /> : ""}
+              {isRemoteVideoMuted ? <VideoUnmuteIcon /> : ""}
+            </div>
             {isCallConnecting && (
               <div className={classes.callConnecting}>Calling...</div>
             )}
@@ -95,12 +102,16 @@ export const CallCentral = () => {
             <div className={classes.name}>You</div>
           </div>
           <div className={classes.callControls}>
-            <button onClick={toggleAudio} className={classes.controlButton}>
-              {isAudioMuted ? <AudioUnmuteIcon /> : <AudioMuteIcon />}
-            </button>
-            <button onClick={toggleVideo} className={classes.controlButton}>
-              {isVideoMuted ? <VideoUnmuteIcon /> : <VideoMuteIcon />}
-            </button>
+            {isCallConnecting === false && (
+              <>
+                <button onClick={toggleAudio} className={classes.controlButton}>
+                  {isAudioMuted ? <AudioUnmuteIcon /> : <AudioMuteIcon />}
+                </button>
+                <button onClick={toggleVideo} className={classes.controlButton}>
+                  {isVideoMuted ? <VideoUnmuteIcon /> : <VideoMuteIcon />}
+                </button>
+              </>
+            )}
             <button onClick={endCall} className={classes.controlButton}>
               <i className="fas fa-phone-slash"></i>❌
             </button>
