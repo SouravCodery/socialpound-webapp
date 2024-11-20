@@ -457,7 +457,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
     });
 
     socket.on(SocketConstants.EVENTS.CALL_ENDED, () => {
-      bakeToast({ type: "info", message: "Call ended by the other user." });
+      bakeToast({ type: "error", message: "Call ended by the other user." });
       endCall();
     });
 
