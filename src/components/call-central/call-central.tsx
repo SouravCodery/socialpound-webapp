@@ -1,4 +1,5 @@
 "use client";
+import clsx from "clsx";
 import classes from "./call-central.module.css";
 
 import { useCall } from "@/context/call.context";
@@ -72,7 +73,12 @@ export const CallCentral = () => {
               <div className={classes.callConnecting}>Calling...</div>
             )}
           </div>
-          <div className={classes.videoContainer}>
+          <div
+            className={clsx(
+              classes.videoContainer,
+              classes.localVideoContainer
+            )}
+          >
             <video
               ref={localVideoRef}
               autoPlay
