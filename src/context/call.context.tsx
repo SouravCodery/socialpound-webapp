@@ -289,6 +289,11 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
     );
 
     roomIdRef.current = roomId;
+
+    bakeToast({
+      type: "success",
+      message: "Call started, Turn on Audio/Video!",
+    });
   };
 
   const rejectCall = () => {
@@ -410,6 +415,11 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       roomIdRef.current = roomId;
       setIsInCall(true);
       setIsCallConnecting(false);
+
+      bakeToast({
+        type: "success",
+        message: "Call started, Turn on Audio/Video!",
+      });
     });
 
     socket.on(
