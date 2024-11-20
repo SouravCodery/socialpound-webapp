@@ -127,7 +127,7 @@ export const CallCentral = () => {
               </>
             )}
             <button onClick={endCall} className={classes.controlButton}>
-              <i className="fas fa-phone-slash"></i>❌
+              ❌
             </button>
           </div>
         </div>
