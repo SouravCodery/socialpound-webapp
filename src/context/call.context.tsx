@@ -31,6 +31,8 @@ interface CallContextInterface {
   isCallConnecting: boolean;
   isAudioMuted: boolean;
   isVideoMuted: boolean;
+  isRemoteAudioMuted: boolean;
+  isRemoteVideoMuted: boolean;
 
   remoteVideoRef: React.RefObject<HTMLVideoElement>;
   localVideoRef: React.RefObject<HTMLVideoElement>;
@@ -58,8 +60,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
 
   const [isAudioMuted, setIsAudioMuted] = useState(false);
   const [isVideoMuted, setIsVideoMuted] = useState(false);
-  const [isRemoteAudioMuted, setIsRemoteAudioMuted] = useState(false);
-  const [isRemoteVideoMuted, setIsRemoteVideoMuted] = useState(false);
+  const [isRemoteAudioMuted, setIsRemoteAudioMuted] = useState(true);
+  const [isRemoteVideoMuted, setIsRemoteVideoMuted] = useState(true);
 
   const [incomingCallData, setIncomingCallData] = useState<any>(null);
   const [otherUser, setOtherUser] = useState<SubDocumentUserInterface | null>(
@@ -105,6 +107,9 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
     setIsIncomingCall(false);
     setIncomingCallData(null);
     setIsInCall(false);
+    setIsCallConnecting(false);
+    setIsRemoteAudioMuted(true);
+    setIsRemoteVideoMuted(true);
 
     setOtherUser(null);
 
@@ -209,6 +214,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       setIsCallModalOpen(true);
       setIsCallConnecting(true);
       setOtherUser(user);
+      setIsRemoteAudioMuted(true);
+      setIsRemoteVideoMuted(true);
 
       const stream = await setupLocalMedia();
 
@@ -512,8 +519,11 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
         isIncomingCall,
         isCallModalOpen,
         isCallConnecting,
+
         isAudioMuted,
         isVideoMuted,
+        isRemoteAudioMuted,
+        isRemoteVideoMuted,
 
         remoteVideoRef,
         localVideoRef,
