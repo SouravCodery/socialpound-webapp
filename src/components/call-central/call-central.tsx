@@ -33,7 +33,7 @@ export const CallCentral = () => {
       <Modal
         isModalOpen={isIncomingCall}
         closeModal={rejectCall}
-        mainExtraClasses={classes.modalExtraClasses}
+        mainExtraClasses={classes.incomingCallModalExtraClasses}
       >
         <div className={classes.incomingCall}>
           <div className={classes.incomingCallTitle}>Incoming Call</div>
@@ -58,7 +58,7 @@ export const CallCentral = () => {
       <Modal
         isModalOpen={isCallModalOpen}
         closeModal={endCall}
-        mainExtraClasses={classes.modalExtraClasses}
+        mainExtraClasses={classes.callContainerModalExtraClasses}
       >
         <div className={classes.callContainer}>
           <div className={classes.videoContainer}>
