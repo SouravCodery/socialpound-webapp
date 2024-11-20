@@ -82,8 +82,22 @@ export const CallCentral = () => {
               {isRemoteAudioMuted ? <AudioUnmuteIcon /> : ""}
               {isRemoteVideoMuted ? <VideoUnmuteIcon /> : ""}
             </div>
-            {isCallConnecting && (
-              <div className={classes.callConnecting}>Calling...</div>
+            {(isCallConnecting || isRemoteVideoMuted) && (
+              <div className={classes.callConnecting}>
+                <div className={classes.caller}>
+                  <ProfilePicture
+                    dpURL={otherUser.profilePicture}
+                    scale="large"
+                  />
+                  {isCallConnecting ? (
+                    <div className={classes.fullName}>
+                      Calling {otherUser.fullName} ...
+                    </div>
+                  ) : (
+                    <div className={classes.fullName}>{otherUser.fullName}</div>
+                  )}
+                </div>
+              </div>
             )}
           </div>
           <div
