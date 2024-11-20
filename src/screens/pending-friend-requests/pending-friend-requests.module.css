@@ -1,0 +1,52 @@
+.pendingFriendRequests {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.noPendingFriendRequests {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  flex: 1;
+}
+
+.noPendingFriendRequestsSub {
+  font-weight: lighter;
+  margin-top: 0.5rem;
+}
+
+.virtualPendingFriendRequestsList {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+}
+
+.virtualPendingFriendRequestsList > div > div {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+  align-items: center;
+
+  width: 100%;
+  height: fit-content;
+}

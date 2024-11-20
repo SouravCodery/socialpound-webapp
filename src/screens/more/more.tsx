@@ -32,7 +32,18 @@ export const More = () => {
           >
             Sourav Choudhary
           </a>
-
+          <Link
+            className={clsx(classes.link, classes.settingButton)}
+            href="/friends"
+          >
+            Friends
+          </Link>
+          <Link
+            className={clsx(classes.link, classes.settingButton)}
+            href="/pending-friend-requests"
+          >
+            Friend Requests
+          </Link>
           <ThemeToggleButton buttonClassName={clsx(classes.settingButton)} />
           <Logout buttonClassName={clsx(classes.settingButton)} />
           <DeleteAccount
