@@ -140,3 +140,5 @@ export const CallCentral = () => {
     </>
   );
 };
+
+// Important Note: WebRTC-based calls on this platform rely on peer-to-peer connections. If either device is behind a strict firewall or network with restricted NAT settings, the call may not connect successfully. In such cases, additional network configurations or TURN servers are required, which are not currently implemented on this platform.
