@@ -40,10 +40,12 @@
 
 .name {
   position: absolute;
-  bottom: 0.1rem;
+  top: 0.2rem;
+  right: 0.2rem;
 
   color: white;
   font-weight: lighter;
+  font-size: 0.75rem;
 }
 
 .callActionsContainer {
@@ -110,9 +112,9 @@
   width: 100%;
   height: 100%;
 
-  background: rgba(0, 0, 0, 0.821);
-
   border-radius: 0.25rem;
+
+  background: var(--background-primary);
 }
 
 .video {
@@ -120,7 +122,6 @@
   height: 100%;
 
   object-fit: cover;
-  background: var(--background-primary);
 }
 
 .localVideoContainer {
@@ -132,6 +133,7 @@
   height: 25%;
 
   background: var(--background-secondary);
+  border: 0.1rem solid var(--border-primary-light);
 
   overflow: hidden;
 }
@@ -142,7 +144,7 @@
   align-items: center;
 
   position: absolute;
-  bottom: 0;
+  bottom: 0.1rem;
 
   width: 100%;
   max-width: 30rem;
@@ -151,8 +153,8 @@
 .controlButton {
   background: var(--border-primary-light);
 
-  padding: 1rem;
   width: 100%;
+  height: 3rem;
 
   margin: 0.2rem;
 }
