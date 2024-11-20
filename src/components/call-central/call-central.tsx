@@ -5,6 +5,12 @@ import classes from "./call-central.module.css";
 import { useCall } from "@/context/call.context";
 import { Modal } from "../modal/modal";
 import { ProfilePicture } from "../profile-picture/profile-picture";
+import {
+  AudioMuteIcon,
+  AudioUnmuteIcon,
+  VideoMuteIcon,
+  VideoUnmuteIcon,
+} from "../icons/icons";
 
 export const CallCentral = () => {
   const {
@@ -90,20 +96,10 @@ export const CallCentral = () => {
           </div>
           <div className={classes.callControls}>
             <button onClick={toggleAudio} className={classes.controlButton}>
-              {isAudioMuted ? (
-                <i className="fas fa-microphone-slash"></i>
-              ) : (
-                <i className="fas fa-microphone"></i>
-              )}
-              🎙️
+              {isAudioMuted ? <AudioUnmuteIcon /> : <AudioMuteIcon />}
             </button>
             <button onClick={toggleVideo} className={classes.controlButton}>
-              {isVideoMuted ? (
-                <i className="fas fa-video-slash"></i>
-              ) : (
-                <i className="fas fa-video"></i>
-              )}
-              🎥
+              {isVideoMuted ? <VideoUnmuteIcon /> : <VideoMuteIcon />}
             </button>
             <button onClick={endCall} className={classes.controlButton}>
               <i className="fas fa-phone-slash"></i>❌
