@@ -5,6 +5,7 @@ import classes from "./call-central.module.css";
 import { useCall } from "@/context/call.context";
 import { Modal } from "../modal/modal";
 import { ProfilePicture } from "../profile-picture/profile-picture";
+import { Spinner } from "../loaders/spinner/spinner";
 import {
   AudioMuteIcon,
   AudioUnmuteIcon,
@@ -90,9 +91,13 @@ export const CallCentral = () => {
                     scale="large"
                   />
                   {isCallConnecting ? (
-                    <div className={classes.fullName}>
-                      Calling {otherUser.fullName} ...
-                    </div>
+                    <>
+                      <br />
+                      <Spinner />
+                      <div className={classes.fullName}>
+                        Calling {otherUser.fullName} ...
+                      </div>
+                    </>
                   ) : (
                     <div className={classes.fullName}>{otherUser.fullName}</div>
                   )}
