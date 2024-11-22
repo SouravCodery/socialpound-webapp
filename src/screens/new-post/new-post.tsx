@@ -149,10 +149,10 @@ export const NewPost = () => {
   const newPostSubmitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!selectedFile || !selectedMedia || !caption) {
+    if (!selectedFile || !selectedMedia) {
       bakeToast({
         type: "error",
-        message: "Please add an image and a caption.",
+        message: "Please add an image!",
       });
       return;
     }
