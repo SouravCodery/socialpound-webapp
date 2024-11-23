@@ -11,6 +11,7 @@ import { bakeToast } from "../toasts/toasts";
 import { useSocket } from "@/context/socket.context";
 import { useSWRCheckFriendshipStatus } from "@/hooks/swr-hooks/friendship.swr-hooks";
 import { EventAcknowledgementCallbackParam } from "@/models/interfaces/socket.interface";
+import { logger } from "@/logger/index.logger";
 
 export const Call = ({ user }: { user: UserInterface }) => {
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
@@ -135,7 +136,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
         try {
           await peerConnectionRef.current.addIceCandidate(candidate);
         } catch (err) {
-          console.error("Error adding buffered ice candidate", err);
+          logger.error("Error adding buffered ice candidate", err);
         }
       }
       pendingCandidatesRef.current = [];
@@ -185,7 +186,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
         }
       );
     } catch (error) {
-      console.error("Error initiating call:", error);
+      logger.error("Error initiating call:", error);
       bakeToast({
         type: "error",
         message: "Call couldn't be initiated, Refresh and Retry",
@@ -349,7 +350,7 @@ export const Call = ({ user }: { user: UserInterface }) => {
           try {
             await peerConnectionRef.current.addIceCandidate(candidate);
           } catch (err) {
-            console.error("Error adding received ice candidate", err);
+            logger.error("Error adding received ice candidate", err);
           }
         } else {
           pendingCandidatesRef.current.push(candidate);
@@ -509,7 +510,7 @@ const openMediaDevices = async (constraints: MediaStreamConstraints) => {
   try {
     return await navigator.mediaDevices.getUserMedia(constraints);
   } catch (err) {
-    console.error("Error accessing media devices.", err);
+    logger.error("Error accessing media devices.", err);
     throw err;
   }
 };
