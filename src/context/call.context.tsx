@@ -194,8 +194,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       for (const candidate of pendingCandidatesRef.current) {
         try {
           await peerConnectionRef.current.addIceCandidate(candidate);
-        } catch (err) {
-          logger.error("Error adding buffered ice candidate", err);
+        } catch (error) {
+          logger.error("Error adding buffered ice candidate", error);
         }
       }
       pendingCandidatesRef.current = [];
@@ -433,8 +433,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
         if (peerConnectionRef.current.remoteDescription) {
           try {
             await peerConnectionRef.current.addIceCandidate(candidate);
-          } catch (err) {
-            logger.error("Error adding received ice candidate", err);
+          } catch (error) {
+            logger.error("Error adding received ice candidate", error);
           }
         } else {
           pendingCandidatesRef.current.push(candidate);
@@ -462,8 +462,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       endCall();
     });
 
-    socket.on(SocketConstants.EVENTS.CONNECTION_ERROR, (err) => {
-      bakeToast({ type: "error", message: err.message });
+    socket.on(SocketConstants.EVENTS.CONNECTION_ERROR, (error) => {
+      bakeToast({ type: "error", message: error.message });
       endCall();
     });
 
@@ -550,9 +550,9 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
 const openMediaDevices = async (constraints: MediaStreamConstraints) => {
   try {
     return await navigator.mediaDevices.getUserMedia(constraints);
-  } catch (err) {
-    logger.error("Error accessing media devices.", err);
-    throw err;
+  } catch (error) {
+    logger.error("Error accessing media devices.", error);
+    throw error;
   }
 };
 
