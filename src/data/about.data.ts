@@ -3,34 +3,39 @@ export const sections = [
     name: "Key Features",
     list: [
       {
-        name: "Google OAuth Authentication",
+        name: "Posts and Feed",
         description:
-          "Users can log in via their Google accounts using OAuth 2.0, ensuring secure and convenient access.",
+          "Share posts with image and caption, and enjoy a feed of posts from other users.",
       },
       {
-        name: "Post Management",
+        name: "Likes and Comments",
         description:
-          "Users can create, delete, and retrieve posts, allowing them to share content like images with captions.",
+          "Don't forget to engage what you like! Like and Comment on posts to let others know your thoughts.",
       },
       {
-        name: "Likes and Comments System",
+        name: "Login via Google",
         description:
-          "Users can like and comment on posts, creating a fully interactive social media experience.",
+          "Why create a new account when you can log in with your Google account?",
       },
       {
-        name: "Media Upload via AWS S3",
+        name: "Video/Audio Calling",
         description:
-          "Images are compressed and uploaded through presigned URLs to AWS S3, ensuring efficient media handling.",
+          "Connect with friends via video or audio calls, right from the platform.",
       },
       {
-        name: "Responsive Design",
+        name: "Notifications",
         description:
-          "Socialpound is designed for seamless experiences on both mobile and desktop devices, adapting its layout based on screen size.",
+          "Stay updated with notifications for likes, comments, and friend requests.",
+      },
+      {
+        name: "Friendship",
+        description:
+          "While posts are public currently, you need to be friends to call each other.",
       },
       {
         name: "Light/Dark Mode",
         description:
-          "Users can switch between light and dark themes according to their preferences.",
+          "Whether you prefer light or dark mode, Socialpound has got you covered.",
       },
     ],
   },
@@ -41,12 +46,12 @@ export const sections = [
       {
         name: "Frontend",
         description:
-          "Built using Next.js App Router. SWR is used for efficient data fetching, and React Virtuoso enables smooth rendering of infinite list of Posts/Likes/Comments by virtualizing the list. The platform also incorporates TypeScript for type-safe code and enhanced developer experience.",
+          "Built using Next.js App Router. SWR is used for efficient data fetching, and React Virtuoso enables smooth rendering of infinite list of Posts/Likes/Comments/Notifications by virtualizing the list. User authentication is handled via JWT (JSON Web Tokens) with Google OAuth for secure login. WebRTC and Socket.io are used for video/audio calling.",
       },
       {
         name: "Backend",
         description:
-          "The backend API is developed using Node.js and Express.js, with MongoDB as the primary database. Redis is used for caching and managing persistent counters for likes and comments, while BullMQ handles job queues to process likes, comments, notifications in batches reducing the load on database. Media uploads are managed via AWS S3 using presigned URLs. Served via Cloudfront. User authentication is handled via JWT (JSON Web Tokens) with Google OAuth for secure login.",
+          "The backend API is developed using Node.js and Express.js, with MongoDB as the primary database. Redis is used for caching and managing persistent counters for likes and comments, while BullMQ handles job queues to process likes, comments, notifications in batches reducing the load on database. Media uploads are managed via AWS S3 using presigned URLs. Images being served via Cloudfront. User authentication is handled via JWT (JSON Web Tokens) with Google OAuth for secure login.",
       },
       {
         name: "Cloud",
@@ -58,7 +63,7 @@ export const sections = [
 ];
 
 export const paras = [
-  "This project is a work in progress, and new features will be added as it continues to evolve. Feel free to explore the project!",
+  "This project is a work in progress, and new features will be added as it continues to evolve.",
   "Please note that Socialpound is created solely for educational purposes. It is not intended for commercial use, and the data you provide is used exclusively to enhance the learning experience.",
 ];
 
@@ -73,9 +78,13 @@ export const stack = [
       "React Virtuoso",
       "Mitt",
       "JWT-decode",
+      "Google OAuth",
       "Sharp",
       "HEIC2any",
       "Browser Image Compression",
+      "WebRTC",
+      "WebSocket (Socket.io)",
+      "Sentry",
     ],
   },
   {
@@ -95,6 +104,7 @@ export const stack = [
       "Joi",
       "Google-auth-library",
       "Compression",
+      "WebSocket (Socket.io)",
     ],
   },
   {
