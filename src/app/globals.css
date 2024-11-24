@@ -16,6 +16,9 @@
   --red-primary: #ff2f40;
   --red-dark: #c22330;
 
+  --call-accept: #4caf50;
+  --call-reject: #f44336;
+
   --toast-background: rgba(0, 0, 0, 0.65);
   --shadow-color: rgba(0, 0, 0, 0.2);
   --shadow-value: 0px 1px 2px 0px;
