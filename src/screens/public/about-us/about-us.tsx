@@ -25,10 +25,10 @@ export const AboutUs = () => {
           </p>
           <br />
           <p className={classes.para}>
-            Socialpound is built using the MERN stack (MongoDB, Express.js,
+            Socialpound is built using the MERN Stack (MongoDB, Express.js,
             React, and Node.js) with additional technologies like Redis, BullMQ,
-            AWS S3, WebSocket, WebRTC, and more. Offering features like Post
-            creation, Likes, Comments, Friendship, Video Calling, and more.
+            AWS S3, WebSocket, WebRTC, and more. Offering features like Posts,
+            Feed, Likes, Comments, Friendship, Video Calling, and more.
           </p>
           <section className={classes.sectionContainer}>
             <h2 className={classes.sectionTitle}>Author</h2>
