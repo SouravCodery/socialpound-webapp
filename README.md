@@ -44,7 +44,7 @@ The repository for the Socialpound API, built using Node.js and Express.js.:
 - **Browser Image Compression**: Client-side image compression
 - **@react-oauth/google**: Google OAuth for user authentication
 - **TypeScript**: Type-safe JavaScript superset
-- **WebRTC and WebSocket (Socket.io)**: For Video/Audio Calls
+- **WebRTC and WebSocket (Socket.IO)**: For Video/Audio Calls
 - **Sentry**: Error monitoring
 
 ## Features
