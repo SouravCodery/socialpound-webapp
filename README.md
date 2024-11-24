@@ -23,6 +23,7 @@ This repository has been kept public as a small token of gratitude towards the o
 - [Scripts](#scripts)
 - [Learn More](#learn-more)
 - [License](#license)
+- [Note](#note)
 - [Contact](#contact)
 - [Support](#support)
 
@@ -138,6 +139,10 @@ To learn more about Next.js, take a look at the following resources:
 ## License
 
 This project is for learning purposes and is not licensed for commercial use or redistribution. Feel free to explore the code for educational reasons.
+
+## Note
+
+WebRTC-based calls on this platform rely on peer-to-peer connections. If either device is behind a strict firewall or a network with restricted NAT settings, the call may fail to connect. In such cases, additional network configurations or a TURN server are required. A TURN server is not currently implemented on this platform. In most cases, switching one device to mobile data resolves the issue.
 
 ## Contact
 
