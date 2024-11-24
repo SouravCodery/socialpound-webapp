@@ -12,34 +12,11 @@ import {
 import { useSocket } from "./socket.context";
 import { bakeToast } from "@/components/toasts/toasts";
 
-import { EventAcknowledgementCallbackParam } from "@/models/interfaces/socket.interface";
 import { SocketConstants } from "@/constants/socket.constants";
+import { CallContextInterface } from "@/models/interfaces/call.interface";
+import { EventAcknowledgementCallbackParam } from "@/models/interfaces/socket.interface";
 import { SubDocumentUserInterface } from "@/models/interfaces/user.interface";
 import { logger } from "@/logger/index.logger";
-
-interface CallContextInterface {
-  startCall: ({ user }: { user: SubDocumentUserInterface }) => Promise<void>;
-  endCall: () => void;
-
-  acceptCall: () => Promise<void>;
-  rejectCall: () => void;
-
-  toggleAudio: () => void;
-  toggleVideo: () => void;
-
-  isIncomingCall: boolean;
-  isCallModalOpen: boolean;
-  isCallConnecting: boolean;
-  isAudioMuted: boolean;
-  isVideoMuted: boolean;
-  isRemoteAudioMuted: boolean;
-  isRemoteVideoMuted: boolean;
-
-  remoteVideoRef: React.RefObject<HTMLVideoElement>;
-  localVideoRef: React.RefObject<HTMLVideoElement>;
-
-  otherUser: SubDocumentUserInterface | null;
-}
 
 const CallContext = createContext<CallContextInterface | null>(null);
 
