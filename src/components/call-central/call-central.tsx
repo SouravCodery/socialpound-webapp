@@ -53,6 +53,9 @@ export const CallCentral = () => {
             <div className={classes.username}>
               {otherUser?.username?.split("@")[0]}{" "}
             </div>
+            <div className={classes.moreAboutCall}>
+              Read more about calls in the About Us page.
+            </div>
           </div>
           <div className={classes.callActionsContainer}>
             <button className={classes.callAction} onClick={rejectCall}>
@@ -101,6 +104,9 @@ export const CallCentral = () => {
                   ) : (
                     <div className={classes.fullName}>{otherUser.fullName}</div>
                   )}
+                  <div className={classes.moreAboutCall}>
+                    Read more about calls in the About Us page.
+                  </div>
                 </div>
               </div>
             )}

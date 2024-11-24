@@ -25,13 +25,14 @@
 }
 
 .caller {
-  padding: 1rem;
+  position: relative;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  flex-direction: column;
+  padding: 1rem;
 }
 
 .fullName {
@@ -165,6 +166,16 @@
   height: 3rem;
 
   margin: 0.2rem;
+}
+
+.moreAboutCall {
+  position: absolute;
+  bottom: -0.5rem;
+
+  font-size: 0.5rem;
+  font-weight: lighter;
+
+  margin-top: 1.5rem;
 }
 
 .incomingCallModalExtraClasses {
