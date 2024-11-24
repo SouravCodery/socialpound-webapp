@@ -7,7 +7,7 @@ export const getDecodedToken = ({ token }: { token: string }) => {
   try {
     return jwtDecode<UserDecodedTokenInterface>(token);
   } catch (error) {
-    logger.error("Error in getDecodedToken", { error });
+    logger.error("Error in getDecodedToken", error);
     return null;
   }
 };

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FriendshipStatus } from "@/models/interfaces/friendship.interface";
 import { useSWRUnfriend } from "@/hooks/swr-hooks/friendship.swr-hooks";
 import { Confirm } from "../../confirm/confirm";
+import { logger } from "@/logger/index.logger";
 
 export const UnfriendButton = ({
   className,
@@ -31,6 +32,7 @@ export const UnfriendButton = ({
       await trigger();
       updateCurrentFriendShipStatus({ updatedStatus: undefined });
     } catch (error) {
+      logger.error("Error in unfriend", error);
     } finally {
       closeModal();
     }

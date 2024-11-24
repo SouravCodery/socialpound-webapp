@@ -5,6 +5,7 @@ import classes from "./delete-post.module.css";
 import { BinIcon } from "@/components/icons/icons";
 import { Confirm } from "@/components/confirm/confirm";
 import { useSWRDeletePostById } from "@/hooks/swr-hooks/post.swr-hooks";
+import { logger } from "@/logger/index.logger";
 
 export const DeletePost = ({
   isOwnPost,
@@ -28,6 +29,7 @@ export const DeletePost = ({
       await trigger();
       updatePostsAfterDeletion({ postId });
     } catch (error) {
+      logger.error("Error in deletePost", error);
     } finally {
       closeModal();
     }

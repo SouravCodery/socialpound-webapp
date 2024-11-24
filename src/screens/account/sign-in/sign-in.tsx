@@ -51,7 +51,7 @@ export const SignIn = () => {
 
       router.replace("/");
     } catch (error) {
-      logger.error("Error in onGoogleLoginSuccess", { error });
+      logger.error("Error in onGoogleLoginSuccess", error);
 
       bakeToast({
         type: "error",

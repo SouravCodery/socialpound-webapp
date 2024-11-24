@@ -195,7 +195,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
         try {
           await peerConnectionRef.current.addIceCandidate(candidate);
         } catch (error) {
-          logger.error("Error adding buffered ice candidate", error);
+          logger.error("Error in processPendingCandidates", error);
         }
       }
       pendingCandidatesRef.current = [];
@@ -243,7 +243,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
         }
       );
     } catch (error) {
-      logger.error("Error initiating call:", error);
+      logger.error("Error in startCall", error);
       bakeToast({
         type: "error",
         message: "Call couldn't be initiated, Refresh and Retry",
@@ -434,7 +434,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
           try {
             await peerConnectionRef.current.addIceCandidate(candidate);
           } catch (error) {
-            logger.error("Error adding received ice candidate", error);
+            logger.error("Error in NEW_ICE_CANDIDATE_RECEIVED event", error);
           }
         } else {
           pendingCandidatesRef.current.push(candidate);
@@ -551,7 +551,7 @@ const openMediaDevices = async (constraints: MediaStreamConstraints) => {
   try {
     return await navigator.mediaDevices.getUserMedia(constraints);
   } catch (error) {
-    logger.error("Error accessing media devices.", error);
+    logger.error("Error in openMediaDevices", error);
     throw error;
   }
 };

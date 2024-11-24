@@ -19,7 +19,7 @@ export async function setServerToken({ token }: { token: string }) {
 
     return true;
   } catch (error) {
-    logger.error("Error in setServerToken", { error });
+    logger.error("Error in setServerToken", error);
 
     return false;
   }
@@ -35,7 +35,7 @@ export async function getServerToken() {
 
     return serverToken;
   } catch (error) {
-    logger.error("Error in getServerToken", { error });
+    logger.error("Error in getServerToken", error);
 
     return null;
   }
@@ -50,7 +50,7 @@ export async function cookieFlushAfterLogout() {
 
     return true;
   } catch (error) {
-    logger.error("Error in cookieFlushAfterLogout", { error });
+    logger.error("Error in cookieFlushAfterLogout", error);
     return false;
   }
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FriendshipStatus } from "@/models/interfaces/friendship.interface";
 import { useSWRCancelFriendRequest } from "@/hooks/swr-hooks/friendship.swr-hooks";
 import { Confirm } from "../../confirm/confirm";
+import { logger } from "@/logger/index.logger";
 
 export const CancelFriendRequestButton = ({
   className,
@@ -31,6 +32,7 @@ export const CancelFriendRequestButton = ({
       await trigger();
       updateCurrentFriendShipStatus({ updatedStatus: undefined });
     } catch (error) {
+      logger.error("Error in cancelFriendRequest", error);
     } finally {
       closeModal();
     }

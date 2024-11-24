@@ -195,7 +195,7 @@ export const NewPost = () => {
 
       router.push(`/profile/${username}`);
     } catch (error) {
-      logger.error("Error creating post:", error);
+      logger.error("Error in newPostSubmitHandler", error);
       bakeToast({ type: "error", message: "Couldn't add post." });
     } finally {
       setIsPostBeingUploaded(false);

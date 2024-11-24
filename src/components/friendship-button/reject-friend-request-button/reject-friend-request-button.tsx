@@ -3,6 +3,7 @@ import { useState } from "react";
 import { FriendshipStatus } from "@/models/interfaces/friendship.interface";
 import { useSWRRespondToFriendRequest } from "@/hooks/swr-hooks/friendship.swr-hooks";
 import { Confirm } from "@/components/confirm/confirm";
+import { logger } from "@/logger/index.logger";
 
 export const RejectFriendRequestButton = ({
   className,
@@ -31,6 +32,7 @@ export const RejectFriendRequestButton = ({
       await trigger({ requesterId: userId, status: "rejected" });
       updateCurrentFriendShipStatus({ updatedStatus: "rejected" });
     } catch (error) {
+      logger.error("Error in rejectFriendRequest", error);
     } finally {
       closeModal();
     }
