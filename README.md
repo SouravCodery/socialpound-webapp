@@ -6,9 +6,9 @@
 
 ## Description
 
-Socialpound Webapp is the frontend for Socialpound, a social media platform like Instagram. This web app is built using Next.js and focuses on features like post creation, comment interaction, likes, and more. It is designed to work with the Socialpound API.
+Socialpound Webapp is the frontend for Socialpound, a learning-driven social media platform built for fun and experimentation. This Web App is written in Next.js and allows users to share posts, engage with likes and comments, and connect with friends via Video/Audio calls. It’s designed to work seamlessly with the Socialpound API to offer a modern, scalable social media experience.
 
-This project is still a work in progress, and more features will be added in the future.
+This project is a continuous work in progress and will evolve as new technologies and features are implemented.
 
 ## Table of Contents
 
@@ -26,7 +26,7 @@ This project is still a work in progress, and more features will be added in the
 
 ## Backend
 
-The repository of Socialpound API made using Node.js, Express.js:  
+The repository for the Socialpound API, built using Node.js and Express.js.:  
 [socialpound-api](https://github.com/SouravCodery/socialpound-api)
 
 ## Technologies
@@ -42,16 +42,20 @@ The repository of Socialpound API made using Node.js, Express.js:
 - **Browser Image Compression**: Client-side image compression
 - **@react-oauth/google**: Google OAuth for user authentication
 - **TypeScript**: Type-safe JavaScript superset
+- **WebRTC and WebSocket (Socket.io)**: For Video/Audio Calls
+- **Sentry**: Error monitoring
 
 ## Features
 
-- **Google OAuth**: Login via Google accounts
-- **Post Management**: Create, delete, and retrieve posts
-- **Likes System**: Like/unlike posts
-- **Comment System**: Add and fetch comments on posts
-- **Media Upload**: Compress and upload images using AWS presigned url
-- **Responsive Design**: Designed for both mobile and desktop views
-- **Light/Dark Mode**: Light/Dark Mode based on user's preference
+- **Posts and Feed**: Create posts with images and captions, and view a personalized feed.
+- **Likes and Comments**: Like and comment on posts to engage with others.
+- **Login via Google**: Log in securely with your Google account.
+- **Video/Audio Calling**: Connect with friends through WebRTC-powered video and audio calls.
+- **Notifications**: Stay updated with real-time notifications for likes, comments, and friend requests.
+- **Friendship System**: Call friends while keeping posts public for now.
+- **Media Upload**: Compress and upload images to AWS S3 using presigned URLs.
+- **Responsive Design**: Enjoy a seamless experience on both mobile and desktop devices.
+- **Light/Dark Mode**: Switch between light and dark themes based on your preference.
 
 ## Environment Variables
 
@@ -61,6 +65,7 @@ To run this project, you will need to add the following environment variables to
 NEXT_PUBLIC_API_BASE_URL=
 NEXT_PUBLIC_CDN_BASE_URL=
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=
+SENTRY_AUTH_TOKEN=
 ```
 
 ## Getting Started
@@ -138,6 +143,7 @@ For questions or feedback, feel free to reach out:
 
 - **GitHub**: [github.com/SouravCodery](https://github.com/SouravCodery)
 - **LinkedIn**: [linkedin.com/in/SouravCodery](https://www.linkedin.com/in/SouravCodery)
+- **X**: [x.com/souravcodery](https://x.com/souravcodery)
 - **Email**: souravscchoudhary@gmail.com
 
 ## Support
