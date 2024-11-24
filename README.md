@@ -10,6 +10,8 @@ Socialpound Webapp is the frontend for Socialpound, a learning-driven social med
 
 This project is a continuous work in progress and will evolve as new technologies and features are implemented.
 
+This repository has been kept public as a small token of gratitude towards the open-source community. From React.js to Node.js, my entire current tech stack is built on open source, without which I wouldn’t have become a developer. It also serves to showcase a small glimpse of my Software Engineering skills and expertise in Full Stack Development.
+
 ## Table of Contents
 
 - [Description](#description)
@@ -52,7 +54,7 @@ The repository for the Socialpound API, built using Node.js and Express.js.:
 - **Login via Google**: Log in securely with your Google account.
 - **Video/Audio Calling**: Connect with friends through WebRTC-powered video and audio calls.
 - **Notifications**: Stay updated with real-time notifications for likes, comments, and friend requests.
-- **Friendship System**: Call friends while keeping posts public for now.
+- **Friendship System**: Make friends and reach out to them via Video/Audio calls.
 - **Media Upload**: Compress and upload images to AWS S3 using presigned URLs.
 - **Responsive Design**: Enjoy a seamless experience on both mobile and desktop devices.
 - **Light/Dark Mode**: Switch between light and dark themes based on your preference.
