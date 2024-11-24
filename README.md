@@ -6,9 +6,11 @@
 
 ## Description
 
-Socialpound Webapp is the frontend for Socialpound, a social media platform like Instagram. This web app is built using Next.js and focuses on features like post creation, comment interaction, likes, and more. It is designed to work with the Socialpound API.
+Socialpound Webapp is the frontend for Socialpound, a learning-driven social media platform built for fun and experimentation. This Web App is written in Next.js and allows users to share posts, engage with likes and comments, and connect with friends via Video/Audio calls. It’s designed to work seamlessly with the Socialpound API to offer a modern, scalable social media experience.
 
-This project is still a work in progress, and more features will be added in the future.
+This project is a continuous work in progress and will evolve as new technologies and features are implemented.
+
+This repository has been kept public as a small token of gratitude towards the open-source community. From React.js to Node.js, my entire current tech stack is built on open source, without which I wouldn’t have become a developer. It also serves to showcase a small glimpse of my Software Engineering skills and expertise in Full Stack Development.
 
 ## Table of Contents
 
@@ -21,12 +23,13 @@ This project is still a work in progress, and more features will be added in the
 - [Scripts](#scripts)
 - [Learn More](#learn-more)
 - [License](#license)
+- [Note](#note)
 - [Contact](#contact)
 - [Support](#support)
 
 ## Backend
 
-The repository of Socialpound API made using Node.js, Express.js:  
+The repository for the Socialpound API, built using Node.js and Express.js.:  
 [socialpound-api](https://github.com/SouravCodery/socialpound-api)
 
 ## Technologies
@@ -42,16 +45,20 @@ The repository of Socialpound API made using Node.js, Express.js:
 - **Browser Image Compression**: Client-side image compression
 - **@react-oauth/google**: Google OAuth for user authentication
 - **TypeScript**: Type-safe JavaScript superset
+- **WebRTC and WebSocket (Socket.IO)**: For Video/Audio Calls
+- **Sentry**: Error monitoring
 
 ## Features
 
-- **Google OAuth**: Login via Google accounts
-- **Post Management**: Create, delete, and retrieve posts
-- **Likes System**: Like/unlike posts
-- **Comment System**: Add and fetch comments on posts
-- **Media Upload**: Compress and upload images using AWS presigned url
-- **Responsive Design**: Designed for both mobile and desktop views
-- **Light/Dark Mode**: Light/Dark Mode based on user's preference
+- **Posts and Feed**: Create posts with images and captions, and view a personalized feed.
+- **Likes and Comments**: Like and comment on posts to engage with others.
+- **Login via Google**: Log in securely with your Google account.
+- **Video/Audio Calling**: Connect with friends through WebRTC-powered video and audio calls.
+- **Notifications**: Stay updated with real-time notifications for likes, comments, and friend requests.
+- **Friendship System**: Make friends and reach out to them via Video/Audio calls.
+- **Media Upload**: Compress and upload images to AWS S3 using presigned URLs.
+- **Responsive Design**: Enjoy a seamless experience on both mobile and desktop devices.
+- **Light/Dark Mode**: Switch between light and dark themes based on your preference.
 
 ## Environment Variables
 
@@ -61,6 +68,7 @@ To run this project, you will need to add the following environment variables to
 NEXT_PUBLIC_API_BASE_URL=
 NEXT_PUBLIC_CDN_BASE_URL=
 NEXT_PUBLIC_GOOGLE_CLIENT_ID=
+SENTRY_AUTH_TOKEN=
 ```
 
 ## Getting Started
@@ -132,12 +140,17 @@ To learn more about Next.js, take a look at the following resources:
 
 This project is for learning purposes and is not licensed for commercial use or redistribution. Feel free to explore the code for educational reasons.
 
+## Note
+
+WebRTC-based calls on this platform rely on peer-to-peer connections. If either device is behind a strict firewall or a network with restricted NAT settings, the call may fail to connect. In such cases, additional network configurations or a TURN server are required. A TURN server is not currently implemented on this platform. In most cases, switching one device to mobile data resolves the issue.
+
 ## Contact
 
 For questions or feedback, feel free to reach out:
 
 - **GitHub**: [github.com/SouravCodery](https://github.com/SouravCodery)
 - **LinkedIn**: [linkedin.com/in/SouravCodery](https://www.linkedin.com/in/SouravCodery)
+- **X**: [x.com/souravcodery](https://x.com/souravcodery)
 - **Email**: souravscchoudhary@gmail.com
 
 ## Support

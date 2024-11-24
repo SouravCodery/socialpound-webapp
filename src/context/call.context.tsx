@@ -54,7 +54,6 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
   const peerConnectionRef = useRef<RTCPeerConnection>();
   const roomIdRef = useRef<string>();
   const pendingCandidatesRef = useRef<RTCIceCandidateInit[]>([]);
-  const callTimerRef = useRef<NodeJS.Timeout | null>(null);
 
   const socket = useSocket();
 
@@ -90,11 +89,6 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
     setIsRemoteVideoMuted(true);
 
     setOtherUser(null);
-
-    if (callTimerRef.current) {
-      clearInterval(callTimerRef.current);
-      callTimerRef.current = null;
-    }
 
     if (peerConnectionRef.current) {
       peerConnectionRef.current.close();
@@ -485,9 +479,6 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
     return () => {
       if (peerConnectionRef.current) {
         peerConnectionRef.current.close();
-      }
-      if (callTimerRef.current) {
-        clearInterval(callTimerRef.current);
       }
     };
   }, []);

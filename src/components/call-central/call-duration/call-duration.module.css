@@ -1,0 +1,9 @@
+.duration {
+  position: absolute;
+  top: 0.5rem;
+
+  font-weight: lighter;
+  font-size: 0.75rem;
+
+  color: white;
+}

@@ -12,6 +12,8 @@
   overflow-y: scroll;
 
   background: var(--about-us-gradient);
+
+  font-weight: lighter;
 }
 
 .container {
@@ -50,7 +52,8 @@
 }
 
 .para {
-  font-size: 1rem;
+  margin-top: 0.2rem;
+  font-size: 0.95rem;
 }
 
 .sectionContainer {

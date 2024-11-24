@@ -17,19 +17,18 @@ export const AboutUs = () => {
         <div className={classes.main}>
           <h1 className={classes.title}>About Us</h1>
           <p className={classes.para}>
-            Welcome to Socialpound, a learning-driven social media platform
-            developed for educational purposes. Socialpound is designed to mimic
-            popular social media platforms like Instagram, allowing developers
-            and enthusiasts to explore and practice modern web development and
-            system design techniques in a real-world project scenario.
+            Welcome to Socialpound, A Social Media platform written for the sake
+            of fun and learning. This project would continue to evolve and act
+            as a playground for me to experiment with new technologies and
+            features. The goal is to build a scalable platform by applying my
+            system design learnings.
           </p>
+          <br />
           <p className={classes.para}>
-            Socialpound is built using the MERN stack (MongoDB, Express.js,
+            Socialpound is built using the MERN Stack (MongoDB, Express.js,
             React, and Node.js) with additional technologies like Redis, BullMQ,
-            and AWS S3 to offer scalable, real-world functionality. This
-            platform is a complete web application that implements features such
-            as user authentication, post creation, likes, comments, and media
-            uploads, all of which are backed by a robust backend API.
+            AWS S3, WebSocket, WebRTC, and more. Offering features like Posts,
+            Feed, Likes, Comments, Friendship, Video Calling, and more.
           </p>
           <section className={classes.sectionContainer}>
             <h2 className={classes.sectionTitle}>Author</h2>

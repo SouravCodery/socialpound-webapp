@@ -9,9 +9,12 @@ import { Spinner } from "../loaders/spinner/spinner";
 import {
   AudioMuteIcon,
   AudioUnmuteIcon,
+  CallAcceptIcon,
+  CallRejectIcon,
   VideoMuteIcon,
   VideoUnmuteIcon,
 } from "../icons/icons";
+import { CallDuration } from "./call-duration/call-duration";
 
 export const CallCentral = () => {
   const {
@@ -53,13 +56,16 @@ export const CallCentral = () => {
             <div className={classes.username}>
               {otherUser?.username?.split("@")[0]}{" "}
             </div>
+            <div className={classes.moreAboutCall}>
+              Read more about calls in the About Us page.
+            </div>
           </div>
           <div className={classes.callActionsContainer}>
             <button className={classes.callAction} onClick={rejectCall}>
-              ❌
+              <CallRejectIcon />
             </button>
             <button className={classes.callAction} onClick={acceptCall}>
-              ✅
+              <CallAcceptIcon />
             </button>
           </div>
         </div>
@@ -72,6 +78,7 @@ export const CallCentral = () => {
       >
         <div className={classes.callContainer}>
           <div className={classes.videoContainer}>
+            {!isCallConnecting && <CallDuration />}
             <video
               ref={remoteVideoRef}
               autoPlay
@@ -101,6 +108,9 @@ export const CallCentral = () => {
                   ) : (
                     <div className={classes.fullName}>{otherUser.fullName}</div>
                   )}
+                  <div className={classes.moreAboutCall}>
+                    Read more about calls in the About Us page.
+                  </div>
                 </div>
               </div>
             )}
@@ -132,7 +142,7 @@ export const CallCentral = () => {
               </>
             )}
             <button onClick={endCall} className={classes.controlButton}>
-              ❌
+              <CallRejectIcon />
             </button>
           </div>
         </div>
