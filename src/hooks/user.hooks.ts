@@ -1,7 +1,8 @@
+import { useEffect, useState } from "react";
+import { UserTokenPayloadInterface } from "@/models/interfaces/user.interface";
 import { DELETED_USER } from "@/constants/deleted-user";
 import { localStorageHelpers } from "@/helpers/local-storage.helpers";
-import { UserTokenPayloadInterface } from "@/models/interfaces/user.interface";
-import { useEffect, useState } from "react";
+import { logger } from "@/logger/index.logger";
 
 export const useGetAuthenticatedUserFromLocalStorage = () => {
   const [authenticatedUser, setAuthenticatedUser] =
@@ -18,7 +19,7 @@ export const useGetAuthenticatedUserFromLocalStorage = () => {
         setAuthenticatedUser(user);
       }
     } catch (error) {
-      console.error("Error in useGetAuthenticatedUserFromLocalStorage", error);
+      logger.error("Error in useGetAuthenticatedUserFromLocalStorage", error);
     }
   }, []);
 

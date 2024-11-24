@@ -17,6 +17,7 @@ import { Loader } from "@/components/loaders/loader/loader";
 import { localStorageHelpers } from "@/helpers/local-storage.helpers";
 import { setServerToken } from "@/actions/user.actions";
 import { Constants } from "@/constants/constants";
+import { logger } from "@/logger/index.logger";
 
 const clientId = Constants.GOOGLE_CLIENT_ID ?? "";
 
@@ -50,7 +51,7 @@ export const SignIn = () => {
 
       router.replace("/");
     } catch (error) {
-      console.error("Error in onGoogleLoginSuccess", { error });
+      logger.error("Error in onGoogleLoginSuccess", error);
 
       bakeToast({
         type: "error",

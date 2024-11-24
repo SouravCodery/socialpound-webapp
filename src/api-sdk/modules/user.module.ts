@@ -34,6 +34,7 @@ export class UserModule {
 
       return decodedToken;
     } catch (error) {
+      logger.error("Error in getDecodedUserToken", error);
       return null;
     }
   }

@@ -13,7 +13,7 @@ export const HeaderSecondary = () => {
     router.back();
   };
 
-  const currentRoute = (pathName?.split("/")?.[1] ?? "").replace("-", " ");
+  const currentRoute = (pathName?.split("/")?.[1] ?? "").replaceAll("-", " ");
 
   return (
     <header className={classes.header}>

@@ -12,33 +12,11 @@ import {
 import { useSocket } from "./socket.context";
 import { bakeToast } from "@/components/toasts/toasts";
 
-import { EventAcknowledgementCallbackParam } from "@/models/interfaces/socket.interface";
 import { SocketConstants } from "@/constants/socket.constants";
+import { CallContextInterface } from "@/models/interfaces/call.interface";
+import { EventAcknowledgementCallbackParam } from "@/models/interfaces/socket.interface";
 import { SubDocumentUserInterface } from "@/models/interfaces/user.interface";
-
-interface CallContextInterface {
-  startCall: ({ user }: { user: SubDocumentUserInterface }) => Promise<void>;
-  endCall: () => void;
-
-  acceptCall: () => Promise<void>;
-  rejectCall: () => void;
-
-  toggleAudio: () => void;
-  toggleVideo: () => void;
-
-  isIncomingCall: boolean;
-  isCallModalOpen: boolean;
-  isCallConnecting: boolean;
-  isAudioMuted: boolean;
-  isVideoMuted: boolean;
-  isRemoteAudioMuted: boolean;
-  isRemoteVideoMuted: boolean;
-
-  remoteVideoRef: React.RefObject<HTMLVideoElement>;
-  localVideoRef: React.RefObject<HTMLVideoElement>;
-
-  otherUser: SubDocumentUserInterface | null;
-}
+import { logger } from "@/logger/index.logger";
 
 const CallContext = createContext<CallContextInterface | null>(null);
 
@@ -193,8 +171,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       for (const candidate of pendingCandidatesRef.current) {
         try {
           await peerConnectionRef.current.addIceCandidate(candidate);
-        } catch (err) {
-          console.error("Error adding buffered ice candidate", err);
+        } catch (error) {
+          logger.error("Error in processPendingCandidates", error);
         }
       }
       pendingCandidatesRef.current = [];
@@ -242,7 +220,7 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
         }
       );
     } catch (error) {
-      console.error("Error initiating call:", error);
+      logger.error("Error in startCall", error);
       bakeToast({
         type: "error",
         message: "Call couldn't be initiated, Refresh and Retry",
@@ -432,8 +410,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
         if (peerConnectionRef.current.remoteDescription) {
           try {
             await peerConnectionRef.current.addIceCandidate(candidate);
-          } catch (err) {
-            console.error("Error adding received ice candidate", err);
+          } catch (error) {
+            logger.error("Error in NEW_ICE_CANDIDATE_RECEIVED event", error);
           }
         } else {
           pendingCandidatesRef.current.push(candidate);
@@ -461,8 +439,8 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
       endCall();
     });
 
-    socket.on(SocketConstants.EVENTS.CONNECTION_ERROR, (err) => {
-      bakeToast({ type: "error", message: err.message });
+    socket.on(SocketConstants.EVENTS.CONNECTION_ERROR, (error) => {
+      bakeToast({ type: "error", message: error.message });
       endCall();
     });
 
@@ -549,9 +527,9 @@ export const CallProvider = ({ children }: { children: React.ReactNode }) => {
 const openMediaDevices = async (constraints: MediaStreamConstraints) => {
   try {
     return await navigator.mediaDevices.getUserMedia(constraints);
-  } catch (err) {
-    console.error("Error accessing media devices.", err);
-    throw err;
+  } catch (error) {
+    logger.error("Error in openMediaDevices", error);
+    throw error;
   }
 };
 

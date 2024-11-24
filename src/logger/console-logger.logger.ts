@@ -1,3 +1,4 @@
+import * as Sentry from "@sentry/nextjs";
 import { LoggerInterface } from "../models/interfaces/logger.interface";
 import { isDevEnvironment, isRunningOnClient } from "@/helpers/misc.helpers";
 
@@ -23,6 +24,8 @@ export class ConsoleLogger implements LoggerInterface {
   }
 
   error(message: string, ...meta: any[]): void {
+    Sentry.captureException(meta[0]);
+
     if (!isDevEnvironment() && isRunningOnClient()) return;
 
     console.error(

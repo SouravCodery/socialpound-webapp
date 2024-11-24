@@ -6,13 +6,14 @@ type NotificationTypes =
   | "like-on-comment"
   | "comment"
   | "reply"
-  | "add-friend";
+  | "add-friend"
+  | "accept-friend-request";
 
 export interface NotificationInterface {
   _id: string;
   sender: SubDocumentUserInterface | null;
   type: NotificationTypes;
-  post: {
+  post?: {
     _id: string;
     content: PostInterface["content"];
   };

@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 
 import { Confirm } from "@/components/confirm/confirm";
 import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
+import { logger } from "@/logger/index.logger";
 
 export const DeleteAccount = ({
   buttonClassName,
@@ -31,6 +32,7 @@ export const DeleteAccount = ({
 
       router.replace("/account/sign-in");
     } catch (error) {
+      logger.error("Error in deleteAccount", error);
     } finally {
       setIsDeletingAccount(false);
       closeModal();

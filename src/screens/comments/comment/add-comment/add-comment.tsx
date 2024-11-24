@@ -61,7 +61,7 @@ export const AddComment = ({
         },
       });
     } catch (error) {
-      logger.error("Error add comment:", error);
+      logger.error("Error in addCommentSubmitHandler", error);
     }
   };
 

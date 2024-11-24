@@ -104,7 +104,7 @@ export class HttpClient {
       logger.error(
         "Error in request in HttpClient",
         // { endpoint, options, token, queryParams, body },
-        { error }
+        error
       );
 
       if (

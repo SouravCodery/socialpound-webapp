@@ -149,10 +149,10 @@ export const NewPost = () => {
   const newPostSubmitHandler = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    if (!selectedFile || !selectedMedia || !caption) {
+    if (!selectedFile || !selectedMedia) {
       bakeToast({
         type: "error",
-        message: "Please add an image and a caption.",
+        message: "Please add an image!",
       });
       return;
     }
@@ -195,7 +195,7 @@ export const NewPost = () => {
 
       router.push(`/profile/${username}`);
     } catch (error) {
-      logger.error("Error creating post:", error);
+      logger.error("Error in newPostSubmitHandler", error);
       bakeToast({ type: "error", message: "Couldn't add post." });
     } finally {
       setIsPostBeingUploaded(false);

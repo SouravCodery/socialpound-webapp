@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 
 import { Confirm } from "@/components/confirm/confirm";
 import { apiSDKInstance } from "@/api-sdk/api-sdk.instance";
+import { logger } from "@/logger/index.logger";
 
 export const Logout = ({ buttonClassName }: { buttonClassName: string }) => {
   const router = useRouter();
@@ -23,6 +24,7 @@ export const Logout = ({ buttonClassName }: { buttonClassName: string }) => {
       await apiSDKInstance.user.signOut();
       router.replace("/account/sign-in");
     } catch (error) {
+      logger.error("Error in logout", error);
     } finally {
       setIsLoggingOut(false);
       closeModal();

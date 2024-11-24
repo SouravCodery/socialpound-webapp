@@ -80,7 +80,20 @@ export const NotificationMessage = ({
           >
             {username}
           </Link>{" "}
-          added you as a friend
+          sent you a friend request
+        </div>
+      );
+    case "accept-friend-request":
+      return (
+        <div className={classes.message}>
+          <Link
+            href={senderProfile}
+            prefetch={false}
+            className={clsx(classes.username, !sender?._id && "deletedUser")}
+          >
+            {username}
+          </Link>{" "}
+          accepted your friend request
         </div>
       );
     default:

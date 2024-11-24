@@ -5,6 +5,7 @@ import classes from "./delete-comment.module.css";
 import { BinIcon } from "@/components/icons/icons";
 import { Confirm } from "@/components/confirm/confirm";
 import { useSWRDeleteCommentById } from "@/hooks/swr-hooks/comment.swr-hooks";
+import { logger } from "@/logger/index.logger";
 
 export const DeleteComment = ({
   isAuthorizedToDeleteComment,
@@ -28,6 +29,7 @@ export const DeleteComment = ({
       await trigger();
       updateCommentsAfterDeletion({ commentId });
     } catch (error) {
+      logger.error("Error in deleteComment", error);
     } finally {
       closeModal();
     }

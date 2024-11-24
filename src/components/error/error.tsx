@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import * as Sentry from "@sentry/nextjs";
 
 import classes from "./error.module.css";
 import { logger } from "@/logger/index.logger";
@@ -13,6 +14,7 @@ export const Error = ({
   reset: () => void;
 }) => {
   useEffect(() => {
+    Sentry.captureException(error);
     logger.error("From Error Boundary", error);
   }, [error]);
 
