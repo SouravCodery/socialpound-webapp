@@ -18,6 +18,7 @@ import { localStorageHelpers } from "@/helpers/local-storage.helpers";
 import { setServerToken } from "@/actions/user.actions";
 import { Constants } from "@/constants/constants";
 import { logger } from "@/logger/index.logger";
+import { EmbeddedTweet } from "@/components/embedded-tweet/embedded-tweet";
 
 const clientId = Constants.GOOGLE_CLIENT_ID ?? "";
 
@@ -80,7 +81,7 @@ export const SignIn = () => {
               <div>Sourav Choudhary</div>
             </a>
           </div>
-          <div className={clsx(classes.body)}>
+          <div className={clsx(classes.googleAuthContainer)}>
             <GoogleOAuthProvider clientId={clientId}>
               <GoogleLogin
                 onSuccess={onGoogleLoginSuccess}
@@ -94,6 +95,7 @@ export const SignIn = () => {
             </GoogleOAuthProvider>
           </div>
         </div>
+        <EmbeddedTweet tweetId="1628832338187636740" />
       </div>
       <Loader mode="fixed" show={isLoginInProgress} text="Signing in" />
     </>
