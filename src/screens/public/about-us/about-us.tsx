@@ -6,6 +6,7 @@ import { sections, paras } from "@/data/about.data";
 import { GitHubIcon, WebsiteIcon } from "@/components/icons/icons";
 import { Logo } from "@/components/logo/logo";
 import { Stack } from "./stack/stack";
+import { EmbeddedTweet } from "@/components/embedded-tweet/embedded-tweet";
 
 export const AboutUs = () => {
   return (
@@ -102,6 +103,10 @@ export const AboutUs = () => {
           </p>
         </div>
       </div>
+      <EmbeddedTweet
+        tweetId="1628832338187636740"
+        extraClasses={classes.embeddedTweet}
+      />
     </div>
   );
 };
