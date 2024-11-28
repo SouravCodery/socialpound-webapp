@@ -10,6 +10,8 @@ let userLikesSet = userLikesFromLocalStorage
   ? new Set(userLikesFromLocalStorage)
   : null;
 
+//Note: Likes won't be consistent if user logs in from multiple devices
+//A simple solution would be to repopulate the likes from the server on every login
 export const loadPostsLikedByUser = async () => {
   try {
     if (userLikesSet) {
