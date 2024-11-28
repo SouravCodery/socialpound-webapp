@@ -1,9 +1,11 @@
 .duration {
   position: absolute;
-  top: 0.5rem;
+  top: 1.5rem;
 
   font-weight: lighter;
   font-size: 0.75rem;
 
   color: white;
+
+  z-index: 100;
 }
