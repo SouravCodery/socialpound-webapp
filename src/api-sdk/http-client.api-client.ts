@@ -84,7 +84,7 @@ export class HttpClient {
         if (response.status === 401) {
           if (isRunningOnClient()) {
             localStorageHelpers.removeItem({ key: "post-likes" });
-            localStorageHelpers.removeItem({ key: "user" });
+            localStorageHelpers.removeItem({ key: "pound" });
             this.flushToken();
             await cookieFlushAfterLogout();
           }

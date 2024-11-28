@@ -52,7 +52,7 @@ export class UserModule {
   async signOut() {
     try {
       localStorageHelpers.removeItem({ key: "post-likes" });
-      localStorageHelpers.removeItem({ key: "user" });
+      localStorageHelpers.removeItem({ key: "pound" });
 
       this.httpClient.flushToken();
       await cookieFlushAfterLogout();
