@@ -51,7 +51,7 @@ The repository for the Socialpound API, built using Node.js and Express.js.:
 - **Next.js**: React framework for server-rendered apps
 - **React**: JavaScript library for building user interfaces
 - **SWR**: Data fetching library for remote data fetching
-- **React Virtuoso**: Rendering large datasets with virtualization
+- **React Virtuoso**: Rendering infinite list of feed, likes, comments, etc with virtualized rendering
 - **Mitt**: Event emitter for toasts
 - **JWT-decode**: Decodes JWT tokens
 - **Sharp**: Image processing
