@@ -104,7 +104,7 @@ export const AboutUs = () => {
         </div>
       </div>
       <EmbeddedTweet
-        tweetId="1845827447968682254"
+        tweetId="1862190882620923983"
         extraClasses={classes.embeddedTweet}
       />
     </div>
