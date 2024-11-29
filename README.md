@@ -1,7 +1,21 @@
 # Socialpound Webapp
 
-<div style="text-align: center;">
-   <img src="./public/socialpound-preview.gif" width="350" style="margin:auto;" alt="Socialpound Webapp Preview">
+<div 
+   style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; padding: 1rem; gap: 1rem;"
+>
+   <video 
+      src="./.github/assets/socialpound-souravchoudhary-souravcodery-v2.mp4" 
+      controls="controls" 
+      style="width: auto; height: 30rem; object-fit: contain;" 
+      alt="Socialpound Webapp Preview Video"
+   >
+      Your browser does not support the video tag.
+   </video>
+   <img 
+      src="./.github/assets/socialpound-souravchoudhary-souravcodery-screenshot-2.png" 
+      style="width: auto; height: 30rem; object-fit: contain;" 
+      alt="Socialpound Webapp Preview Screenshot Desktop"
+   >
 </div>
 
 ## Description
