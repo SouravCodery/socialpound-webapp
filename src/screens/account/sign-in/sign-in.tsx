@@ -95,7 +95,7 @@ export const SignIn = () => {
             </GoogleOAuthProvider>
           </div>
         </div>
-        <EmbeddedTweet tweetId="1845827447968682254" />
+        <EmbeddedTweet tweetId="1862190882620923983" />
       </div>
       <Loader mode="fixed" show={isLoginInProgress} text="Signing in" />
     </>
