@@ -3,18 +3,15 @@
 <div 
    style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; padding: 1rem; gap: 1rem;"
 >
-   <video 
-      src="./.github/assets/socialpound-souravchoudhary-souravcodery-v2.mp4" 
-      controls="controls" 
+   <img 
+      src="./.github/assets/socialpound-souravchoudhary-souravcodery-v2.gif" 
       style="width: auto; height: 30rem; object-fit: contain;" 
-      alt="Socialpound Webapp Preview Video"
+      alt="Socialpound Web-App Preview Screenshot Desktop"
    >
-      Your browser does not support the video tag.
-   </video>
    <img 
       src="./.github/assets/socialpound-souravchoudhary-souravcodery-screenshot-2.png" 
       style="width: auto; height: 30rem; object-fit: contain;" 
-      alt="Socialpound Webapp Preview Screenshot Desktop"
+      alt="Socialpound Web-App Preview GIF Mobile"
    >
 </div>
 
