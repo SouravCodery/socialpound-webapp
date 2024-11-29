@@ -4,12 +4,12 @@
    style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; width: 100%; padding: 1rem; gap: 1rem;"
 >
    <img 
-      src="./.github/assets/socialpound-souravchoudhary-souravcodery-v2.gif" 
+      src="./.github/assets/socialpound-souravchoudhary-souravcodery-v2-opt.gif" 
       style="width: auto; height: 30rem; object-fit: contain;" 
       alt="Socialpound Web-App Preview Screenshot Desktop"
    >
    <img 
-      src="./.github/assets/socialpound-souravchoudhary-souravcodery-screenshot-2.png" 
+      src="./.github/assets/socialpound-souravchoudhary-souravcodery-screenshot-2-opt.jpg" 
       style="width: auto; height: 30rem; object-fit: contain;" 
       alt="Socialpound Web-App Preview GIF Mobile"
    >
